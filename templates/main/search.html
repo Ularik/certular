@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% load main_tags %}
+
+{% block content %}
+<section class="search">
+    <div class="my-container">
+        <p class="search-title">{% trans 'Результаты поиска' %}</p>
+        {% if cyber_security%}
+        {% for cyber in cyber_security %}
+        <p><a href="#">{{ cyber.name }}</a></p>
+        {% endfor %}
+
+        {% elif news %}
+        {% for news1 in news %}
+        <p><a href="#">{{ news1.name }}</a></p>
+        {% endfor %}
+        {% elif trainings%}
+        {% for training in trainings %}
+        <p><a href="#">{{ training.name }}</a></p>
+        {% endfor %}
+        {% elif regulations%}
+        {% for regulation in regulations %}
+        <p><a href="#">{{ regulation.description|safe }}</a></p>
+        {% endfor %}
+        {% else %}
+            <p>{% trans 'По вашему запросу ничего не найдено' %}</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load main_tags %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% block title %}{% trans 'Мои сообщения' %}{% endblock title %}
+
+{% block content %}
+<div class="messages">
+    <div class="my-container messages-container">
+        <div class="messages-block-header">
+            <p class="messages-title">{% trans 'Все сообщения' %}</p>
+        </div>
+        {% if messages %}
+
+        <div class="messages-block-inner-table">
+            <table class="table messages-block-table">
+                <thead>
+                <tr>
+                    <th scope="col">{% trans '№ Сообщения' %}</th>
+                    <th scope="col">{% trans 'Описание' %}</th>
+                    <th scope="col">{% trans 'Статус' %}</th>
+                    <th scope="col">{% trans 'Влияние' %}</th>
+                    <th scope="col">{% trans 'Статус разрешения' %}</th>
+                    <th scope="col">{% trans 'Резюме' %}</th>
+                    <th scope="col">{% trans 'Действия' %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for message in messages %}
+                <tr>
+                    <th scope="row">{{ message.pk }}</th>
+                    <td>{{ message.description }}</td>
+                    <td>{{ message.get_status_display }}</td>
+                    <td>
+                        {% if message.impact_status is not None %}
+                            {{ message.impact_status }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if message.resolution_status is not None %}
+                            {{ message.resolution_status }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if message.summary is not None %}
+                            {{ message.summary }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td class="td-btn">
+                        <a class="main-btn messages-btn" href="{% url 'message_list' %}">{% trans 'Запросить статус' %}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="message-text-none">{% trans 'У вас нет сообщений' %}</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% load main_tags %}
+{% if contacts_page is not None %}
+{% block meta_keywords %}{{ contacts_page.meta_tag_keywords }}{% endblock meta_keywords %}
+{% block meta_description %}{{ contacts_page.meta_tag_description }}{% endblock meta_description %}
+{% endif %}
+{% block title %}
+    {% if contacts_page.meta_tag_title is not None %}
+        {{ contacts_page.meta_tag_title }}
+    {% else %}
+        {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+<section class="contacts">
+    <div class="my-container">
+        <div class="contacts__inner">
+            <div class="contacts__name">
+                <h1 class="contacts__name-title">
+                    {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+                    <br/><span>
+                            {% trans 'Государственного комитета национальной безопасности Кыргызской Республики' %}
+                        </span>
+                </h1>
+                <div class="contacts__name-block">
+                    <h3 class="contacts__name-subtitle">{% trans 'Адрес' %}:</h3>
+                    <p class="contacts__name-subtitle-text">
+                        {{ contact.address }}
+                    </p>
+                </div>
+                <div class="contacts__name-block">
+                    <h3 class="contacts__name-subtitle">{% trans 'Контакты' %}:</h3>
+                    <p class="contacts__name-subtitle-text contacts__name-subtitle-text-phone">
+                        тел: {{ contact.phone }}
+                    </p>
+                    <p class="contacts__name-subtitle-text contacts__name-subtitle-email">
+                        email: {{ contact.email }}
+                    </p>
+                </div>
+            </div>
+            <div class="contacts__form-wrapper">
+                <h1 class="contacts__form-wrapper-title">{% trans 'Напишите нам' %}:</h1>
+                <form class="contacts__form" id="appeals-captcha-id" method="post" action="">
+                    {% csrf_token %}
+                    {{ form.captcha }}
+                    <div class="contacts__form-block">
+                        <label class="contacts__form-label" for="contact-email">{% trans 'Email' %}*:</label>
+                        <input class="contacts__form-inp" id="contact-email" name="email"
+                               type="email"
+                        />
+                    </div>
+                    <div class="contacts__form-block">
+                        <label class="contacts__form-label" for="contact-full_name">{% trans 'ФИО' %}*:</label>
+                        <input class="contacts__form-inp" id="contact-full_name" type="text" name="full_name"
+                        />
+                    </div>
+                    <div class="contacts__form-block">
+                        <label class="contacts__form-label" for="contacts-phone_number">{% trans 'Номер телефона' %}*:</label>
+                        <input
+                                class="contacts__form-inp tel"
+                                id="contacts-phone_number"
+                                type="text"
+                                placeholder="+996 (___)__-__-__"
+                                name="phone_number"
+                        />
+                    </div>
+                    <div class="contacts__form-block">
+                        <label class="contacts__form-label"
+                               for="contacts-organization">{% trans 'Организация' %}*:</label>
+                        <select
+                                class="contacts__form-inp con-select form-select"
+                                id="contacts-organization"
+                                aria-label="Default select example"
+                                name="organization"
+                        >
+                            <option selected disabled hidden value="">
+                                {% trans 'Выберите из выпадающего списка' %}
+                            </option>
+                            {% get_organizations as organizations %}
+                            {% for organization in organizations %}
+                            <option value="{{ organization.pk }}">{{ organization.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="contacts__form-block">
+                        <label class="contacts__form-label"
+                               for="contacts-message">{% trans 'Ваше сообщение' %}*:</label>
+                        <textarea class="contacts__form-textarea" id="contacts-message" name="message"></textarea>
+                    </div>
+                    <div class="error errorMsgContactsContacts" id="errorMsgContacts"></div>
+                    <div class="contacts__form-btn-block">
+                        <button class="contacts__form-btn g-recaptcha"
+                                data-sitekey="{{ site_key }}"
+                                data-callback='onSubmitAppeals'
+                                data-action='submit'
+                        >{% trans 'Отправить сообщение' %}
+                        </button>
+                    </div>
+                </form>
+                <div class="triangle-top-right-contacts"></div>
+                <div class="triangle-top-left-contacts"></div>
+                <div class="triangle-bot-right-contacts"></div>
+                <div class="triangle-bot-left-contacts"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    let valueWrite = {
+        email: '',
+        full_name: '',
+        phone_number: '',
+        organization: '',
+        message: '',
+        csrfmiddlewaretoken: ''
+    };
+
+    const appeals = document.querySelector('.contacts__form');
+    const appealsBtn = document.querySelector('.contacts__form .contacts__form-btn');
+    const appealsBlocks = appeals.querySelectorAll('.contacts__form-block');
+    const csrftokenWrite = document.getElementsByName('csrfmiddlewaretoken');
+    let url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/appeals/`;
+
+    let regexContactEmail = new RegExp("[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
+    let regexContactFullName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
+    let regexContactTel = new RegExp("[0-9+() ]{18,}?$");
+    let regexContactMessage = new RegExp("^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}?$");
+    let regexContactSelect = new RegExp("^[0-9]{1,}?$");
+
+    const validateToolTip = (elem, className) => {
+        const errorValid = document.querySelector(`#errorValid-${className}`);
+
+        appealsBlocks.forEach(a => {
+            a.style.position = 'relative';
+            if(a.contains(elem) && !a.contains(errorValid)) {
+                let lang = window.location.pathname;
+                if(lang.includes('ru')) {
+                    let valueError =
+                        `
+                        <p class="errorValid" id="errorValid-${className}">Пожалуйста, заполните это поле</p>
+                    `;
+                    a.insertAdjacentHTML("beforeend", valueError);
+                } else if(lang.includes('ky')) {
+                    let valueError =
+                        `
+                        <p class="errorValid" id="errorValid-${className}">Сураныч, бул талааны толтуруңуз</p>
+                    `;
+                    a.insertAdjacentHTML("beforeend", valueError);
+                } else if(lang.includes('en')) {
+                    let valueError =
+                        `
+                        <p class="errorValid" id="errorValid-${className}">Please fill out this field</p>
+                    `;
+                    a.insertAdjacentHTML("beforeend", valueError);
+                }
+
+
+                setTimeout( () => {
+                    document.querySelectorAll('.errorValid').forEach(error => {
+                        error.remove();
+                    })
+                }, 5000);
+            }
+
+        })
+
+
+    }
+
+    const regexValid = (regex, className, value, elem, domElem) => {
+        const errorValid = document.querySelector(`#errorValid-${className}`);
+        if(regex.test(value)) {
+            if(errorValid){
+                errorValid.remove();
+            }
+            value = elem;
+
+        } else {
+            value = '';
+            validateToolTip(domElem, className);
+
+        }
+    }
+
+    appealsBtn.addEventListener('click', () => {
+        regexValid(regexContactEmail, `contact-email`, valueWrite.email, appeals.elements.email.value, appeals.elements.email);
+        regexValid(regexContactFullName, `full_name`, valueWrite.full_name, appeals.elements.full_name.value, appeals.elements.full_name);
+        regexValid(regexContactTel, `phone_number`, valueWrite.phone_number, appeals.elements.phone_number.value, appeals.elements.phone_number);
+        regexValid(regexContactMessage, `message`, valueWrite.message, appeals.elements.message.value, appeals.elements.message);
+        regexValid(regexContactSelect, `organization`, valueWrite.organization, appeals.elements.organization.value, appeals.elements.organization);
+    })
+
+    appeals.addEventListener('change', e => {
+        // e.preventDefault();
+
+        valueWrite.email = appeals.elements.email.value;
+        valueWrite.full_name = appeals.elements.full_name.value;
+        valueWrite.phone_number = appeals.elements.phone_number.value;
+        valueWrite.organization = parseInt(appeals.elements.organization.value);
+        valueWrite.message = appeals.elements.message.value;
+        valueWrite.csrfmiddlewaretoken = csrftokenWrite[0].value;
+    })
+
+    function onSubmitAppeals(token) {
+        // if (appeals.checkValidity()) {
+        //     appeals.submit();
+        // } else {
+        //     grecaptcha.reset();
+        //     appeals.reportValidity();
+        // }
+        console.log(token);
+        valueWrite['g-recaptcha-response'] = token;
+
+        if(valueWrite.phone_number.length === 18 && valueWrite.organization) {
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(valueWrite),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftokenWrite[0].value
+                }
+            }).then(async (res) => {
+                if (res.status === 200) {
+                    const el = document.getElementById('errorMsgContacts');
+                    el.innerText = '';
+                    await new bootstrap.Modal(document.getElementById('modalContact')).show();
+                    await changeColorThemeModalSuccess();
+
+                    appeals.elements.email.value = '';
+                    appeals.elements.full_name.value = '';
+                    appeals.elements.phone_number.value = '';
+                    appeals.elements.organization.value = '';
+                    appeals.elements.message.value = '';
+
+                    valueWrite.email = '';
+                    valueWrite.full_name = '';
+                    valueWrite.phone_number = '';
+                    valueWrite.organization = '';
+                    valueWrite.message = '';
+                }
+
+                if (res.status !== 200) return res.json();
+            }).then(res => {
+                if (res) {
+                    const el = document.getElementById('errorMsgContacts');
+                    el.innerText = res.errors.toString();
+                }
+            })
+        }
+    }
+</script>
+{% endblock %}

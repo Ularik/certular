@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load static %}
+<div class="about">
+    <div class="my-container">
+        <div class="about-wrapper">
+
+            <div class="about__us">
+                <h2 class="main-title">{% trans "О" %}<span> {% trans "Центре" %}</span></h2>
+                <p class="main-text">
+                    {% autoescape off %}
+                        {{ about.description|truncatechars:340 }}
+                    {% endautoescape %}
+                </p>
+                <a class="main-link main-link-about-us" href="#">{% trans 'Читать Постановление' %} ></a>
+            </div>
+
+            <div class="about__tasks">
+                <h2 class="main-title main-title-tasks"><span>{% trans 'Задачи' %}</span> {% trans 'Центра' %}</h2>
+                <div class="owl-carousel owl-theme about-tasks-block-owl">
+                    {% for task in center_tasks %}
+                        <a href="{% url 'about:about_detail' %}" class="about-card">
+                            <p class="about-card-text">
+                                {{ task.description|truncatewords:6 }}
+                            </p>
+                            <div class="triangle-top-right-about-cards"></div>
+                            <div class="triangle-top-left-about-cards"></div>
+                        </a>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

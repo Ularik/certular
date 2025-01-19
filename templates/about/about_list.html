@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans "О нас" %} {% endblock %}
+
+{% block content %}
+    <div style="height: 100px;"></div>
+    <div style="margin-bottom: 50px; background-color: #003467">
+        <h2>{% trans "О нас" %}</h2>
+        {% for about in about_list %}
+            {% if about.types == '1' %}
+                <div>{{ about.description|safe }}</div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% load static %}
+{% load i18n %}
+
+<div class="partners">
+    <div class="my-container">
+        <div class="partners-wrapper">
+
+            <div class="partners-block-top">
+                <h2 class="main-title partners-title">
+                    {% trans 'Сотрудничество' %}:
+                </h2>
+                <p class="main-text partners-text">
+                    {% trans 'Наши партнеры, совместно с которыми мы реализуем проекты в области обеспечения кибербезопасности в Кыргызской Республике.' %}
+                </p>
+            </div>
+
+            <div class="partners-block-bottom">
+                <div id="carouselExample" class="carousel slide partners-block-slider" data-bs-touch="true">
+                    <div class="carousel-inner partners-cards-shadow">
+<!--                        FOR COOPERATION OF COOPERATIONS-->
+                            <div class="carousel-item">
+                                <div class="partners-card">
+                                    <div class="partners-card-wrapper">
+<!--                                        IF COOPERAT IMAGE-->
+                                            <div class="partners-img-wrapper">
+                                                <img src="#" alt="partner"
+                                                     class="partners-img">
+                                            </div>
+<!--                                        ELSE-->
+                                            <div class="partners-img-wrapper">
+                                                <img src="#" alt="partner"
+                                                     class="partners-img">
+                                            </div>
+<!--                                        ENDIF-->
+                                        <h3 class="partners-card-title">'COOPER NAME'</h3>
+                                    </div>
+
+                                    <div class="partners-card-link-wrapper">
+                                        <a href="#" class="partners-card-link">
+                                            {% trans 'Посетить сайт' %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+<!--                         ENDFOR-->
+
+                    </div>
+                    <div class="partners-btn">
+                        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="prev">
+                            <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-7.92708e-07 10.25L11 1.90735e-06L11 4L2.56211 11.4375L2.63043 11.1875L2.63043 11.8125L2.56211 11.5625L11 19L11 23L-1.01127e-06 12.75L-7.92708e-07 10.25Z"
+                                      fill="#003467"/>
+                            </svg>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                data-bs-slide="next">
+                            <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 12.75L-4.02145e-06 23L-3.32207e-06 19L8.43789 11.5625L8.36957 11.8125L8.36957 11.1875L8.43789 11.4375L-6.99382e-07 4L0 0L11 10.25L11 12.75Z"
+                                      fill="#003467"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="partners-cards">
+<!--                    FOR COOPER IN COOPERATIONS_TO_FIVE-->
+                        <div class="partners-card">
+                            <div class="partners-card-wrapper">
+<!--                                IF COOPERATION IMAGE-->
+                                    <div class="partners-img-wrapper">
+                                        <img src="#" alt="partner" class="partners-img">
+                                    </div>
+<!--                                ELSE-->
+                                    <div class="partners-img-wrapper">
+                                        <img src="#" alt="partner"
+                                             class="partners-img">
+                                    </div>
+<!--                                ENDIF-->
+                                <h3 class="partners-card-title">'COOPERATION NAME'</h3>
+                            </div>
+
+                            <div class="partners-card-link-wrapper">
+                                <a href="#" class="partners-card-link">
+                                    {% trans 'Посетить сайт' %}
+                                </a>
+                            </div>
+                        </div>
+<!--                    ENDFOR-->
+
+                </div>
+                <div class="partners-wrapper-link">
+                    <a class="main-link partners-link partners-link-modal"
+                       data-bs-toggle="modal" data-bs-target="#partnerStaticBackdrop">
+                        {% trans 'Смотреть всех партнеров' %}
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

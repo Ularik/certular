@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% block title %}{% trans 'Дашборд' %}{% endblock title %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="my-container">
+        {% if dashboards %}
+        {% for dashboard in dashboards %}
+        <img src="{{ dashboard.screenshot }}" alt="dashboard">
+        {% endfor %}
+        {% else %}
+        <p class="dashboard-text-none">{% trans 'У вас нет уведомлений' %}</p>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock content %}

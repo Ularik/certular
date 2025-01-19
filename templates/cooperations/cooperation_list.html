@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% if cooperation_page is not None %}
+{% block meta_keywords %}{{ cooperation_page.meta_tag_keywords }}{% endblock meta_keywords %}
+{% block meta_description %}{{ cooperation_page.meta_tag_description }}{% endblock meta_description %}
+{% endif %}
+{% block title %}
+    {% if cooperation_page.meta_tag_title is not None %}
+        {{ cooperation_page.meta_tag_title }}
+    {% else %}
+        {% trans 'Сотрудничество' %}
+    {% endif %}
+{% endblock title %}
+{% block content %}
+<section class="all-partners">
+    <div class="my-container">
+
+        <div class="partners-block-top">
+            <h2 class="main-title partners-title">
+                {% trans 'Сотрудничество' %}:
+            </h2>
+            <p class="main-text partners-text">
+                {% trans 'Наши партнеры, совместно с которыми мы реализуем проекты в области обеспечения кибербезопасности в Кыргызской Республике.' %}
+            </p>
+        </div>
+
+        <div class="all-partners-cards">
+            {% for coop in cooperations_list %}
+            <div class="partners-card">
+                <div class="partners-card-wrapper">
+                    <div class="partners-img-wrapper">
+                        {% if coop.image %}
+                            <img src="{{ coop.image.url }}" alt="partner" class="partners-img">
+                        {% else %}
+                            <img src="{% static 'img/photo_no.jpg' %}" alt="partner" class="partners-img">
+                        {% endif %}
+                    </div>
+                    <h3 class="partners-card-title">{{ coop }}</h3>
+                </div>
+                <div class="partners-card-link-wrapper">
+                    <a href="{{ coop.link }}" class="partners-card-link">
+                        {% trans 'Посетить сайт' %}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

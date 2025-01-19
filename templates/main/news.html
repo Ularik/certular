@@ -1,0 +1,41 @@
+{% load static %}
+{% load i18n %}
+<div class="news">
+  <div class="my-container">
+    <div class="news-wrapper">
+      <div class="news-top">
+        <h2 class="main-title news-main-title">{% trans 'Новости и События' %}:</h2>
+        <p class="main-text news-main-text">
+            {% trans 'Последние обновления и события в Центре. Последние достижения, мероприятия и актуальные новости, связанные с нашей деятельностью в области кибербезопасности.' %}
+        </p>
+      </div>
+
+      <div class="news-cards">
+            <a class="news-card" href="#">
+                  <div class="news-img-box">
+                    <img src="#" alt="" class="news-img">
+                  </div>
+              <div class="news-data">
+                <p class="news-data-text">'SOME TEXT'</p>
+              </div>
+              <div class="news-content">
+                <h3 class="news-title">'NAME OF NEWS'</h3>
+                <div class="news-line"></div>
+                <p class="main-text news-card-text main-news-card-text">'DESCRIPTION'</p>
+                <p  class="main-link news-card-link">
+                    {% trans 'Читать новость полностью' %} >
+                </p>
+                <div class="triangle-top-right-news"></div>
+                <div class="triangle-top-left-news"></div>
+              </div>
+            </a>
+
+      </div>
+
+      <a href="#" class="main-link news-bottom-link">
+          {% trans 'Смотреть все новости' %}
+      </a>
+
+    </div>
+  </div>
+</div>

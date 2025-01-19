@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+<div class="report">
+  <div class="my-container">
+    <div class="report-wrapper">
+
+      <div class="report-left">
+        <h2 class="report-title">{% trans 'Сообщить об' %} <span>{% trans 'инциденте' %}</span></h2>
+        <p class="report-text">
+            {% trans 'Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных или атаки. Реагирование на инциденты - важная часть обеспечения кибербезопасности и защиты ваших данных и систем от угроз.' %}
+        </p>
+        <button class="main-btn report-btn" data-bs-toggle="modal"
+                data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}</button>
+      </div>
+
+      <div class="report-right">
+        <img src="{% static '/img/sms.webp' %}" alt="sms" class="report-img">
+      </div>
+
+    </div>
+  </div>
+</div>

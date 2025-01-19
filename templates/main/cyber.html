@@ -1,0 +1,28 @@
+{% load static %}
+{% load i18n %}
+<div class="cyber">
+  <div class="my-container">
+    <div class="cyber-wrapper">
+      <div class="cyber__top">
+        <h2 class="main-title cyber-title">{% trans 'Кибербезопасность и рекомендации' %}</h2>
+        <p class="main-text cyber-text">
+            {% trans 'Кибербезопасность - это область, которая занимается защитой цифровых систем, данных и информации от киберугроз и атак для обеспечения их безопасности и надежности. Часто встречающиеся киберугрозы:' %}
+        </p>
+      </div>
+
+      <div class="cyber__bottom">
+        <div class="cyber-cards">
+          <a href="#" class="cyber-card">
+                <span class="cyber-card-img-block">
+                  <img src="#" alt="cyber" class="cyber-img">
+                </span>
+            <h3 class="main-sub-title"></h3>
+          </a>
+        </div>
+        <button class="main-btn report-btn" data-bs-toggle="modal"
+                data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}</button>
+      </div>
+
+    </div>
+  </div>
+</div>

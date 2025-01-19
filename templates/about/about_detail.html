@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% if about_page is not None %}
+{% block meta_keywords %}{{ about_page.meta_tag_keywords }}{% endblock meta_keywords %}
+{% block meta_description %}{{ about_page.meta_tag_description }}{% endblock meta_description %}
+{% endif %}
+{% block title %}
+    {% if about_page.meta_tag_title is not None %}
+        {{ about_page.meta_tag_title }}
+    {% else %}
+        {% trans 'О Центре' %}
+    {% endif %}
+{% endblock title %}
+{% block content %}
+    <div class="about-section">
+        <div class="my-container">
+            <div class="about__inner">
+                <div class="about__top">
+                    <div class="about__top-right">
+                        <img class="about__top-right-img--dark" src="{% static 'img/about_cert_kg.svg' %}" alt="cert-kg"/>
+                        <img class="about__top-right-img--white" src="{% static 'img/about-white.svg' %}" alt="cert-kg" style="display: none"/>
+
+                    </div>
+                    <div class="about__top-left">
+                        <h1 class="about__title">{% trans 'О Центре' %}</h1>
+                        <div class="about__text">
+                            {% autoescape off %}
+                                {{ about.description }}
+                            {% endautoescape %}
+                        </div>
+                    </div>
+                </div>
+                <div class="about__bottom">
+                    <h1 class="about__bottom-title">{% trans 'Задачи Центра' %}</h1>
+                    <ul class="about__bottom-list">
+                        {% for center_task in center_tasks %}
+                            <li class="about__bottom-list-item">
+                                {{ center_task.description|safe }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

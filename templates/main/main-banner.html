@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+<div class="banner">
+  <div class="banner-wrapper">
+    <div class="my-container banner-container">
+
+      <div class="banner-left">
+        <h1 class="banner-left__title">{% trans 'Координационный Центр по Обеспечению Кибербезопасности' %}</h1>
+        <p class="banner-left__text">
+            {% trans 'Государственного комитета национальной безопасности Кыргызской Республики' %}
+        </p>
+        <button class="main-btn report-btn" data-bs-toggle="modal"
+                data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}</button>
+      </div>
+
+      <div class="banner-right">
+        <img src="{% static '/img/banner.webp' %}" alt="">
+      </div>
+
+    </div>
+  </div>
+</div>

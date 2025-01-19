@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section class="forbidden">
+    <div class="my-container">
+        <p class="forbidden-title">{% trans 'У вас нет доступа к этой странице' %}</p>
+    </div>
+</section>
+{% endblock content %}

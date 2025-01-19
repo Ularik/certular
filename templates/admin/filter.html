@@ -1,0 +1,34 @@
+{% load i18n %}
+<h3>{% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}</h3>
+<ul>
+    <li>
+        {% with choices.0 as all_choice %}
+        {% if all_choice.query_parts %}
+        <form method="GET" action="">
+            {% for k, v in all_choice.query_parts %}
+            <input type="hidden" name="{{ k }}" value="{{ v }}" />
+            {% endfor %}
+            {% if spec.parameter_name == 'date' %}
+            <input type="date"
+                    value="{{ spec.value|default_if_none:'' }}"
+                    name="{{ spec.parameter_name }}"/>
+            {% else %}
+            <input type="text"
+            value="{{ spec.value|default_if_none:'' }}"
+            name="{{ spec.parameter_name }}"/>
+            {% endif %}
+
+            {% if not all_choice.selected %}
+                <strong><a href="{{ all_choice.query_string }}">x {% trans 'Remove' %}</a></strong>
+            {% endif %}
+            <p><input class="sub_but" type="submit" value="Запросить"></p>
+
+        </form>
+        {% endif %}
+        {% endwith %}
+    </li>
+    {% for choice in choices %}
+    <li{% if choice.selected %} class="selected"{% endif %}>
+    <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</a></li>
+{% endfor %}
+</ul>

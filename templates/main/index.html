@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}
+    {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+{% endblock title %}
+
+{% block content %}
+    {% include 'main/main-banner.html' %}
+    {% include 'main/about.html' %}
+    {% include 'main/cyber.html' %}
+    {% include 'main/news.html' %}
+    {% include 'main/partners.html' %}
+    {% include 'main/report.html' %}
+{% endblock content %}

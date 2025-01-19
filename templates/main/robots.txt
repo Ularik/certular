@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Host: https://cert.gov.kg
+
+Sitemap: https://cert.gov.kg/ru/sitemap.xml
+Sitemap: https://cert.gov.kg/en/sitemap.xml
+Sitemap: https://cert.gov.kg/ky/sitemap.xml

@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans "Новости" %} {% endblock %}
+
+{% block content %}
+    <div class="one-content">
+        <div class="my-container my-container-second">
+            <div class="one-content-wrapper">
+                <div class="one-content-top">
+                    <p class="one-content-data">{{ news.created_at|date:'d F Y' }}</p>
+                    <h1 class="main-title one-content-title">{{ news.name }}</h1>
+                </div>
+                <div class="one-content-info-block">
+                    {% if news.cover %}
+                        <div class="one-content-image-block">
+                            <img src="{{ news.cover.url }}" alt="#" class="one-content-image">
+                        </div>
+                    {% endif %}
+
+                    <div class="one-content-info-text">
+                        {{ news.full_description|safe }}
+                    </div>
+                </div>
+                {% if news.gallery_news.all is not None %}
+                    <div class="one-content-gallery">
+                        <div class="owl-carousel one-content-owl">
+                            {% for file in news.gallery_news.all %}
+                                {% if file.media_type_html == 'video' %}
+                                    <div class="one-content-video-one-block one-content-block-each"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#oneContentModal">
+                                        <video class="one-content-gallery-video one-content-gallery-video-main">
+                                            <source src="{{ file.file_news.url }}"
+                                                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                        </video>
+                                    </div>
+                                {% else %}
+                                    <div class="one-content-img-one-block one-content-block-each"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#oneContentModal"
+                                         style="--bg: url('{{ file.file_news.url }}')"
+                                    >
+                                        <img src="{{ file.file_news.url }}" alt="" class="one-content-gallery-img">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="one-content-social">
+                    <p class="one-content-social-text">{% trans 'Поделиться' %}:</p>
+
+                    <div class="one-content-social-icon-block">
+                        <a href="#" class="one-content-social-icon telegram">
+                            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.4334 0.952872L0.631873 8.6642C-0.00640833 8.91654 0.0307008 9.83686 0.691248 10.0298L5.72328 11.5142L7.60101 17.474C7.79398 18.0974 8.58812 18.2829 9.04086 17.8154L11.6459 15.1583L16.7522 18.9064C17.3756 19.3665 18.2662 19.0251 18.4221 18.2681L21.7991 2.10326C21.9698 1.31654 21.1905 0.655997 20.4334 0.952872ZM17.9545 4.53764L8.75883 12.672C8.66976 12.7537 8.61039 12.865 8.59554 12.9837L8.2393 16.1306C8.22445 16.2345 8.08344 16.2494 8.05375 16.1454L6.59906 11.4474C6.53226 11.2322 6.62133 11.0021 6.8143 10.8833L17.6725 4.14428C17.9174 4.00326 18.1772 4.34467 17.9545 4.53764Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="" class="one-content-social-icon twitter">
+                            <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.59227 19.6521C16.5508 19.6521 21.4528 12.2231 21.4528 5.79165C21.4528 5.58265 21.4528 5.37365 21.4433 5.16465C22.3933 4.48065 23.2198 3.61614 23.8753 2.63764C23.0013 3.02714 22.0608 3.28364 21.0728 3.40714C22.0798 2.80864 22.8493 1.84914 23.2198 0.709144C22.2793 1.26964 21.2343 1.66864 20.1228 1.88714C19.2298 0.937145 17.9663 0.348145 16.5698 0.348145C13.8813 0.348145 11.6963 2.53314 11.6963 5.22164C11.6963 5.60164 11.7438 5.97214 11.8198 6.33314C7.77277 6.13364 4.18177 4.18614 1.77827 1.24114C1.36027 1.96314 1.12277 2.79914 1.12277 3.69214C1.12277 5.38314 1.98727 6.87465 3.28877 7.74865C2.49077 7.72015 1.74027 7.50165 1.08477 7.14065V7.20714C1.08477 9.56314 2.76627 11.5391 4.98927 11.9856C4.58077 12.0996 4.15327 12.1566 3.70677 12.1566C3.39327 12.1566 3.08927 12.1281 2.79477 12.0711C3.41227 14.0091 5.21727 15.4151 7.34527 15.4531C5.67327 16.7641 3.57377 17.5431 1.29377 17.5431C0.904266 17.5431 0.514766 17.5241 0.134766 17.4766C2.28177 18.8446 4.84677 19.6521 7.59227 19.6521Z" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="one-content-social-icon fb">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38" fill="none">
+                                <g clip-path="url(#clip0_319_7692)">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3573 0C35.9197 0 38 2.08035 38 4.64268V33.3573C38 35.9197 35.9197 38 33.3573 38H25.4554V23.6821H30.3984L31.3389 17.5501H25.4554V13.5707C25.4554 11.8931 26.2772 10.2578 28.9125 10.2578H31.5875V5.0373C31.5875 5.0373 29.1598 4.62301 26.8388 4.62301C21.9932 4.62301 18.8262 7.55977 18.8262 12.8764V17.5501H13.4399V23.6821H18.8262V38H4.64268C2.08035 38 0 35.9197 0 33.3573V4.64268C0 2.08035 2.08028 0 4.64268 0L33.3573 0Z" fill="#1777F2"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_319_7692">
+                                        <rect width="38" height="38" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </a>
+                        <a href="#" class="one-content-social-icon whatsapp">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.6772 4.26664C21.1099 1.696 17.6952 0.27991 14.057 0.277832C6.5618 0.277832 0.460719 6.37802 0.45775 13.8765C0.45686 16.2735 1.08297 18.6128 2.27314 20.6746L0.34375 27.7221L7.55277 25.8313C9.53916 26.9143 11.7758 27.4852 14.0517 27.4867H14.0576C21.5528 27.4867 27.6536 21.3853 27.6565 13.8869C27.6574 10.2537 26.244 6.83699 23.6772 4.26664ZM14.0573 25.1895H14.0525C12.024 25.1889 10.0349 24.6436 8.29911 23.614L7.88616 23.3691L3.60848 24.4907L4.75027 20.3202L4.4813 19.8921C3.34961 18.0927 2.752 16.0131 2.75348 13.8768C2.75556 7.64478 7.82619 2.57475 14.0609 2.57475C17.0804 2.57564 19.9179 3.75305 22.0524 5.88966C24.1864 8.02627 25.3611 10.8659 25.3605 13.8863C25.3578 20.1189 20.2872 25.1895 14.0573 25.1895ZM20.2569 16.7244C19.9167 16.554 18.2468 15.7323 17.9354 15.6186C17.6234 15.5051 17.3977 15.4484 17.1712 15.7887C16.9444 16.1289 16.2934 16.8945 16.0947 17.121C15.8961 17.3476 15.6987 17.3758 15.3588 17.2059C15.0189 17.0355 13.924 16.6769 12.6267 15.5188C11.6164 14.6187 10.9345 13.5051 10.7362 13.1652C10.5378 12.8247 10.7151 12.6412 10.8852 12.472C11.0384 12.3194 11.2251 12.0753 11.3949 11.8764C11.5644 11.6781 11.6211 11.5362 11.7348 11.3097C11.848 11.0832 11.7915 10.8849 11.7066 10.7148C11.6214 10.5444 10.9419 8.87177 10.6593 8.19133C10.3832 7.529 10.1029 7.61866 9.89481 7.60827C9.6965 7.59847 9.46969 7.5961 9.24347 7.5961C9.01695 7.5961 8.64853 7.6813 8.33711 8.02152C8.02598 8.36174 7.14783 9.18379 7.14783 10.8564C7.14783 12.529 8.36531 14.1446 8.53542 14.3717C8.70523 14.5979 10.9309 18.0304 14.3399 19.5023C15.1507 19.8523 15.7836 20.0613 16.2767 20.218C17.0905 20.4766 17.8318 20.4401 18.4169 20.3528C19.07 20.2551 20.4273 19.5305 20.7112 18.7366C20.9941 17.9428 20.9941 17.2626 20.9089 17.1213C20.8231 16.9794 20.5969 16.8942 20.2569 16.7244Z" fill="white"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="oneContentModal" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div id="carouselExampleIndicators" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% for file in news.gallery_news.all %}
+                                {% if file.media_type_html == 'video' %}
+                                    <div class="carousel-item"
+                                         style="--bg: url('{{ file.file_news.url }}')"
+                                    >
+                                        <video controls
+                                               class="one-content-gallery-video one-content-gallery-video-modal">
+                                            <source src="{{ file.file_news.url }}"
+                                                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+                                        </video>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <img src="{{ file.file_news.url }}" alt="" class="one-content-gallery-img">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="prev">
+                            <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-7.92708e-07 10.25L11 1.90735e-06L11 4L2.56211 11.4375L2.63043 11.1875L2.63043 11.8125L2.56211 11.5625L11 19L11 23L-1.01127e-06 12.75L-7.92708e-07 10.25Z"
+                                      fill="white"/>
+                            </svg>
+                        </button>
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide="next">
+                            <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 12.75L-4.02145e-06 23L-3.32207e-06 19L8.43789 11.5625L8.36957 11.8125L8.36957 11.1875L8.43789 11.4375L-6.99382e-07 4L0 0L11 10.25L11 12.75Z"
+                                      fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

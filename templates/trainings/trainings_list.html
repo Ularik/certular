@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% if trainings_page is not None %}
+{% block meta_keywords %}{{ trainings_page.meta_tag_keywords }}{% endblock meta_keywords %}
+{% block meta_description %}{{ trainings_page.meta_tag_description }}{% endblock meta_description %}
+{% endif %}
+{% block title %}
+    {% if trainings_page.meta_tag_title is not None %}
+        {{ trainings_page.meta_tag_title }}
+    {% else %}
+        {% trans 'Тренинги' %}
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <div class="news-page trainings-page">
+        <div class="my-container">
+            <div class="news-page-wrapper trainings-page-wrapper">
+
+                <div class="news-page-main-block">
+                    <h1 class="main-title news-page-title">{% trans 'Тренинги' %}</h1>
+                    <p class="main-text news-page-text">
+                        {% trans 'Информация о тренингах и мероприятиях, проводимых Центром, а также о событиях, в которых участвовали наши сотрудники, связанные с обеспечением кибербезопасности в Кыргызской Республике.' %}
+                    </p>
+                </div>
+
+                <div class="news-page-filter">
+                    <a href="{% url 'trainings:trainings' %}" class="news-page-btn-all">
+                        {% trans 'Все' %}
+                    </a>
+                    <a href="{% url 'trainings:trainings' %}?params=upcoming" class="trainings-page-data trainings-page-data-feature">
+                        {% trans 'Предстоящие' %}
+                    </a>
+                    <a href="{% url 'trainings:trainings' %}?params=past" class="trainings-page-data trainings-page-data-past">
+                        {% trans 'Прошедшие' %}
+                    </a>
+                </div>
+
+                <div class="news-pages-cards">
+                    {% for training in trainings_list %}
+                        <a href="{% url 'trainings:trainings_detail' training.pk %}" class="news-pages-card">
+                            {% if training.cover %}
+                                <div class="news-img-box">
+                                    <img src="{{ training.cover.url }}" alt="" class="news-img">
+                                </div>
+                            {% endif %}
+                            <div class="news-data">
+                                <p class="news-data-text">{{ training.date|date:'d F Y' }}</p>
+                            </div>
+                            <div class="news-content">
+                                <h3 class="news-title">{{ training.name }}</h3>
+                                <div class="news-line"></div>
+                                <p class="main-text">
+                                    {{ training.description|safe }}
+                                </p>
+                                <p class="main-link">
+                                    {% trans 'Читать новость полностью' %} >
+                                </p>
+                                <div class="triangle-top-right-news"></div>
+                                <div class="triangle-top-left-news"></div>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+                </div>
+
+                {% if page_obj.has_other_pages %}
+                    <nav aria-label="Page navigation all-content">
+                        <ul class="pagination">
+                            {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                        <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M-1.17599e-06 10.25L11 1.69783e-06L11 4L2.56211 11.4375L2.63043 11.1875L2.63043 11.8125L2.56211 11.5625L11 19L11 23L-1.39455e-06 12.75L-1.17599e-06 10.25Z"
+                                                  fill="#003467"/>
+                                        </svg>
+
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for p in paginator.page_range %}
+                                {% if page_obj.number == p %}
+                                    <li class="page-item"><a class="page-link active-page" href="#">{{ p }}</a></li>
+                                {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                        <svg width="11" height="23" viewBox="0 0 11 23" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M11 12.75L-4.02145e-06 23L-3.32207e-06 19L8.43789 11.5625L8.36957 11.8125L8.36957 11.1875L8.43789 11.4375L-6.99382e-07 4L0 0L11 10.25L11 12.75Z"
+                                                  fill="#003467"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+    {% include 'main/report.html' %}
+{% endblock %}

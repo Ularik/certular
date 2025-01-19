@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{#    {% for news1 in news %}#}
+{#        <url>#}
+{#            <loc>{{ request.scheme }}.//{{ request.get_host }}{{ news1.get_absolute_url }}</loc>#}
+{#            <lastmod>{{ news1.created_at|date:"Y-m-d" }}</lastmod>#}
+{#            <changefreq>weekly</changefreq>#}
+{#            <priority>0.8</priority>#}
+{#        </url>#}
+{#    {% endfor %}#}
+{#    {% for cyber in cyber_security %}#}
+{#        <url>#}
+{#            <loc>{{ request.scheme }}.//{{ request.get_host }}{{ cyber.get_absolute_url }}</loc>#}
+{#            <lastmod>{{ cyber.created_at|date:"Y-m-d" }}</lastmod>#}
+{#            <changefreq>weekly</changefreq>#}
+{#            <priority>0.8</priority>#}
+{#        </url>#}
+{#    {% endfor %}#}
+{#    {% for training in trainings %}#}
+{#        <url>#}
+{#            <loc>{{ request.scheme }}.//{{ request.get_host }}{{ training.get_absolute_url }}</loc>#}
+{#            <lastmod>{{ training.date|date:"Y-m-d" }}</lastmod>#}
+{#            <changefreq>weekly</changefreq>#}
+{#            <priority>0.8</priority>#}
+{#        </url>#}
+{#    {% endfor %}#}
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url 'about:about_detail' %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "legislation_apps:legislation" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "main_apps:index" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "contacts:contact_detail" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "cooperations_apps:cooperations" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "news:news" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>{{ request.scheme }}.//{{ request.get_host }}{% url "trainings:trainings" %}</loc>
+        <lastmod>{% now "Y-m-d" %}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+</urlset>

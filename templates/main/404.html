@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+
+{% block content %}
+<section class="page-404">
+    <div class="my-container">
+        <p class="page-404__title page-404__title-number">404</p>
+        <p class="page-404__title">{% trans 'Not Found' %}</p>
+    </div>
+</section>
+{% endblock content %}
