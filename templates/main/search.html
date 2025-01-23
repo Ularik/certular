@@ -17,7 +17,7 @@
 
         {% elif news %}
         {% for news1 in news %}
-        <p><a href="#">{{ news1.name }}</a></p>
+        <p><a href="{% url 'news:news_detail' news1.pk %}">{{ news1.name }}</a></p>
         {% endfor %}
         {% elif trainings%}
         {% for training in trainings %}

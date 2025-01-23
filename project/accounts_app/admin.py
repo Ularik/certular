@@ -14,14 +14,14 @@ class OrganizationAdmin(admin.ModelAdmin):
 
 
 class UserAdmin(BaseUserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'is_staff')
+    list_display = ('email', 'first_name', 'last_name',)
     list_filter = ('first_name', 'last_name')
     fieldsets = (
         (None, {'fields': ('email',)}),
         ('Организация', {'fields': ('organization',)}),
         ('Персональные данные', {'fields': ('first_name', 'last_name', 'patronymic', 'date_of_birth',
                                             'position')}),
-        ('Привилегии', {'fields': ('is_staff', 'groups')}),
+        ('Привилегии', {'fields': ('groups',)}),
         ('Активность пользователя', {'fields': ('is_active',)}),
         ('Номер телефона', {'fields': ('number',)}),
         ('Безопасность', {'fields': ('password',)})
@@ -29,7 +29,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'password1', 'password2', 'is_staff', 'is_superuser',
+            'fields': ('email', 'first_name', 'password1', 'password2', 'is_superuser',
                        'organization', 'date_of_birth', 'number'),
         }),
     )

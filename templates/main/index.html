@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load i18n %}
+{% if home_index is not None %}
+{% block meta_keywords %}{{ home_index.meta_tag_keywords }}{% endblock meta_keywords %}
+{% block meta_description %}{{ home_index.meta_tag_description }}{% endblock meta_description %}
 {% block title %}
-    {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+    {% if home_index.meta_tag_title %}
+    {{ home_index.meta_tag_title }}
+    {% else %}
+        {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+    {% endif %}
 {% endblock title %}
+{% endif %}
 
 {% block content %}
     {% include 'main/main-banner.html' %}

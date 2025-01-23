@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'main_app',
     'about_app',
     'cyber_security_app',
-    'news'
+    'news_app',
+    'contacts_app',
+    'cooperation_app',
+    'legislation_app',
+    'messages_app'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +85,7 @@ DATABASES = {
         'NAME': 'cert_gov',  # Имя вашей базы данных
         'USER': 'ular',  # Имя вашего пользователя
         'PASSWORD': 'admin',  # Ваш пароль
-        'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
+        'HOST': '127.0.0.1',  # Хост, на котором работает PostgreSQL
         'PORT': '5432',  # Порт (по умолчанию 5432)
     }
 }
@@ -128,8 +132,22 @@ USE_I18N = True
 
 USE_TZ = True
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
-MEDIA_URL = "/media/"
+STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "static")
+    ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+if not os.path.exists(MEDIA_ROOT):
+    os.makedirs(MEDIA_ROOT)
+
+
 
 STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), 'static-backend'),

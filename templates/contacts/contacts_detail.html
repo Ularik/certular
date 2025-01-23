@@ -46,42 +46,24 @@
             </div>
             <div class="contacts__form-wrapper">
                 <h1 class="contacts__form-wrapper-title">{% trans 'Напишите нам' %}:</h1>
-                <form class="contacts__form" id="appeals-captcha-id" method="post" action="">
+                <form class="contacts__form" id="appeals-form" method="post" action="">
                     {% csrf_token %}
-                    {{ form.captcha }}
                     <div class="contacts__form-block">
                         <label class="contacts__form-label" for="contact-email">{% trans 'Email' %}*:</label>
-                        <input class="contacts__form-inp" id="contact-email" name="email"
-                               type="email"
-                        />
+                        <input class="contacts__form-inp" id="contact-email" name="email" type="email" required />
                     </div>
                     <div class="contacts__form-block">
                         <label class="contacts__form-label" for="contact-full_name">{% trans 'ФИО' %}*:</label>
-                        <input class="contacts__form-inp" id="contact-full_name" type="text" name="full_name"
-                        />
+                        <input class="contacts__form-inp" id="contact-full_name" name="full_name" type="text" required />
                     </div>
                     <div class="contacts__form-block">
                         <label class="contacts__form-label" for="contacts-phone_number">{% trans 'Номер телефона' %}*:</label>
-                        <input
-                                class="contacts__form-inp tel"
-                                id="contacts-phone_number"
-                                type="text"
-                                placeholder="+996 (___)__-__-__"
-                                name="phone_number"
-                        />
+                        <input class="contacts__form-inp tel" id="contacts-phone_number" name="phone_number" type="text" placeholder="+996 (___)__-__-__" required />
                     </div>
                     <div class="contacts__form-block">
-                        <label class="contacts__form-label"
-                               for="contacts-organization">{% trans 'Организация' %}*:</label>
-                        <select
-                                class="contacts__form-inp con-select form-select"
-                                id="contacts-organization"
-                                aria-label="Default select example"
-                                name="organization"
-                        >
-                            <option selected disabled hidden value="">
-                                {% trans 'Выберите из выпадающего списка' %}
-                            </option>
+                        <label class="contacts__form-label" for="contacts-organization">{% trans 'Организация' %}*:</label>
+                        <select class="contacts__form-inp con-select form-select" id="contacts-organization" name="organization" required>
+                            <option selected disabled hidden value="">{% trans 'Выберите из выпадающего списка' %}</option>
                             {% get_organizations as organizations %}
                             {% for organization in organizations %}
                             <option value="{{ organization.pk }}">{{ organization.name }}</option>
@@ -89,18 +71,12 @@
                         </select>
                     </div>
                     <div class="contacts__form-block">
-                        <label class="contacts__form-label"
-                               for="contacts-message">{% trans 'Ваше сообщение' %}*:</label>
-                        <textarea class="contacts__form-textarea" id="contacts-message" name="message"></textarea>
+                        <label class="contacts__form-label" for="contacts-message">{% trans 'Ваше сообщение' %}*:</label>
+                        <textarea class="contacts__form-textarea" id="contacts-message" name="message" required></textarea>
                     </div>
-                    <div class="error errorMsgContactsContacts" id="errorMsgContacts"></div>
+                    <div class="error errorMsgContacts" id="errorMsgContacts"></div>
                     <div class="contacts__form-btn-block">
-                        <button class="contacts__form-btn g-recaptcha"
-                                data-sitekey="{{ site_key }}"
-                                data-callback='onSubmitAppeals'
-                                data-action='submit'
-                        >{% trans 'Отправить сообщение' %}
-                        </button>
+                        <button type="submit" class="contacts__form-btn">{% trans 'Отправить сообщение' %}</button>
                     </div>
                 </form>
                 <div class="triangle-top-right-contacts"></div>
@@ -112,148 +88,101 @@
     </div>
 </section>
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('appeals-form');
+    const errorContainer = document.getElementById('errorMsgContacts');
+    const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const apiUrl = `${window.location.origin}/appeals/`;
 
-    let valueWrite = {
-        email: '',
-        full_name: '',
-        phone_number: '',
-        organization: '',
-        message: '',
-        csrfmiddlewaretoken: ''
+    // Регулярные выражения для валидации
+    const regexRules = {
+        email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        full_name: /^[ёЁa-zA-ZА-Яа-я ]+$/,
+        phone_number: /^[0-9+() ]{10,18}$/,
+        message: /^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}$/,
+        organization: /^[0-9]+$/,
     };
 
-    const appeals = document.querySelector('.contacts__form');
-    const appealsBtn = document.querySelector('.contacts__form .contacts__form-btn');
-    const appealsBlocks = appeals.querySelectorAll('.contacts__form-block');
-    const csrftokenWrite = document.getElementsByName('csrfmiddlewaretoken');
-    let url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/appeals/`;
-
-    let regexContactEmail = new RegExp("[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
-    let regexContactFullName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
-    let regexContactTel = new RegExp("[0-9+() ]{18,}?$");
-    let regexContactMessage = new RegExp("^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}?$");
-    let regexContactSelect = new RegExp("^[0-9]{1,}?$");
-
-    const validateToolTip = (elem, className) => {
-        const errorValid = document.querySelector(`#errorValid-${className}`);
-
-        appealsBlocks.forEach(a => {
-            a.style.position = 'relative';
-            if(a.contains(elem) && !a.contains(errorValid)) {
-                let lang = window.location.pathname;
-                if(lang.includes('ru')) {
-                    let valueError =
-                        `
-                        <p class="errorValid" id="errorValid-${className}">Пожалуйста, заполните это поле</p>
-                    `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                } else if(lang.includes('ky')) {
-                    let valueError =
-                        `
-                        <p class="errorValid" id="errorValid-${className}">Сураныч, бул талааны толтуруңуз</p>
-                    `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                } else if(lang.includes('en')) {
-                    let valueError =
-                        `
-                        <p class="errorValid" id="errorValid-${className}">Please fill out this field</p>
-                    `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                }
-
-
-                setTimeout( () => {
-                    document.querySelectorAll('.errorValid').forEach(error => {
-                        error.remove();
-                    })
-                }, 5000);
-            }
-
-        })
-
-
-    }
-
-    const regexValid = (regex, className, value, elem, domElem) => {
-        const errorValid = document.querySelector(`#errorValid-${className}`);
-        if(regex.test(value)) {
-            if(errorValid){
-                errorValid.remove();
-            }
-            value = elem;
-
-        } else {
-            value = '';
-            validateToolTip(domElem, className);
-
+    // Функция валидации
+    const validateField = (field, regex) => {
+        const value = field.value.trim();
+        if (!regex.test(value)) {
+            field.classList.add('error-field');
+            showErrorTooltip(field, 'Пожалуйста, заполните это поле корректно.');
+            return false;
         }
-    }
+        field.classList.remove('error-field');
+        return true;
+    };
 
-    appealsBtn.addEventListener('click', () => {
-        regexValid(regexContactEmail, `contact-email`, valueWrite.email, appeals.elements.email.value, appeals.elements.email);
-        regexValid(regexContactFullName, `full_name`, valueWrite.full_name, appeals.elements.full_name.value, appeals.elements.full_name);
-        regexValid(regexContactTel, `phone_number`, valueWrite.phone_number, appeals.elements.phone_number.value, appeals.elements.phone_number);
-        regexValid(regexContactMessage, `message`, valueWrite.message, appeals.elements.message.value, appeals.elements.message);
-        regexValid(regexContactSelect, `organization`, valueWrite.organization, appeals.elements.organization.value, appeals.elements.organization);
-    })
+    // Показать ошибку рядом с полем
+    const showErrorTooltip = (field, message) => {
+        const parentBlock = field.closest('.contacts__form-block');
+        const existingError = parentBlock.querySelector('.errorValid');
+        if (!existingError) {
+            const errorElem = document.createElement('p');
+            errorElem.className = 'errorValid';
+            errorElem.textContent = message;
+            parentBlock.appendChild(errorElem);
+            setTimeout(() => errorElem.remove(), 5000); // Удалить через 5 секунд
+        }
+    };
 
-    appeals.addEventListener('change', e => {
-        // e.preventDefault();
+    // Очистить ошибки
+    const clearErrors = () => {
+        errorContainer.textContent = '';
+        form.querySelectorAll('.errorValid').forEach(error => error.remove());
+        form.querySelectorAll('.error-field').forEach(field => field.classList.remove('error-field'));
+    };
 
-        valueWrite.email = appeals.elements.email.value;
-        valueWrite.full_name = appeals.elements.full_name.value;
-        valueWrite.phone_number = appeals.elements.phone_number.value;
-        valueWrite.organization = parseInt(appeals.elements.organization.value);
-        valueWrite.message = appeals.elements.message.value;
-        valueWrite.csrfmiddlewaretoken = csrftokenWrite[0].value;
-    })
+    // Отправка формы
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Останавливаем стандартное поведение формы
+        clearErrors();
 
-    function onSubmitAppeals(token) {
-        // if (appeals.checkValidity()) {
-        //     appeals.submit();
-        // } else {
-        //     grecaptcha.reset();
-        //     appeals.reportValidity();
-        // }
-        console.log(token);
-        valueWrite['g-recaptcha-response'] = token;
+        const formData = {
+            email: form.email.value,
+            full_name: form.full_name.value,
+            phone_number: form.phone_number.value,
+            organization: form.organization.value,
+            message: form.message.value,
+        };
 
-        if(valueWrite.phone_number.length === 18 && valueWrite.organization) {
-            fetch(url, {
+        // Валидация всех полей
+        let isValid = true;
+        isValid &= validateField(form.email, regexRules.email);
+        isValid &= validateField(form.full_name, regexRules.full_name);
+        isValid &= validateField(form.phone_number, regexRules.phone_number);
+        isValid &= validateField(form.organization, regexRules.organization);
+        isValid &= validateField(form.message, regexRules.message);
+
+        if (!isValid) {
+            errorContainer.textContent = 'Пожалуйста, исправьте ошибки в форме.';
+            return;
+        }
+
+        try {
+            const response = await fetch(apiUrl, {
                 method: 'POST',
-                body: JSON.stringify(valueWrite),
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftokenWrite[0].value
-                }
-            }).then(async (res) => {
-                if (res.status === 200) {
-                    const el = document.getElementById('errorMsgContacts');
-                    el.innerText = '';
-                    await new bootstrap.Modal(document.getElementById('modalContact')).show();
-                    await changeColorThemeModalSuccess();
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify(formData),
+            });
 
-                    appeals.elements.email.value = '';
-                    appeals.elements.full_name.value = '';
-                    appeals.elements.phone_number.value = '';
-                    appeals.elements.organization.value = '';
-                    appeals.elements.message.value = '';
-
-                    valueWrite.email = '';
-                    valueWrite.full_name = '';
-                    valueWrite.phone_number = '';
-                    valueWrite.organization = '';
-                    valueWrite.message = '';
-                }
-
-                if (res.status !== 200) return res.json();
-            }).then(res => {
-                if (res) {
-                    const el = document.getElementById('errorMsgContacts');
-                    el.innerText = res.errors.toString();
-                }
-            })
+            if (response.ok) {
+                alert('Сообщение отправлено успешно!');
+                form.reset(); // Очищаем форму
+            } else {
+                const data = await response.json();
+                errorContainer.textContent = data.errors?.toString() || 'Ошибка при отправке формы.';
+            }
+        } catch (error) {
+            errorContainer.textContent = 'Ошибка сети. Попробуйте позже.';
         }
-    }
+    });
+});
+
 </script>
 {% endblock %}

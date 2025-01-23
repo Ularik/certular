@@ -17,32 +17,32 @@
             <div class="partners-block-bottom">
                 <div id="carouselExample" class="carousel slide partners-block-slider" data-bs-touch="true">
                     <div class="carousel-inner partners-cards-shadow">
-<!--                        FOR COOPERATION OF COOPERATIONS-->
+                        {% for cooperation1 in cooperations_to_five %}
                             <div class="carousel-item">
                                 <div class="partners-card">
                                     <div class="partners-card-wrapper">
-<!--                                        IF COOPERAT IMAGE-->
+                                        {% if cooperation1.image %}
                                             <div class="partners-img-wrapper">
-                                                <img src="#" alt="partner"
+                                                <img src="{{ cooperation1.image.url }}" alt="partner"
                                                      class="partners-img">
                                             </div>
-<!--                                        ELSE-->
+                                        {% else %}
                                             <div class="partners-img-wrapper">
-                                                <img src="#" alt="partner"
+                                                <img src="{% static 'img/photo_no.jpg' %}" alt="partner"
                                                      class="partners-img">
                                             </div>
-<!--                                        ENDIF-->
-                                        <h3 class="partners-card-title">'COOPER NAME'</h3>
+                                        {% endif %}
+                                        <h3 class="partners-card-title">{{ cooperation1.name }}</h3>
                                     </div>
 
                                     <div class="partners-card-link-wrapper">
-                                        <a href="#" class="partners-card-link">
+                                        <a href="{{ cooperation1.link }}" class="partners-card-link">
                                             {% trans 'Посетить сайт' %}
                                         </a>
                                     </div>
                                 </div>
                             </div>
-<!--                         ENDFOR-->
+                        {% endfor %}
 
                     </div>
                     <div class="partners-btn">
@@ -66,29 +66,29 @@
                 </div>
 
                 <div class="partners-cards">
-<!--                    FOR COOPER IN COOPERATIONS_TO_FIVE-->
+                    {% for cooperation in cooperations_to_five %}
                         <div class="partners-card">
                             <div class="partners-card-wrapper">
-<!--                                IF COOPERATION IMAGE-->
+                                {% if cooperation.image %}
                                     <div class="partners-img-wrapper">
-                                        <img src="#" alt="partner" class="partners-img">
+                                        <img src="{{ cooperation.image.url }}" alt="partner" class="partners-img">
                                     </div>
-<!--                                ELSE-->
+                                {% else %}
                                     <div class="partners-img-wrapper">
-                                        <img src="#" alt="partner"
+                                        <img src="{% static 'img/photo_no.jpg' %}" alt="partner"
                                              class="partners-img">
                                     </div>
-<!--                                ENDIF-->
-                                <h3 class="partners-card-title">'COOPERATION NAME'</h3>
+                                {% endif %}
+                                <h3 class="partners-card-title">{{ cooperation.name }}</h3>
                             </div>
 
                             <div class="partners-card-link-wrapper">
-                                <a href="#" class="partners-card-link">
+                                <a href="{{ cooperation.link }}" class="partners-card-link">
                                     {% trans 'Посетить сайт' %}
                                 </a>
                             </div>
                         </div>
-<!--                    ENDFOR-->
+                    {% endfor %}
 
                 </div>
                 <div class="partners-wrapper-link">

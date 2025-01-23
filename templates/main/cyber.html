@@ -12,12 +12,14 @@
 
       <div class="cyber__bottom">
         <div class="cyber-cards">
-          <a href="#" class="cyber-card">
+          {% for cyber in cyber_security %}
+          <a href="{% url 'cyber_security:cyber_security' cyber.pk %}" class="cyber-card">
                 <span class="cyber-card-img-block">
-                  <img src="#" alt="cyber" class="cyber-img">
+                  <img src="{{ cyber.image.url }}" alt="cyber" class="cyber-img">
                 </span>
-            <h3 class="main-sub-title"></h3>
+            <h3 class="main-sub-title">{{ cyber.name }}</h3>
           </a>
+         {% endfor %}
         </div>
         <button class="main-btn report-btn" data-bs-toggle="modal"
                 data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}</button>

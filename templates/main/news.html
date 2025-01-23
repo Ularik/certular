@@ -11,17 +11,20 @@
       </div>
 
       <div class="news-cards">
+        {% for news1 in news %}
             <a class="news-card" href="#">
+             {% if news1.cover %}
                   <div class="news-img-box">
-                    <img src="#" alt="" class="news-img">
+                    <img src="{{ news1.cover.url }}" alt="" class="news-img">
                   </div>
+              {% endif %}
               <div class="news-data">
-                <p class="news-data-text">'SOME TEXT'</p>
+                <p class="news-data-text">{{ news1.created_at|date:'d F Y' }}</p>
               </div>
               <div class="news-content">
-                <h3 class="news-title">'NAME OF NEWS'</h3>
+                <h3 class="news-title">{{ news1.name }}</h3>
                 <div class="news-line"></div>
-                <p class="main-text news-card-text main-news-card-text">'DESCRIPTION'</p>
+                <p class="main-text news-card-text main-news-card-text">{{ news1.description }}</p>
                 <p  class="main-link news-card-link">
                     {% trans 'Читать новость полностью' %} >
                 </p>
@@ -29,6 +32,7 @@
                 <div class="triangle-top-left-news"></div>
               </div>
             </a>
+        {% endfor %}
 
       </div>
 

@@ -1,0 +1,9 @@
+django
+psycopg2-binary
+Pillow
+django-tinymce
+django-parler
+django-resized
+thehive4py
+python-magic-bin
+

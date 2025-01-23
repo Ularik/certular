@@ -3,7 +3,14 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.translation import get_language
+from django.shortcuts import redirect, render, reverse
+from django.contrib.auth.decorators import login_required
 import json
+from django.views import View
+from .models import User
+import re
+from .forms import MyRegisterUserForm
+import pickle
 
 
 @login_required
@@ -11,8 +18,10 @@ def my_view(request):
     ...
 
 
+@login_required(login_url='/accounts/login/')
 def logout_view(request):
     logout(request)
+    return redirect('main_app:index')
 
 
 def login_view(request):
@@ -50,3 +59,46 @@ def my_view(request):
         ...
     else:
         ...
+
+
+class RegistrationAPIView(View):
+
+    def post(self, request, *args, **kwargs):
+        print(request.body)
+        print()
+        request_body = json.loads(request.body)
+
+        if User.objects.filter(email=request_body['email']).exists():
+            error_email = {"error": "Эта почта уже зарегистрирована"}
+            if get_language() == 'en':
+                error_email = {"error": "This email is all ready registered"}
+            elif get_language() == 'ru':
+                error_email = {"error": "Эта почта уже зарегистрирована"}
+            elif get_language() == 'ky':
+                error_email = {'error': 'Бул кат мурунтан эле катталган'}
+            return JsonResponse(error_email)
+        pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"
+
+        if re.match(pattern, request_body['email']) is None:
+            form_email_invalid = {"error": "Введите правильную почту"}
+            if get_language() == 'en':
+                form_email_invalid = {"error": "Enter correct e-mail"}
+            elif get_language() == 'ru':
+                form_email_invalid = {"error": "Введите правильную почту"}
+            elif get_language() == 'ky':
+                form_email_invalid = {'error': 'Туура почтаны киргизиңиз'}
+            return JsonResponse(form_email_invalid, status=400)
+
+        form = MyRegisterUserForm(request_body)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({"success": "Successfully registration"})
+        else:
+            some_wrong = {'error': 'Заполните все поля'}
+            if get_language() == 'en':
+                some_wrong = {"error": "Fill in all the fields"}
+            elif get_language() == 'ru':
+                some_wrong = {'error': 'Заполните все поля'}
+            elif get_language() == 'ky':
+                some_wrong = {'error': 'Бардык талааларды толтуруңуз'}
+            return JsonResponse(some_wrong, status=400)
