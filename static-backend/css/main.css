@@ -19053,8 +19053,8 @@ textarea {
     color: #fff;
 }
 
-/*vulnerabilities*/
-.vulnerabilities {
+/*reports*/
+.reports {
     background: #F4F4F4;
     font-size: 1.125rem;
     color: #003467;
@@ -19062,35 +19062,37 @@ textarea {
     min-height: 50vh;
 }
 
-.vulnerabilities-title {
+.reports-title {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 40px;
 }
 
-.vulnerabilities-block-inner-table {
+.reports-block-inner-table {
     border-radius: 10px;
     overflow: auto;
 }
 
-.vulnerabilities-text-none {
+.reports-text-none {
+    height: 100px;
+    justify-self: center;
     font-size: 1.375rem;
 }
 
-.vulnerabilities table th {
+.reports table th {
     color: #00274D;
 }
 
-.vulnerabilities table td {
+.reports table td {
     color: #003467;
 }
 
-.vulnerabilities table tbody tr{
+.reports table tbody tr{
     height: 60px;
     vertical-align: middle;
 }
 
-.vulnerabilities-block-table {
+.reports-block-table {
     font-size: 1.125rem;
 }
 
@@ -19098,49 +19100,49 @@ table.messages-block-table thead tr {
     vertical-align: bottom;
 }
 
-.vulnerabilities-download {
+.reports-download {
     text-decoration: none;
     /*background: linear-gradient(-90deg,#16a3fc,#23c99e);*/
 }
 
-.vulnerabilities-btn-td {
+.reports-btn-td {
     min-width: 190px;
 }
 
-/*.vulnerabilities-download:hover {*/
+/*.reports-download:hover {*/
 /*    background: linear-gradient(-90deg,#23c99e,#16a3fc);*/
 /*}*/
 
-.theme-dark .vulnerabilities {
+.theme-dark .reports {
     background: #002345;
     color: #fff;
 }
 
-.theme-dark .vulnerabilities-title {
+.theme-dark .reports-title {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 40px;
 }
 
-.theme-dark .vulnerabilities-block-inner-table {
+.theme-dark .reports-block-inner-table {
     border-radius: 10px;
 }
 
-.theme-dark .vulnerabilities table th {
+.theme-dark .reports table th {
     color: #fff;
     background: #003467;
 }
 
-.theme-dark .vulnerabilities table td {
+.theme-dark .reports table td {
     color: #fff;
     background: #003467;
 }
 
-.theme-dark .vulnerabilities table tbody tr:last-child th{
+.theme-dark .reports table tbody tr:last-child th{
     border: none;
 }
 
-.theme-dark .vulnerabilities table tbody tr:last-child td{
+.theme-dark .reports table tbody tr:last-child td{
     border: none;
 }
 

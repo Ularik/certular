@@ -1,16 +1,18 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.utils.translation import get_language
 from django.shortcuts import redirect, render, reverse
 from django.contrib.auth.decorators import login_required
+import datetime
 import json
 from django.views import View
-from .models import User
+from .models import User, Organization
 import re
-from .forms import MyRegisterUserForm
-import pickle
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 @login_required
@@ -37,9 +39,13 @@ def login_view(request):
         else:
             request.session.set_expiry(0)
         login(request, user)
+
+        logger.info(f'{user.first_name} из {user.organization} вошел в систему в '
+               f'{datetime.datetime.now().strftime("%d-%m-%Y - %H:%M")}')
+
         return JsonResponse({'success': "you in authenticated"}, status=200)
     else:
-        error_message = ''
+        error_message = {'error': "Неправильно указана почта или пароль"}
         if get_language() == 'en':
             error_message = {'error': "The email address or password is incorrect"}
         if get_language() == 'ru':
@@ -65,8 +71,12 @@ class RegistrationAPIView(View):
 
     def post(self, request, *args, **kwargs):
         print(request.body)
-        print()
         request_body = json.loads(request.body)
+
+        date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%d.%m.%Y')
+        request_body['date_of_birth'] = date_of_birth.date()
+        organization = Organization.objects.filter(id=int(request_body['organization'])).first()
+        request_body['organization'] = organization
 
         if User.objects.filter(email=request_body['email']).exists():
             error_email = {"error": "Эта почта уже зарегистрирована"}
@@ -88,12 +98,20 @@ class RegistrationAPIView(View):
             elif get_language() == 'ky':
                 form_email_invalid = {'error': 'Туура почтаны киргизиңиз'}
             return JsonResponse(form_email_invalid, status=400)
-
-        form = MyRegisterUserForm(request_body)
-        if form.is_valid():
-            form.save()
+        try:
+            user = User.objects.create(
+                first_name=request_body['first_name'],
+                last_name=request_body['last_name'],
+                patronymic=request_body['patronymic'],
+                date_of_birth=request_body['date_of_birth'],
+                position=request_body['position'],
+                organization=request_body['organization'],
+                email=request_body['email'],
+                number=request_body['number']
+            )
             return JsonResponse({"success": "Successfully registration"})
-        else:
+        except(BaseException) as e:
+            print(e)
             some_wrong = {'error': 'Заполните все поля'}
             if get_language() == 'en':
                 some_wrong = {"error": "Fill in all the fields"}
@@ -102,3 +120,7 @@ class RegistrationAPIView(View):
             elif get_language() == 'ky':
                 some_wrong = {'error': 'Бардык талааларды толтуруңуз'}
             return JsonResponse(some_wrong, status=400)
+
+
+def check_registration(request):
+    return render(request, 'accounts/check_registration.html')

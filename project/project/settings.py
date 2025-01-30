@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'parler',
 
     # my apps
+    'db_logger',
     'accounts_app',
     'appeals_app',
     'main_app',
@@ -41,17 +42,20 @@ INSTALLED_APPS = [
     'contacts_app',
     'cooperation_app',
     'legislation_app',
-    'messages_app'
+    'messages_app',
+    'reports_app',
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # 'project.middleware.LanguageMiddleware',
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -59,7 +63,7 @@ ROOT_URLCONF = "project.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(os.path.dirname(BASE_DIR), 'templates')],
+        "DIRS": [os.path.join(BASE_DIR, '..', 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -111,8 +115,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+from django.utils.translation import gettext_lazy as _
 
-LANGUAGE_CODE = "en-us"
+
+LANGUAGE_CODE = "ru"
+
+LANGUAGES = [
+    ("ru", _("Russian")),
+    ("en", _("English")),
+    ("ky", _("Kyrgiz"))
+]
+
+LOCALE_PATHS = [
+	os.path.join(BASE_DIR, '..', 'locale'),
+]
+
 
 TIME_ZONE = "UTC"
 
@@ -135,10 +152,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 else:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static")
+        os.path.join(BASE_DIR, '..', 'static-backend'),
     ]
 
 MEDIA_URL = '/media/'
@@ -148,10 +165,6 @@ if not os.path.exists(MEDIA_ROOT):
     os.makedirs(MEDIA_ROOT)
 
 
-
-STATICFILES_DIRS = [
-    os.path.join(os.path.dirname(BASE_DIR), 'static-backend'),
-]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
 STATIC_URL = '/static-root/'
 
@@ -159,3 +172,65 @@ STATIC_URL = '/static-root/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+LOGS_DIR = os.path.join(BASE_DIR, '../logs/')
+
+if not os.path.exists(LOGS_DIR):
+    os.makedirs(LOGS_DIR)
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'console_lite': {
+            'format': '%(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        },
+        'db_logger': {
+            'format': '%(name)-12s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'console_lite': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console_lite'
+        },
+        'file_django': {
+            'class': 'logging.FileHandler',  # logging.handlers.RotatingFileHandler - если нужно пересоздавать
+            'formatter': 'file',
+            'filename': LOGS_DIR + 'django.log',
+        },
+        'db_logger': {
+            'level': 'DEBUG',
+            'formatter': 'db_logger',
+            'class': 'db_logger.db_log_handler.DatabaseLogHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'level': 'WARNING',
+            'handlers': ['console', 'file_django']
+        },
+        'reports_app': {
+            'level': 'INFO',
+            'handlers': ['console_lite', 'db_logger']
+        },
+        'accounts_app': {
+            'level': 'INFO',
+            'handlers': ['console_lite', 'db_logger']
+        }
+    },
+}
+
+DJANGO_DB_LOGGER_ENABLE_FORMATTER = True

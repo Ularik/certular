@@ -46,7 +46,7 @@
             </div>
             <div class="contacts__form-wrapper">
                 <h1 class="contacts__form-wrapper-title">{% trans 'Напишите нам' %}:</h1>
-                <form class="contacts__form" id="appeals-form" method="post" action="">
+                <form class="contacts__form" id="appeals-form" method="post" action="{% url 'appeals_app:appeals' %}">
                     {% csrf_token %}
                     <div class="contacts__form-block">
                         <label class="contacts__form-label" for="contact-email">{% trans 'Email' %}*:</label>
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('appeals-form');
     const errorContainer = document.getElementById('errorMsgContacts');
     const csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').value;
-    const apiUrl = `${window.location.origin}/appeals/`;
+    const apiUrl = form.getAttribute("action");
 
     // Регулярные выражения для валидации
     const regexRules = {

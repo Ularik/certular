@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% block title %}{% trans 'Отчёты' %}{% endblock title %}
+
+{% block content %}
+<section class="reports">
+    <div class="my-container">
+        <div class="reports-block">
+            <div class="reports-block-header">
+                <p class="reports-title">{% translate 'Отчёты' %}</p>
+            </div>
+            {% if reports %}
+
+            <div class="reports-block-inner-table">
+                <table class="table reports-block-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">{% translate 'Название' %}</th>
+                        <th scope="col">{% translate 'Организация' %}</th>
+                        <th scope="col">{% translate 'Пользователь' %}</th>
+                        <th scope="col">{% translate 'Дата' %}</th>
+                        <th scope="col">{% translate 'Документ' %}</th>
+                        <th scope="col">{% translate 'Статус' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for report in reports %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{% translate report.name %}</td>
+                        <td>{{ report.organization }}</td>
+                        <td>
+                            {% if report.user is not None %}
+                                {{ report.user.username }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td>{{ report.created_date }}</td>
+                        {% if report.file %}
+                        <td class="reports-btn-td">
+                            <a class="main-btn reports-download" href="{% url 'reports_app:download_report' report.id %}"
+                               download>{% trans 'Скачать файл' %}</a>
+                        </td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                        <td class="reports-btn-td">
+                            <select class="status-btn" data-report-id="{{ report.id }}" data-url="{% url 'reports_app:change_status' report.id %}">
+                                {% if report.status == 4 %}
+                                    <option class="status-btn">{% translate 'Выполненно' %}</option>
+                                    <option class="status-btn">{% translate 'Не выполненно' %}</option>
+                                {% else %}
+                                    <option class="status-btn">{% translate 'Не выполненно' %}</option>
+                                    <option class="status-btn">{% translate 'Выполненно' %}</option>
+                                {% endif %}
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+              {% else %}
+              <div class="reports-text-none">{% trans 'У вас нет уведомлений' %}</div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    <script src="{% static 'js/modules/change_status.js' %}"></script>
+</section>
+{% endblock content %}

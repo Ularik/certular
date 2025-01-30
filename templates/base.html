@@ -12,7 +12,7 @@
     <meta name="description" content="{% block meta_description %}{% endblock meta_description %}">
     <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}">
     {% block meta_page %}{% endblock meta_page %}
-    <title>{% block title %}{% trans 'КЦКБ' %}{% endblock title %}</title>
+    <title>{% block title %}{% translate 'КЦКБ' %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -29,7 +29,7 @@
                     <a href="{% url 'main_app:index' %}" class="logo-link-img">
                         <img src="{% static 'img/logo.webp' %}" alt="logo" class="logo-img">
                         <p class="logo-text">
-                            {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+                            {% translate 'Координационный центр по обеспечению кибербезопасности' %}
                         </p>
                     </a>
                 </div>
@@ -59,11 +59,11 @@
                             </div>
 
                             <p class="eye-text">
-                                {% trans 'Версия для слабовидящих' %}
+                                {% translate 'Версия для слабовидящих' %}
                             </p>
                         </div>
 
-                        <form action="#" method="post"
+                        <form action="{% url 'set_language' %}" method="post"
                               class="nav-item dropdown header-form-lang">
                             <div class="nav-link dropdown-toggle lang-svg" href="#" role="button"
                                  data-bs-toggle="dropdown"
@@ -79,19 +79,17 @@
                                     <path d="M7.5029 0.98053C5.5138 0.98053 3.60625 1.7707 2.19961 3.17721C0.793127 4.58382 0.00292969 6.49161 0.00292969 8.4805C0.00292969 10.4694 0.793096 12.3771 2.19961 13.7838C3.60622 15.1903 5.51401 15.9805 7.5029 15.9805C9.49179 15.9805 11.3995 15.1903 12.8062 13.7838C14.2127 12.3772 15.0029 10.4694 15.0029 8.4805C15.0029 7.16392 14.6563 5.87067 13.998 4.73048C13.3398 3.5903 12.393 2.64358 11.2529 1.98529C10.1127 1.327 8.81941 0.980469 7.50284 0.980469L7.5029 0.98053ZM13.345 5.80198H10.7923C10.419 4.48231 9.77085 3.25638 8.8905 2.20472C9.85981 2.42104 10.766 2.85835 11.5386 3.48217C12.3112 4.10614 12.9294 4.90002 13.345 5.80201V5.80198ZM7.47351 14.6572C6.49116 13.6787 5.75732 12.4792 5.33328 11.1591H9.67258C9.24771 12.4795 8.51302 13.679 7.52972 14.6572C7.51286 14.6693 7.49025 14.6693 7.47351 14.6572ZM5.06279 10.0877C4.86632 9.02525 4.86632 7.93587 5.06279 6.87341H9.94301C10.1395 7.93587 10.1395 9.02525 9.94301 10.0877H5.06279ZM1.0743 8.48056C1.07346 7.93839 1.14186 7.39826 1.27782 6.87341H3.97517C3.80035 7.93768 3.80035 9.02344 3.97517 10.0877H1.27782C1.14186 9.56286 1.07346 9.02274 1.0743 8.48056ZM7.5029 2.29319C7.51235 2.28948 7.52287 2.28948 7.53232 2.29319C8.51611 3.2748 9.25007 4.47815 9.67255 5.80198H5.33325C5.75811 4.48157 6.49281 3.28209 7.47611 2.3039C7.48341 2.29709 7.49297 2.29326 7.5029 2.29314L7.5029 2.29319ZM11.0307 6.87341H13.728C13.9995 7.92764 13.9995 9.03348 13.728 10.0877H11.0307C11.2055 9.02344 11.2055 7.93768 11.0307 6.87341ZM6.11555 2.20472C5.23615 3.25702 4.58814 4.48271 4.21375 5.80198H1.66108C2.07661 4.89998 2.69486 4.10611 3.46745 3.48214C4.24005 2.85829 5.14624 2.42103 6.11555 2.20472ZM1.66114 11.1591H4.21381C4.58713 12.4788 5.23526 13.7047 6.11561 14.7564C5.1463 14.5401 4.24011 14.1028 3.46752 13.4789C2.69492 12.855 2.07667 12.0611 1.66114 11.1591V11.1591ZM8.89331 14.7564C9.77161 13.7039 10.4187 12.4782 10.7924 11.1591H13.345C12.9295 12.0611 12.3112 12.855 11.5387 13.479C10.7661 14.1028 9.85987 14.5401 8.89056 14.7564L8.89331 14.7564Z"
                                           fill="#fff"/>
                                 </svg>
-                                <p class="header-lang-text">{% trans 'Русский' %}</p>
+                                <p class="header-lang-text">{% translate 'Русский' %}</p>
                                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
                                      xmlns="http://www.w3.org/2000/svg" class="svg-dark-lang-arrow">
                                     <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
                                           fill="#003467"/>
                                 </svg>
-
                                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
                                      xmlns="http://www.w3.org/2000/svg" class="svg-white-lang-arrow" display="none">
                                     <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
                                           fill="#fff"/>
                                 </svg>
-
                             </div>
                             {% csrf_token %}
                             <ul class="nav navbar-nav navbar-right language dropdown-menu desktop-lang-drop-menu">
@@ -119,7 +117,7 @@
                     <div class="element-input-box">
                         <form method="get" action="{% url 'main_app:search_index' %}">
                             <input type="text" name="search" class="element-input header-input-search"
-                                   placeholder="{% trans 'Поиск' %}" aria-label="Поиск"
+                                   placeholder="{% translate 'Поиск' %}" aria-label="Поиск"
                                    aria-describedby="basic-addon1">
                             <button type="submit" class="header-btn-search">
                                 <svg class='svg-search-white' width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -140,7 +138,7 @@
                 <div class="element-input-box element-input-box-mobile">
                     <form method="get" action="{% url 'main_app:search_index' %}">
                         <input type="text" name="search" class="element-input header-input-search"
-                               placeholder="{% trans 'Поиск' %}" aria-label="Поиск"
+                               placeholder="{% translate 'Поиск' %}" aria-label="Поиск"
                                aria-describedby="basic-addon1">
                         <button type="submit" class="header-btn-search">
                             <svg class='svg-search-white' width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -161,16 +159,16 @@
                         <svg class="svg-input-close-white" width="15" height="15" viewBox="0 0 15 15" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <rect x="13.6367" width="1.92845" height="19.2845" rx="0.964227"
-                                  transform="rotate(45 13.6367 0)" fill="#003467"/>
+                                  translateform="rotate(45 13.6367 0)" fill="#003467"/>
                             <rect y="1.36377" width="1.92845" height="19.2845" rx="0.964227"
-                                  transform="rotate(-45 0 1.36377)" fill="#003467"/>
+                                  translateform="rotate(-45 0 1.36377)" fill="#003467"/>
                         </svg>
                         <svg class="svg-input-close-dark" width="15" height="15" viewBox="0 0 15 15" fill="none"
                              xmlns="http://www.w3.org/2000/svg" display="none">
                             <rect x="13.6367" width="1.92845" height="19.2845" rx="0.964227"
-                                  transform="rotate(45 13.6367 0)" fill="#fff"/>
+                                  translateform="rotate(45 13.6367 0)" fill="#fff"/>
                             <rect y="1.36377" width="1.92845" height="19.2845" rx="0.964227"
-                                  transform="rotate(-45 0 1.36377)" fill="#fff"/>
+                                  translateform="rotate(-45 0 1.36377)" fill="#fff"/>
                         </svg>
                     </div>
                 </div>
@@ -190,7 +188,7 @@
                               fill="white"/>
                     </svg>
                     <span class="icon-eye-text-mobile">
-                        {% trans 'Версия для слабовидящих' %}
+                        {% translate 'Версия для слабовидящих' %}
                     </span>
                 </button>
 
@@ -204,10 +202,10 @@
                                   fill="white"/>
                         </svg>
                         <span class="icon-eye-text-mobile">
-                            {% trans 'Версия для слабовидящих' %}
+                            {% translate 'Версия для слабовидящих' %}
                         </span>
                     </button>
-                    <form action="#" method="post" class="nav-item dropdown header-form-lang">
+                    <form action="{% url 'set_language' %}" method="post" class="nav-item dropdown header-form-lang">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
@@ -257,7 +255,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% trans 'О Центре' %}
+                                    {% translate 'О Центре' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -272,12 +270,12 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'about:about_detail' %}">
-                                            {% trans 'О КЦОКБ' %}
+                                            {% translate 'О КЦОКБ' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'legislation_app:legislation' %}">
-                                            {% trans 'Законодательство' %}
+                                            {% translate 'Законодательство' %}
                                         </a>
                                     </li>
                                     <li>
@@ -285,7 +283,7 @@
                                            href="{% url 'cooperation_app:cooperations' %}"
                                            data-bs-toggle="modal"
                                            data-bs-target="#partnerStaticBackdrop">
-                                            {% trans 'Сотрудничество' %}
+                                            {% translate 'Сотрудничество' %}
                                         </a>
                                     </li>
                                 </ul>
@@ -293,7 +291,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% trans 'События' %}
+                                    {% translate 'События' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -308,12 +306,12 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'news:news' %}">
-                                            {% trans 'Новости' %}
+                                            {% translate 'Новости' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">
-                                            {% trans 'Тренинги' %}
+                                            {% translate 'Тренинги' %}
                                         </a>
                                     </li>
 <!--                                    et_e_learning_desktop as e_learning -->
@@ -330,7 +328,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% trans 'Кибербезопасноть' %}
+                                    {% translate 'Кибербезопасноть' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -358,13 +356,13 @@
                             <li class="nav-item dropdown menu-main-link">
                                 <a href="{% url 'contacts:contact_detail' %}"
                                    class="header-contact header-contact-mobile">
-                                    {% trans 'Контакты' %}
+                                    {% translate 'Контакты' %}
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% trans 'Личный кабинет' %}
+                                    {% translate 'Личный кабинет' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -385,25 +383,25 @@
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="#">
-                                                {% trans 'Мои сообщения' %}
+                                                {% translate 'Мои сообщения' %}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item dropdown-item-enter"
+                                               href="{% url 'reports_app:reports' %}">
+                                                {% translate 'Отчеты' %}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="#">
-                                                {% trans 'Отчеты' %}
+                                                {% translate 'Дашборд' %}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="#">
-                                                {% trans 'Дашборд' %}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
-                                                {% trans 'Выйти' %}
+                                                {% translate 'Выйти' %}
                                             </a>
                                         </li>
                                     {% else %}
@@ -411,7 +409,7 @@
                                             <a class="dropdown-item dropdown-item-enter enter-link-modal"
                                                data-bs-toggle="modal"
                                                data-bs-target="#enterStaticBackdrop" href="#">
-                                                {% trans 'Вход в систему' %}
+                                                {% translate 'Вход в систему' %}
                                             </a>
                                         </li>
                                         <!-- Кнопка-триггер модального окна Регистрация-->
@@ -419,7 +417,7 @@
                                             <a class="dropdown-item dropdown-item-reg reg-link-modal"
                                                data-bs-toggle="modal"
                                                data-bs-target="#registerStaticBackdrop" href="#">
-                                                {% trans 'Регистрация' %}
+                                                {% translate 'Регистрация' %}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -440,7 +438,7 @@
                             <li class="nav-item dropdown header-nav-item">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    {% trans 'О Центре' %}
+                                    {% translate 'О Центре' %}
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
@@ -451,17 +449,17 @@
 <!--                                     get_about_desktop as about_desktop %}-->
                                     <li>
                                         <a class="dropdown-item" href="{% url 'about:about_detail' %}">
-                                            {% trans 'О КЦОКБ' %}
+                                            {% translate 'О КЦОКБ' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'legislation_app:legislation' %}">
-                                            {% trans 'Законодательство' %}
+                                            {% translate 'Законодательство' %}
                                         </a>
                                     </li>
                                     <li><a class="dropdown-item dropdown-partners-item partners-link-modal"
                                            href="{% url 'cooperation_app:cooperations' %}">
-                                        {% trans 'Сотрудничество' %}</a></li>
+                                        {% translate 'Сотрудничество' %}</a></li>
                                 </ul>
                             </li>
 
@@ -553,7 +551,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
+                                               href="{% url 'reports_app:reports' %}">
                                                 {% trans 'Отчеты' %}
                                             </a>
                                         </li>
@@ -609,7 +607,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form class="enter__form" method="post" action="#">
+                    <form class="enter__form" method="post" action="{% url 'accounts_app:login' %}">
                         <h1 class="enter__form-title">{% trans 'Вход' %}</h1>
                         <div class="block-login">
                             <label class="enter__form-label" for="enterEmail">{% trans 'Email' %}*</label>
@@ -681,7 +679,7 @@
                                  {% endfor %}
                             </select>
                         </div>
-                        <div>
+                        <div class="registration__form-block">
                             <label class="registration__form-label" for="position">{% trans 'Должность' %}</label>
                             <input name="position" id="position" class="registration__form-inp" type="text"/>
                         </div>
@@ -723,19 +721,14 @@
                                    id="regPhone"
                                    class="registration__form-inp tel"
                                    type="text"
-                                   placeholder="+996(___)__-__-__"
+                                   placeholder="+996_____-__-__"
                             />
                         </div>
                         <div class="error" id="errorMsgReg"></div>
 
                         <div>
 
-                            <button class="registration__form-btn g-recaptcha"
-                                    data-sitekey="{{ site_key }}"
-                                    data-callback='onSubmitReg'
-                                    data-action='submit'
-                                    data-badge="inline"
-                            >
+                            <button type="submit" class="registration__form-btn g-recaptcha">
                                 {% trans 'Зарегистрироваться' %}
                             </button>
                         </div>
@@ -884,7 +877,7 @@
                             </li>
                             <li class="footer-nav-info-text">
                                 <a class="dropdown-item dropdown-item-enter"
-                                   href="#">
+                                   href="{% url 'reports_app:reports' %}">
                                     {% trans 'Отчеты' %}
                                 </a>
                             </li>
@@ -1120,7 +1113,7 @@
 
 
                         <p class="footer-bottom-logo-text">
-                            {% trans 'Координационный центр по обеспечению кибербезопасности' %}
+                            {% translate 'Координационный центр по обеспечению кибербезопасности' %}
                         </p>
                     </a>
                 </div>
@@ -1134,12 +1127,12 @@
                 </div>
 
                 <div class="footer-contacts">
-                    <p class="footer-contacts-title">{% trans 'Контакты' %}:</p>
+                    <p class="footer-contacts-title">{% translate 'Контакты' %}:</p>
                     <a href="tel:996312 000001" class="footer-phone">
-                        {% trans 'тел' %}: {{ contact.phone }}
+                        {% translate 'тел' %}: {{ contact.phone }}
                     </a>
                     <a href="mailto:Cert@cert.gov.kg" target="_blank" class="footer-email">
-                        {% trans 'email' %}: {{ contact.email }}
+                        {% translate 'email' %}: {{ contact.email }}
                     </a>
                 </div>
 
@@ -1174,10 +1167,8 @@
             </div>
             <div class="modal-body">
 
-                <form class="report_form" id="form_send_message" action="" method="post">
-<!--                     if request.user.is_authenticated %}-->
-<!--                     endif %}-->
-<!--                     messages_form as mess_form %}-->
+                <form class="report_form" id="form_send_message" action="{% url 'messages:send_message' %}" method="post">
+                    {% csrf_token %}
                     <p class="report-form-title">{% trans 'Сообщить об' %} <span>{% trans 'инциденте' %}</span></p>
                     <div class="main-block-input report__form-block">
                         <label for="email" class="form-label main-label">{% trans 'Email' %}*</label>
@@ -1206,7 +1197,10 @@
                     <div class="main-block-input report__form-block">
                         <label for="phoneNumber" class="form-label main-label">{% trans 'Телефон' %}*</label>
                         <input type="text" class="form-control tel" id="phoneNumber"
-                               placeholder="+999 (___) ___-___" name="phone_number"
+                               placeholder="+999 ___ ___-___" name="phone_number"
+                               {% if request.user.is_authenticated %}
+                               value="{{ request.user.number }}" disabled
+                               {% endif %}
                         >
                     </div>
 
@@ -1270,27 +1264,9 @@
                         <div class="error errorMsgContactsContacts" id="errorReportModal"></div>
 
                     </div>
-                    {% if request.user.all2send %}
-                        <div>
-                            <label class="report-form-label-checkbox container-checkbox"
-                                   for="all2send">
-                                {% trans 'Отправить без проверки' %}
-                                <input class="enter__form-checkbox" id="all2send" name="all2send"
-                                       type="checkbox"/>
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    {% endif %}
 
-
-
-                    <button class="main-btn recaptcha-btn-report g-recaptcha"
-                            data-sitekey="{{ site_key }}"
-                            data-callback='onSubmitMessage'
-                            data-action='submit'
-                            data-badge="inline"
-                    >
-                        {% trans 'Сообщить об инциденте' %}
+                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
+                        {% translate 'Сообщить об инциденте' %}
                     </button>
                 </form>
 
@@ -1330,7 +1306,7 @@
 
                             <div class="partners-card-link-wrapper">
                                 <a href="{{ cooperation.link }}" class="partners-card-link">
-                                    {% trans 'Посетить сайт' %}
+                                    {% translate 'Посетить сайт' %}
                                 </a>
                             </div>
                         </div>
@@ -1354,15 +1330,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="modalContact-title">{% trans 'Сообщение успешно отправлено' %}</p>
+                <p class="modalContact-title">{% translate 'Сообщение успешно отправлено' %}</p>
                 <p class="modalContact-text">
-                    {% trans 'Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время' %}
+                    {% translate 'Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время' %}
                     .
                 </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="main-btn modalContact-btn" data-bs-dismiss="modal">
-                    {% trans 'Закрыть окно' %}
+                    {% translate 'Закрыть окно' %}
                 </button>
             </div>
             <div class="triangle-top-left-success-modal"></div>
@@ -1419,14 +1395,13 @@
             if (res?.error) {
                 const el = document.getElementById('errorMsgEnter');
                 el.innerText = res.error.toString();
-                if (window.location.pathname.includes('ky')) {
+                if (window.location.pathname.includes('kg')) {
                     el.style.height = '40px';
                 }
             }
         })
     })
 </script>
-
 <script src="{% static 'js/modules/send_message.js' %}"></script>
 
 <script src="{% static 'js/main.js' %}"></script>

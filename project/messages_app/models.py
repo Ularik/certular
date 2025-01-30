@@ -14,8 +14,12 @@ class Messages(models.Model):
     file = models.FileField(upload_to=content_file_name('Messages'), null=True, blank=True, verbose_name='Файл')
     status = models.CharField(max_length=50, blank=False, null=False, choices=CHOICES, default='on_check',
                               verbose_name='Статус')
+    email = models.EmailField(null=False, blank=False, verbose_name='Email')
     phone_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Мобильный номер',
                                     validators=[TELEPHONE, MaxLengthValidator])
+    host_ip = models.TextField(blank=True, null=True, verbose_name='IP')
+    domain_name = models.TextField(blank=True, null=True, verbose_name='Domain Name')
+    hash = models.TextField(blank=True, null=True, verbose_name='Hash')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     update_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
 

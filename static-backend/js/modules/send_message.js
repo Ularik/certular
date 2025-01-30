@@ -1,6 +1,5 @@
 //<!--REGISTRATION-->
-
-
+console.log('SendRegForm')
 const regForm = document.querySelector('.registration__form');
 const regFormBlocks = regForm.querySelectorAll('.registration__form-block');
 const regFormBtn = document.querySelector('.registration__form-btn');
@@ -24,7 +23,7 @@ let demoForm = document.getElementById('captcha-from')
 let regexRegEmail = new RegExp("^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
 let regexName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
 let regexDate = new RegExp("^[0-9.]{8,}?$");
-let regexTel = new RegExp("^[0-9+ ]{12,}?$");
+let regexTel = new RegExp("^\\+[0-9]{12,13}?$");
 let regexRegSelect = new RegExp("^[0-9]{1,}?$");
 
 const validateToolTipReg = (elem, className) => {
@@ -61,7 +60,7 @@ const validateToolTipReg = (elem, className) => {
             }, 5000);
         }
     })
-}
+};
 
 const regexValidReg = (regex, className, value, elem, domElem) => {
     const errorValid = document.querySelector(`#errorValid-${className}`);
@@ -76,11 +75,12 @@ const regexValidReg = (regex, className, value, elem, domElem) => {
         validateToolTipReg(domElem, className);
 
     }
-}
+};
 
 regFormBtn.addEventListener('click', () => {
     regexValidReg(regexName, `last_name`, regObj.last_name, regForm.elements.last_name.value, regForm.elements.last_name);
     regexValidReg(regexName, `first_name`, regObj.first_name, regForm.elements.first_name.value, regForm.elements.first_name);
+    regexValidReg(regexName, `position`, regObj.position, regForm.elements.position.value, regForm.elements.position);
     regexValidReg(regexName, `patronymic`, regObj.patronymic, regForm.elements.patronymic.value, regForm.elements.patronymic);
     regexValidReg(regexDate, `date_of_birth`, regObj.date_of_birth, regForm.elements.date_of_birth.value, regForm.elements.date_of_birth);
     regexValidReg(regexRegEmail, `reg-email`, regObj.email, regForm.elements.email.value, regForm.elements.email);
@@ -93,6 +93,7 @@ regForm.addEventListener('change', (e) => {
     // e.preventDefault();
 
     regObj.organization = regForm.elements.organization.value;
+    regObj.position = regForm.elements.position.value;
     regObj.first_name = regForm.elements.first_name.value;
     regObj.last_name = regForm.elements.last_name.value;
     regObj.patronymic = regForm.elements.patronymic.value;
@@ -110,17 +111,20 @@ regForm.addEventListener('change', (e) => {
     regObj.number = regObj.number.split(' ').join('');
     regObj.number = regObj.number.split(')').join('');
     regObj.number = regObj.number.split('(').join('');
-    regObj.number = regObj.number.split('+').join('');
-})
+});
 
-function onSubmitReg(token) {
-    console.log(regObj);
+function onSubmitReg(event) {
+    event.preventDefault();
+    console.log(regObj.number);
 
-    if (regObj.number.length === 12 && regObj.organization) {
+    if (regObj.number.length === 13 && regObj.organization) {
         fetch(urlReg, {
             method: 'POST',
-            body: {'hello': 'world'},
-
+            body: JSON.stringify(regObj),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftokenWriteReg[0].value
+            }
         }).then(res => {
             return res.json()
         }).then(res => {
@@ -131,11 +135,11 @@ function onSubmitReg(token) {
                 el.innerText = res.error.toString();
             }
         })
-    }
-
+    } else {
+        console.log("Phone_number or organization is not valid!")
+    };
 }
-
-
+regForm.addEventListener('submit', onSubmitReg);
 //<!--SEND MESSAGE-->
 
 const selectDefault = ['file', 'ip', 'domain', 'hash'];
@@ -151,19 +155,20 @@ const reportObj = {
     hash: '',
     file: '',
     csrfmiddlewaretoken: '',
-    all2send: false,
 };
 
 let indicators = [];
 let countReport = 'count-1';
 
+const sendMessForm = document.querySelector('#form_send_message')
 const reportBackdropForm = document.querySelector('#reportBackdrop .report_form');
 const reportBackdropFormBlocks = reportBackdropForm.querySelectorAll('.report__form-block');
 const reportBtnAdd = document.querySelector('#reportBackdrop .indicators-btn .indicators-add-btn');
 const reportindicatorsBox = document.querySelector('#reportBackdrop .indicators-block-boxes');
 let allIndicators = document.querySelectorAll('#reportBackdrop .indicators-box')
 const csrftokenReport = document.getElementsByName('csrfmiddlewaretoken');
-let urlReportBackdropForm = `${window.location.origin}/${window.location.pathname.split('/')[1]}/messages/send/`;
+//let urlReportBackdropForm = `${window.location.origin}/${window.location.pathname.split('/')[1]}/messages/send/`;
+let urlReportBackdropForm = reportBackdropForm.getAttribute('action')
 
 if (reportBackdropForm) {
     const firstIndicator = document.querySelector('#reportBackdrop .indicators-box');
@@ -344,7 +349,7 @@ if (reportBackdropForm) {
 
     let regexReportEmail = new RegExp("^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
     let regexReportFullName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
-    let regexReportTel = new RegExp("^[0-9+() ]{18,}?$");
+    let regexReportTel = new RegExp("^\\+[0-9]{12,13}?$");
     let regexReportMessage = new RegExp("^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}?$");
 
     const validateToolTipReport = (elem, className) => {
@@ -382,19 +387,20 @@ if (reportBackdropForm) {
             }
 
         })
-
-
     }
 
     const regexValidReport = (regex, className, value, elem, domElem) => {
         const errorValid = document.querySelector(`#errorValid-${className}`);
         if (regex.test(value)) {
             if (errorValid) {
+                console.log(value)
                 errorValid.remove();
             }
             value = elem;
 
         } else {
+            console.log(value);
+            console.log(elem);
             value = '';
             validateToolTipReport(domElem, className);
 
@@ -420,46 +426,44 @@ if (reportBackdropForm) {
         reportObj.hash = reportBackdropForm.elements.hash?.value || '';
         reportObj.file = reportBackdropForm.elements.file?.files[0] || '';
         reportObj.csrfmiddlewaretoken = csrftokenReport[0].value;
-        reportObj.all2send = !!reportBackdropForm.elements.all2send?.checked
+
+        reportObj.phone_number = reportObj.phone_number.split(' ').join('');
+        reportObj.phone_number = reportObj.phone_number.split(')').join('');
+        reportObj.phone_number = reportObj.phone_number.split('(').join('');
     })
 
-    function onSubmitMessage() {
-        console.log(reportObj);
+    function onSubmitMessage(event) {
+        event.preventDefault();
         const formData = new FormData();
-        const formObj = {};
 
         Object.keys(reportObj).forEach(key => {
-            formObj[key] = reportObj[key];
+            formData.append(key, reportObj[key])
         });
 
-        console.log(formObj);
-        if (reportObj.phone_number.length === 18) {
-            fetch(urlReportBackdropForm, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftokenReport[0].value
-                },
-                body: formObj,
-            }).then(async res => {
-                if (res.status === 200) {
-                    await $('#reportBackdrop').modal('hide');
-                    await new bootstrap.Modal(document.getElementById('modalContact')).show();
+        fetch(urlReportBackdropForm, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrftokenReport[0].value
+            }
+        }).then(async res => {
+            if (res.status === 200) {
+                await $('#reportBackdrop').modal('hide');
+                await new bootstrap.Modal(document.getElementById('modalContact')).show();
 
-                    reportBackdropForm.elements.phone_number.value = ''
-                    reportBackdropForm.elements.description.value = ''
+                reportBackdropForm.elements.phone_number.value = ''
+                reportBackdropForm.elements.description.value = ''
 
-                    reportObj.phone_number = '';
-                    reportObj.description = '';
-                }
-                if (res.status !== 200) return res.json()
-            }).then(res => {
-                if (res?.error) {
-                    const el = document.getElementById('errorReportModal');
-                    el.innerText = res.error.toString();
-                }
-            })
-        }
-
+                reportObj.phone_number = '';
+                reportObj.description = '';
+            }
+            if (res.status !== 200) return res.json()
+        }).then(res => {
+            if (res?.error) {
+                const el = document.getElementById('errorReportModal');
+                el.innerText = res.error.toString();
+            }
+        })
     }
+    reportBackdropForm.addEventListener('submit', onSubmitMessage)
 }

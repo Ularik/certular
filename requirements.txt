@@ -5,5 +5,7 @@ django-tinymce
 django-parler
 django-resized
 thehive4py
+
+# for windows
 python-magic-bin
 

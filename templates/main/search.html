@@ -9,7 +9,7 @@
 {% block content %}
 <section class="search">
     <div class="my-container">
-        <p class="search-title">{% trans 'Результаты поиска' %}</p>
+        <p class="search-title">{% translate 'Результаты поиска' %}</p>
         {% if cyber_security%}
         {% for cyber in cyber_security %}
         <p><a href="#">{{ cyber.name }}</a></p>
@@ -28,7 +28,7 @@
         <p><a href="#">{{ regulation.description|safe }}</a></p>
         {% endfor %}
         {% else %}
-            <p>{% trans 'По вашему запросу ничего не найдено' %}</p>
+            <p>{% translate 'По вашему запросу ничего не найдено' %}</p>
         {% endif %}
     </div>
 </section>

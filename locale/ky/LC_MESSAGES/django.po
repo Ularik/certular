@@ -1,0 +1,808 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 08:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: apps/messages_apps/filters.py:24
+#: templates/vulnerabilities/vulnerabilities.html:25
+msgid "Пользователь"
+msgstr "Колдонуучу"
+
+#: apps/messages_apps/filters.py:34
+msgid "Дата"
+msgstr ""
+
+#: apps/messages_apps/models.py:7
+msgid "На проверке"
+msgstr "Текшерүүдө"
+
+#: apps/messages_apps/models.py:7
+msgid "Завершен"
+msgstr "Аяктаган"
+
+#: core/settings.py:139
+msgid "Kyrgyz"
+msgstr "Кыргыз тили"
+
+#: core/settings.py:140
+msgid "Russian"
+msgstr "Орус тили"
+
+#: core/settings.py:141
+msgid "English"
+msgstr "Англис тили"
+
+#: templates/about/about_detail.html:12 templates/about/about_detail.html:26
+#: templates/base.html:265 templates/base.html:444 templates/base.html:821
+msgid "О Центре"
+msgstr "Борбор Жөнүндө"
+
+#: templates/about/about_detail.html:35
+msgid "Задачи Центра"
+msgstr "Борбордун Милдеттери"
+
+#: templates/about/about_list.html:4 templates/about/about_list.html:9
+msgid "О нас"
+msgstr "Биз Жөнүндө"
+
+#: templates/accounts/check_registration.html:9
+msgid ""
+"Спасибо за регистрацию после проверки админом к вам на почту придет сообщение"
+msgstr ""
+"Катталганыңыз үчүн рахмат, админ текшергенден кийин почтаңызга билдирүү келет"
+
+#: templates/admin/base_site.html:9
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/base_site.html:12
+msgid "KCKB Administration"
+msgstr ""
+
+#: templates/admin/change_form.html:18
+#: templates/admin/news_apps/news/change_form.html:23
+#: templates/admin/trainings_apps/trainings/change_form.html:23
+msgid "Home"
+msgstr ""
+
+#: templates/admin/change_form.html:21
+#: templates/admin/news_apps/news/change_form.html:26
+#: templates/admin/trainings_apps/trainings/change_form.html:26
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/change_form.html:43
+#: templates/admin/news_apps/news/change_form.html:48
+#: templates/admin/trainings_apps/trainings/change_form.html:48
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/admin/change_form.html:43
+#: templates/admin/news_apps/news/change_form.html:48
+#: templates/admin/trainings_apps/trainings/change_form.html:48
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/admin/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/admin/filter.html:22
+msgid "Remove"
+msgstr ""
+
+#: templates/base.html:15
+msgid "КЦКБ"
+msgstr "КККБ"
+
+#: templates/base.html:37 templates/base.html:1124
+#: templates/contacts/contacts_detail.html:17
+#: templates/contacts/contacts_detail.html:27 templates/main/index.html:11
+msgid "Координационный центр по обеспечению кибербезопасности"
+msgstr "Киберкоопсуздукту Камсыздоо боюнча Координациялык Борбор"
+
+#: templates/base.html:67 templates/base.html:198 templates/base.html:212
+msgid "Версия для слабовидящих"
+msgstr "Көрүүсү начарлар үчүн нуска"
+
+#: templates/base.html:87
+msgid "Русский"
+msgstr "Орусча"
+
+#: templates/base.html:127 templates/base.html:148
+msgid "Поиск"
+msgstr "Издөө"
+
+#: templates/base.html:280 templates/base.html:455 templates/base.html:824
+msgid "О КЦКБ"
+msgstr "КККБ жөнүндө"
+
+#: templates/base.html:285 templates/base.html:460 templates/base.html:828
+msgid "Законодательство"
+msgstr "Мыйзамдар"
+
+#: templates/base.html:292 templates/base.html:465 templates/base.html:834
+#: templates/cooperations/cooperation_list.html:12
+#: templates/cooperations/cooperation_list.html:21
+#: templates/main/partners.html:10
+msgid "Сотрудничество"
+msgstr "Кызматташуу"
+
+#: templates/base.html:300 templates/base.html:472 templates/base.html:840
+msgid "События"
+msgstr "Окуялар"
+
+#: templates/base.html:315 templates/base.html:483 templates/base.html:843
+#: templates/news/news_detail.html:4 templates/news/news_list.html:12
+#: templates/news/news_list.html:22
+msgid "Новости"
+msgstr "Жаңылыктар"
+
+#: templates/base.html:320 templates/base.html:488 templates/base.html:847
+#: templates/trainings/training_detail.html:4
+#: templates/trainings/trainings_list.html:12
+#: templates/trainings/trainings_list.html:22
+msgid "Тренинги"
+msgstr "Тренингдер"
+
+#: templates/base.html:337
+msgid "Кибербезопасноть"
+msgstr "Киберкоопсуздук"
+
+#: templates/base.html:365 templates/base.html:529 templates/base.html:868
+#: templates/base.html:1138 templates/contacts/contacts_detail.html:39
+msgid "Контакты"
+msgstr "Байланыштар"
+
+#: templates/base.html:371 templates/base.html:536 templates/base.html:872
+msgid "Личный кабинет"
+msgstr "Жеке бөлмө"
+
+#: templates/base.html:389 templates/base.html:549 templates/base.html:877
+#: templates/messages/message_list.html:8
+msgid "Мои сообщения"
+msgstr "Менин билдирүүлөрүм"
+
+#: templates/base.html:395 templates/base.html:555 templates/base.html:889
+msgid "Отчеты"
+msgstr "Отчёттор"
+
+#: templates/base.html:401 templates/base.html:561 templates/base.html:883
+#: templates/dashboards/dashboards.html:7
+msgid "Дашборд"
+msgstr "Куралдар такталары"
+
+#: templates/base.html:407 templates/base.html:894
+msgid "Выйти"
+msgstr "Чыгуу"
+
+#: templates/base.html:415 templates/base.html:575 templates/base.html:903
+msgid "Вход в систему"
+msgstr "Системага кирүү"
+
+#: templates/base.html:423 templates/base.html:582 templates/base.html:666
+#: templates/base.html:908
+msgid "Регистрация"
+msgstr "Каттоо"
+
+#: templates/base.html:505 templates/base.html:854
+msgid "Кибербезопасность"
+msgstr "Киберкоопсуздук"
+
+#: templates/base.html:567
+msgid "Выход"
+msgstr "Чыгуу"
+
+#: templates/base.html:592 templates/base.html:1292
+#: templates/main/cyber.html:25 templates/main/main-banner.html:13
+#: templates/main/report.html:13
+msgid "Сообщить об инциденте"
+msgstr "Инцидент жөнүндө кабарлоо"
+
+#: templates/base.html:611
+msgid "Вход"
+msgstr "Кирүү"
+
+#: templates/base.html:613 templates/base.html:1185
+#: templates/contacts/contacts_detail.html:54
+msgid "Email"
+msgstr "Почта"
+
+#: templates/base.html:615
+msgid "Введите email"
+msgstr "Email киргизиңиз"
+
+#: templates/base.html:618
+msgid "Пароль"
+msgstr "Сырсөз"
+
+#: templates/base.html:620
+msgid "Введите пароль"
+msgstr "Сырсөздү киргизиңиз"
+
+#: templates/base.html:625
+msgid "Запомнить меня"
+msgstr "Мени эстеп калуу"
+
+#: templates/base.html:633
+msgid "Войти"
+msgstr "Кирүү"
+
+#: templates/base.html:637
+msgid "Войти через Key-Clock"
+msgstr "Key-Clock менен кирүү"
+
+#: templates/base.html:641
+msgid "Забыли логин или пароль"
+msgstr "Сыр сөзүңүздү унуттуңузбу"
+
+#: templates/base.html:669 templates/contacts/contacts_detail.html:76
+#: templates/vulnerabilities/vulnerabilities.html:24
+msgid "Организация"
+msgstr "Уюм"
+
+#: templates/base.html:676
+msgid "Выберите организацию из списка"
+msgstr "Төмөнкү тизмеден тандаңыз"
+
+#: templates/base.html:685
+msgid "Должность"
+msgstr "Кызмат орду"
+
+#: templates/base.html:689
+msgid "Фамилия"
+msgstr "Фамилиясы"
+
+#: templates/base.html:695
+msgid "Имя"
+msgstr "Аты"
+
+#: templates/base.html:701
+msgid "Отчество"
+msgstr "Атасынын аты"
+
+#: templates/base.html:708
+msgid "Дата рождения"
+msgstr "Туулган күнү"
+
+#: templates/base.html:722 templates/base.html:1209
+msgid "Телефон"
+msgstr "Телефон"
+
+#: templates/base.html:740
+msgid "Зарегистрироваться"
+msgstr "Каттоо"
+
+#: templates/base.html:759
+msgid "Размер шрифта"
+msgstr "Шрифттин өлчөмү"
+
+#: templates/base.html:761
+msgid "Маленький"
+msgstr "Кичине"
+
+#: templates/base.html:762
+msgid "Средний"
+msgstr "Орточо"
+
+#: templates/base.html:763
+msgid "Большой"
+msgstr "Чоң"
+
+#: templates/base.html:768
+msgid "Цвет"
+msgstr "Түс"
+
+#: templates/base.html:770
+msgid "Б"
+msgstr "А"
+
+#: templates/base.html:771
+msgid "Ч"
+msgstr "К"
+
+#: templates/base.html:772
+msgid "Ц"
+msgstr "Т"
+
+#: templates/base.html:797
+msgid "Вернуть стандартные настройки"
+msgstr "Стандарттык жөндөөлөргө кайтуу"
+
+#: templates/base.html:800
+msgid "Закрыть"
+msgstr "Жабуу"
+
+#: templates/base.html:1130 templates/contacts/contacts_detail.html:33
+msgid "Адрес"
+msgstr "Дареги"
+
+#: templates/base.html:1140
+msgid "тел"
+msgstr "тел"
+
+#: templates/base.html:1143
+msgid "email"
+msgstr "почта"
+
+#: templates/base.html:1182 templates/main/report.html:8
+msgid "Сообщить об"
+msgstr "Инцидент"
+
+#: templates/base.html:1182 templates/main/report.html:8
+msgid "инциденте"
+msgstr "жөнүндө кабарлоо"
+
+#: templates/base.html:1195 templates/contacts/contacts_detail.html:60
+msgid "ФИО"
+msgstr "ФАА"
+
+#: templates/base.html:1197
+msgid "Фамилия Имя Отчество"
+msgstr "Фамилиясы Аты Атасынын аты"
+
+#: templates/base.html:1218
+msgid "Опишите инцидент*"
+msgstr "Окуяны сүрөттөп бер*"
+
+#: templates/base.html:1225
+msgid "Индикаторы"
+msgstr "Индикаторлор"
+
+#: templates/base.html:1235
+msgid "Индикатор"
+msgstr "Индикатор"
+
+#: templates/base.html:1237
+msgid "File"
+msgstr "Файл"
+
+#: templates/base.html:1238
+msgid "Ip"
+msgstr "Ip"
+
+#: templates/base.html:1239
+msgid "Domain"
+msgstr "Домен"
+
+#: templates/base.html:1240
+msgid "Hash"
+msgstr "Hash"
+
+#: templates/base.html:1265
+msgid "Добавить индикатор"
+msgstr "Индикатор кошунуз"
+
+#: templates/base.html:1276
+msgid "Отправить без проверки"
+msgstr "Текшеруу сыз жөнөтүү"
+
+#: templates/base.html:1332 templates/cooperations/cooperation_list.html:43
+#: templates/main/partners.html:40 templates/main/partners.html:87
+msgid "Посетить сайт"
+msgstr "Сайтка кириңиз"
+
+#: templates/base.html:1356
+msgid "Сообщение успешно отправлено"
+msgstr "Билдирүү ийгиликтүү жөнөтүлдү"
+
+#: templates/base.html:1358
+msgid "Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время"
+msgstr "Кабарыңыз үчүн рахмат! Биз аны жакында карап чыгабыз"
+
+#: templates/base.html:1364
+msgid "Закрыть окно"
+msgstr "Терезени жабуу"
+
+#: templates/contacts/contacts_detail.html:29
+#: templates/main/main-banner.html:10
+msgid ""
+"Государственного комитета национальной безопасности Кыргызской Республики"
+msgstr "Kыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин"
+
+#: templates/contacts/contacts_detail.html:49
+msgid "Напишите нам"
+msgstr "Бизге жаз"
+
+#: templates/contacts/contacts_detail.html:65
+msgid "Номер телефона"
+msgstr "Телефон номуру"
+
+#: templates/contacts/contacts_detail.html:84
+msgid "Выберите из выпадающего списка"
+msgstr "Төмөнкү тизмеден тандаңыз"
+
+#: templates/contacts/contacts_detail.html:94
+msgid "Ваше сообщение"
+msgstr "Сиздин билдирүүңүз"
+
+#: templates/contacts/contacts_detail.html:104
+msgid "Отправить сообщение"
+msgstr "Билдирүү жөнөтүү"
+
+#: templates/cooperations/cooperation_list.html:24
+#: templates/main/partners.html:13
+msgid ""
+"Наши партнеры, совместно с которыми мы реализуем проекты в области "
+"обеспечения кибербезопасности в Кыргызской Республике."
+msgstr ""
+"Кыргыз Республикасында киберкоопсуздук тармагындагы долбоорлорду биргеликте "
+"ишке ашырып жаткан биздин өнөктөштөр."
+
+#: templates/cyber_security/cyber_security.html:40
+#: templates/news/news_detail.html:53
+#: templates/trainings/training_detail.html:58
+msgid "Поделиться"
+msgstr "Бөлүшүү"
+
+#: templates/dashboards/dashboards.html:17
+#: templates/vulnerabilities/vulnerabilities.html:55
+msgid "У вас нет уведомлений"
+msgstr "Сизде эскертмелер жок"
+
+#: templates/forbidden/not_authenticated_error.html:8
+msgid "У вас нет доступа к этой странице"
+msgstr "Бул баракка кирүү мүмкүнчүлүгүңүз жок"
+
+#: templates/legislation/legislation.html:30
+msgid "Нормативно-Правовые Акты"
+msgstr "Ченемдик укуктук актылар"
+
+#: templates/main/404.html:11
+msgid "Not Found"
+msgstr "Баракча табылган жок"
+
+#: templates/main/about.html:8
+msgid "О"
+msgstr "Борбор"
+
+#: templates/main/about.html:8
+msgid "Центре"
+msgstr "Жөнүндө"
+
+#: templates/main/about.html:15
+msgid "Читать Постановление"
+msgstr "Токтомду окуу"
+
+#: templates/main/about.html:19
+msgid "Задачи"
+msgstr "Борбордун"
+
+#: templates/main/about.html:19
+msgid "Центра"
+msgstr "Милдеттери"
+
+#: templates/main/cyber.html:7
+msgid "Кибербезопасность и рекомендации"
+msgstr "Киберкоопсуздук жана Сунуштамалар"
+
+#: templates/main/cyber.html:9
+msgid ""
+"Кибербезопасность - это область, которая занимается защитой цифровых систем, "
+"данных и информации от киберугроз и атак для обеспечения их безопасности и "
+"надежности. Часто встречающиеся киберугрозы:"
+msgstr ""
+"Киберкоопсуздук – бул санариптик системаларды жана маалыматтарды кибер "
+"коркунучтардан жана чабуулдардан коргоо менен алардын коопсуздугун жана "
+"ишенимдүүлүгүн камсыз кылуу менен алектенген тармак. Көп кездешкен кибер "
+"коркунучтар:"
+
+#: templates/main/main-banner.html:8
+msgid "Координационный Центр по Обеспечению Кибербезопасности"
+msgstr "Киберкоопсуздукту Камсыздоо боюнча Координациялык Борбор"
+
+#: templates/main/news.html:7
+msgid "Новости и События"
+msgstr "Жаңылыктар жана Окуялар"
+
+#: templates/main/news.html:9
+msgid ""
+"Последние обновления и события в Центре. Последние достижения, мероприятия и "
+"актуальные новости, связанные с нашей деятельностью в области "
+"кибербезопасности."
+msgstr ""
+"Борбордогу акыркы жаңылыктар жана окуялар.Киберкоопсуздук тармагындагы "
+"биздин ишмердүүлүккө байланыштуу акыркы жетишкендиктер, окуялар жана "
+"актуалдуу жаңылыктар."
+
+#: templates/main/news.html:29 templates/news/news_list.html:118
+#: templates/trainings/trainings_list.html:58
+msgid "Читать новость полностью"
+msgstr "Жаңылыктарды толук окуңуз"
+
+#: templates/main/news.html:40
+msgid "Смотреть все новости"
+msgstr "Бардык жаңылыктарды көрүү"
+
+#: templates/main/partners.html:97
+msgid "Смотреть всех партнеров"
+msgstr "Бардык өнөктөштөрдү кароо"
+
+#: templates/main/report.html:10
+msgid ""
+"Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных или "
+"атаки. Реагирование на инциденты - важная часть обеспечения "
+"кибербезопасности и защиты ваших данных и систем от угроз."
+msgstr ""
+"Бул жерде сиз бизге кибер инциденттер жөнүндө кабарлай аласыз, мисалы, "
+"маалыматтардын чыгып кетиши же чабуулдар. Инциденттерге реакция берүү - "
+"киберкоопсуздукту сактоонун жана маалыматтарыңыз менен системаңызды "
+"коркунучтардан коргоонун маанилүү бөлүгү болуп саналат."
+
+#: templates/main/search.html:12
+msgid "Результаты поиска"
+msgstr "Издөө жыйынтыгы"
+
+#: templates/main/search.html:31
+msgid "По вашему запросу ничего не найдено"
+msgstr "Сурамыңыз боюнча эч нерсе табылган жок"
+
+#: templates/messages/message_list.html:14
+msgid "Все сообщения"
+msgstr "Бардык билдирүүлөр"
+
+#: templates/messages/message_list.html:22
+msgid "№ Сообщения"
+msgstr "№ Билдирүүлөр"
+
+#: templates/messages/message_list.html:23
+msgid "Описание"
+msgstr "Сүрөттөлүшү"
+
+#: templates/messages/message_list.html:24
+msgid "Статус"
+msgstr "Статусу"
+
+#: templates/messages/message_list.html:25
+msgid "Влияние"
+msgstr "Таасири"
+
+#: templates/messages/message_list.html:26
+msgid "Статус разрешения"
+msgstr "Уруксат статусу"
+
+#: templates/messages/message_list.html:27
+msgid "Резюме"
+msgstr "Жыйынтык"
+
+#: templates/messages/message_list.html:28
+#: templates/vulnerabilities/vulnerabilities.html:26
+msgid "Действия"
+msgstr "Аракеттер"
+
+#: templates/messages/message_list.html:59
+msgid "Запросить статус"
+msgstr "Статусун сураңыз"
+
+#: templates/messages/message_list.html:66
+msgid "У вас нет сообщений"
+msgstr "Сизде билдирүүлөр жок"
+
+#: templates/news/news_list.html:24
+msgid ""
+"Актуальные события и их подробности, связанные с нашей деятельностью в "
+"области кибербезопасности."
+msgstr ""
+"Киберкоопсуздук жаатындагы иш-чараларыбызга байланыштуу актуалдуу окуялар "
+"жана алардын чоо-жайы."
+
+#: templates/news/news_list.html:29 templates/trainings/trainings_list.html:30
+msgid "Все"
+msgstr "Баары"
+
+#: templates/news/news_list.html:68
+msgid "Выбрать дату"
+msgstr "Күндү тандоо"
+
+#: templates/news/news_list.html:85
+msgid "за неделю"
+msgstr "Жума ичинде"
+
+#: templates/news/news_list.html:90
+msgid "за месяц"
+msgstr "Айына"
+
+#: templates/news/news_list.html:95
+msgid "за полгода"
+msgstr "Жарым жыл бою"
+
+#: templates/registration/password_reset_complete.html:8
+#: templates/registration/password_reset_complete.html:13
+msgid "Password is set"
+msgstr "Сыр сөз коюлган"
+
+#: templates/registration/password_reset_complete.html:15
+msgid "Your Password has been set. go to"
+msgstr "Сыр сөзүңүз коюлган. Башкы бетке өтүү"
+
+#: templates/registration/password_reset_complete.html:16
+msgid "Main"
+msgstr "Башкы"
+
+#: templates/registration/password_reset_confirm.html:7
+#: templates/registration/password_reset_confirm.html:13
+msgid "Reset Password"
+msgstr "Сыр сөздү өзгөртүү"
+
+#: templates/registration/password_reset_confirm.html:14
+msgid "Please enter your password twice"
+msgstr "Сырсөзүңүздү эки жолу киргизиңиз"
+
+#: templates/registration/password_reset_confirm.html:19
+#: templates/registration/password_reset_form.html:19
+msgid "Change My Password"
+msgstr "Сыр сөздү өзгөртүү"
+
+#: templates/registration/password_reset_confirm.html:23
+msgid "Invalid link"
+msgstr "Жараксыз шилтеме"
+
+#: templates/registration/password_reset_confirm.html:25
+msgid "The Password reset link was invalid."
+msgstr ""
+"Сыр сөздү өзгөртүү шилтемеси жараксыз. Ал буга чейин колдонулган болушу "
+"ыктымал."
+
+#: templates/registration/password_reset_confirm.html:26
+msgid ""
+"Possibly because it has already been used. Please request a new password "
+"reset request."
+msgstr ""
+"Сыр сөздү өзгөртүү шилтемеси жараксыз. Ал буга чейин колдонулган болушу "
+"ыктымал. Сыр сөздү өзгөртүүнү сураныңыз"
+
+#: templates/registration/password_reset_done.html:7
+#: templates/registration/password_reset_done.html:12
+msgid "Reset Your Password"
+msgstr "Сыр сөздү өзгөртүү"
+
+#: templates/registration/password_reset_done.html:14
+msgid "We've emailed you instructions for setting your password."
+msgstr ""
+"Сыр сөздү өзгөртүү боюнча нускаманы электрондук почта менен сизге жөнөттүк."
+
+#: templates/registration/password_reset_done.html:17
+msgid ""
+"If don't receive an email, please make sure you've entered the correct email "
+"address."
+msgstr ""
+"Электрондук катты албасаңыз, электрондук почтанын дарегин туура эмес "
+"жаздыңыз."
+
+#: templates/registration/password_reset_email.html:13
+msgid ""
+"Вы получили это сообщение в связи с тем, что был сделан запрос на сброс "
+"пароля для Вашего аккаунта!"
+msgstr ""
+"Аккаунтуңуздун сыр сөзүн өзгөртүү суроо-талабы жасалгандыктан, бул "
+"билдирүүнү алдыңыз!"
+
+#: templates/registration/password_reset_email.html:17
+msgid "Перейдите по ссылке, чтобы подтвердить сброс пароля"
+msgstr "Сыр сөздү өзгөртүүнү ырастоо үчүн шилтемени басыңыз"
+
+#: templates/registration/password_reset_email.html:19
+msgid "Использовать ссылку"
+msgstr "Шилтемени колдонуңуз"
+
+#: templates/registration/password_reset_email.html:21
+msgid ""
+"Если Вы не запрашивали сброс пароля, то просто проигнорируйте это письмо."
+msgstr ""
+"Эгер сиз сыр сөздү өзгөртүүнү суранбасаңыз, анда бул электрондук катты "
+"этибарга албаңыз."
+
+#: templates/registration/password_reset_form.html:8
+msgid "Reset Your password"
+msgstr "Сыр сөздү өзгөртүү"
+
+#: templates/registration/password_reset_form.html:13
+msgid "Forgotten Your Password"
+msgstr "Сыр сөзүңүздү унуттуңузбу"
+
+#: templates/registration/password_reset_form.html:14
+msgid "Enter your e-mail address to obtain a new password"
+msgstr "Жаңы сырсөз алуу үчүн электрондук почтаңыздын дарегин киргизиңиз"
+
+#: templates/trainings/training_detail.html:15
+msgid "Дата проведения"
+msgstr "Откоруу убактысы"
+
+#: templates/trainings/trainings_list.html:24
+#| msgid ""
+#| "Государственного комитета национальной безопасности Кыргызской Республики"
+msgid ""
+"Информация о тренингах и мероприятиях, проводимых Центром, а также о "
+"событиях, в которых участвовали наши сотрудники, связанные с обеспечением "
+"кибербезопасности в Кыргызской Республике."
+msgstr ""
+"Борбор тарабынан өткөрүлгөн тренингдер жана иш-чаралар, ошондой эле Кыргыз Республикасында "
+"киберкоопсуздукту камсыз кылууга байланыштуу биздин кызматкерлер катышкан иш-чаралар жөнүндө маалымат."
+
+#: templates/trainings/trainings_list.html:33
+msgid "Предстоящие"
+msgstr "Алдыда"
+
+#: templates/trainings/trainings_list.html:36
+msgid "Прошедшие"
+msgstr "Өткөн"
+
+#: templates/vulnerabilities/vulnerabilities.html:7
+#: templates/vulnerabilities/vulnerabilities.html:14
+msgid "Отчёты"
+msgstr "Отчёттор"
+
+#: templates/vulnerabilities/vulnerabilities.html:23
+msgid "Название"
+msgstr "Аталышы"
+
+#: templates/vulnerabilities/vulnerabilities.html:45
+msgid "Скачать файл"
+msgstr "Файлды жүктөө"
+
+#~ msgid ""
+#~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку"
+#~ msgstr ""
+#~ "Блоктун кыскача түшүндүрмөсү, ар бир карта үчүн бир же эки сүйлөмдөн ашык "
+#~ "эмес"
+
+#~ msgid ""
+#~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку."
+#~ "ОБъяснение видов инцидентов и важности реагирования на них"
+#~ msgstr ""
+#~ "Блоктун кыскача түшүндүрмөсү, ар бир карта үчүн бир же эки сүйлөмдөн ашык "
+#~ "эмес. Окуялардын түрлөрүн жана аларга жооп кайтаруунун маанилүүлүгүн "
+#~ "түшүндүрүү"
+
+#~ msgid "Password reset"
+#~ msgstr "Сырсөздү кайра коюу"
+
+#~ msgid "Reset You Password Done"
+#~ msgstr "Сыр сөз коюлган"
+
+#~ msgid "Send e-mail"
+#~ msgstr "Билдирүүлөрду жонотуу"
+
+#~ msgid "Кто-то запросил форму сброса пароля по электронной почте"
+#~ msgstr ""
+#~ "Кимдир бирөө электрондук почта аркылуу сырсөздү калыбына келтирүү "
+#~ "формасын сурады"
+
+#~ msgid "Ваше имя пользователя, если вы забыли"
+#~ msgstr "Эгер унутуп калган учурда сиздин колдонуучу атыңыз"
+
+#~ msgid "Уязвимости"
+#~ msgstr "Уязвимостилер"
+
+#~ msgid "Domen"
+#~ msgstr "Домен"
+
+#~ msgid "Главная траница"
+#~ msgstr "Башкы бет"
+
+#~ msgid "О центре"
+#~ msgstr "Борбор Жөнүндө"
+
+#~| msgid "Ваше сообщение"
+#~ msgid "Мои сообщеният"
+#~ msgstr "Менин билдирүүлөрүм"
+
+#~ msgid "Кибербезопастность"
+#~ msgstr "Киберкоопсуздук"

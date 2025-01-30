@@ -1,34 +1,31 @@
-import random
-import string
-from django.core.mail import send_mail
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin, UserManager
-from project import settings
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.models import Group
 from django.core.validators import MaxLengthValidator, RegexValidator
-from django.dispatch import receiver
-from django.db.models.signals import pre_save, post_save
+from django.utils.translation import gettext_lazy as _
 
-TELEPHONE = RegexValidator(r'^\d+$', 'Only numeric characters are allowed.')
+
+TELEPHONE = RegexValidator(r'\^+\d+$', 'Only numeric characters are allowed.')
 
 
 class Groups(Group):
     class Meta:
         app_label = 'accounts_app'
-        verbose_name = 'Группа'
-        verbose_name_plural = 'Группы'
+        verbose_name = _('Группа')
+        verbose_name_plural = _('Группы')
 
 
 class Organization(models.Model):
-    name = models.TextField(blank=False, null=False, verbose_name='Наименование')
+    name = models.TextField(blank=False, null=False, verbose_name=_('Наименование'))
 
     def __str__(self):
-        return f'{self.name}'
+        admin = _("Админ")
+        return f'{self.name or admin}'
 
     class Meta:
         db_table = 'Organization'
-        verbose_name = 'Организация'
-        verbose_name_plural = 'Организации'
+        verbose_name = _('Организация')
+        verbose_name_plural = _('Организации')
 
 
 class UserManager(BaseUserManager):
@@ -55,25 +52,26 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    first_name = models.CharField(max_length=100, verbose_name='Имя')
-    last_name = models.CharField(max_length=100, verbose_name='Фамилия', blank=True, null=True)
-    patronymic = models.CharField(max_length=100, blank=True, null=True, verbose_name='Отчество')
-    date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
-    position = models.CharField(max_length=200, blank=True, null=True, verbose_name='Должность')
-    organization = models.ForeignKey(to=Organization, blank=True, null=True, verbose_name='Организация',
+    username = models.CharField(max_length=100, unique=False, blank=True, null=True)
+    first_name = models.CharField(max_length=100, verbose_name=_('Имя'))
+    last_name = models.CharField(max_length=100, verbose_name=_('Фамилия'), blank=True, null=True)
+    patronymic = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Отчество'))
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name=_('Дата рождения'))
+    position = models.CharField(max_length=200, blank=True, null=True, verbose_name=_('Должность'))
+    organization = models.ForeignKey(to=Organization, blank=True, null=True, verbose_name=_('Организация'),
                                      related_name='user', on_delete=models.SET_NULL)
     email = models.EmailField(verbose_name='Email', unique=True)
-    number = models.CharField(max_length=19, blank=False, null=False, verbose_name='Мобильный номер',
+    number = models.CharField(max_length=19, blank=False, null=False, verbose_name=_('Мобильный номер'),
                               validators=[TELEPHONE, MaxLengthValidator])
     is_admin = models.BooleanField(default=False)
 
     class Meta:
         app_label = 'accounts_app'
-        verbose_name = 'Пользователи'
-        verbose_name_plural = 'Пользователи'
+        verbose_name = _('Пользователи')
+        verbose_name_plural = _('Пользователи')
 
     def __str__(self):
-        return f'{self.first_name}'
+        return f'{self.first_name or self.username}'
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'date_of_birth']
@@ -95,4 +93,5 @@ class User(AbstractUser):
         """Is the myuser a member of staff?"""
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
 

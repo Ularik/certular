@@ -626,3 +626,8 @@
 .theme-dark span.legislation-box-svg-white {
     display: block!important;
 }
+
+.status-btn {
+    border-radius: 5px;
+    padding: 4px;
+}
