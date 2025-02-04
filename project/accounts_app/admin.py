@@ -30,7 +30,7 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email',)}),
         ('Организация', {'fields': ('organization',)}),
-        ('Персональные данные', {'fields': ('first_name', 'last_name', 'patronymic', 'date_of_birth',
+        ('Персональные данные', {'fields': ('first_name', 'last_name', 'patronymic',
                                             'position')}),
         ('Привилегии', {'fields': ('groups',)}),
         ('Активность пользователя', {'fields': ('is_active',)}),
@@ -41,7 +41,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'first_name', 'password1', 'password2', 'is_superuser',
-                       'organization', 'date_of_birth', 'number'),
+                       'organization', 'number'),
         }),
     )
     search_fields = ('email', )

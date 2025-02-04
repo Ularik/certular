@@ -5,7 +5,8 @@ const regFormBlocks = regForm.querySelectorAll('.registration__form-block');
 const regFormBtn = document.querySelector('.registration__form-btn');
 const csrftokenWriteReg = document.getElementsByName('csrfmiddlewaretoken');
 let urlReg = `${window.location.origin}/${window.location.pathname.split('/')[1]}/accounts/registration/`;
-let urlRegSuccess = `${window.location.origin}/${window.location.pathname.split('/')[1]}/accounts/check/registration/`;
+let urlRegCheck = `${window.location.origin}/${window.location.pathname.split('/')[1]}/accounts/check/registration/`;
+let urlRegSuccess = `${window.location.origin}/${window.location.pathname.split('/')[1]}/accounts/answer/registration/`;
 
 const regObj = {
     organization: '',
@@ -13,16 +14,13 @@ const regObj = {
     last_name: '',
     patronymic: '',
     position: '',
-    date_of_birth: '',
     email: '',
     number: '',
     csrfmiddlewaretoken: '',
 };
-let demoForm = document.getElementById('captcha-from')
 
 let regexRegEmail = new RegExp("^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
 let regexName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
-let regexDate = new RegExp("^[0-9.]{8,}?$");
 let regexTel = new RegExp("^\\+[0-9]{12,13}?$");
 let regexRegSelect = new RegExp("^[0-9]{1,}?$");
 
@@ -82,7 +80,6 @@ regFormBtn.addEventListener('click', () => {
     regexValidReg(regexName, `first_name`, regObj.first_name, regForm.elements.first_name.value, regForm.elements.first_name);
     regexValidReg(regexName, `position`, regObj.position, regForm.elements.position.value, regForm.elements.position);
     regexValidReg(regexName, `patronymic`, regObj.patronymic, regForm.elements.patronymic.value, regForm.elements.patronymic);
-    regexValidReg(regexDate, `date_of_birth`, regObj.date_of_birth, regForm.elements.date_of_birth.value, regForm.elements.date_of_birth);
     regexValidReg(regexRegEmail, `reg-email`, regObj.email, regForm.elements.email.value, regForm.elements.email);
     regexValidReg(regexTel, `number`, regObj.number, regForm.elements.number.value, regForm.elements.number);
     regexValidReg(regexRegSelect, `organization`, regObj.organization, regForm.elements.organization.value, regForm.elements.organization);
@@ -97,16 +94,9 @@ regForm.addEventListener('change', (e) => {
     regObj.first_name = regForm.elements.first_name.value;
     regObj.last_name = regForm.elements.last_name.value;
     regObj.patronymic = regForm.elements.patronymic.value;
-    regObj.date_of_birth = regForm.elements.date_of_birth.value;
     regObj.email = regForm.elements.email.value;
     regObj.number = regForm.elements.number.value;
     regObj.csrfmiddlewaretoken = csrftokenWriteReg[0].value;
-
-    regObj.date_of_birth = regObj.date_of_birth.split('-').join('.');
-    const yearBirth = regObj.date_of_birth.slice(0, 4);
-    const monthsBirth = regObj.date_of_birth.slice(4, 7);
-    const dayBirth = regObj.date_of_birth.slice(8, 10);
-    regObj.date_of_birth = dayBirth + monthsBirth + '.' + yearBirth;
 
     regObj.number = regObj.number.split(' ').join('');
     regObj.number = regObj.number.split(')').join('');
@@ -115,7 +105,9 @@ regForm.addEventListener('change', (e) => {
 
 function onSubmitReg(event) {
     event.preventDefault();
-    console.log(regObj.number);
+    const loaderWrapper = document.querySelector('#registerStaticBackdrop .loader-wrapper');
+    loaderWrapper.style.display = 'flex';
+
 
     if (regObj.number.length === 13 && regObj.organization) {
         fetch(urlReg, {
@@ -125,21 +117,58 @@ function onSubmitReg(event) {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrftokenWriteReg[0].value
             }
-        }).then(res => {
-            return res.json()
-        }).then(res => {
-            if (res?.success) {
-                window.location.replace(`${urlRegSuccess}`);
-            } else if (res?.error) {
-                const el = document.getElementById('errorMsgReg');
-                el.innerText = res.error.toString();
-            }
-        })
+        }).then(res => res.json())
+          .then(res => {
+              loaderWrapper.style.display = 'none';
+              if (res?.success) {
+                  // Очищаем форму и заменяем содержимое на поле для ввода кода подтверждения
+                  const regDiv = document.querySelector(".ular-reg-form")
+                  const addCodeDiv = document.querySelector(".ular-add-code")
+
+                  regDiv.style.display = "none"; // Скрываем блок
+                  addCodeDiv.style.display = "block"; // Показываем блок
+              } else if (res?.error) {
+                  const el = document.getElementById('errorMsgReg');
+                  el.innerText = res.error.toString();
+              }
+          })
     } else {
-        console.log("Phone_number or organization is not valid!")
-    };
+        console.log("Phone number or organization is not valid!");
+    }
 }
-regForm.addEventListener('submit', onSubmitReg);
+
+document.getElementById('reg-btn').addEventListener('click', onSubmitReg);
+
+const confBtn = document.getElementById('confirm-code-btn')
+if (confBtn) {
+    confBtn.addEventListener('click', submitConfirmationCode);
+}
+
+function submitConfirmationCode() {
+    console.log("send code function");
+    const code = document.getElementById('confirmation_code').value;
+    const data = {
+        'code': code,
+    }
+    if (code) {
+        fetch(urlRegCheck, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftokenWriteReg[0].value
+            }
+        }).then(res => res.json())
+          .then(res => {
+              if (res?.success) {
+                  window.location.replace(urlRegSuccess);
+              } else {
+                  document.getElementById('errorMsgConfirm').innerText = res.error || 'Ошибка подтверждения';
+              }
+          });
+    }
+}
+
 //<!--SEND MESSAGE-->
 
 const selectDefault = ['file', 'ip', 'domain', 'hash'];
@@ -447,6 +476,7 @@ if (reportBackdropForm) {
                 'X-CSRFToken': csrftokenReport[0].value
             }
         }).then(async res => {
+
             if (res.status === 200) {
                 await $('#reportBackdrop').modal('hide');
                 await new bootstrap.Modal(document.getElementById('modalContact')).show();

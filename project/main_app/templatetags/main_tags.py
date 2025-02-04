@@ -27,10 +27,10 @@ def get_about_desktop():
     }
     return context
 
-#
-# @register.simple_tag()
-# def get_e_learning_desktop():
-#     return ELearning.objects.all().first() \
+
+@register.simple_tag()
+def get_e_learning_desktop():
+    return {'link': 'http://213.109.67.188'}
 
 
 

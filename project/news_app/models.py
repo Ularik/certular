@@ -58,3 +58,22 @@ class NewsGalleryItem(models.Model):
         elif (type_tuple[0]).__contains__("video"):
             return "video"
 
+
+class Notification(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(max_length=100, blank=False, null=False, verbose_name='Наименование'),
+        description=models.TextField(blank=False, null=False, verbose_name='Краткое описание'),
+        full_description=HTMLField(verbose_name='Подробное описание')
+    )
+    cover = ResizedImageField(crop=['middle', 'center'], quality=80,
+                              upload_to=content_file_name('Notification'), blank=False, force_format='WEBP',
+                              null=True, verbose_name='Обложка')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+
+    class Meta:
+        db_table = 'Notification'
+        verbose_name = 'Нотификация'
+        verbose_name_plural = 'Нотификация'
+
+    def __str__(self):
+        return f'{self.name}'

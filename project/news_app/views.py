@@ -1,8 +1,7 @@
-from django.shortcuts import render
 from django.views import generic
-
+from django.shortcuts import render
 from main_app.models import SeoPages
-from .models import News
+from .models import News, Notification
 from datetime import datetime, timedelta
 
 
@@ -33,3 +32,9 @@ class NewsDetailView(generic.DetailView):
     model = News
     context_object_name = 'news'
     template_name = 'news/news_detail.html'
+
+
+def notification_view(request):
+    notification = Notification.objects.all().first()
+
+    return render(request, 'notifications/notification.html', {'notification': notification})

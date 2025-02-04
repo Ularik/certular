@@ -12,7 +12,7 @@ class MyRegisterUserForm(UserCreationForm):
             'last_name',
             'patronymic',
             'email',
-            'date_of_birth',
+
             'position',
             'organization',
             'number',

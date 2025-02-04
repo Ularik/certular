@@ -15,7 +15,7 @@
     <title>{% block title %}{% translate 'КЦКБ' %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
 </head>
 <body>
 {#start header wrapper#}
@@ -314,15 +314,10 @@
                                             {% translate 'Тренинги' %}
                                         </a>
                                     </li>
-<!--                                    et_e_learning_desktop as e_learning -->
-<!--                                    if e_learning.link != None -->
-                                        <li>
-                                            <a class="dropdown-item" href="#" rel="noopener"
-                                               target="_blank">
-<!--                                                 e_learning.name -->
-                                            </a>
-                                        </li>
-<!--                                     endif -->
+                                        {% get_e_learning_desktop as e_learning %}
+                                        <a class="dropdown-item" href="{{ e_learning.link }}">
+                                            {% translate 'E-learning' %}
+                                        </a>
                                 </ul>
                             </li>
 
@@ -341,16 +336,21 @@
                                     </svg>
                                 </button>
                                 <ul class="dropdown-menu">
-<!--                                     get_cyber_security as get_cybers %}-->
-<!--                                     for cyber in get_cybers %}-->
+                                     {% get_cyber_security as get_cybers %}
+                                     {% for cyber in get_cybers %}
                                         <li>
                                             <a class="dropdown-item"
-                                               href="#">
-<!--                                                 cyber.name }}-->
+                                               href="{% url 'cyber_security:cyber_security' cyber.pk %}">
+                                                 {{ cyber.name }}
                                             </a>
                                         </li>
-<!--                                     endfor %}-->
+                                     {% endfor %}
                                 </ul>
+                            </li>
+                            <li class="nav-item dropdown menu-main-link">
+                                <a class="header-contact header-contact-mobile" href="{% url 'news:notification_detail' %}">
+                                    {% translate 'Сертификация' %}
+                                </a>
                             </li>
 
                             <li class="nav-item dropdown menu-main-link">
@@ -400,7 +400,7 @@
                                         </li>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
+                                               href="{% url 'accounts_app:logout' %}">
                                                 {% translate 'Выйти' %}
                                             </a>
                                         </li>
@@ -482,17 +482,15 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#">
-                                            {% trans 'Тренинги' %}
+                                            {% translate 'Тренинги' %}
                                         </a>
                                     </li>
-                                    {% if e_learning.link != None %}
-                                        <li>
-                                            <a class="dropdown-item" href="{{ e_learning.link }}" rel="noopener"
-                                               target="_blank">
-                                                {{ e_learning.name }}
-                                            </a>
-                                        </li>
-                                    {% endif %}
+                                    <li>
+                                        {% get_e_learning_desktop as e_learning %}
+                                        <a class="dropdown-item" href="{{ e_learning.link }}">
+                                            {% translate 'E-learning' %}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -507,18 +505,24 @@
                                     </svg>
                                 </a>
                                 <ul class="dropdown-menu">
-<!--                                     get_cyber_security as get_cybers %}-->
-<!--                                     for cyber in get_cybers %}-->
+                                    {% get_cyber_security as get_cybers %}
+                                    {% for cyber in get_cybers %}
                                         <li>
                                             <a class="dropdown-item"
-                                               href="#">
-<!--                                                 cyber.name }}-->
+                                               href="{% url 'cyber_security:cyber_security' cyber.id %}">
+                                                {{ cyber.name }}
                                             </a>
                                         </li>
-<!--                                     endfor %}-->
+                                    {% endfor %}
                                 </ul>
                             </li>
-
+                            <li class="nav-item dropdown header-nav-item">
+                                <a class="header-contact" href="{% url 'news:notification_detail' %}"
+                                   role="button"
+                                   aria-expanded="false">
+                                    {% trans 'Сертификация' %}
+                                </a>
+                            </li>
                             <li class="nav-item dropdown header-nav-item">
                                 <a class="header-contact" href="{% url 'contacts:contact_detail' %}"
                                    role="button"
@@ -607,6 +611,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
+
                     <form class="enter__form" method="post" action="{% url 'accounts_app:login' %}">
                         <h1 class="enter__form-title">{% trans 'Вход' %}</h1>
                         <div class="block-login">
@@ -645,6 +650,9 @@
                 <div class="triangle-top-left-enter-modal"></div>
                 <div class="triangle-bot-right-enter-modal"></div>
                 <div class="triangle-bot-left-enter-modal"></div>
+                <div id="enter-loader" class="loader-wrapper">
+                    <div class="loader"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -661,82 +669,90 @@
                     <form class="registration__form" id="captcha-from" action="{% url 'accounts_app:registration' %}"
                           method="post">
                         {% csrf_token %}
-                         {% register_form as reg_form %}
-                        <h1 class="registration__form-title">{% trans 'Регистрация' %}</h1>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label"
-                                   for="organization">{% trans 'Организация' %}*</label>
-                            <select name="organization"
-                                    id="organization"
-                                    class="registration__form-inp select form-select"
-                                    aria-label="Default select example">
-                                <option selected disabled hidden value="">
-                                    {% trans 'Выберите организацию из списка' %}
-                                </option>
-                                 {% get_organizations as organizations %}
-                                 {% for organization in organizations %}
-                                    <option value="{{ organization.pk }}">{{ organization.name }}</option>
-                                 {% endfor %}
-                            </select>
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="position">{% trans 'Должность' %}</label>
-                            <input name="position" id="position" class="registration__form-inp" type="text"/>
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="last_name">{% trans 'Фамилия' %}*</label>
-                            <input name="last_name" id="last_name" class="registration__form-inp" type="text"
-                                   pattern="[A-ZА-Яа-яa-z]{3,32}"
-                            />
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="first_name">{% trans 'Имя' %}*</label>
-                            <input name="first_name" id="first_name" class="registration__form-inp" type="text"
-                                   pattern="[A-ZА-Яа-яa-z]{3,32}"
-                            />
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="patronymic">{% trans 'Отчество' %}*</label>
-                            <input name="patronymic" id="patronymic" class="registration__form-inp" type="text"
-                                   pattern="[A-ZА-Яа-яa-z]{3,32}"
-                            />
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label"
-                                   for="date_of_birth">{% trans 'Дата рождения' %}*</label>
-                            <input name="date_of_birth"
-                                   id="date_of_birth"
-                                   class="registration__form-inp"
-                                   type="date"
-                                   max="9999-12-25"
-                                   placeholder="--.--.----"/>
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="regEmail">Email*:</label>
-                            <input name="email" id="regEmail" class="registration__form-inp" type="email"/>
-                        </div>
-                        <div class="registration__form-block">
-                            <label class="registration__form-label" for="regPhone">{% trans 'Телефон' %}*</label>
-                            <input name="number"
-                                   id="regPhone"
-                                   class="registration__form-inp tel"
-                                   type="text"
-                                   placeholder="+996_____-__-__"
-                            />
-                        </div>
-                        <div class="error" id="errorMsgReg"></div>
+                        {% register_form as reg_form %}
+                        <div class="ular-reg-form">
+                            <h1 class="registration__form-title">{% trans 'Регистрация' %}</h1>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label"
+                                       for="organization">{% trans 'Организация' %}*</label>
+                                <select name="organization"
+                                        id="organization"
+                                        class="registration__form-inp select form-select"
+                                        aria-label="Default select example">
+                                    <option selected disabled hidden value="">
+                                        {% trans 'Выберите организацию из списка' %}
+                                    </option>
+                                     {% get_organizations as organizations %}
+                                     {% for organization in organizations %}
+                                        <option value="{{ organization.pk }}">{{ organization.name }}</option>
+                                     {% endfor %}
+                                </select>
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="position">{% trans 'Должность' %}</label>
+                                <input name="position" id="position" class="registration__form-inp" type="text"/>
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="last_name">{% trans 'Фамилия' %}*</label>
+                                <input name="last_name" id="last_name" class="registration__form-inp" type="text"
+                                       pattern="[A-ZА-Яа-яa-z]{3,32}"
+                                />
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="first_name">{% trans 'Имя' %}*</label>
+                                <input name="first_name" id="first_name" class="registration__form-inp" type="text"
+                                       pattern="[A-ZА-Яа-яa-z]{3,32}"
+                                />
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="patronymic">{% trans 'Отчество' %}*</label>
+                                <input name="patronymic" id="patronymic" class="registration__form-inp" type="text"
+                                       pattern="[A-ZА-Яа-яa-z]{3,32}"
+                                />
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="regEmail">Email*:</label>
+                                <input name="email" id="regEmail" class="registration__form-inp" type="email"/>
+                            </div>
+                            <div class="registration__form-block">
+                                <label class="registration__form-label" for="regPhone">{% trans 'Телефон' %}*</label>
+                                <input name="number"
+                                       id="regPhone"
+                                       class="registration__form-inp tel"
+                                       type="text"
+                                       placeholder="+996_____-__-__"
+                                />
+                            </div>
+                            <div class="error" id="errorMsgReg"></div>
 
-                        <div>
+                            <div>
 
-                            <button type="submit" class="registration__form-btn g-recaptcha">
-                                {% trans 'Зарегистрироваться' %}
-                            </button>
+                                <button type="submit" class="registration__form-btn g-recaptcha" id="reg-btn">
+                                    {% trans 'Зарегистрироваться' %}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ular-add-code" style="display: none">
+                            <h1 class="registration__form-title">Введите код подтверждения</h1>
+                            <div class="registration__form-block">
+                              <label class="registration__form-label" for="confirmation_code">Код подтверждения*</label>
+                              <input name="confirmation_code" id="confirmation_code" class="registration__form-inp" type="text" />
+                            </div>
+                            <div class="error" id="errorMsgConfirm"></div>
+                            <div>
+                              <button type="button" class="registration__form-btn" id="confirm-code-btn">
+                                  Подтвердить
+                              </button>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="triangle-top-left-reg-modal"></div>
                 <div class="triangle-bot-right-reg-modal"></div>
                 <div class="triangle-bot-left-reg-modal"></div>
+                <div id="reg-loader" class="loader-wrapper">
+                    <div class="loader"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -839,6 +855,12 @@
                                 {% trans 'Тренинги' %}
                             </a>
                         </li>
+                        <li class="footer-nav-info-text">
+                            {% get_e_learning_desktop as e_learning %}
+                            <a class="dropdown-item" href="{{ e_learning.link }}">
+                                {% translate 'E-learning' %}
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -847,12 +869,17 @@
                     <ul class="footer-nav-info-text-box">
                         {% for cyber in get_cybers %}
                             <li class="footer-nav-info-text">
-                                <a href="#" class="footer-link">
+                                <a href="{% url 'cyber_security:cyber_security' cyber.id %}" class="footer-link">
                                     {{ cyber.name }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
+                </div>
+
+                <div class="footer-nav-info">
+                    <a href="{% url 'news:notification_detail' %}"
+                       class="footer-nav-info-title footer-nav-info-title-contacts">{% trans 'Сертификация' %}</a>
                 </div>
 
                 <div class="footer-nav-info">
@@ -882,7 +909,7 @@
                                 </a>
                             </li>
                             <li class="footer-nav-info-text">
-                                <a class="footer-link" href="#">
+                                <a class="footer-link" href="{% url 'accounts_app:logout' %}">
                                     {% trans 'Выйти' %}
                                 </a>
                             </li>
@@ -1199,7 +1226,9 @@
                         <input type="text" class="form-control tel" id="phoneNumber"
                                placeholder="+999 ___ ___-___" name="phone_number"
                                {% if request.user.is_authenticated %}
-                               value="{{ request.user.number }}" disabled
+                                    {% if request.user.number %}
+                                        value="{{ request.user.number }}"
+                                    {% endif %}
                                {% endif %}
                         >
                     </div>
@@ -1322,32 +1351,26 @@
     </div>
 </div>
 
-<!--Modal SUCCESS-->
-<div id="modalContact" class="modal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<!-- Modal input code -->
+<div class="modal fade" id="authCodeModal" tabindex="-1" aria-labelledby="authCodeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="authCodeModalLabel">Введите код аутентификации</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <p class="modalContact-title">{% translate 'Сообщение успешно отправлено' %}</p>
-                <p class="modalContact-text">
-                    {% translate 'Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время' %}
-                    .
-                </p>
+                <input type="text" id="authCodeInput" class="form-control" placeholder="Введите код" required>
+                <div id="errorMessage" class="text-danger mt-2"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="main-btn modalContact-btn" data-bs-dismiss="modal">
-                    {% translate 'Закрыть окно' %}
-                </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" id="submitAuthCode" class="btn btn-primary" data-url="{% url 'accounts_app:check' %}">Отправить</button>
             </div>
-            <div class="triangle-top-left-success-modal"></div>
-            <div class="triangle-bot-right-success-modal"></div>
-            <div class="triangle-bot-left-success-modal"></div>
         </div>
     </div>
 </div>
-
+<!-- End modal -->
 {#end footer#}
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -1370,7 +1393,8 @@
 
     a.addEventListener('submit', (e) => {
         e.preventDefault()
-
+        const loaderWrapper = document.querySelector('#enterStaticBackdrop .loader-wrapper');
+        loaderWrapper.style.display = "flex";
         if (box.checked) {
             box.value = 'on'
         } else {
@@ -1389,6 +1413,7 @@
                 'X-CSRFToken': csrftoken[0].value
             }
         }).then(res => {
+            loaderWrapper.style.display = "none";
             if (res.status !== 200) return res.json()
             else window.location.reload()
         }).then(res => {
@@ -1403,7 +1428,6 @@
     })
 </script>
 <script src="{% static 'js/modules/send_message.js' %}"></script>
-
 <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

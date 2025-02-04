@@ -56,7 +56,6 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=100, verbose_name=_('Имя'))
     last_name = models.CharField(max_length=100, verbose_name=_('Фамилия'), blank=True, null=True)
     patronymic = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Отчество'))
-    date_of_birth = models.DateField(blank=True, null=True, verbose_name=_('Дата рождения'))
     position = models.CharField(max_length=200, blank=True, null=True, verbose_name=_('Должность'))
     organization = models.ForeignKey(to=Organization, blank=True, null=True, verbose_name=_('Организация'),
                                      related_name='user', on_delete=models.SET_NULL)
@@ -74,7 +73,7 @@ class User(AbstractUser):
         return f'{self.first_name or self.username}'
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'date_of_birth']
+    REQUIRED_FIELDS = ['first_name']
 
     objects = UserManager()
 
@@ -93,5 +92,4 @@ class User(AbstractUser):
         """Is the myuser a member of staff?"""
         # Simplest possible answer: All admins are staff
         return self.is_admin
-
 

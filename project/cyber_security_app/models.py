@@ -22,3 +22,4 @@ class CyberSecurity(TranslatableModel):
 
     def get_absolute_url(self):
         return reverse('cyber_security:cyber_security', kwargs={'pk': self.pk})
+

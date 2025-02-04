@@ -19365,3 +19365,20 @@ table.messages-block-table thead tr {
 .theme-dark .page-404 .page-404__title {
     color: #ef8422;
 }
+
+.one-content-big-image-block {
+    float: right;
+    max-width: 475px;
+    /*height: 375px;*/
+    max-height: 475px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 0 22px 42px;
+    position: relative;
+    z-index: 1;
+}

@@ -10,6 +10,7 @@ from django.views import View
 from .models import User, Organization
 import re
 import logging
+from django.core.cache import cache
 
 
 logger = logging.getLogger(__name__)
@@ -70,11 +71,8 @@ def my_view(request):
 class RegistrationAPIView(View):
 
     def post(self, request, *args, **kwargs):
-        print(request.body)
         request_body = json.loads(request.body)
 
-        date_of_birth = datetime.datetime.strptime(request_body['date_of_birth'], '%d.%m.%Y')
-        request_body['date_of_birth'] = date_of_birth.date()
         organization = Organization.objects.filter(id=int(request_body['organization'])).first()
         request_body['organization'] = organization
 
@@ -87,6 +85,7 @@ class RegistrationAPIView(View):
             elif get_language() == 'ky':
                 error_email = {'error': 'Бул кат мурунтан эле катталган'}
             return JsonResponse(error_email)
+
         pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"
 
         if re.match(pattern, request_body['email']) is None:
@@ -103,7 +102,6 @@ class RegistrationAPIView(View):
                 first_name=request_body['first_name'],
                 last_name=request_body['last_name'],
                 patronymic=request_body['patronymic'],
-                date_of_birth=request_body['date_of_birth'],
                 position=request_body['position'],
                 organization=request_body['organization'],
                 email=request_body['email'],
@@ -123,4 +121,15 @@ class RegistrationAPIView(View):
 
 
 def check_registration(request):
+    if request.method == 'POST':
+        data = json.loads( request.body)
+        code = data.get('code')
+
+        if code == cache.get('account_email'):
+            return JsonResponse({'success': 'True'})
+        else:
+            return JsonResponse({'error': 'False'})
+
+
+def answer_after_reg(request):
     return render(request, 'accounts/check_registration.html')
