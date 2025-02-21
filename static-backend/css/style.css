@@ -632,3 +632,81 @@
     padding: 4px;
 }
 
+.header-btn a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-cert {
+    display: flex; /* Размещаем элементы в строку */
+    align-items: center; /* Выравниваем по центру */
+    justify-content: center; /* Центрируем содержимое */
+    gap: 20px; /* Промежуток между элементами */
+}
+
+.logo-cert div {
+    text-align: center; /* Выравниваем текст по центру */
+    max-width: 400px; /* Ограничиваем ширину текста */
+    font-size: 18px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    color: #0c2340; /* Темно-синий цвет текста */
+}
+
+.logo-cert img {
+    height: 150px; /* Указываем фиксированную высоту логотипа */
+}
+
+.logo-cert div:first-child,
+.logo-cert div:last-child {
+    position: relative;
+    padding-bottom: 20px; /* Отступ перед линией */
+}
+
+.logo-cert div:first-child::after,
+.logo-cert div:last-child::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #0c2340; /* Темно-синяя линия */
+}
+
+.main-title {
+    text-align: center; /* Выравнивание по центру */
+    max-width: 900px; /* Ограничение ширины */
+    margin: 0 auto; /* Центрирование блока */
+    margin-top: 110px;
+    margin-bottom: 60px;
+    font-size: 24px; /* Размер шрифта */
+    font-weight: bold; /* Жирный текст */
+    color: #0c2340;
+}
+
+.doc-content {
+    margin: 15px;
+}
+
+.doc-list a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+.doc-list a:hover {
+    color: blue;
+}
+
+.doc-content a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+.doc-content a:hover {
+    color: blue;
+}
+
+.doc-list {
+    margin: 15px;
+}

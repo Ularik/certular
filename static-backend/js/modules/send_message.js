@@ -105,6 +105,7 @@ regForm.addEventListener('change', (e) => {
 
 function onSubmitReg(event) {
     event.preventDefault();
+    console.log('Sand message')
     const loaderWrapper = document.querySelector('#registerStaticBackdrop .loader-wrapper');
     loaderWrapper.style.display = 'flex';
 
@@ -382,41 +383,33 @@ if (reportBackdropForm) {
     let regexReportMessage = new RegExp("^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}?$");
 
     const validateToolTipReport = (elem, className) => {
-        const errorValid = document.querySelector(`#errorValid-${className}`);
+        const errorId = `errorValid-${className}`;
 
         reportBackdropFormBlocks.forEach(a => {
-            a.style.position = 'relative';
-            if (a.contains(elem) && !a.contains(errorValid)) {
-                let lang = window.location.pathname;
-                if (lang.includes('ru')) {
-                    let valueError =
-                        `
-                    <p class="errorValid" id="errorValid-${className}">Пожалуйста, заполните это поле</p>
-                `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                } else if (lang.includes('ky')) {
-                    let valueError =
-                        `
-                    <p class="errorValid" id="errorValid-${className}">Сураныч, бул талааны толтуруңуз</p>
-                `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                } else if (lang.includes('en')) {
-                    let valueError =
-                        `
-                    <p class="errorValid" id="errorValid-${className}">Please fill out this field</p>
-                `;
-                    a.insertAdjacentHTML("beforeend", valueError);
-                }
+            if (a.contains(elem) && !document.getElementById(errorId)) {
+                // Определяем язык страницы
+                const lang = window.location.pathname;
+                const errorMessages = {
+                    ru: "Пожалуйста, заполните это поле",
+                    ky: "Сураныч, бул талааны толтуруңуз",
+                    en: "Please fill out this field",
+                };
 
+                // Получаем текст ошибки (по умолчанию — английский)
+                const errorText = errorMessages[lang.includes("ru") ? "ru" : lang.includes("ky") ? "ky" : "en"];
+
+                // Добавляем сообщение об ошибке
+                const valueError = `<p class="errorValid" id="${errorId}">${errorText}</p>`;
+                a.insertAdjacentHTML("beforeend", valueError);
+
+                // Удаляем только это сообщение через 5 секунд
                 setTimeout(() => {
-                    document.querySelectorAll('.errorValid').forEach(error => {
-                        error.remove();
-                    })
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) errorElement.remove();
                 }, 5000);
             }
-
-        })
-    }
+        });
+    };
 
     const regexValidReport = (regex, className, value, elem, domElem) => {
         const errorValid = document.querySelector(`#errorValid-${className}`);
@@ -495,5 +488,5 @@ if (reportBackdropForm) {
             }
         })
     }
-    reportBackdropForm.addEventListener('submit', onSubmitMessage)
-}
+    reportBackdropForm.addEventListener('submit', onSubmitMessage);
+};

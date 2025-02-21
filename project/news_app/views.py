@@ -1,8 +1,12 @@
 from django.views import generic
 from django.shortcuts import render
 from main_app.models import SeoPages
+import logging
 from .models import News, Notification
 from datetime import datetime, timedelta
+
+
+logger = logging.getLogger(__name__)
 
 
 class NewsListView(generic.ListView):
@@ -36,5 +40,17 @@ class NewsDetailView(generic.DetailView):
 
 def notification_view(request):
     notification = Notification.objects.all().first()
+    npas = notification.notification_npa.all()
 
-    return render(request, 'notifications/notification.html', {'notification': notification})
+    context = {}
+    context['title'] = notification.name
+    context['npas'] = npas
+
+    text = notification.description.split('\n')
+
+    context['first'] = text[0]
+    context['second'] = text[1]
+    context['third'] = text[2]
+
+    context['pars'] = text[3:]
+    return render(request, 'notifications/notification.html', context)

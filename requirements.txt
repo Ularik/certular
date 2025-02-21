@@ -6,6 +6,7 @@ django-parler
 django-resized
 thehive4py
 redis
-# for windows
-python-magic-bin
+six
+
+
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 08:39+0000\n"
+"POT-Creation-Date: 2025-02-20 17:54+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,427 +18,502 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: apps/messages_apps/filters.py:24
-#: templates/vulnerabilities/vulnerabilities.html:25
+#: .\accounts_app\models.py:14
+msgid "Группа"
+msgstr ""
+
+#: .\accounts_app\models.py:15
+msgid "Группы"
+msgstr ""
+
+#: .\accounts_app\models.py:19
+#, fuzzy
+#| msgid "Название"
+msgid "Наименование"
+msgstr "Аталышы"
+
+#: .\accounts_app\models.py:22
+msgid "Админ"
+msgstr ""
+
+#: .\accounts_app\models.py:27 .\accounts_app\models.py:60
+#: .\templates\base.html:678 .\templates\contacts\contacts_detail.html:64
+#: .\templates\reports\reports.html:24
+msgid "Организация"
+msgstr "Уюм"
+
+#: .\accounts_app\models.py:28
+#, fuzzy
+#| msgid "Организация"
+msgid "Организации"
+msgstr "Уюм"
+
+#: .\accounts_app\models.py:56 .\templates\base.html:703
+msgid "Имя"
+msgstr "Аты"
+
+#: .\accounts_app\models.py:57 .\templates\base.html:697
+msgid "Фамилия"
+msgstr "Фамилиясы"
+
+#: .\accounts_app\models.py:58 .\templates\base.html:709
+msgid "Отчество"
+msgstr "Атасынын аты"
+
+#: .\accounts_app\models.py:59 .\templates\base.html:693
+msgid "Должность"
+msgstr "Кызмат орду"
+
+#: .\accounts_app\models.py:63
+#, fuzzy
+#| msgid "Личный кабинет"
+msgid "Мобильный номер"
+msgstr "Жеке бөлмө"
+
+#: .\accounts_app\models.py:69 .\accounts_app\models.py:70
+#, fuzzy
+#| msgid "Пользователь"
+msgid "Пользователи"
+msgstr "Колдонуучу"
+
+#: .\db_logger\models.py:14
+msgid "NotSet"
+msgstr ""
+
+#: .\db_logger\models.py:15
+msgid "Info"
+msgstr ""
+
+#: .\db_logger\models.py:16
+msgid "Warning"
+msgstr ""
+
+#: .\db_logger\models.py:17
+msgid "Debug"
+msgstr ""
+
+#: .\db_logger\models.py:18
+msgid "Error"
+msgstr ""
+
+#: .\db_logger\models.py:19
+msgid "Fatal"
+msgstr ""
+
+#: .\messages_app\filters.py:24 .\templates\reports\reports.html:25
 msgid "Пользователь"
 msgstr "Колдонуучу"
 
-#: apps/messages_apps/filters.py:34
+#: .\messages_app\filters.py:34 .\templates\reports\reports.html:26
 msgid "Дата"
 msgstr ""
 
-#: apps/messages_apps/models.py:7
-msgid "На проверке"
+#: .\messages_app\models.py:7
+#, fuzzy
+#| msgid "На проверке"
+msgid "Не прочитан"
 msgstr "Текшерүүдө"
 
-#: apps/messages_apps/models.py:7
+#: .\messages_app\models.py:7
 msgid "Завершен"
 msgstr "Аяктаган"
 
-#: core/settings.py:139
-msgid "Kyrgyz"
-msgstr "Кыргыз тили"
+#: .\messages_app\models.py:7
+msgid "Прочитан"
+msgstr ""
 
-#: core/settings.py:140
+#: .\project\settings.py:135
 msgid "Russian"
 msgstr "Орус тили"
 
-#: core/settings.py:141
+#: .\project\settings.py:136
 msgid "English"
 msgstr "Англис тили"
 
-#: templates/about/about_detail.html:12 templates/about/about_detail.html:26
-#: templates/base.html:265 templates/base.html:444 templates/base.html:821
+#: .\project\settings.py:137
+#, fuzzy
+#| msgid "Kyrgyz"
+msgid "Kyrgiz"
+msgstr "Кыргыз тили"
+
+#: .\templates\about\about_detail.html:12
+#: .\templates\about\about_detail.html:26 .\templates\base.html:258
+#: .\templates\base.html:443 .\templates\base.html:830
 msgid "О Центре"
 msgstr "Борбор Жөнүндө"
 
-#: templates/about/about_detail.html:35
+#: .\templates\about\about_detail.html:35
 msgid "Задачи Центра"
 msgstr "Борбордун Милдеттери"
 
-#: templates/about/about_list.html:4 templates/about/about_list.html:9
+#: .\templates\about\about_list.html:4 .\templates\about\about_list.html:9
 msgid "О нас"
 msgstr "Биз Жөнүндө"
 
-#: templates/accounts/check_registration.html:9
+#: .\templates\accounts\check_registration.html:9
 msgid ""
 "Спасибо за регистрацию после проверки админом к вам на почту придет сообщение"
 msgstr ""
 "Катталганыңыз үчүн рахмат, админ текшергенден кийин почтаңызга билдирүү келет"
 
-#: templates/admin/base_site.html:9
+#: .\templates\admin\base_site.html:9
 msgid "Django site admin"
 msgstr ""
 
-#: templates/admin/base_site.html:12
+#: .\templates\admin\base_site.html:12
 msgid "KCKB Administration"
 msgstr ""
 
-#: templates/admin/change_form.html:18
-#: templates/admin/news_apps/news/change_form.html:23
-#: templates/admin/trainings_apps/trainings/change_form.html:23
+#: .\templates\admin\change_form.html:18
+#: .\templates\admin\news_apps\news\change_form.html:23
+#: .\templates\admin\trainings_apps\trainings\change_form.html:23
 msgid "Home"
 msgstr ""
 
-#: templates/admin/change_form.html:21
-#: templates/admin/news_apps/news/change_form.html:26
-#: templates/admin/trainings_apps/trainings/change_form.html:26
+#: .\templates\admin\change_form.html:21
+#: .\templates\admin\news_apps\news\change_form.html:26
+#: .\templates\admin\trainings_apps\trainings\change_form.html:26
 #, python-format
 msgid "Add %(name)s"
 msgstr ""
 
-#: templates/admin/change_form.html:43
-#: templates/admin/news_apps/news/change_form.html:48
-#: templates/admin/trainings_apps/trainings/change_form.html:48
+#: .\templates\admin\change_form.html:43
+#: .\templates\admin\news_apps\news\change_form.html:48
+#: .\templates\admin\trainings_apps\trainings\change_form.html:48
 msgid "Please correct the error below."
 msgstr ""
 
-#: templates/admin/change_form.html:43
-#: templates/admin/news_apps/news/change_form.html:48
-#: templates/admin/trainings_apps/trainings/change_form.html:48
+#: .\templates\admin\change_form.html:43
+#: .\templates\admin\news_apps\news\change_form.html:48
+#: .\templates\admin\trainings_apps\trainings\change_form.html:48
 msgid "Please correct the errors below."
 msgstr ""
 
-#: templates/admin/filter.html:2
+#: .\templates\admin\filter.html:2
 #, python-format
 msgid " By %(filter_title)s "
 msgstr ""
 
-#: templates/admin/filter.html:22
+#: .\templates\admin\filter.html:22
 msgid "Remove"
 msgstr ""
 
-#: templates/base.html:15
+#: .\templates\base.html:15
 msgid "КЦКБ"
 msgstr "КККБ"
 
-#: templates/base.html:37 templates/base.html:1124
-#: templates/contacts/contacts_detail.html:17
-#: templates/contacts/contacts_detail.html:27 templates/main/index.html:11
+#: .\templates\base.html:32 .\templates\base.html:1144
+#: .\templates\contacts\contacts_detail.html:16
+#: .\templates\contacts\contacts_detail.html:26 .\templates\main\index.html:11
 msgid "Координационный центр по обеспечению кибербезопасности"
 msgstr "Киберкоопсуздукту Камсыздоо боюнча Координациялык Борбор"
 
-#: templates/base.html:67 templates/base.html:198 templates/base.html:212
+#: .\templates\base.html:62 .\templates\base.html:191 .\templates\base.html:205
 msgid "Версия для слабовидящих"
 msgstr "Көрүүсү начарлар үчүн нуска"
 
-#: templates/base.html:87
+#: .\templates\base.html:82
 msgid "Русский"
 msgstr "Орусча"
 
-#: templates/base.html:127 templates/base.html:148
+#: .\templates\base.html:120 .\templates\base.html:141
 msgid "Поиск"
 msgstr "Издөө"
 
-#: templates/base.html:280 templates/base.html:455 templates/base.html:824
-msgid "О КЦКБ"
+#: .\templates\base.html:273 .\templates\base.html:454
+#: .\templates\base.html:833
+#, fuzzy
+#| msgid "О КЦКБ"
+msgid "О КЦОКБ"
 msgstr "КККБ жөнүндө"
 
-#: templates/base.html:285 templates/base.html:460 templates/base.html:828
+#: .\templates\base.html:278 .\templates\base.html:459
+#: .\templates\base.html:837
 msgid "Законодательство"
 msgstr "Мыйзамдар"
 
-#: templates/base.html:292 templates/base.html:465 templates/base.html:834
-#: templates/cooperations/cooperation_list.html:12
-#: templates/cooperations/cooperation_list.html:21
-#: templates/main/partners.html:10
+#: .\templates\base.html:286 .\templates\base.html:464
+#: .\templates\base.html:843 .\templates\cooperations\cooperation_list.html:12
+#: .\templates\cooperations\cooperation_list.html:21
+#: .\templates\main\partners.html:10
 msgid "Сотрудничество"
 msgstr "Кызматташуу"
 
-#: templates/base.html:300 templates/base.html:472 templates/base.html:840
+#: .\templates\base.html:294 .\templates\base.html:471
+#: .\templates\base.html:849
 msgid "События"
 msgstr "Окуялар"
 
-#: templates/base.html:315 templates/base.html:483 templates/base.html:843
-#: templates/news/news_detail.html:4 templates/news/news_list.html:12
-#: templates/news/news_list.html:22
+#: .\templates\base.html:309 .\templates\base.html:482
+#: .\templates\base.html:852 .\templates\news\news_detail.html:4
+#: .\templates\news\news_list.html:12 .\templates\news\news_list.html:22
 msgid "Новости"
 msgstr "Жаңылыктар"
 
-#: templates/base.html:320 templates/base.html:488 templates/base.html:847
-#: templates/trainings/training_detail.html:4
-#: templates/trainings/trainings_list.html:12
-#: templates/trainings/trainings_list.html:22
+#: .\templates\base.html:314 .\templates\base.html:487
+#: .\templates\base.html:856 .\templates\trainings\training_detail.html:4
+#: .\templates\trainings\trainings_list.html:12
+#: .\templates\trainings\trainings_list.html:22
 msgid "Тренинги"
 msgstr "Тренингдер"
 
-#: templates/base.html:337
+#: .\templates\base.html:320 .\templates\base.html:493
+#: .\templates\base.html:862
+msgid "E-learning"
+msgstr ""
+
+#: .\templates\base.html:328
 msgid "Кибербезопасноть"
 msgstr "Киберкоопсуздук"
 
-#: templates/base.html:365 templates/base.html:529 templates/base.html:868
-#: templates/base.html:1138 templates/contacts/contacts_detail.html:39
+#: .\templates\base.html:354 .\templates\base.html:525
+#: .\templates\base.html:883 .\templates\notifications\notification.html:4
+#, fuzzy
+#| msgid "Организация"
+msgid "Нотификация"
+msgstr "Уюм"
+
+#: .\templates\base.html:361 .\templates\base.html:532
+#: .\templates\base.html:888 .\templates\base.html:1158
+#: .\templates\contacts\contacts_detail.html:38
 msgid "Контакты"
 msgstr "Байланыштар"
 
-#: templates/base.html:371 templates/base.html:536 templates/base.html:872
+#: .\templates\base.html:367 .\templates\base.html:539
+#: .\templates\base.html:892
+#, fuzzy
+#| msgid "Личный кабинет"
 msgid "Личный кабинет"
 msgstr "Жеке бөлмө"
 
-#: templates/base.html:389 templates/base.html:549 templates/base.html:877
-#: templates/messages/message_list.html:8
+#: .\templates\base.html:388 .\templates\base.html:555
+#: .\templates\base.html:897 .\templates\messages\message_list.html:8
 msgid "Мои сообщения"
 msgstr "Менин билдирүүлөрүм"
 
-#: templates/base.html:395 templates/base.html:555 templates/base.html:889
+#: .\templates\base.html:394 .\templates\base.html:561
+#: .\templates\base.html:909
 msgid "Отчеты"
 msgstr "Отчёттор"
 
-#: templates/base.html:401 templates/base.html:561 templates/base.html:883
-#: templates/dashboards/dashboards.html:7
+#: .\templates\base.html:400 .\templates\base.html:567
+#: .\templates\base.html:903 .\templates\dashboards\dashboards.html:7
 msgid "Дашборд"
 msgstr "Куралдар такталары"
 
-#: templates/base.html:407 templates/base.html:894
+#: .\templates\base.html:406 .\templates\base.html:914
 msgid "Выйти"
 msgstr "Чыгуу"
 
-#: templates/base.html:415 templates/base.html:575 templates/base.html:903
+#: .\templates\base.html:414 .\templates\base.html:581
+#: .\templates\base.html:923
 msgid "Вход в систему"
 msgstr "Системага кирүү"
 
-#: templates/base.html:423 templates/base.html:582 templates/base.html:666
-#: templates/base.html:908
+#: .\templates\base.html:422 .\templates\base.html:588
+#: .\templates\base.html:675 .\templates\base.html:928
 msgid "Регистрация"
 msgstr "Каттоо"
 
-#: templates/base.html:505 templates/base.html:854
+#: .\templates\base.html:502 .\templates\base.html:869
 msgid "Кибербезопасность"
 msgstr "Киберкоопсуздук"
 
-#: templates/base.html:567
+#: .\templates\base.html:573
 msgid "Выход"
 msgstr "Чыгуу"
 
-#: templates/base.html:592 templates/base.html:1292
-#: templates/main/cyber.html:25 templates/main/main-banner.html:13
-#: templates/main/report.html:13
-msgid "Сообщить об инциденте"
-msgstr "Инцидент жөнүндө кабарлоо"
+#: .\templates\base.html:597
+msgid "Единая база киберугроз"
+msgstr ""
 
-#: templates/base.html:611
+#: .\templates\base.html:617
 msgid "Вход"
 msgstr "Кирүү"
 
-#: templates/base.html:613 templates/base.html:1185
-#: templates/contacts/contacts_detail.html:54
+#: .\templates\base.html:619 .\templates\base.html:1202
+#: .\templates\contacts\contacts_detail.html:52
 msgid "Email"
 msgstr "Почта"
 
-#: templates/base.html:615
+#: .\templates\base.html:621
 msgid "Введите email"
 msgstr "Email киргизиңиз"
 
-#: templates/base.html:618
+#: .\templates\base.html:624
 msgid "Пароль"
 msgstr "Сырсөз"
 
-#: templates/base.html:620
+#: .\templates\base.html:626
 msgid "Введите пароль"
 msgstr "Сырсөздү киргизиңиз"
 
-#: templates/base.html:625
+#: .\templates\base.html:631
 msgid "Запомнить меня"
 msgstr "Мени эстеп калуу"
 
-#: templates/base.html:633
+#: .\templates\base.html:639
 msgid "Войти"
 msgstr "Кирүү"
 
-#: templates/base.html:637
+#: .\templates\base.html:643
 msgid "Войти через Key-Clock"
 msgstr "Key-Clock менен кирүү"
 
-#: templates/base.html:641
+#: .\templates\base.html:647
 msgid "Забыли логин или пароль"
 msgstr "Сыр сөзүңүздү унуттуңузбу"
 
-#: templates/base.html:669 templates/contacts/contacts_detail.html:76
-#: templates/vulnerabilities/vulnerabilities.html:24
-msgid "Организация"
-msgstr "Уюм"
-
-#: templates/base.html:676
+#: .\templates\base.html:684
 msgid "Выберите организацию из списка"
 msgstr "Төмөнкү тизмеден тандаңыз"
 
-#: templates/base.html:685
-msgid "Должность"
-msgstr "Кызмат орду"
-
-#: templates/base.html:689
-msgid "Фамилия"
-msgstr "Фамилиясы"
-
-#: templates/base.html:695
-msgid "Имя"
-msgstr "Аты"
-
-#: templates/base.html:701
-msgid "Отчество"
-msgstr "Атасынын аты"
-
-#: templates/base.html:708
-msgid "Дата рождения"
-msgstr "Туулган күнү"
-
-#: templates/base.html:722 templates/base.html:1209
+#: .\templates\base.html:719 .\templates\base.html:1226
 msgid "Телефон"
 msgstr "Телефон"
 
-#: templates/base.html:740
+#: .\templates\base.html:732
 msgid "Зарегистрироваться"
 msgstr "Каттоо"
 
-#: templates/base.html:759
+#: .\templates\base.html:768
 msgid "Размер шрифта"
 msgstr "Шрифттин өлчөмү"
 
-#: templates/base.html:761
+#: .\templates\base.html:770
 msgid "Маленький"
 msgstr "Кичине"
 
-#: templates/base.html:762
+#: .\templates\base.html:771
 msgid "Средний"
 msgstr "Орточо"
 
-#: templates/base.html:763
+#: .\templates\base.html:772
 msgid "Большой"
 msgstr "Чоң"
 
-#: templates/base.html:768
+#: .\templates\base.html:777
 msgid "Цвет"
 msgstr "Түс"
 
-#: templates/base.html:770
+#: .\templates\base.html:779
 msgid "Б"
 msgstr "А"
 
-#: templates/base.html:771
+#: .\templates\base.html:780
 msgid "Ч"
 msgstr "К"
 
-#: templates/base.html:772
+#: .\templates\base.html:781
 msgid "Ц"
 msgstr "Т"
 
-#: templates/base.html:797
+#: .\templates\base.html:806
 msgid "Вернуть стандартные настройки"
 msgstr "Стандарттык жөндөөлөргө кайтуу"
 
-#: templates/base.html:800
+#: .\templates\base.html:809
 msgid "Закрыть"
 msgstr "Жабуу"
 
-#: templates/base.html:1130 templates/contacts/contacts_detail.html:33
+#: .\templates\base.html:1150 .\templates\contacts\contacts_detail.html:32
 msgid "Адрес"
 msgstr "Дареги"
 
-#: templates/base.html:1140
+#: .\templates\base.html:1160
 msgid "тел"
 msgstr "тел"
 
-#: templates/base.html:1143
+#: .\templates\base.html:1163
 msgid "email"
 msgstr "почта"
 
-#: templates/base.html:1182 templates/main/report.html:8
+#: .\templates\base.html:1200 .\templates\main\report.html:8
 msgid "Сообщить об"
 msgstr "Инцидент"
 
-#: templates/base.html:1182 templates/main/report.html:8
+#: .\templates\base.html:1200 .\templates\main\report.html:8
 msgid "инциденте"
 msgstr "жөнүндө кабарлоо"
 
-#: templates/base.html:1195 templates/contacts/contacts_detail.html:60
+#: .\templates\base.html:1212 .\templates\contacts\contacts_detail.html:56
 msgid "ФИО"
 msgstr "ФАА"
 
-#: templates/base.html:1197
+#: .\templates\base.html:1214
 msgid "Фамилия Имя Отчество"
 msgstr "Фамилиясы Аты Атасынын аты"
 
-#: templates/base.html:1218
+#: .\templates\base.html:1240
 msgid "Опишите инцидент*"
 msgstr "Окуяны сүрөттөп бер*"
 
-#: templates/base.html:1225
+#: .\templates\base.html:1247
 msgid "Индикаторы"
 msgstr "Индикаторлор"
 
-#: templates/base.html:1235
+#: .\templates\base.html:1257
 msgid "Индикатор"
 msgstr "Индикатор"
 
-#: templates/base.html:1237
+#: .\templates\base.html:1259
 msgid "File"
 msgstr "Файл"
 
-#: templates/base.html:1238
+#: .\templates\base.html:1260
 msgid "Ip"
 msgstr "Ip"
 
-#: templates/base.html:1239
+#: .\templates\base.html:1261
 msgid "Domain"
 msgstr "Домен"
 
-#: templates/base.html:1240
+#: .\templates\base.html:1262
 msgid "Hash"
 msgstr "Hash"
 
-#: templates/base.html:1265
+#: .\templates\base.html:1290
 msgid "Добавить индикатор"
 msgstr "Индикатор кошунуз"
 
-#: templates/base.html:1276
-msgid "Отправить без проверки"
-msgstr "Текшеруу сыз жөнөтүү"
+#: .\templates\base.html:1299 .\templates\main\cyber.html:25
+#: .\templates\main\main-banner.html:13 .\templates\main\report.html:13
+msgid "Сообщить об инциденте"
+msgstr "Инцидент жөнүндө кабарлоо"
 
-#: templates/base.html:1332 templates/cooperations/cooperation_list.html:43
-#: templates/main/partners.html:40 templates/main/partners.html:87
+#: .\templates\base.html:1339 .\templates\cooperations\cooperation_list.html:43
+#: .\templates\main\partners.html:40 .\templates\main\partners.html:87
 msgid "Посетить сайт"
 msgstr "Сайтка кириңиз"
 
-#: templates/base.html:1356
-msgid "Сообщение успешно отправлено"
-msgstr "Билдирүү ийгиликтүү жөнөтүлдү"
-
-#: templates/base.html:1358
-msgid "Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время"
-msgstr "Кабарыңыз үчүн рахмат! Биз аны жакында карап чыгабыз"
-
-#: templates/base.html:1364
-msgid "Закрыть окно"
-msgstr "Терезени жабуу"
-
-#: templates/contacts/contacts_detail.html:29
-#: templates/main/main-banner.html:10
+#: .\templates\contacts\contacts_detail.html:28
+#: .\templates\main\main-banner.html:10
 msgid ""
 "Государственного комитета национальной безопасности Кыргызской Республики"
 msgstr "Kыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин"
 
-#: templates/contacts/contacts_detail.html:49
+#: .\templates\contacts\contacts_detail.html:48
 msgid "Напишите нам"
 msgstr "Бизге жаз"
 
-#: templates/contacts/contacts_detail.html:65
+#: .\templates\contacts\contacts_detail.html:60
 msgid "Номер телефона"
 msgstr "Телефон номуру"
 
-#: templates/contacts/contacts_detail.html:84
+#: .\templates\contacts\contacts_detail.html:66
 msgid "Выберите из выпадающего списка"
 msgstr "Төмөнкү тизмеден тандаңыз"
 
-#: templates/contacts/contacts_detail.html:94
+#: .\templates\contacts\contacts_detail.html:74
 msgid "Ваше сообщение"
 msgstr "Сиздин билдирүүңүз"
 
-#: templates/contacts/contacts_detail.html:104
+#: .\templates\contacts\contacts_detail.html:79
 msgid "Отправить сообщение"
 msgstr "Билдирүү жөнөтүү"
 
-#: templates/cooperations/cooperation_list.html:24
-#: templates/main/partners.html:13
+#: .\templates\cooperations\cooperation_list.html:24
+#: .\templates\main\partners.html:13
 msgid ""
 "Наши партнеры, совместно с которыми мы реализуем проекты в области "
 "обеспечения кибербезопасности в Кыргызской Республике."
@@ -446,54 +521,55 @@ msgstr ""
 "Кыргыз Республикасында киберкоопсуздук тармагындагы долбоорлорду биргеликте "
 "ишке ашырып жаткан биздин өнөктөштөр."
 
-#: templates/cyber_security/cyber_security.html:40
-#: templates/news/news_detail.html:53
-#: templates/trainings/training_detail.html:58
+#: .\templates\cyber_security\cyber_security.html:40
+#: .\templates\news\news_detail.html:53
+#: .\templates\notifications\notification.html:59
+#: .\templates\trainings\training_detail.html:58
 msgid "Поделиться"
 msgstr "Бөлүшүү"
 
-#: templates/dashboards/dashboards.html:17
-#: templates/vulnerabilities/vulnerabilities.html:55
+#: .\templates\dashboards\dashboards.html:17
+#: .\templates\reports\reports.html:69
 msgid "У вас нет уведомлений"
 msgstr "Сизде эскертмелер жок"
 
-#: templates/forbidden/not_authenticated_error.html:8
+#: .\templates\forbidden\not_authenticated_error.html:8
 msgid "У вас нет доступа к этой странице"
 msgstr "Бул баракка кирүү мүмкүнчүлүгүңүз жок"
 
-#: templates/legislation/legislation.html:30
+#: .\templates\legislation\legislation.html:30
 msgid "Нормативно-Правовые Акты"
 msgstr "Ченемдик укуктук актылар"
 
-#: templates/main/404.html:11
+#: .\templates\main\404.html:11
 msgid "Not Found"
 msgstr "Баракча табылган жок"
 
-#: templates/main/about.html:8
+#: .\templates\main\about.html:8
 msgid "О"
 msgstr "Борбор"
 
-#: templates/main/about.html:8
+#: .\templates\main\about.html:8
 msgid "Центре"
 msgstr "Жөнүндө"
 
-#: templates/main/about.html:15
+#: .\templates\main\about.html:14
 msgid "Читать Постановление"
 msgstr "Токтомду окуу"
 
-#: templates/main/about.html:19
+#: .\templates\main\about.html:18
 msgid "Задачи"
 msgstr "Борбордун"
 
-#: templates/main/about.html:19
+#: .\templates\main\about.html:18
 msgid "Центра"
 msgstr "Милдеттери"
 
-#: templates/main/cyber.html:7
+#: .\templates\main\cyber.html:7
 msgid "Кибербезопасность и рекомендации"
 msgstr "Киберкоопсуздук жана Сунуштамалар"
 
-#: templates/main/cyber.html:9
+#: .\templates\main\cyber.html:9
 msgid ""
 "Кибербезопасность - это область, которая занимается защитой цифровых систем, "
 "данных и информации от киберугроз и атак для обеспечения их безопасности и "
@@ -504,15 +580,15 @@ msgstr ""
 "ишенимдүүлүгүн камсыз кылуу менен алектенген тармак. Көп кездешкен кибер "
 "коркунучтар:"
 
-#: templates/main/main-banner.html:8
+#: .\templates\main\main-banner.html:8
 msgid "Координационный Центр по Обеспечению Кибербезопасности"
 msgstr "Киберкоопсуздукту Камсыздоо боюнча Координациялык Борбор"
 
-#: templates/main/news.html:7
+#: .\templates\main\news.html:7
 msgid "Новости и События"
 msgstr "Жаңылыктар жана Окуялар"
 
-#: templates/main/news.html:9
+#: .\templates\main\news.html:9
 msgid ""
 "Последние обновления и события в Центре. Последние достижения, мероприятия и "
 "актуальные новости, связанные с нашей деятельностью в области "
@@ -522,20 +598,20 @@ msgstr ""
 "биздин ишмердүүлүккө байланыштуу акыркы жетишкендиктер, окуялар жана "
 "актуалдуу жаңылыктар."
 
-#: templates/main/news.html:29 templates/news/news_list.html:118
-#: templates/trainings/trainings_list.html:58
+#: .\templates\main\news.html:29 .\templates\news\news_list.html:118
+#: .\templates\trainings\trainings_list.html:58
 msgid "Читать новость полностью"
 msgstr "Жаңылыктарды толук окуңуз"
 
-#: templates/main/news.html:40
+#: .\templates\main\news.html:40
 msgid "Смотреть все новости"
 msgstr "Бардык жаңылыктарды көрүү"
 
-#: templates/main/partners.html:97
+#: .\templates\main\partners.html:97
 msgid "Смотреть всех партнеров"
 msgstr "Бардык өнөктөштөрдү кароо"
 
-#: templates/main/report.html:10
+#: .\templates\main\report.html:10
 msgid ""
 "Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных или "
 "атаки. Реагирование на инциденты - важная часть обеспечения "
@@ -546,56 +622,56 @@ msgstr ""
 "киберкоопсуздукту сактоонун жана маалыматтарыңыз менен системаңызды "
 "коркунучтардан коргоонун маанилүү бөлүгү болуп саналат."
 
-#: templates/main/search.html:12
+#: .\templates\main\search.html:12
 msgid "Результаты поиска"
 msgstr "Издөө жыйынтыгы"
 
-#: templates/main/search.html:31
+#: .\templates\main\search.html:31
 msgid "По вашему запросу ничего не найдено"
 msgstr "Сурамыңыз боюнча эч нерсе табылган жок"
 
-#: templates/messages/message_list.html:14
+#: .\templates\messages\message_list.html:14
 msgid "Все сообщения"
 msgstr "Бардык билдирүүлөр"
 
-#: templates/messages/message_list.html:22
+#: .\templates\messages\message_list.html:22
 msgid "№ Сообщения"
 msgstr "№ Билдирүүлөр"
 
-#: templates/messages/message_list.html:23
+#: .\templates\messages\message_list.html:23
 msgid "Описание"
 msgstr "Сүрөттөлүшү"
 
-#: templates/messages/message_list.html:24
+#: .\templates\messages\message_list.html:24
+#: .\templates\reports\reports.html:28
 msgid "Статус"
 msgstr "Статусу"
 
-#: templates/messages/message_list.html:25
+#: .\templates\messages\message_list.html:25
 msgid "Влияние"
 msgstr "Таасири"
 
-#: templates/messages/message_list.html:26
+#: .\templates\messages\message_list.html:26
 msgid "Статус разрешения"
 msgstr "Уруксат статусу"
 
-#: templates/messages/message_list.html:27
+#: .\templates\messages\message_list.html:27
 msgid "Резюме"
 msgstr "Жыйынтык"
 
-#: templates/messages/message_list.html:28
-#: templates/vulnerabilities/vulnerabilities.html:26
+#: .\templates\messages\message_list.html:28
 msgid "Действия"
 msgstr "Аракеттер"
 
-#: templates/messages/message_list.html:59
+#: .\templates\messages\message_list.html:59
 msgid "Запросить статус"
 msgstr "Статусун сураңыз"
 
-#: templates/messages/message_list.html:66
+#: .\templates\messages\message_list.html:66
 msgid "У вас нет сообщений"
 msgstr "Сизде билдирүүлөр жок"
 
-#: templates/news/news_list.html:24
+#: .\templates\news\news_list.html:24
 msgid ""
 "Актуальные события и их подробности, связанные с нашей деятельностью в "
 "области кибербезопасности."
@@ -603,64 +679,65 @@ msgstr ""
 "Киберкоопсуздук жаатындагы иш-чараларыбызга байланыштуу актуалдуу окуялар "
 "жана алардын чоо-жайы."
 
-#: templates/news/news_list.html:29 templates/trainings/trainings_list.html:30
+#: .\templates\news\news_list.html:29
+#: .\templates\trainings\trainings_list.html:30
 msgid "Все"
 msgstr "Баары"
 
-#: templates/news/news_list.html:68
+#: .\templates\news\news_list.html:68
 msgid "Выбрать дату"
 msgstr "Күндү тандоо"
 
-#: templates/news/news_list.html:85
+#: .\templates\news\news_list.html:85
 msgid "за неделю"
 msgstr "Жума ичинде"
 
-#: templates/news/news_list.html:90
+#: .\templates\news\news_list.html:90
 msgid "за месяц"
 msgstr "Айына"
 
-#: templates/news/news_list.html:95
+#: .\templates\news\news_list.html:95
 msgid "за полгода"
 msgstr "Жарым жыл бою"
 
-#: templates/registration/password_reset_complete.html:8
-#: templates/registration/password_reset_complete.html:13
+#: .\templates\registration\password_reset_complete.html:8
+#: .\templates\registration\password_reset_complete.html:13
 msgid "Password is set"
 msgstr "Сыр сөз коюлган"
 
-#: templates/registration/password_reset_complete.html:15
+#: .\templates\registration\password_reset_complete.html:15
 msgid "Your Password has been set. go to"
 msgstr "Сыр сөзүңүз коюлган. Башкы бетке өтүү"
 
-#: templates/registration/password_reset_complete.html:16
+#: .\templates\registration\password_reset_complete.html:16
 msgid "Main"
 msgstr "Башкы"
 
-#: templates/registration/password_reset_confirm.html:7
-#: templates/registration/password_reset_confirm.html:13
+#: .\templates\registration\password_reset_confirm.html:7
+#: .\templates\registration\password_reset_confirm.html:13
 msgid "Reset Password"
 msgstr "Сыр сөздү өзгөртүү"
 
-#: templates/registration/password_reset_confirm.html:14
+#: .\templates\registration\password_reset_confirm.html:14
 msgid "Please enter your password twice"
 msgstr "Сырсөзүңүздү эки жолу киргизиңиз"
 
-#: templates/registration/password_reset_confirm.html:19
-#: templates/registration/password_reset_form.html:19
+#: .\templates\registration\password_reset_confirm.html:19
+#: .\templates\registration\password_reset_form.html:19
 msgid "Change My Password"
 msgstr "Сыр сөздү өзгөртүү"
 
-#: templates/registration/password_reset_confirm.html:23
+#: .\templates\registration\password_reset_confirm.html:23
 msgid "Invalid link"
 msgstr "Жараксыз шилтеме"
 
-#: templates/registration/password_reset_confirm.html:25
+#: .\templates\registration\password_reset_confirm.html:25
 msgid "The Password reset link was invalid."
 msgstr ""
 "Сыр сөздү өзгөртүү шилтемеси жараксыз. Ал буга чейин колдонулган болушу "
 "ыктымал."
 
-#: templates/registration/password_reset_confirm.html:26
+#: .\templates\registration\password_reset_confirm.html:26
 msgid ""
 "Possibly because it has already been used. Please request a new password "
 "reset request."
@@ -668,17 +745,17 @@ msgstr ""
 "Сыр сөздү өзгөртүү шилтемеси жараксыз. Ал буга чейин колдонулган болушу "
 "ыктымал. Сыр сөздү өзгөртүүнү сураныңыз"
 
-#: templates/registration/password_reset_done.html:7
-#: templates/registration/password_reset_done.html:12
+#: .\templates\registration\password_reset_done.html:7
+#: .\templates\registration\password_reset_done.html:12
 msgid "Reset Your Password"
 msgstr "Сыр сөздү өзгөртүү"
 
-#: templates/registration/password_reset_done.html:14
+#: .\templates\registration\password_reset_done.html:14
 msgid "We've emailed you instructions for setting your password."
 msgstr ""
 "Сыр сөздү өзгөртүү боюнча нускаманы электрондук почта менен сизге жөнөттүк."
 
-#: templates/registration/password_reset_done.html:17
+#: .\templates\registration\password_reset_done.html:17
 msgid ""
 "If don't receive an email, please make sure you've entered the correct email "
 "address."
@@ -686,7 +763,7 @@ msgstr ""
 "Электрондук катты албасаңыз, электрондук почтанын дарегин туура эмес "
 "жаздыңыз."
 
-#: templates/registration/password_reset_email.html:13
+#: .\templates\registration\password_reset_email.html:13
 msgid ""
 "Вы получили это сообщение в связи с тем, что был сделан запрос на сброс "
 "пароля для Вашего аккаунта!"
@@ -694,68 +771,260 @@ msgstr ""
 "Аккаунтуңуздун сыр сөзүн өзгөртүү суроо-талабы жасалгандыктан, бул "
 "билдирүүнү алдыңыз!"
 
-#: templates/registration/password_reset_email.html:17
+#: .\templates\registration\password_reset_email.html:17
 msgid "Перейдите по ссылке, чтобы подтвердить сброс пароля"
 msgstr "Сыр сөздү өзгөртүүнү ырастоо үчүн шилтемени басыңыз"
 
-#: templates/registration/password_reset_email.html:19
+#: .\templates\registration\password_reset_email.html:19
 msgid "Использовать ссылку"
 msgstr "Шилтемени колдонуңуз"
 
-#: templates/registration/password_reset_email.html:21
+#: .\templates\registration\password_reset_email.html:21
 msgid ""
 "Если Вы не запрашивали сброс пароля, то просто проигнорируйте это письмо."
 msgstr ""
 "Эгер сиз сыр сөздү өзгөртүүнү суранбасаңыз, анда бул электрондук катты "
 "этибарга албаңыз."
 
-#: templates/registration/password_reset_form.html:8
+#: .\templates\registration\password_reset_form.html:8
 msgid "Reset Your password"
 msgstr "Сыр сөздү өзгөртүү"
 
-#: templates/registration/password_reset_form.html:13
+#: .\templates\registration\password_reset_form.html:13
 msgid "Forgotten Your Password"
 msgstr "Сыр сөзүңүздү унуттуңузбу"
 
-#: templates/registration/password_reset_form.html:14
+#: .\templates\registration\password_reset_form.html:14
 msgid "Enter your e-mail address to obtain a new password"
 msgstr "Жаңы сырсөз алуу үчүн электрондук почтаңыздын дарегин киргизиңиз"
 
-#: templates/trainings/training_detail.html:15
+#: .\templates\reports\reports.html:7 .\templates\reports\reports.html:14
+msgid "Отчёты"
+msgstr "Отчёттор"
+
+#: .\templates\reports\reports.html:23
+#, fuzzy
+#| msgid "Название"
+msgid "Название"
+msgstr "Аталышы"
+
+#: .\templates\reports\reports.html:27
+msgid "Документ"
+msgstr ""
+
+#: .\templates\reports\reports.html:48
+msgid "Скачать файл"
+msgstr "Файлды жүктөө"
+
+#: .\templates\reports\reports.html:56 .\templates\reports\reports.html:60
+msgid "Выполненно"
+msgstr ""
+
+#: .\templates\reports\reports.html:57 .\templates\reports\reports.html:59
+msgid "Не выполненно"
+msgstr ""
+
+#: .\templates\trainings\training_detail.html:15
 msgid "Дата проведения"
 msgstr "Откоруу убактысы"
 
-#: templates/trainings/trainings_list.html:24
-#| msgid ""
-#| "Государственного комитета национальной безопасности Кыргызской Республики"
+#: .\templates\trainings\trainings_list.html:24
 msgid ""
 "Информация о тренингах и мероприятиях, проводимых Центром, а также о "
 "событиях, в которых участвовали наши сотрудники, связанные с обеспечением "
 "кибербезопасности в Кыргызской Республике."
 msgstr ""
-"Борбор тарабынан өткөрүлгөн тренингдер жана иш-чаралар, ошондой эле Кыргыз Республикасында "
-"киберкоопсуздукту камсыз кылууга байланыштуу биздин кызматкерлер катышкан иш-чаралар жөнүндө маалымат."
+"Борбор тарабынан өткөрүлгөн тренингдер жана иш-чаралар, ошондой эле Кыргыз "
+"Республикасында киберкоопсуздукту камсыз кылууга байланыштуу биздин "
+"кызматкерлер катышкан иш-чаралар жөнүндө маалымат."
 
-#: templates/trainings/trainings_list.html:33
+#: .\templates\trainings\trainings_list.html:33
 msgid "Предстоящие"
 msgstr "Алдыда"
 
-#: templates/trainings/trainings_list.html:36
+#: .\templates\trainings\trainings_list.html:36
 msgid "Прошедшие"
 msgstr "Өткөн"
 
-#: templates/vulnerabilities/vulnerabilities.html:7
-#: templates/vulnerabilities/vulnerabilities.html:14
-msgid "Отчёты"
-msgstr "Отчёттор"
+#~ msgid ""
+#~ "Решением Коллегии Евразийской экономической комиссии от\n"
+#~ "                            21 апреля 2015 г. № 30 «О мерах нетарифного "
+#~ "регулирования»:"
+#~ msgstr ""
+#~ "“Тарифтик эмес жөнгө салуу чаралары жөнүндө” Евразия экономикалык "
+#~ "комиссиянын коллегиясынын 2015-жылдын 21-\n"
+#~ "апрелиндеги №30 чечими:"
 
-#: templates/vulnerabilities/vulnerabilities.html:23
-msgid "Название"
-msgstr "Аталышы"
+#~ msgid ""
+#~ "Положением о ввозе на таможенную территорию Евразийского экономического\n"
+#~ "                                союза и вывозе с таможенной территории "
+#~ "Евразийского экономического союза шифровальных "
+#~ "(криптографических)средств\n"
+#~ "                                (приложение № 9 к Решению Коллегии "
+#~ "Евразийской экономической комиссии от 21 апреля 2015 г. № 30);"
+#~ msgstr ""
+#~ "Шифрлөө (криптография) каражаттарын Евразия экономикалык биримдигинин "
+#~ "бажы аймагына киргизүү жана\n"
+#~ " Евразия экономикалык биримдигинин бажы аймагынан чыгаруу жөнүндө жобо "
+#~ "(Евразия экономикалык\n"
+#~ " комиссиясынын коллегиясынын 2015-жылдын 21-апрелиндеги №30 чечиминин 9-"
+#~ "тиркемеси);"
 
-#: templates/vulnerabilities/vulnerabilities.html:45
-msgid "Скачать файл"
-msgstr "Файлды жүктөө"
+#~ msgid ""
+#~ "Разделом 2.19 Перечня товаров, в отношении которых установлен "
+#~ "разрешительный порядок ввоза\n"
+#~ "                                на таможенную территорию Евразийского "
+#~ "экономического союза и (или) вывоза с таможенной территории Евразийского\n"
+#~ "                                экономического союза (приложение № 2 к "
+#~ "Решению Коллегии Евразийской экономической комиссии от 21 апреля 2015 г. "
+#~ "№ 30);"
+#~ msgstr ""
+#~ "Евразия экономикалык биримдигинин бажы аймагына киргизүү жана (же) "
+#~ "Евразия экономикалык\n"
+#~ " биримдигинин бажы аймагынан чыгарууга уруксат тартиби белгиленген "
+#~ "товарлардын тизмесинин 2.19-бөлүгү\n"
+#~ " (Евразия экономикалык биримдигинин коллегиясынын 2015-жылдын 21-"
+#~ "апрелиндеги №30 чечиминин 2-тиркемеси);"
+
+#~ msgid ""
+#~ "Положением о нотификации о характеристиках шифровальных "
+#~ "(криптографических) средств и товаров, их содержащих (приложение № 2 к "
+#~ "Положению о ввозе на таможенную\n"
+#~ "                                территорию Евразийского экономического "
+#~ "союза и вывозе с таможенной территории Евразийского экономического союза "
+#~ "шифровальных (криптографических) средств);"
+#~ msgstr ""
+#~ "Шифрлөө (криптография) каражаттары жана аларды камтыган товарлардын "
+#~ "мүнөздөмөсү жөнүндө нотификация тууралуу жобо (Шифрлөө (криптография) "
+#~ "каражаттарын Евразия экономикалык биримдигинин бажы аймагына киргизүү "
+#~ "жана Евразия экономикалык биримдигинин бажы аймагынан чыгаруу жөнүндө "
+#~ "жобонун 2-тиркемеси);"
+
+#~ msgid ""
+#~ "Структура файла данных о нотификациях, представляемого в согласующий "
+#~ "орган государства-члена Евразийского экономического союза\n"
+#~ "                                (приложение № 1 к Положению о нотификации "
+#~ "о характеристиках шифровальных (криптографических) средств и товаров, их "
+#~ "содержащих);"
+#~ msgstr ""
+#~ "Евразия экономикалык биримдигине мүчө мамлекеттин макулдашуучу органына "
+#~ "берилүүчү нотификациялар жөнүндө маалыматтар файлынын түзүлүшү (Шифрлөө "
+#~ "(криптография) каражаттары жана аларды камтыган товарлардын мүнөздөмөсү "
+#~ "тууралуу нотификация жөнүндө жобонун 1-тиркемеси);"
+
+#~ msgid ""
+#~ "Форма нотификации о характеристиках шифровальных (криптографических) "
+#~ "средств и товаров, их содержащих (приложение № 3 к Положению о ввозе на\n"
+#~ "                                таможенную территорию Евразийского "
+#~ "экономического союза и вывозе с таможенной территории Евразийского "
+#~ "экономического союза шифровальных (криптографических) средств);"
+#~ msgstr ""
+#~ "Шифрлөө (криптография) каражаттары жана аларды камтыган товарлардын "
+#~ "мүнөздөмөсү жөнүндө нотификация формасы (Шифрлөө (криптография) "
+#~ "каражаттарын Евразия экономикалык биримдигинин бажы аймагына киргизүү "
+#~ "жана Евразия экономикалык биримдигинин бажы аймагынан чыгаруу жөнүндө "
+#~ "жобонун 3-тиркемеси);"
+
+#~ msgid ""
+#~ "Перечень категорий товаров, являющихся шифровальными (криптографическими) "
+#~ "средствами или содержащих в своем составе шифровальные "
+#~ "(криптографические) средства, технические и криптографические "
+#~ "характеристики которых подлежат нотификации\n"
+#~ "                                (приложение № 4 к Положению о ввозе на "
+#~ "таможенную территорию Евразийского экономического союза и вывозе с "
+#~ "таможенной территории Евразийского экономического союза шифровальных "
+#~ "(криптографических) средств)."
+#~ msgstr ""
+#~ "Шифрлөө (криптография) каражаттары болуп эсептелген же техникалык жана "
+#~ "криптографиялык мүнөздөмөсү нотификацияланууга тийиш болгон шифрлөө "
+#~ "каражаттарын камтыган товарлар категориясынын тизмеси (Шифрлөө "
+#~ "(криптография) каражаттарын Евразия экономикалык биримдигинин бажы "
+#~ "аймагына киргизүү жана Евразия экономикалык биримдигинин бажы аймагынан "
+#~ "чыгаруу жөнүндө жобонун 4-тиркемеси)."
+
+#~ msgid ""
+#~ "Обращаем внимание участников внешнеэкономической деятельности, что "
+#~ "функция отнесения товара к категории шифровальных (криптографических) "
+#~ "средств к компетенции Координационному центру по обеспечению "
+#~ "кибербезопасноти ГКНБ\n"
+#~ "                            Кыргызской Республики не отнесена, а "
+#~ "уведомления об отказе в регистрации нотификации не являются документами, "
+#~ "выдаваемыми для предоставления в таможенные органы."
+#~ msgstr ""
+#~ "Тышкы экономикалык иштин катышуучуларынын көңүлүн төмөнкүгө бурабыз: "
+#~ "товарды шифрлөө (криптография) каражаттары категориясына киргизүү "
+#~ "функциясы Кыргыз Республикасынын УКМК Киберкоопсуздукту камсыздоо боюнча "
+#~ "координациялык борборунун компетенциясына кирбейт, ал эми нотификацияны "
+#~ "каттоодон баш тартуу жөнүндө билдирүү бажы органдарына көрсөтүүгө "
+#~ "берилүүчү документ болуп эсептелбейт."
+
+#~ msgid ""
+#~ "Заявления о регистрации нотификаций и прилагаемые к ним материалы "
+#~ "(нотификации, доверенности и др.) направляются в ГКНБ Кыргызской "
+#~ "Республики путем электронной подачи в информационный центр «Единого окна» "
+#~ "(ИСЕО) ГП «Центр «единого окна» в сфере внешней торговли»\n"
+#~ "                            при Министерстве экономики и коммерции "
+#~ "Кыргызской Республики. Консультации по вопросам, связанным с работой ИСЕО "
+#~ "можно получить по электронной почте: e-mail: info@trade.kg, по телефону "
+#~ "0(312) 90-26-40."
+#~ msgstr ""
+#~ "Нотификацияны каттоого арыз жана ага тиркелген материал (нотификация, "
+#~ "ишеним кат ж.б.) Кыргыз Республикасынын УКМКга Кыргыз Республикасынын "
+#~ "Экономика жана коммерция министрлигине караштуу “Тышкы соода "
+#~ "чөйрөсүндөгү”  “Бирдиктүү терезе” борборунун ” “Бирдиктүү терезе” "
+#~ "маалыматтык системасы (БТМС) аркылуу электрондук форматта жөнөтүлөт. "
+#~ "“Бирдиктүү терезе” маалыматтык системасынын иштешине байланыштуу суроолор "
+#~ "боюнча консультацияны электрондук почта аркылуу алууга болот: e-mail: "
+#~ "info@trade..kg, телефону 0(312) 90-26-40."
+
+#~ msgid ""
+#~ "Уведомления об отказе в регистрации нотификаций с указанием причин, а "
+#~ "также незарегистрированные нотификации\n"
+#~ "                            (в том числе иные представленные с ними "
+#~ "документы) направляются заявителям посредством информационного центра "
+#~ "«Единого окна» (ИСЕО)."
+#~ msgstr ""
+#~ "Нотификацияларды каттоодон баш тартылгандыгы жөнүндө билдирүү себептери "
+#~ "көрсөтүлүп, ошондой эле катталбаган нотификацияларды (анын ичинде кошо "
+#~ "көрсөтүлгөн документтер) арыз ээлерине “Бирдиктүү терезе” маалыматтык "
+#~ "системасы (БТМС) аркылуу жөнөтүлөт."
+
+#~ msgid ""
+#~ "Консультации по вопросам приема заявлений на регистрацию нотификаций, "
+#~ "оформления нотификаций\n"
+#~ "                            и статуса документов можно получить по "
+#~ "электронной почте: e-mail: notification@cert.gov.kg, по телефону 0(755) "
+#~ "00-55-11."
+#~ msgstr ""
+#~ "Нотификацияларды каттоого арыз кабыл алуу, нотификацияларды тариздөө жана "
+#~ "документтердин статусу боюнча консультацияны электрондук почта аркылуу "
+#~ "алууга болот: e-mail: notification@cert.gov.kg, телефону 0(755) 00-55-11."
+
+#~ msgid ""
+#~ "Сведения о зарегистрированных нотификациях содержатся в Едином реестре "
+#~ "нотификаций, размещенном на официальном сайте\n"
+#~ "                            Евразийской экономической комиссии в "
+#~ "информационно-телекоммуникационной сети «Интернет» (ссылка на сайт ЕЭК)."
+#~ msgstr ""
+#~ "Катталган нотификациялар жөнүндө маалымат “Интернет” маалымат-"
+#~ "телекоммуникациялык тармагындагы (ЕЭК сайтына шилтеме) Евразия "
+#~ "экономикалык комиссиясынын расмий сайтында жайгашкан Нотификациялардын "
+#~ "бирдиктүү реестринде камтылган."
+
+#~ msgid "Дата рождения"
+#~ msgstr "Туулган күнү"
+
+#~ msgid "Отправить без проверки"
+#~ msgstr "Текшеруу сыз жөнөтүү"
+
+#~ msgid "Сообщение успешно отправлено"
+#~ msgstr "Билдирүү ийгиликтүү жөнөтүлдү"
+
+#~ msgid "Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время"
+#~ msgstr "Кабарыңыз үчүн рахмат! Биз аны жакында карап чыгабыз"
+
+#~ msgid "Закрыть окно"
+#~ msgstr "Терезени жабуу"
 
 #~ msgid ""
 #~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку"
@@ -764,8 +1033,8 @@ msgstr "Файлды жүктөө"
 #~ "эмес"
 
 #~ msgid ""
-#~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку."
-#~ "ОБъяснение видов инцидентов и важности реагирования на них"
+#~ "Краткое пояснение к блоку, не более одного - двух предложений на "
+#~ "карточку.ОБъяснение видов инцидентов и важности реагирования на них"
 #~ msgstr ""
 #~ "Блоктун кыскача түшүндүрмөсү, ар бир карта үчүн бир же эки сүйлөмдөн ашык "
 #~ "эмес. Окуялардын түрлөрүн жана аларга жооп кайтаруунун маанилүүлүгүн "

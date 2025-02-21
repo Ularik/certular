@@ -5,8 +5,6 @@ from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 from mimetypes import guess_type
 from django_resized import ResizedImageField
-import os
-
 
 
 def content_file_name(directory):
@@ -61,15 +59,11 @@ class NewsGalleryItem(models.Model):
 
 class Notification(TranslatableModel):
     translations = TranslatedFields(
-        name=models.CharField(max_length=100, blank=False, null=False, verbose_name='Наименование'),
-        description=models.TextField(blank=False, null=False, verbose_name='Краткое описание'),
-        full_description=HTMLField(verbose_name='Подробное описание')
+        name=models.CharField(max_length=200, blank=False, null=False, verbose_name='Наименование'),
+        description=models.TextField(blank=False, null=False, verbose_name='Описание'),
+        created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     )
-    cover = ResizedImageField(crop=['middle', 'center'], quality=80,
-                              upload_to=content_file_name('Notification'), blank=False, force_format='WEBP',
-                              null=True, verbose_name='Обложка')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
-
+    notification_npa = models.ManyToManyField('NotificationNpa')
     class Meta:
         db_table = 'Notification'
         verbose_name = 'Нотификация'
@@ -77,3 +71,17 @@ class Notification(TranslatableModel):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class NotificationNpa(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.TextField(verbose_name='Наименование'),
+        file = models.FileField(upload_to=content_file_name('laws'), null=True, blank=True)
+    )
+
+    class Meta:
+        verbose_name = 'Файлы актов'
+        verbose_name_plural = 'Файлы актов'
+
+    def __str__(self):
+        return self.name

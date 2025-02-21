@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-=v+1e!x(kof(^#cqz%!y5y9o7kgpwwwfnp$f_(0@d-$ld7&p=q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -91,7 +91,8 @@ DATABASES = {
         'NAME': 'cert_gov',  # Имя вашей базы данных
         'USER': 'ular',  # Имя вашего пользователя
         'PASSWORD': 'admin',  # Ваш пароль
-        'HOST': '127.0.0.1',  # Хост, на котором работает PostgreSQL
+        # 'HOST': 'db',  # docker
+        'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
         'PORT': '5432',  # Порт (по умолчанию 5432)
     }
 }
@@ -118,6 +119,8 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379",
+        # "LOCATION": "redis://127.0.0.1:6380",  # docker container
+
     }
 }
 
@@ -135,7 +138,7 @@ LANGUAGES = [
 ]
 
 LOCALE_PATHS = [
-	os.path.join(BASE_DIR, '..', 'locale'),
+	os.path.join(BASE_DIR, 'locale'),
 ]
 
 
@@ -173,7 +176,7 @@ if not os.path.exists(MEDIA_ROOT):
     os.makedirs(MEDIA_ROOT)
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static-root')
 STATIC_URL = '/static-root/'
 
 # Default primary key field type
@@ -214,11 +217,6 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'console_lite'
         },
-        'file_django': {
-            'class': 'logging.FileHandler',  # logging.handlers.RotatingFileHandler - если нужно пересоздавать
-            'formatter': 'file',
-            'filename': LOGS_DIR + 'django.log',
-        },
         'db_logger': {
             'level': 'DEBUG',
             'formatter': 'db_logger',
@@ -228,7 +226,7 @@ LOGGING = {
     'loggers': {
         'django': {
             'level': 'WARNING',
-            'handlers': ['console', 'file_django']
+            'handlers': ['console']
         },
         'reports_app': {
             'level': 'INFO',
@@ -237,6 +235,10 @@ LOGGING = {
         'accounts_app': {
             'level': 'INFO',
             'handlers': ['console_lite', 'db_logger']
+        },
+        'news_app': {
+            'level': 'INFO',
+            'handlers': ['console',]
         }
     },
 }

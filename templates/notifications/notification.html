@@ -9,17 +9,49 @@
             <div class="one-content-wrapper">
                 <div class="one-content-top">
                     <p class="one-content-data">{{ notification.created_at|date:'d F Y' }}</p>
-                    <h1 class="main-title one-content-title">{{ notification.name }}</h1>
                 </div>
                 <div class="one-content-info-block">
-                    {% if notification.cover %}
-                        <div class="one-content-big-image-block">
-                            <img src="{{ notification.cover.url }}" alt="#">
-                        </div>
-                    {% endif %}
-
                     <div class="one-content-info-text">
-                        {{ notification.full_description|safe }}
+                        <div class="logo-cert">
+                        <div>
+                            Координационный центр по обеспечению кибербезопасности Государственного комитета национальной безопасности Кыргызской Республики
+                        </div>
+                        <div>
+                            <img src="{% static 'img/logo-cert-312.png' %}">
+                        </div>
+                        <div>
+                            Кыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин Киберкоопсуздукту камсыздоо боюнча координациялык борбор
+                        </div>
+                    </div>
+                        <h3 class="main-title">
+                            {{ title }}
+                        </h3>
+                        <p class="doc-content">{{ first }}
+                        </p>
+                        <h3 class="doc-content">{{ second }}</h3>
+                        <p class="doc-content">{{ third }}</p>
+
+                        <ul class="doc-content">
+                            {% for npa in npas %}
+                            <li class="doc-list">
+                                <a href="{{ npa.file.url }}">
+                                    {{ npa }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% for p in pars %}
+                            {% if forloop.last %}
+                                <p class="doc-content">
+                                    <a href="https://goszakupki.eaeunion.org/erpt/ru/registers/products">
+                                        {{ p }}
+                                    </a>
+                                </p>
+                            {% else %}
+                                <p class="doc-content">{{ p }}</p>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
 

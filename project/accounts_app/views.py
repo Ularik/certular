@@ -11,6 +11,7 @@ from .models import User, Organization
 import re
 import logging
 from django.core.cache import cache
+from .signals import create_user_signal
 
 
 logger = logging.getLogger(__name__)
@@ -98,7 +99,7 @@ class RegistrationAPIView(View):
                 form_email_invalid = {'error': 'Туура почтаны киргизиңиз'}
             return JsonResponse(form_email_invalid, status=400)
         try:
-            user = User.objects.create(
+            user = User(
                 first_name=request_body['first_name'],
                 last_name=request_body['last_name'],
                 patronymic=request_body['patronymic'],
@@ -107,8 +108,13 @@ class RegistrationAPIView(View):
                 email=request_body['email'],
                 number=request_body['number']
             )
+            cache.set(request_body['number'], user)
+            request.session['number'] = request_body['number']
+            request.session['email'] = request_body['email']
+            create_user_signal.send(sender=User, instance=user)
             return JsonResponse({"success": "Successfully registration"})
         except(BaseException) as e:
+            print('Ошибка!!!')
             print(e)
             some_wrong = {'error': 'Заполните все поля'}
             if get_language() == 'en':
@@ -122,10 +128,19 @@ class RegistrationAPIView(View):
 
 def check_registration(request):
     if request.method == 'POST':
-        data = json.loads( request.body)
-        code = data.get('code')
+        email = request.session['email']
+        number = request.session['number']
 
-        if code == cache.get('account_email'):
+        code = cache.get(email)
+        user = cache.get(number)
+
+        data = json.loads(request.body)
+        code2 = data.get('code')
+
+        if code == code2:
+            cache.delete(email)
+            request.session.pop('email')
+            user.save()
             return JsonResponse({'success': 'True'})
         else:
             return JsonResponse({'error': 'False'})

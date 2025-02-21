@@ -314,10 +314,12 @@
                                             {% translate 'Тренинги' %}
                                         </a>
                                     </li>
+                                    <li>
                                         {% get_e_learning_desktop as e_learning %}
                                         <a class="dropdown-item" href="{{ e_learning.link }}">
                                             {% translate 'E-learning' %}
                                         </a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -349,7 +351,7 @@
                             </li>
                             <li class="nav-item dropdown menu-main-link">
                                 <a class="header-contact header-contact-mobile" href="{% url 'news:notification_detail' %}">
-                                    {% translate 'Сертификация' %}
+                                    {% translate 'Нотификация' %}
                                 </a>
                             </li>
 
@@ -520,7 +522,7 @@
                                 <a class="header-contact" href="{% url 'news:notification_detail' %}"
                                    role="button"
                                    aria-expanded="false">
-                                    {% trans 'Сертификация' %}
+                                    {% trans 'Нотификация' %}
                                 </a>
                             </li>
                             <li class="nav-item dropdown header-nav-item">
@@ -592,8 +594,7 @@
 
                         </ul>
 
-                        <button class="header-btn report-btn" data-bs-toggle="modal"
-                                data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}
+                        <button class="header-btn report-btn"><a href="#">{% translate 'Единая база киберугроз' %}</a>
                         </button>
                     </nav>
                 </div>
@@ -879,7 +880,7 @@
 
                 <div class="footer-nav-info">
                     <a href="{% url 'news:notification_detail' %}"
-                       class="footer-nav-info-title footer-nav-info-title-contacts">{% trans 'Сертификация' %}</a>
+                       class="footer-nav-info-title footer-nav-info-title-contacts">{% trans 'Нотификация' %}</a>
                 </div>
 
                 <div class="footer-nav-info">

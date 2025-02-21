@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 08:39+0000\n"
+"POT-Creation-Date: 2025-02-18 16:51+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,734 +18,584 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/messages_apps/filters.py:24
-#: templates/vulnerabilities/vulnerabilities.html:25
-msgid "Пользователь"
-msgstr "User"
-
-#: apps/messages_apps/filters.py:34
-msgid "Дата"
-msgstr "Date"
-
-#: apps/messages_apps/models.py:7
-msgid "На проверке"
-msgstr "Verifying"
-
-#: apps/messages_apps/models.py:7
-msgid "Завершен"
-msgstr "Completed"
-
-#: core/settings.py:139
-msgid "Kyrgyz"
-msgstr "Kyrgyz"
-
-#: core/settings.py:140
-msgid "Russian"
-msgstr "Russian"
-
-#: core/settings.py:141
-msgid "English"
-msgstr "English"
-
-#: templates/about/about_detail.html:12 templates/about/about_detail.html:26
-#: templates/base.html:265 templates/base.html:444 templates/base.html:821
-msgid "О Центре"
-msgstr "About Centre"
-
-#: templates/about/about_detail.html:35
-msgid "Задачи Центра"
-msgstr "Objectives of Centre"
-
-#: templates/about/about_list.html:4 templates/about/about_list.html:9
-msgid "О нас"
-msgstr "About Centre"
-
-#: templates/accounts/check_registration.html:9
-msgid ""
-"Спасибо за регистрацию после проверки админом к вам на почту придет сообщение"
-msgstr ""
-"Thank you for registering, after checking by the admin, a message will be "
-"sent to your mail"
-
-#: templates/admin/base_site.html:9
-msgid "Django site admin"
-msgstr "Django site admin"
-
-#: templates/admin/base_site.html:12
-msgid "KCKB Administration"
+#: .\accounts_app\models.py:14
+msgid "Группа"
 msgstr ""
 
-#: templates/admin/change_form.html:18
-#: templates/admin/news_apps/news/change_form.html:23
-#: templates/admin/trainings_apps/trainings/change_form.html:23
-msgid "Home"
-msgstr "Home"
-
-#: templates/admin/change_form.html:21
-#: templates/admin/news_apps/news/change_form.html:26
-#: templates/admin/trainings_apps/trainings/change_form.html:26
-#, python-format
-msgid "Add %(name)s"
+#: .\accounts_app\models.py:15
+msgid "Группы"
 msgstr ""
 
-#: templates/admin/change_form.html:43
-#: templates/admin/news_apps/news/change_form.html:48
-#: templates/admin/trainings_apps/trainings/change_form.html:48
-msgid "Please correct the error below."
+#: .\accounts_app\models.py:19
+#, fuzzy
+#| msgid "Название"
+msgid "Наименование"
+msgstr "Name"
+
+#: .\accounts_app\models.py:22
+msgid "Админ"
 msgstr ""
 
-#: templates/admin/change_form.html:43
-#: templates/admin/news_apps/news/change_form.html:48
-#: templates/admin/trainings_apps/trainings/change_form.html:48
-msgid "Please correct the errors below."
-msgstr ""
-
-#: templates/admin/filter.html:2
-#, python-format
-msgid " By %(filter_title)s "
-msgstr ""
-
-#: templates/admin/filter.html:22
-msgid "Remove"
-msgstr ""
-
-#: templates/base.html:15
-msgid "КЦКБ"
-msgstr "CCCS"
-
-#: templates/base.html:37 templates/base.html:1124
-#: templates/contacts/contacts_detail.html:17
-#: templates/contacts/contacts_detail.html:27 templates/main/index.html:11
-msgid "Координационный центр по обеспечению кибербезопасности"
-msgstr "Coordination Centre on Cybersecurity"
-
-#: templates/base.html:67 templates/base.html:198 templates/base.html:212
-msgid "Версия для слабовидящих"
-msgstr "Version for visually impaired"
-
-#: templates/base.html:87
-msgid "Русский"
-msgstr "Russian"
-
-#: templates/base.html:127 templates/base.html:148
-msgid "Поиск"
-msgstr "Search"
-
-#: templates/base.html:280 templates/base.html:455 templates/base.html:824
-msgid "О КЦКБ"
-msgstr "About CCCS"
-
-#: templates/base.html:285 templates/base.html:460 templates/base.html:828
-msgid "Законодательство"
-msgstr "Legislation"
-
-#: templates/base.html:292 templates/base.html:465 templates/base.html:834
-#: templates/cooperations/cooperation_list.html:12
-#: templates/cooperations/cooperation_list.html:21
-#: templates/main/partners.html:10
-msgid "Сотрудничество"
-msgstr "Cooperation"
-
-#: templates/base.html:300 templates/base.html:472 templates/base.html:840
-msgid "События"
-msgstr "Events"
-
-#: templates/base.html:315 templates/base.html:483 templates/base.html:843
-#: templates/news/news_detail.html:4 templates/news/news_list.html:12
-#: templates/news/news_list.html:22
-msgid "Новости"
-msgstr "News"
-
-#: templates/base.html:320 templates/base.html:488 templates/base.html:847
-#: templates/trainings/training_detail.html:4
-#: templates/trainings/trainings_list.html:12
-#: templates/trainings/trainings_list.html:22
-msgid "Тренинги"
-msgstr "Training courses"
-
-#: templates/base.html:337
-msgid "Кибербезопасноть"
-msgstr "Cybersecurity"
-
-#: templates/base.html:365 templates/base.html:529 templates/base.html:868
-#: templates/base.html:1138 templates/contacts/contacts_detail.html:39
-msgid "Контакты"
-msgstr "Contacts"
-
-#: templates/base.html:371 templates/base.html:536 templates/base.html:872
-msgid "Личный кабинет"
-msgstr "Personal account"
-
-#: templates/base.html:389 templates/base.html:549 templates/base.html:877
-#: templates/messages/message_list.html:8
-msgid "Мои сообщения"
-msgstr "My messages"
-
-#: templates/base.html:395 templates/base.html:555 templates/base.html:889
-msgid "Отчеты"
-msgstr "Reports"
-
-#: templates/base.html:401 templates/base.html:561 templates/base.html:883
-#: templates/dashboards/dashboards.html:7
-msgid "Дашборд"
-msgstr "Dashboard"
-
-#: templates/base.html:407 templates/base.html:894
-msgid "Выйти"
-msgstr "Exit"
-
-#: templates/base.html:415 templates/base.html:575 templates/base.html:903
-msgid "Вход в систему"
-msgstr "Login"
-
-#: templates/base.html:423 templates/base.html:582 templates/base.html:666
-#: templates/base.html:908
-msgid "Регистрация"
-msgstr "Registration"
-
-#: templates/base.html:505 templates/base.html:854
-msgid "Кибербезопасность"
-msgstr "Cybersecurity"
-
-#: templates/base.html:567
-msgid "Выход"
-msgstr "Exit"
-
-#: templates/base.html:592 templates/base.html:1292
-#: templates/main/cyber.html:25 templates/main/main-banner.html:13
-#: templates/main/report.html:13
-msgid "Сообщить об инциденте"
-msgstr "Report Incident"
-
-#: templates/base.html:611
-msgid "Вход"
-msgstr "Login"
-
-#: templates/base.html:613 templates/base.html:1185
-#: templates/contacts/contacts_detail.html:54
-msgid "Email"
-msgstr "Email"
-
-#: templates/base.html:615
-msgid "Введите email"
-msgstr "Enter email"
-
-#: templates/base.html:618
-msgid "Пароль"
-msgstr "Password"
-
-#: templates/base.html:620
-msgid "Введите пароль"
-msgstr "Enter password"
-
-#: templates/base.html:625
-msgid "Запомнить меня"
-msgstr "Remember me"
-
-#: templates/base.html:633
-msgid "Войти"
-msgstr "Sign in"
-
-#: templates/base.html:637
-msgid "Войти через Key-Clock"
-msgstr "Login with Key-Clock"
-
-#: templates/base.html:641
-msgid "Забыли логин или пароль"
-msgstr "Forgot password"
-
-#: templates/base.html:669 templates/contacts/contacts_detail.html:76
-#: templates/vulnerabilities/vulnerabilities.html:24
+#: .\accounts_app\models.py:27 .\accounts_app\models.py:60
 msgid "Организация"
 msgstr "Organization"
 
-#: templates/base.html:676
-msgid "Выберите организацию из списка"
-msgstr "Select from drop down list"
+#: .\accounts_app\models.py:28
+#, fuzzy
+#| msgid "Организация"
+msgid "Организации"
+msgstr "Organization"
 
-#: templates/base.html:685
-msgid "Должность"
-msgstr "Job title"
-
-#: templates/base.html:689
-msgid "Фамилия"
-msgstr "Surname"
-
-#: templates/base.html:695
+#: .\accounts_app\models.py:56
 msgid "Имя"
 msgstr "Name"
 
-#: templates/base.html:701
+#: .\accounts_app\models.py:57
+msgid "Фамилия"
+msgstr "Surname"
+
+#: .\accounts_app\models.py:58
 msgid "Отчество"
 msgstr "Patronymic"
 
-#: templates/base.html:708
-msgid "Дата рождения"
-msgstr "Date of Birth"
+#: .\accounts_app\models.py:59
+msgid "Должность"
+msgstr "Job title"
 
-#: templates/base.html:722 templates/base.html:1209
-msgid "Телефон"
-msgstr "Telephone"
+#: .\accounts_app\models.py:63
+#, fuzzy
+#| msgid "Личный кабинет"
+msgid "Мобильный номер"
+msgstr "Personal account"
 
-#: templates/base.html:740
-msgid "Зарегистрироваться"
-msgstr "Register"
+#: .\accounts_app\models.py:69 .\accounts_app\models.py:70
+#, fuzzy
+#| msgid "Пользователь"
+msgid "Пользователи"
+msgstr "User"
 
-#: templates/base.html:759
-msgid "Размер шрифта"
-msgstr "Font size"
-
-#: templates/base.html:761
-msgid "Маленький"
-msgstr "Small"
-
-#: templates/base.html:762
-msgid "Средний"
-msgstr "Medium"
-
-#: templates/base.html:763
-msgid "Большой"
-msgstr "Large"
-
-#: templates/base.html:768
-msgid "Цвет"
-msgstr "Color"
-
-#: templates/base.html:770
-msgid "Б"
-msgstr "W"
-
-#: templates/base.html:771
-msgid "Ч"
-msgstr "B"
-
-#: templates/base.html:772
-msgid "Ц"
-msgstr "C"
-
-#: templates/base.html:797
-msgid "Вернуть стандартные настройки"
-msgstr "Reset to default settings"
-
-#: templates/base.html:800
-msgid "Закрыть"
-msgstr "Close"
-
-#: templates/base.html:1130 templates/contacts/contacts_detail.html:33
-msgid "Адрес"
-msgstr "Address"
-
-#: templates/base.html:1140
-msgid "тел"
-msgstr "Tel"
-
-#: templates/base.html:1143
-msgid "email"
-msgstr "email"
-
-#: templates/base.html:1182 templates/main/report.html:8
-msgid "Сообщить об"
-msgstr "Report"
-
-#: templates/base.html:1182 templates/main/report.html:8
-msgid "инциденте"
-msgstr "Incident"
-
-#: templates/base.html:1195 templates/contacts/contacts_detail.html:60
-msgid "ФИО"
-msgstr "Full Name"
-
-#: templates/base.html:1197
-msgid "Фамилия Имя Отчество"
-msgstr "Full name"
-
-#: templates/base.html:1218
-msgid "Опишите инцидент*"
-msgstr "Describe the incident"
-
-#: templates/base.html:1225
-msgid "Индикаторы"
-msgstr "Indicators"
-
-#: templates/base.html:1235
-msgid "Индикатор"
-msgstr "Indicator"
-
-#: templates/base.html:1237
-msgid "File"
-msgstr "File"
-
-#: templates/base.html:1238
-msgid "Ip"
-msgstr "Ip"
-
-#: templates/base.html:1239
-msgid "Domain"
+#: .\db_logger\models.py:14
+msgid "NotSet"
 msgstr ""
 
-#: templates/base.html:1240
-msgid "Hash"
-msgstr "Hash"
-
-#: templates/base.html:1265
-msgid "Добавить индикатор"
-msgstr "Add indicator"
-
-#: templates/base.html:1276
-msgid "Отправить без проверки"
-msgstr "Submit without verification"
-
-#: templates/base.html:1332 templates/cooperations/cooperation_list.html:43
-#: templates/main/partners.html:40 templates/main/partners.html:87
-msgid "Посетить сайт"
-msgstr "Visit site"
-
-#: templates/base.html:1356
-msgid "Сообщение успешно отправлено"
-msgstr "Message sent successfully"
-
-#: templates/base.html:1358
-msgid "Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время"
-msgstr "Thank you for your message! We will review it shortly"
-
-#: templates/base.html:1364
-msgid "Закрыть окно"
-msgstr "Close a window"
-
-#: templates/contacts/contacts_detail.html:29
-#: templates/main/main-banner.html:10
-msgid ""
-"Государственного комитета национальной безопасности Кыргызской Республики"
-msgstr "State Committee for National Security of the Kyrgyz Republic"
-
-#: templates/contacts/contacts_detail.html:49
-msgid "Напишите нам"
-msgstr "Contract us"
-
-#: templates/contacts/contacts_detail.html:65
-msgid "Номер телефона"
-msgstr "Phone number"
-
-#: templates/contacts/contacts_detail.html:84
-msgid "Выберите из выпадающего списка"
-msgstr "Select from drop down list"
-
-#: templates/contacts/contacts_detail.html:94
-msgid "Ваше сообщение"
-msgstr "Your message"
-
-#: templates/contacts/contacts_detail.html:104
-msgid "Отправить сообщение"
-msgstr "Send a message"
-
-#: templates/cooperations/cooperation_list.html:24
-#: templates/main/partners.html:13
-msgid ""
-"Наши партнеры, совместно с которыми мы реализуем проекты в области "
-"обеспечения кибербезопасности в Кыргызской Республике."
-msgstr ""
-"Our partners, involved in implementing projects to enhance cybersecurity in "
-"the Kyrgyz Republic."
-
-#: templates/cyber_security/cyber_security.html:40
-#: templates/news/news_detail.html:53
-#: templates/trainings/training_detail.html:58
-msgid "Поделиться"
-msgstr "Share"
-
-#: templates/dashboards/dashboards.html:17
-#: templates/vulnerabilities/vulnerabilities.html:55
-msgid "У вас нет уведомлений"
-msgstr "You don't have notifications"
-
-#: templates/forbidden/not_authenticated_error.html:8
-msgid "У вас нет доступа к этой странице"
-msgstr "You do not have access to this page"
-
-#: templates/legislation/legislation.html:30
-msgid "Нормативно-Правовые Акты"
-msgstr "Normative legal acts"
-
-#: templates/main/404.html:11
-msgid "Not Found"
-msgstr "Not Found"
-
-#: templates/main/about.html:8
-msgid "О"
-msgstr "About"
-
-#: templates/main/about.html:8
-msgid "Центре"
-msgstr "Centre"
-
-#: templates/main/about.html:15
-msgid "Читать Постановление"
-msgstr "Decree"
-
-#: templates/main/about.html:19
-msgid "Задачи"
-msgstr "Objectives"
-
-#: templates/main/about.html:19
-msgid "Центра"
-msgstr "of Centre"
-
-#: templates/main/cyber.html:7
-msgid "Кибербезопасность и рекомендации"
-msgstr "Cybersecurity and Recommendations"
-
-#: templates/main/cyber.html:9
-msgid ""
-"Кибербезопасность - это область, которая занимается защитой цифровых систем, "
-"данных и информации от киберугроз и атак для обеспечения их безопасности и "
-"надежности. Часто встречающиеся киберугрозы:"
-msgstr ""
-"Cybersecurity is a field of protecting digital systems, data,and information "
-"from cyber threats and attacks to ensure their safety and reliability. Common "
-"cyber threats include:"
-
-#: templates/main/main-banner.html:8
-msgid "Координационный Центр по Обеспечению Кибербезопасности"
-msgstr "Coordination Centre on Cybersecurity"
-
-#: templates/main/news.html:7
-msgid "Новости и События"
-msgstr "News and Events"
-
-#: templates/main/news.html:9
-msgid ""
-"Последние обновления и события в Центре. Последние достижения, мероприятия и "
-"актуальные новости, связанные с нашей деятельностью в области "
-"кибербезопасности."
-msgstr ""
-"The latest updates and events of the Centre. The latest developments, "
-"events, and current news in the field of cybersecurity."
-
-#: templates/main/news.html:29 templates/news/news_list.html:118
-#: templates/trainings/trainings_list.html:58
-msgid "Читать новость полностью"
-msgstr "All news"
-
-#: templates/main/news.html:40
-msgid "Смотреть все новости"
-msgstr "See all News"
-
-#: templates/main/partners.html:97
-msgid "Смотреть всех партнеров"
-msgstr "See all partners"
-
-#: templates/main/report.html:10
-msgid ""
-"Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных или "
-"атаки. Реагирование на инциденты - важная часть обеспечения "
-"кибербезопасности и защиты ваших данных и систем от угроз."
-msgstr ""
-"Please use this platform to notify us of cyber incidents, including data "
-"breaches or attacks. Incident response is an important part of ensuring "
-"cybersecurity and protecting your data and systems from threats."
-
-#: templates/main/search.html:12
-msgid "Результаты поиска"
-msgstr "Search results"
-
-#: templates/main/search.html:31
-msgid "По вашему запросу ничего не найдено"
-msgstr "Nothing found for your request"
-
-#: templates/messages/message_list.html:14
-msgid "Все сообщения"
-msgstr "All messages"
-
-#: templates/messages/message_list.html:22
-msgid "№ Сообщения"
-msgstr "Message #"
-
-#: templates/messages/message_list.html:23
-msgid "Описание"
-msgstr "Description"
-
-#: templates/messages/message_list.html:24
-msgid "Статус"
-msgstr "Status"
-
-#: templates/messages/message_list.html:25
-msgid "Влияние"
-msgstr "Influence"
-
-#: templates/messages/message_list.html:26
-msgid "Статус разрешения"
-msgstr "Permission status"
-
-#: templates/messages/message_list.html:27
-msgid "Резюме"
-msgstr "Summary"
-
-#: templates/messages/message_list.html:28
-#: templates/vulnerabilities/vulnerabilities.html:26
-msgid "Действия"
-msgstr "Actions"
-
-#: templates/messages/message_list.html:59
-msgid "Запросить статус"
-msgstr "Request Status"
-
-#: templates/messages/message_list.html:66
-msgid "У вас нет сообщений"
-msgstr "You have no messages"
-
-#: templates/news/news_list.html:24
-msgid ""
-"Актуальные события и их подробности, связанные с нашей деятельностью в "
-"области кибербезопасности."
-msgstr "Current events and details related to our cybersecurity activities."
-
-#: templates/news/news_list.html:29 templates/trainings/trainings_list.html:30
-msgid "Все"
-msgstr "All"
-
-#: templates/news/news_list.html:68
-msgid "Выбрать дату"
-msgstr "Select date"
-
-#: templates/news/news_list.html:85
-msgid "за неделю"
-msgstr "in a week"
-
-#: templates/news/news_list.html:90
-msgid "за месяц"
-msgstr "Month"
-
-#: templates/news/news_list.html:95
-msgid "за полгода"
-msgstr "For six months"
-
-#: templates/registration/password_reset_complete.html:8
-#: templates/registration/password_reset_complete.html:13
-msgid "Password is set"
-msgstr "Password is set"
-
-#: templates/registration/password_reset_complete.html:15
-msgid "Your Password has been set. go to"
-msgstr " Your password is set."
-
-#: templates/registration/password_reset_complete.html:16
-msgid "Main"
-msgstr "Homepage"
-
-#: templates/registration/password_reset_confirm.html:7
-#: templates/registration/password_reset_confirm.html:13
-msgid "Reset Password"
-msgstr "Reset your password"
-
-#: templates/registration/password_reset_confirm.html:14
-msgid "Please enter your password twice"
-msgstr "Please enter your password twice"
-
-#: templates/registration/password_reset_confirm.html:19
-#: templates/registration/password_reset_form.html:19
-msgid "Change My Password"
-msgstr "Reset your password"
-
-#: templates/registration/password_reset_confirm.html:23
-msgid "Invalid link"
+#: .\db_logger\models.py:15
+msgid "Info"
 msgstr ""
 
-#: templates/registration/password_reset_confirm.html:25
-msgid "The Password reset link was invalid."
-msgstr "The Password reset link was invalid."
-
-#: templates/registration/password_reset_confirm.html:26
-msgid ""
-"Possibly because it has already been used. Please request a new password "
-"reset request."
+#: .\db_logger\models.py:16
+msgid "Warning"
 msgstr ""
-"The link has been used or expired. Please request a password reset again."
 
-#: templates/registration/password_reset_done.html:7
-#: templates/registration/password_reset_done.html:12
-msgid "Reset Your Password"
-msgstr "Reset Your Password"
-
-#: templates/registration/password_reset_done.html:14
-msgid "We've emailed you instructions for setting your password."
-msgstr "Instructions on setting a password send to your e-mail."
-
-#: templates/registration/password_reset_done.html:17
-msgid ""
-"If don't receive an email, please make sure you've entered the correct email "
-"address."
+#: .\db_logger\models.py:17
+msgid "Debug"
 msgstr ""
-"If you did not receive the e-mail, please make sure you entered the correct "
-"e-mail address."
 
-#: templates/registration/password_reset_email.html:13
-msgid ""
-"Вы получили это сообщение в связи с тем, что был сделан запрос на сброс "
-"пароля для Вашего аккаунта!"
+#: .\db_logger\models.py:18
+msgid "Error"
 msgstr ""
-"You received this e-mail because a request was made to reset the password "
-"for your account!"
 
-#: templates/registration/password_reset_email.html:17
-msgid "Перейдите по ссылке, чтобы подтвердить сброс пароля"
-msgstr "Follow the link to confirm password reset"
-
-#: templates/registration/password_reset_email.html:19
-msgid "Использовать ссылку"
-msgstr "Use link"
-
-#: templates/registration/password_reset_email.html:21
-msgid ""
-"Если Вы не запрашивали сброс пароля, то просто проигнорируйте это письмо."
-msgstr "If you did not request a password reset, you can ignore this e-mail."
-
-#: templates/registration/password_reset_form.html:8
-msgid "Reset Your password"
-msgstr "Reset Your password"
-
-#: templates/registration/password_reset_form.html:13
-msgid "Forgotten Your Password"
-msgstr "Forgotten Your Password"
-
-#: templates/registration/password_reset_form.html:14
-msgid "Enter your e-mail address to obtain a new password"
-msgstr "Enter your e-mail address to obtain a new password"
-
-#: templates/trainings/training_detail.html:15
-msgid "Дата проведения"
-msgstr "Date of Birth"
-
-#: templates/trainings/trainings_list.html:24
-#| msgid ""
-#| "Государственного комитета национальной безопасности Кыргызской Республики"
-msgid ""
-"Информация о тренингах и мероприятиях, проводимых Центром, а также о "
-"событиях, в которых участвовали наши сотрудники, связанные с обеспечением "
-"кибербезопасности в Кыргызской Республике."
+#: .\db_logger\models.py:19
+msgid "Fatal"
 msgstr ""
-"Information regarding training courses and events conducted by the Centre, "
-"as well as insights into the involvement of our staff in cybersecurity-related events in the Kyrgyz Republic."
 
-#: templates/trainings/trainings_list.html:33
-msgid "Предстоящие"
-msgstr "Upcoming training courses"
+#: .\messages_app\filters.py:24
+msgid "Пользователь"
+msgstr "User"
 
-#: templates/trainings/trainings_list.html:36
-msgid "Прошедшие"
-msgstr "Post training courses"
+#: .\messages_app\filters.py:34
+msgid "Дата"
+msgstr "Date"
 
-#: templates/vulnerabilities/vulnerabilities.html:7
-#: templates/vulnerabilities/vulnerabilities.html:14
-msgid "Отчёты"
-msgstr "Reports"
+#: .\messages_app\models.py:7
+#, fuzzy
+#| msgid "На проверке"
+msgid "Не прочитан"
+msgstr "Verifying"
 
-#: templates/vulnerabilities/vulnerabilities.html:23
-msgid "Название"
-msgstr "Name"
+#: .\messages_app\models.py:7
+msgid "Завершен"
+msgstr "Completed"
 
-#: templates/vulnerabilities/vulnerabilities.html:45
-msgid "Скачать файл"
-msgstr "Download file"
+#: .\messages_app\models.py:7
+msgid "Прочитан"
+msgstr ""
+
+#: .\project\settings.py:135
+msgid "Russian"
+msgstr "Russian"
+
+#: .\project\settings.py:136
+msgid "English"
+msgstr "English"
+
+#: .\project\settings.py:137
+#, fuzzy
+#| msgid "Kyrgyz"
+msgid "Kyrgiz"
+msgstr "Kyrgyz"
+
+#~ msgid "О Центре"
+#~ msgstr "About Centre"
+
+#~ msgid "Задачи Центра"
+#~ msgstr "Objectives of Centre"
+
+#~ msgid "О нас"
+#~ msgstr "About Centre"
+
+#~ msgid ""
+#~ "Спасибо за регистрацию после проверки админом к вам на почту придет "
+#~ "сообщение"
+#~ msgstr ""
+#~ "Thank you for registering, after checking by the admin, a message will be "
+#~ "sent to your mail"
+
+#~ msgid "Django site admin"
+#~ msgstr "Django site admin"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "КЦКБ"
+#~ msgstr "CCCS"
+
+#~ msgid "Координационный центр по обеспечению кибербезопасности"
+#~ msgstr "Coordination Centre on Cybersecurity"
+
+#~ msgid "Версия для слабовидящих"
+#~ msgstr "Version for visually impaired"
+
+#~ msgid "Русский"
+#~ msgstr "Russian"
+
+#~ msgid "Поиск"
+#~ msgstr "Search"
+
+#~ msgid "О КЦКБ"
+#~ msgstr "About CCCS"
+
+#~ msgid "Законодательство"
+#~ msgstr "Legislation"
+
+#~ msgid "Сотрудничество"
+#~ msgstr "Cooperation"
+
+#~ msgid "События"
+#~ msgstr "Events"
+
+#~ msgid "Новости"
+#~ msgstr "News"
+
+#~ msgid "Тренинги"
+#~ msgstr "Training courses"
+
+#~ msgid "Кибербезопасноть"
+#~ msgstr "Cybersecurity"
+
+#~ msgid "Контакты"
+#~ msgstr "Contacts"
+
+#~ msgid "Мои сообщения"
+#~ msgstr "My messages"
+
+#~ msgid "Отчеты"
+#~ msgstr "Reports"
+
+#~ msgid "Дашборд"
+#~ msgstr "Dashboard"
+
+#~ msgid "Выйти"
+#~ msgstr "Exit"
+
+#~ msgid "Вход в систему"
+#~ msgstr "Login"
+
+#~ msgid "Регистрация"
+#~ msgstr "Registration"
+
+#~ msgid "Кибербезопасность"
+#~ msgstr "Cybersecurity"
+
+#~ msgid "Выход"
+#~ msgstr "Exit"
+
+#~ msgid "Сообщить об инциденте"
+#~ msgstr "Report Incident"
+
+#~ msgid "Вход"
+#~ msgstr "Login"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Введите email"
+#~ msgstr "Enter email"
+
+#~ msgid "Пароль"
+#~ msgstr "Password"
+
+#~ msgid "Введите пароль"
+#~ msgstr "Enter password"
+
+#~ msgid "Запомнить меня"
+#~ msgstr "Remember me"
+
+#~ msgid "Войти"
+#~ msgstr "Sign in"
+
+#~ msgid "Войти через Key-Clock"
+#~ msgstr "Login with Key-Clock"
+
+#~ msgid "Забыли логин или пароль"
+#~ msgstr "Forgot password"
+
+#~ msgid "Выберите организацию из списка"
+#~ msgstr "Select from drop down list"
+
+#~ msgid "Дата рождения"
+#~ msgstr "Date of Birth"
+
+#~ msgid "Телефон"
+#~ msgstr "Telephone"
+
+#~ msgid "Зарегистрироваться"
+#~ msgstr "Register"
+
+#~ msgid "Размер шрифта"
+#~ msgstr "Font size"
+
+#~ msgid "Маленький"
+#~ msgstr "Small"
+
+#~ msgid "Средний"
+#~ msgstr "Medium"
+
+#~ msgid "Большой"
+#~ msgstr "Large"
+
+#~ msgid "Цвет"
+#~ msgstr "Color"
+
+#~ msgid "Б"
+#~ msgstr "W"
+
+#~ msgid "Ч"
+#~ msgstr "B"
+
+#~ msgid "Ц"
+#~ msgstr "C"
+
+#~ msgid "Вернуть стандартные настройки"
+#~ msgstr "Reset to default settings"
+
+#~ msgid "Закрыть"
+#~ msgstr "Close"
+
+#~ msgid "Адрес"
+#~ msgstr "Address"
+
+#~ msgid "тел"
+#~ msgstr "Tel"
+
+#~ msgid "email"
+#~ msgstr "email"
+
+#~ msgid "Сообщить об"
+#~ msgstr "Report"
+
+#~ msgid "инциденте"
+#~ msgstr "Incident"
+
+#~ msgid "ФИО"
+#~ msgstr "Full Name"
+
+#~ msgid "Фамилия Имя Отчество"
+#~ msgstr "Full name"
+
+#~ msgid "Опишите инцидент*"
+#~ msgstr "Describe the incident"
+
+#~ msgid "Индикаторы"
+#~ msgstr "Indicators"
+
+#~ msgid "Индикатор"
+#~ msgstr "Indicator"
+
+#~ msgid "File"
+#~ msgstr "File"
+
+#~ msgid "Ip"
+#~ msgstr "Ip"
+
+#~ msgid "Hash"
+#~ msgstr "Hash"
+
+#~ msgid "Добавить индикатор"
+#~ msgstr "Add indicator"
+
+#~ msgid "Отправить без проверки"
+#~ msgstr "Submit without verification"
+
+#~ msgid "Посетить сайт"
+#~ msgstr "Visit site"
+
+#~ msgid "Сообщение успешно отправлено"
+#~ msgstr "Message sent successfully"
+
+#~ msgid "Спасибо за ваше сообщение! Мы рассмотрим его в ближайшее время"
+#~ msgstr "Thank you for your message! We will review it shortly"
+
+#~ msgid "Закрыть окно"
+#~ msgstr "Close a window"
+
+#~ msgid ""
+#~ "Государственного комитета национальной безопасности Кыргызской Республики"
+#~ msgstr "State Committee for National Security of the Kyrgyz Republic"
+
+#~ msgid "Напишите нам"
+#~ msgstr "Contract us"
+
+#~ msgid "Номер телефона"
+#~ msgstr "Phone number"
+
+#~ msgid "Выберите из выпадающего списка"
+#~ msgstr "Select from drop down list"
+
+#~ msgid "Ваше сообщение"
+#~ msgstr "Your message"
+
+#~ msgid "Отправить сообщение"
+#~ msgstr "Send a message"
+
+#~ msgid ""
+#~ "Наши партнеры, совместно с которыми мы реализуем проекты в области "
+#~ "обеспечения кибербезопасности в Кыргызской Республике."
+#~ msgstr ""
+#~ "Our partners, involved in implementing projects to enhance cybersecurity "
+#~ "in the Kyrgyz Republic."
+
+#~ msgid "Поделиться"
+#~ msgstr "Share"
+
+#~ msgid "У вас нет уведомлений"
+#~ msgstr "You don't have notifications"
+
+#~ msgid "У вас нет доступа к этой странице"
+#~ msgstr "You do not have access to this page"
+
+#~ msgid "Нормативно-Правовые Акты"
+#~ msgstr "Normative legal acts"
+
+#~ msgid "Not Found"
+#~ msgstr "Not Found"
+
+#~ msgid "О"
+#~ msgstr "About"
+
+#~ msgid "Центре"
+#~ msgstr "Centre"
+
+#~ msgid "Читать Постановление"
+#~ msgstr "Decree"
+
+#~ msgid "Задачи"
+#~ msgstr "Objectives"
+
+#~ msgid "Центра"
+#~ msgstr "of Centre"
+
+#~ msgid "Кибербезопасность и рекомендации"
+#~ msgstr "Cybersecurity and Recommendations"
+
+#~ msgid ""
+#~ "Кибербезопасность - это область, которая занимается защитой цифровых "
+#~ "систем, данных и информации от киберугроз и атак для обеспечения их "
+#~ "безопасности и надежности. Часто встречающиеся киберугрозы:"
+#~ msgstr ""
+#~ "Cybersecurity is a field of protecting digital systems, data,and "
+#~ "information from cyber threats and attacks to ensure their safety and "
+#~ "reliability. Common cyber threats include:"
+
+#~ msgid "Координационный Центр по Обеспечению Кибербезопасности"
+#~ msgstr "Coordination Centre on Cybersecurity"
+
+#~ msgid "Новости и События"
+#~ msgstr "News and Events"
+
+#~ msgid ""
+#~ "Последние обновления и события в Центре. Последние достижения, "
+#~ "мероприятия и актуальные новости, связанные с нашей деятельностью в "
+#~ "области кибербезопасности."
+#~ msgstr ""
+#~ "The latest updates and events of the Centre. The latest developments, "
+#~ "events, and current news in the field of cybersecurity."
+
+#~ msgid "Читать новость полностью"
+#~ msgstr "All news"
+
+#~ msgid "Смотреть все новости"
+#~ msgstr "See all News"
+
+#~ msgid "Смотреть всех партнеров"
+#~ msgstr "See all partners"
+
+#~ msgid ""
+#~ "Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных "
+#~ "или атаки. Реагирование на инциденты - важная часть обеспечения "
+#~ "кибербезопасности и защиты ваших данных и систем от угроз."
+#~ msgstr ""
+#~ "Please use this platform to notify us of cyber incidents, including data "
+#~ "breaches or attacks. Incident response is an important part of ensuring "
+#~ "cybersecurity and protecting your data and systems from threats."
+
+#~ msgid "Результаты поиска"
+#~ msgstr "Search results"
+
+#~ msgid "По вашему запросу ничего не найдено"
+#~ msgstr "Nothing found for your request"
+
+#~ msgid "Все сообщения"
+#~ msgstr "All messages"
+
+#~ msgid "№ Сообщения"
+#~ msgstr "Message #"
+
+#~ msgid "Описание"
+#~ msgstr "Description"
+
+#~ msgid "Статус"
+#~ msgstr "Status"
+
+#~ msgid "Влияние"
+#~ msgstr "Influence"
+
+#~ msgid "Статус разрешения"
+#~ msgstr "Permission status"
+
+#~ msgid "Резюме"
+#~ msgstr "Summary"
+
+#~ msgid "Действия"
+#~ msgstr "Actions"
+
+#~ msgid "Запросить статус"
+#~ msgstr "Request Status"
+
+#~ msgid "У вас нет сообщений"
+#~ msgstr "You have no messages"
+
+#~ msgid ""
+#~ "Актуальные события и их подробности, связанные с нашей деятельностью в "
+#~ "области кибербезопасности."
+#~ msgstr "Current events and details related to our cybersecurity activities."
+
+#~ msgid "Все"
+#~ msgstr "All"
+
+#~ msgid "Выбрать дату"
+#~ msgstr "Select date"
+
+#~ msgid "за неделю"
+#~ msgstr "in a week"
+
+#~ msgid "за месяц"
+#~ msgstr "Month"
+
+#~ msgid "за полгода"
+#~ msgstr "For six months"
+
+#~ msgid "Password is set"
+#~ msgstr "Password is set"
+
+#~ msgid "Your Password has been set. go to"
+#~ msgstr " Your password is set."
+
+#~ msgid "Main"
+#~ msgstr "Homepage"
+
+#~ msgid "Reset Password"
+#~ msgstr "Reset your password"
+
+#~ msgid "Please enter your password twice"
+#~ msgstr "Please enter your password twice"
+
+#~ msgid "Change My Password"
+#~ msgstr "Reset your password"
+
+#~ msgid "The Password reset link was invalid."
+#~ msgstr "The Password reset link was invalid."
+
+#~ msgid ""
+#~ "Possibly because it has already been used. Please request a new password "
+#~ "reset request."
+#~ msgstr ""
+#~ "The link has been used or expired. Please request a password reset again."
+
+#~ msgid "Reset Your Password"
+#~ msgstr "Reset Your Password"
+
+#~ msgid "We've emailed you instructions for setting your password."
+#~ msgstr "Instructions on setting a password send to your e-mail."
+
+#~ msgid ""
+#~ "If don't receive an email, please make sure you've entered the correct "
+#~ "email address."
+#~ msgstr ""
+#~ "If you did not receive the e-mail, please make sure you entered the "
+#~ "correct e-mail address."
+
+#~ msgid ""
+#~ "Вы получили это сообщение в связи с тем, что был сделан запрос на сброс "
+#~ "пароля для Вашего аккаунта!"
+#~ msgstr ""
+#~ "You received this e-mail because a request was made to reset the password "
+#~ "for your account!"
+
+#~ msgid "Перейдите по ссылке, чтобы подтвердить сброс пароля"
+#~ msgstr "Follow the link to confirm password reset"
+
+#~ msgid "Использовать ссылку"
+#~ msgstr "Use link"
+
+#~ msgid ""
+#~ "Если Вы не запрашивали сброс пароля, то просто проигнорируйте это письмо."
+#~ msgstr ""
+#~ "If you did not request a password reset, you can ignore this e-mail."
+
+#~ msgid "Reset Your password"
+#~ msgstr "Reset Your password"
+
+#~ msgid "Forgotten Your Password"
+#~ msgstr "Forgotten Your Password"
+
+#~ msgid "Enter your e-mail address to obtain a new password"
+#~ msgstr "Enter your e-mail address to obtain a new password"
+
+#~ msgid "Дата проведения"
+#~ msgstr "Date of Birth"
+
+#~| msgid ""
+#~| "Государственного комитета национальной безопасности Кыргызской Республики"
+#~ msgid ""
+#~ "Информация о тренингах и мероприятиях, проводимых Центром, а также о "
+#~ "событиях, в которых участвовали наши сотрудники, связанные с обеспечением "
+#~ "кибербезопасности в Кыргызской Республике."
+#~ msgstr ""
+#~ "Information regarding training courses and events conducted by the "
+#~ "Centre, as well as insights into the involvement of our staff in "
+#~ "cybersecurity-related events in the Kyrgyz Republic."
+
+#~ msgid "Предстоящие"
+#~ msgstr "Upcoming training courses"
+
+#~ msgid "Прошедшие"
+#~ msgstr "Post training courses"
+
+#~ msgid "Отчёты"
+#~ msgstr "Reports"
+
+#~ msgid "Скачать файл"
+#~ msgstr "Download file"
 
 #~ msgid ""
 #~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку"
@@ -753,8 +603,8 @@ msgstr "Download file"
 #~ "Brief explanation of the block, no more than one or two sentences per card"
 
 #~ msgid ""
-#~ "Краткое пояснение к блоку, не более одного - двух предложений на карточку."
-#~ "ОБъяснение видов инцидентов и важности реагирования на них"
+#~ "Краткое пояснение к блоку, не более одного - двух предложений на "
+#~ "карточку.ОБъяснение видов инцидентов и важности реагирования на них"
 #~ msgstr ""
 #~ "A brief explanation of the block, no more than one or two sentences per "
 #~ "card. Explaining the types of incidents and the importance of responding "
