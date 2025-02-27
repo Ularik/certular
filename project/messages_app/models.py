@@ -12,8 +12,6 @@ class Messages(models.Model):
     user = models.ForeignKey('accounts_app.User', blank=True, null=True, on_delete=models.CASCADE,
                              related_name='messages', verbose_name='Пользователь')
     file = models.FileField(upload_to=content_file_name('Messages'), null=True, blank=True, verbose_name='Файл')
-    status = models.CharField(max_length=50, blank=False, null=False, choices=CHOICES, default='on_check',
-                              verbose_name='Статус')
     email = models.EmailField(null=False, blank=False, verbose_name='Email')
     phone_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Мобильный номер',
                                     validators=[TELEPHONE, MaxLengthValidator])
@@ -26,5 +24,5 @@ class Messages(models.Model):
 
     class Meta:
         db_table = 'Messages'
-        verbose_name = 'Сообщение'
-        verbose_name_plural = 'Сообщения'
+        verbose_name = 'Сообщение об инциденте'
+        verbose_name_plural = 'Сообщения об инцидентах'

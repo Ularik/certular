@@ -710,3 +710,18 @@
 .doc-list {
     margin: 15px;
 }
+
+.my-chart {
+    width: 600px;
+    height: 100%;
+}
+
+.my-chart + #myChart {
+    max-width: 600px;
+    margin: 20px auto;
+    display: block;
+}
+
+.organs button {
+    margin: 10px;
+}

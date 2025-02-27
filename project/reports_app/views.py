@@ -6,6 +6,7 @@ import logging
 from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import FileResponse, JsonResponse
+from django.utils import timezone
 
 
 logger = logging.getLogger(__name__)
@@ -48,7 +49,7 @@ def change_report_status(request, report_id):
 
     if request.method == 'POST':
         report = Reports.objects.filter(id=report_id).first()
-        report.read_date = datetime.now()
+        report.read_date = timezone.now()
 
         if report.status == 4:
             report.status = 3
@@ -57,6 +58,9 @@ def change_report_status(request, report_id):
 
         report.status = 4
         report.save()
+        print(report.name, report.created_date, report.organization)
+        print(f'Статус изменен на: {report.status}')
+
         return JsonResponse({'status': 4}, status=200)
 
 

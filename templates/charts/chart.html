@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %} {% trans "График" %} {% endblock %}
+
+{% block content %}
+<div class="one-content">
+    <div class="my-chart my-container my-container-second">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="organs my-container my-container-second">
+
+    </div>
+    <script>
+        const list_items = {{ data }};
+        const months = [];
+        const month_convert = {
+            2: 'Jan',
+            3: 'Fab',
+            4: 'March',
+            5: 'April'
+        }
+        for (const month of Object.keys(list_items)) {
+            months.push(month_convert[month])
+        };
+        const org_list = {};
+
+        const orgDiv = document.querySelector('.organs')
+
+        let index = 0
+        for (const month of Object.keys(list_items)) {
+            for (const report of list_items[month]) {
+
+                if (!org_list[report[1]]) {
+                    org_list[report[1]] = {
+                        allReports: [],
+                        doneReports: []
+                    }
+                }
+
+                if (org_list[report[1]].allReports.length !== index + 1) {
+                    org_list[report[1]].allReports.push(0)
+                    org_list[report[1]].doneReports.push(0)
+                }
+
+                org_list[report[1]].allReports[index] += report[2]
+                if (report[0] === 4) {
+                    org_list[report[1]].doneReports[index] += report[2]
+                }
+            }
+            index++
+        }
+
+        const org_convert = {
+            1: 'Укук',
+            2: 'Steam'
+        }
+
+        for (const org_name of Object.keys(org_list)) {
+            const btn = document.createElement('button')
+            btn.innerText = org_convert[org_name]
+            btn.classList = 'main-btn'
+
+            orgDiv.appendChild(btn)
+
+            btn.addEventListener('click', () => changeChart(org_name))
+        }
+
+        let main_org = Object.keys(org_list)[0]
+        const chart = org_list[main_org]
+        const data1 = chart.allReports
+        const data2 = chart.doneReports
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Отчеты (шт)',
+                        data: data1,
+                        borderColor: 'blue',
+                        backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Расходы ($K)',
+                        data: data2,
+                        borderColor: 'red',
+                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        function changeChart(org) {
+            main_org = org;
+
+            // Обновляем данные графика
+            myChart.data.datasets[0].data = org_list[main_org].allReports;
+            myChart.data.datasets[1].data = org_list[main_org].doneReports;
+
+            myChart.update(); // Перерисовываем график
+        }
+
+    </script>
+</div>
+{% endblock %}

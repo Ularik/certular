@@ -12,10 +12,10 @@ from django.conf import settings
 
 @admin.register(Messages)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user__first_name', 'status', 'created_at']
-    list_filter = [UserFilter, DateFilter, 'status']
+    list_display = ['id', 'user__first_name', 'created_at']
+    list_filter = [UserFilter, DateFilter]
     fieldsets = (
-        (None, {'fields': ('id', 'description', 'user', 'file', 'status', 'created_at')}),
+        (None, {'fields': ('id', 'description', 'user', 'file', 'created_at')}),
     )
     readonly_fields = ['id', 'created_at', 'get_full_name', 'get_number', 'get_email']
 

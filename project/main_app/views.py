@@ -1,3 +1,4 @@
+from charset_normalizer.md import annotations
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect
@@ -7,6 +8,11 @@ from news_app.models import News
 from cooperation_app.models import Cooperation
 from .models import SeoPages
 from django.views import View
+import json
+import locale
+from accounts_app.models import Organization
+from reports_app.models import Reports
+from django.db.models import Count
 
 
 class MainIndex(TemplateView):
@@ -82,3 +88,25 @@ def page_not_found_view(request, exception):
     else:
         return redirect('/' + settings.LANGUAGE_CODE + request.path)
 
+
+def chart_view(request):
+    # organizations = Organization.objects.all()
+    # reports_stats = {}
+    # for organ in organizations:
+    #     reports = organ.reports_set.all()
+    #     order_by_month = reports.values_list('status', 'created_date__month').annotate(total=Count('id')).order_by('created_date__month')
+    #     # print(order_by_month)  [(3, 2, 1), (4, 2, 1)] status:3; month:2; total:1.
+    #     reports_stats[organ.name] = list(order_by_month)
+
+    list_of_month = (Reports.objects.values('created_date__month')
+                     .distinct().order_by('created_date__month'))
+    list_of_month = list(list_of_month)[-6:]
+
+    data = {}
+    for month in list_of_month:
+        data[month['created_date__month']] = list(map(list, list(Reports.objects.filter(
+            created_date__month=month['created_date__month'])
+            .values_list('status', 'organization')
+            .annotate(total=Count('id')))))
+    print(data)
+    return render(request, "charts/chart.html", {'data': data})

@@ -142,7 +142,7 @@ LOCALE_PATHS = [
 ]
 
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Bishkek"
 
 PARLER_LANGUAGES = {
     None: (
