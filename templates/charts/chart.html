@@ -4,31 +4,41 @@
 {% block title %} {% trans "График" %} {% endblock %}
 
 {% block content %}
-<div class="one-content">
-    <div class="my-chart my-container my-container-second">
+<div class="one-content chart-content">
+    <div class="my-chart">
         <canvas id="myChart"></canvas>
     </div>
-    <div class="organs my-container my-container-second">
 
+    <div class="chart-data">
+        <div class="organs">
+        </div>
+        <div class="reports-data">
+            <div class="reports-chart-block">
+                <strong>Отчёты: </strong><span></span>
+            </div>
+            <div class="reports-chart-block">
+                <strong>Выполенные: </strong><span></span>
+            </div>
+        </div>
     </div>
+
     <script>
         const list_items = {{ data }};
         const months = [];
         const month_convert = {
-            2: 'Jan',
-            3: 'Fab',
-            4: 'March',
-            5: 'April'
+            2: 'Fab',
+            3: 'March',
+            4: 'April',
+            5: 'May'
         }
-        for (const month of Object.keys(list_items)) {
-            months.push(month_convert[month])
-        };
+
         const org_list = {};
 
         const orgDiv = document.querySelector('.organs')
 
         let index = 0
         for (const month of Object.keys(list_items)) {
+            months.push(month_convert[month])
             for (const report of list_items[month]) {
 
                 if (!org_list[report[1]]) {
@@ -48,6 +58,7 @@
                     org_list[report[1]].doneReports[index] += report[2]
                 }
             }
+            console.log(org_list)
             index++
         }
 
@@ -70,6 +81,15 @@
         const chart = org_list[main_org]
         const data1 = chart.allReports
         const data2 = chart.doneReports
+
+        const reportBlocks = document.querySelectorAll('.reports-chart-block')
+        console.log(reportBlocks)
+        const allReports = reportBlocks[0].querySelector('span')
+        const doneReports = reportBlocks[1].querySelector('span')
+        allReports.innerText = data1
+        console.log(data1)
+        doneReports.innerText = data2
+        console.log(data1)
 
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -111,6 +131,11 @@
             // Обновляем данные графика
             myChart.data.datasets[0].data = org_list[main_org].allReports;
             myChart.data.datasets[1].data = org_list[main_org].doneReports;
+
+            myChart.data.labels[-1]
+
+            allReports.innerText = org_list[main_org].allReports;
+            doneReports.innerText = org_list[main_org].doneReports;
 
             myChart.update(); // Перерисовываем график
         }

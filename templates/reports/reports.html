@@ -51,14 +51,7 @@
                             <td>-</td>
                         {% endif %}
                         <td class="reports-btn-td">
-                            <select class="status-btn" data-report-id="{{ report.id }}" data-url="{% url 'reports_app:change_status' report.id %}">
-                                {% if report.status == 4 %}
-                                    <option class="status-btn">{% translate 'Выполненно' %}</option>
-                                    <option class="status-btn">{% translate 'Не выполненно' %}</option>
-                                {% else %}
-                                    <option class="status-btn">{% translate 'Не выполненно' %}</option>
-                                    <option class="status-btn">{% translate 'Выполненно' %}</option>
-                                {% endif %}
+                            <select class="status-btn" data-report-id="{{ report.id }}" data-report-status="{{ report.status }}" data-url="{% url 'reports_app:change_status' report.id %}">
                             </select>
                         </td>
                     </tr>

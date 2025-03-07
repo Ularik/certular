@@ -34,27 +34,6 @@
                     <th scope="row">{{ message.pk }}</th>
                     <td>{{ message.description }}</td>
                     <td>{{ message.get_status_display }}</td>
-                    <td>
-                        {% if message.impact_status is not None %}
-                            {{ message.impact_status }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if message.resolution_status is not None %}
-                            {{ message.resolution_status }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if message.summary is not None %}
-                            {{ message.summary }}
-                        {% else %}
-                            -
-                        {% endif %}
-                    </td>
                     <td class="td-btn">
                         <a class="main-btn messages-btn" href="{% url 'message_list' %}">{% trans 'Запросить статус' %}</a>
                     </td>

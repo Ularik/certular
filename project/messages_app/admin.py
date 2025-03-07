@@ -12,12 +12,12 @@ from django.conf import settings
 
 @admin.register(Messages)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user__first_name', 'created_at']
+    list_display = ['id', 'name', 'created_at']
     list_filter = [UserFilter, DateFilter]
     fieldsets = (
-        (None, {'fields': ('id', 'description', 'user', 'file', 'created_at')}),
+        (None, {'fields': ('id', 'name', 'description', 'user', 'file', 'created_at')}),
     )
-    readonly_fields = ['id', 'created_at', 'get_full_name', 'get_number', 'get_email']
+    readonly_fields = ['id', 'user', 'created_at', 'get_full_name', 'get_number', 'get_email']
 
     def get_org_name(self, obj):
         if hasattr(obj, 'organization'):

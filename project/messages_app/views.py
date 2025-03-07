@@ -13,6 +13,7 @@ def send_messages_post(request, *args, **kwargs):
 
     if request.method == 'POST':
         request_body = request.POST
+        print(request_body)
         if request.FILES:
             file_message = request.FILES.get('file')
         else:
@@ -26,6 +27,7 @@ def send_messages_post(request, *args, **kwargs):
                 form_desc_invalid = {"error": "Заполните все поля"}
             elif get_language() == 'ky':
                 form_desc_invalid = {'error': 'Бардык талааларды толтуруңуз'}
+            print('desc null')
             return JsonResponse(form_desc_invalid, status=400)
 
         if not request.user.is_authenticated:
@@ -53,6 +55,7 @@ def send_messages_post(request, *args, **kwargs):
 
             Messages.objects.create(
                 email=request_body['email'],
+                name=request_body['full_name'],
                 phone_number=request_body['phone_number'],
                 description=request_body['description'],
                 file=file_message,
@@ -60,12 +63,14 @@ def send_messages_post(request, *args, **kwargs):
                 domain_name=request_body['domain_name'],
                 hash=request_body['hash']
             )
+            print('Create message')
             return JsonResponse({"success": "Successfully messages"})
         else:
             print('Success!')
             user = request.user
             Messages.objects.create(
                 user=user,
+                name=request_body['full_name'],
                 description=request_body['description'],
                 file=file_message,
                 host_ip=request_body['host_ip'],

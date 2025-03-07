@@ -5,7 +5,7 @@ from .utils import send_message
 from random import randint
 from django.core.cache import cache
 import requests
-
+import os
 
 create_user_signal = Signal()
 
@@ -24,6 +24,6 @@ def telegram_message(sender, instance, created, **kwargs):
     if created:
         message = f'Пользователь: {instance.email} только что отправил запрос на создание'
         response = requests.get(
-            url=f'https://api.telegram.org/bot7695026466:AAEyvshWgmL4K__SFyT0fZXq8jfbeFPWa8E/sendMessage?chat_id=625869232&text={message}')
+            url=f'{os.getenv('TELEGRAM_API')}/sendMessage?chat_id={os.getenv('TELEGRAM_CHAT_ID')}&text={message}')
 
 

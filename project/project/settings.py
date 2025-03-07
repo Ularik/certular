@@ -11,6 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-=v+1e!x(kof(^#cqz%!y5y9o7kgpwwwfnp$f_(0@d-$ld7&p=q"
 
+import dotenv
+dotenv.load_dotenv()
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -88,9 +91,9 @@ AUTH_USER_MODEL = 'accounts_app.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cert_gov',  # Имя вашей базы данных
-        'USER': 'ular',  # Имя вашего пользователя
-        'PASSWORD': 'admin',  # Ваш пароль
+        'NAME': os.getenv('POSTGRES_DB'),  # Имя вашей базы данных
+        'USER': os.getenv('POSTGRES_USER'),  # Имя вашего пользователя
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),  # Ваш пароль
         # 'HOST': 'db',  # docker
         'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
         'PORT': '5432',  # Порт (по умолчанию 5432)
@@ -247,8 +250,8 @@ DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = 'eldarakashka@gmail.com'
-EMAIL_HOST_PASSWORD = 'azmm hlnk eqkl jarj'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 APPEAL_EMAIL = ''

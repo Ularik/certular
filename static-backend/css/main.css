@@ -19387,3 +19387,18 @@ a .header-btn {
     text-decoration: none;
 }
 
+.organs {
+    display: flex;
+
+}
+
+.captcha-modal-window {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}

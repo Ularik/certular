@@ -11,6 +11,7 @@ class Messages(models.Model):
     description = models.TextField(blank=True, null=True, verbose_name='Описание сообщения')
     user = models.ForeignKey('accounts_app.User', blank=True, null=True, on_delete=models.CASCADE,
                              related_name='messages', verbose_name='Пользователь')
+    name = models.CharField(max_length=150, verbose_name='ФИО')
     file = models.FileField(upload_to=content_file_name('Messages'), null=True, blank=True, verbose_name='Файл')
     email = models.EmailField(null=False, blank=False, verbose_name='Email')
     phone_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Мобильный номер',

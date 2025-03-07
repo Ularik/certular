@@ -90,14 +90,6 @@ def page_not_found_view(request, exception):
 
 
 def chart_view(request):
-    # organizations = Organization.objects.all()
-    # reports_stats = {}
-    # for organ in organizations:
-    #     reports = organ.reports_set.all()
-    #     order_by_month = reports.values_list('status', 'created_date__month').annotate(total=Count('id')).order_by('created_date__month')
-    #     # print(order_by_month)  [(3, 2, 1), (4, 2, 1)] status:3; month:2; total:1.
-    #     reports_stats[organ.name] = list(order_by_month)
-
     list_of_month = (Reports.objects.values('created_date__month')
                      .distinct().order_by('created_date__month'))
     list_of_month = list(list_of_month)[-6:]
@@ -108,5 +100,4 @@ def chart_view(request):
             created_date__month=month['created_date__month'])
             .values_list('status', 'organization')
             .annotate(total=Count('id')))))
-    print(data)
     return render(request, "charts/chart.html", {'data': data})

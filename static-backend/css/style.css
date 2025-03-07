@@ -711,8 +711,20 @@
     margin: 15px;
 }
 
+.chart-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.chart-data {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .my-chart {
-    width: 600px;
+    width: 800px;
     height: 100%;
 }
 
@@ -724,4 +736,33 @@
 
 .organs button {
     margin: 10px;
+}
+
+.reports-data {
+    display: flex;
+    gap: 20px;
+}
+
+.reports-chart-block {
+    display: flex;
+    align-items: center;
+}
+
+.reports-chart-block strong {
+    margin-right: 10px;
+}
+
+.captcha-modal-window {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
+
+.content-wrapper {
+    display: none;
 }

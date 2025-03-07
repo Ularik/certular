@@ -17,11 +17,35 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
+      defer
+    ></script>
 </head>
 <body>
 {#start header wrapper#}
 
-<div class="header-wrapper">
+<div class="captcha-modal-window">
+    <div id="myWidget"></div>
+    <script>
+    window.onloadTurnstileCallback = function () {
+      turnstile.render("#myWidget", {
+        sitekey: "0x4AAAAAAA_zZk8YrdxHSfsQ",
+        callback: function (token) {
+          console.log(`Challenge Success ${token}`);
+          setTimeout(() => {
+            document.querySelector('.content-wrapper').style.display = 'block';
+            document.querySelector('.captcha-modal-window').style.display = 'none';
+          }, 2000)
+          console.log('good none');
+        },
+      });
+    };
+    </script>
+</div>
+
+<div class="content-wrapper">
+    <div class="header-wrapper">
     <div class="header-inner-wrapper">
         <div class="my-container">
             <div class="header-top">
@@ -822,7 +846,7 @@
 {% endblock content %}
 {#start floter#}
 
-<div class="footer" style="position: relative">
+    <div class="footer" style="position: relative">
     <div class="my-container">
         <div class="footer-main" style="position: relative; z-index: 10">
             <div class="footer-nav">
@@ -1175,9 +1199,9 @@
     <!--    <a href="https://policies.google.com/privacy">Privacy Policy</a> and<a href="https://policies.google.com/terms">Terms of Service</a> apply.-->
 
 </div>
-<!--up-btn-->
-<div class="btn-up btn-up_hide"></div>
-
+    <!--up-btn-->
+    <div class="btn-up btn-up_hide"></div>
+</div>
 <!--theme-btn-->
 <div class="theme-switcher">
     <div class="theme-switcher-box">

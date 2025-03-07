@@ -1,5 +1,4 @@
 const statusBtns = document.querySelectorAll("select.status-btn")
-
 const statusList = document.querySelectorAll("option.status-btn")
 
 function changeReportStatus(event) {
@@ -29,12 +28,17 @@ function changeReportStatus(event) {
     })
     .then(data => {
         // Обновляем текст ссылки или выполняем другие действия
-        const option = event.target;
+        const selectTag = event.target;
+        const optionsList = selectTag.querySelectorAll('option')
+        console.log(selectTag)
         if (data.status === 4) {
             console.log(data.status);
+            selectTag.value = optionsList[0].value
         } else {
             console.log(data.status);
+            selectTag.value = optionsList[1].value
         }
+        localStorage.setItem(`report-status-${reportId}`, event.target.value); // Сохраняем выбор
     })
     .catch(error => {
         console.error('Ошибка:', error);
@@ -42,6 +46,42 @@ function changeReportStatus(event) {
 }
 
 for (const statusBtn of statusBtns) {
+
+    const optionTag = document.createElement('option')
+    const option2Tag = document.createElement('option')
+    optionTag.classList.add('status-btn')
+    option2Tag.classList.add('status-btn')
+
+    let lang = window.location.pathname;
+
+    let text1 = 'Выполненно'
+    let text2 = 'Не выполненно'
+
+    if (lang.includes('ky')) {
+        text1 = 'Аткарылды'
+        text2 = 'Аткарылбады'
+    } else if (lang.includes('en')) {
+        text1 = 'had done'
+        text2 = 'had not done'
+    }
+    optionTag.innerText = text1
+    option2Tag.innerText = text2
+
+    statusBtn.appendChild(optionTag)
+    statusBtn.appendChild(option2Tag)
+
+    const reportId = statusBtn.getAttribute('data-report-id');
+    const savedValue = localStorage.getItem(`report-status-${reportId}`);
+
+    if (savedValue !== null) {
+        statusBtn.value = savedValue
+    } else {
+        statusBtn.value = parseInt(statusBtn.getAttribute('data-report-status'), 10) === 4
+            ? optionTag.value
+            : option2Tag.value;
+        console.log(statusBtn.value)
+    }
+
     statusBtn.addEventListener('change', (event) => changeReportStatus(event));
 };
 

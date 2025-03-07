@@ -175,7 +175,7 @@ function submitConfirmationCode() {
 const selectDefault = ['file', 'ip', 'domain', 'hash'];
 const selectChangeable = [];
 
-const reportObj = {
+const messageObj = {
     email: '',
     full_name: '',
     description: '',
@@ -415,14 +415,11 @@ if (reportBackdropForm) {
         const errorValid = document.querySelector(`#errorValid-${className}`);
         if (regex.test(value)) {
             if (errorValid) {
-                console.log(value)
                 errorValid.remove();
             }
             value = elem;
 
         } else {
-            console.log(value);
-            console.log(elem);
             value = '';
             validateToolTipReport(domElem, className);
 
@@ -430,36 +427,36 @@ if (reportBackdropForm) {
     }
 
     btnSubmit.addEventListener('click', () => {
-        regexValidReport(regexReportEmail, `reg-email`, reportObj.email, reportBackdropForm.elements.email.value, reportBackdropForm.elements.email);
-        regexValidReport(regexReportFullName, `full_name`, reportObj.full_name, reportBackdropForm.elements.full_name.value, reportBackdropForm.elements.full_name);
-        regexValidReport(regexReportTel, `phone_number`, reportObj.phone_number, reportBackdropForm.elements.phone_number.value, reportBackdropForm.elements.phone_number);
-        regexValidReport(regexReportMessage, `description`, reportObj.description, reportBackdropForm.elements.description.value, reportBackdropForm.elements.description);
+        regexValidReport(regexReportEmail, `reg-email`, messageObj.email, reportBackdropForm.elements.email.value, reportBackdropForm.elements.email);
+        regexValidReport(regexReportFullName, `full_name`, messageObj.full_name, reportBackdropForm.elements.full_name.value, reportBackdropForm.elements.full_name);
+        regexValidReport(regexReportTel, `phone_number`, messageObj.phone_number, reportBackdropForm.elements.phone_number.value, reportBackdropForm.elements.phone_number);
+        regexValidReport(regexReportMessage, `description`, messageObj.description, reportBackdropForm.elements.description.value, reportBackdropForm.elements.description);
     })
 
     reportBackdropForm.addEventListener('change', e => {
         // e.preventDefault()
 
-        reportObj.email = reportBackdropForm.elements.email.value;
-        reportObj.full_name = reportBackdropForm.elements.full_name.value;
-        reportObj.description = reportBackdropForm.elements.description.value;
-        reportObj.phone_number = reportBackdropForm.elements.phone_number.value;
-        reportObj.host_ip = reportBackdropForm.elements.ip?.value || '';
-        reportObj.domain_name = reportBackdropForm.elements.domain?.value || '';
-        reportObj.hash = reportBackdropForm.elements.hash?.value || '';
-        reportObj.file = reportBackdropForm.elements.file?.files[0] || '';
-        reportObj.csrfmiddlewaretoken = csrftokenReport[0].value;
+        messageObj.email = reportBackdropForm.elements.email.value;
+        messageObj.full_name = reportBackdropForm.elements.full_name.value;
+        messageObj.description = reportBackdropForm.elements.description.value;
+        messageObj.phone_number = reportBackdropForm.elements.phone_number.value;
+        messageObj.host_ip = reportBackdropForm.elements.ip?.value || '';
+        messageObj.domain_name = reportBackdropForm.elements.domain?.value || '';
+        messageObj.hash = reportBackdropForm.elements.hash?.value || '';
+        messageObj.file = reportBackdropForm.elements.file?.files[0] || '';
+        messageObj.csrfmiddlewaretoken = csrftokenReport[0].value;
 
-        reportObj.phone_number = reportObj.phone_number.split(' ').join('');
-        reportObj.phone_number = reportObj.phone_number.split(')').join('');
-        reportObj.phone_number = reportObj.phone_number.split('(').join('');
+        messageObj.phone_number = messageObj.phone_number.split(' ').join('');
+        messageObj.phone_number = messageObj.phone_number.split(')').join('');
+        messageObj.phone_number = messageObj.phone_number.split('(').join('');
     })
 
     function onSubmitMessage(event) {
         event.preventDefault();
         const formData = new FormData();
 
-        Object.keys(reportObj).forEach(key => {
-            formData.append(key, reportObj[key])
+        Object.keys(messageObj).forEach(key => {
+            formData.append(key, messageObj[key])
         });
 
         fetch(urlReportBackdropForm, {
@@ -477,8 +474,8 @@ if (reportBackdropForm) {
                 reportBackdropForm.elements.phone_number.value = ''
                 reportBackdropForm.elements.description.value = ''
 
-                reportObj.phone_number = '';
-                reportObj.description = '';
+                messageObj.phone_number = '';
+                messageObj.description = '';
             }
             if (res.status !== 200) return res.json()
         }).then(res => {
