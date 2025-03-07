@@ -21,6 +21,7 @@
       src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
       defer
     ></script>
+
 </head>
 <body>
 {#start header wrapper#}
@@ -1319,8 +1320,7 @@
                         <div class="error errorMsgContactsContacts" id="errorReportModal"></div>
 
                     </div>
-
-                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
+                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha" disabled>
                         {% translate 'Сообщить об инциденте' %}
                     </button>
                 </form>
