@@ -147,7 +147,7 @@ msgstr "Kyrgyz"
 #~ "Спасибо за регистрацию после проверки админом к вам на почту придет "
 #~ "сообщение"
 #~ msgstr ""
-#~ "Thank you for registering, after checking by the admin, a message will be "
+#~ "Thank you for registering, after checking by the admin, you will contacted "
 #~ "sent to your mail"
 
 #~ msgid "Django site admin"

@@ -1,6 +1,6 @@
 const list_items = {{ data }};
 const months = Object.keys(list_items);
-const org_list = {};
+const organization_list = {};
 
 const orgDiv = document.querySelector('.organs')
 
@@ -8,24 +8,24 @@ let index = 0
 for (const month of months) {
     for (const report of list_items[month]) {
 
-        if (!org_list[report[1]]) {
-            org_list[report[1]] = {
+        if (!organization_list[report[1]]) {    # добавляем организацию в список, при отсутствии
+            organization_list[report[1]] = {
                 allReports: [],
                 doneReports: []
             }
         }
 
-        if (org_list[report[1]].allReports.length !== index + 1) {
-            org_list[report[1]].allReports.push(0)
-            org_list[report[1]].doneReports.push(0)
+        if (organization_list[report[1]].allReports.length !== index + 1) {    # увеличиваем счетчик месяца
+            organization_list[report[1]].allReports.push(0)
+            organization_list[report[1]].doneReports.push(0)
         }
 
-        org_list[report[1]].allReports[index] += report[2]
-        if (report[0] === 4) {
-            org_list[report[1]].doneReports[index] += report[2]
+        organization_list[report[1]].allReports[index] += report[2]    # добавляем все отчеты этой организации
+        if (report[0] === 4) {                                         # добавляем только те отчеты, которые выполненны
+            organization_list[report[1]].doneReports[index] += report[2]
         }
     }
-    index++
+    index++    # увеличиваем счетчик месяца на 1, в общем с 1 до 6 для графика нужен список отчетов, где каждый эл это один месяц
 }
 
 const month_convert = {
@@ -36,7 +36,7 @@ const month_convert = {
     5: 'Май'
 }
 
-for (const org_name of Object.keys(org_list)) {
+for (const org_name of Object.keys(organization_list)) {
     const btn = document.createElement('button')
     btn.innerText = org_name
 
@@ -45,8 +45,8 @@ for (const org_name of Object.keys(org_list)) {
     btn.addEventListener('click', () => changeChart(org_name))
 }
 
-let main_org = Object.keys(org_list)[0]
-const chart = org_list[main_org]
+let main_org = Object.keys(organization_list)[0]
+const chart = organization_list[main_org]
 const data1 = chart.allReports
 const data2 = chart.doneReports
 
@@ -65,7 +65,7 @@ const myChart = new Chart(ctx, {
                 tension: 0.4
             },
             {
-                label: 'Расходы ($K)',
+                label: 'Выполненные ($K)',
                 data: data2,
                 borderColor: 'red',
                 backgroundColor: 'rgba(255, 0, 0, 0.2)',
@@ -88,8 +88,8 @@ function changeChart(org) {
     main_org = org;
 
     // Обновляем данные графика
-    myChart.data.datasets[0].data = org_list[main_org].allReports;
-    myChart.data.datasets[1].data = org_list[main_org].doneReports;
+    myChart.data.datasets[0].data = organization_list[main_org].allReports;
+    myChart.data.datasets[1].data = organization_list[main_org].doneReports;
 
     myChart.update(); // Перерисовываем график
 }

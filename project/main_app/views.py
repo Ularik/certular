@@ -1,4 +1,4 @@
-from charset_normalizer.md import annotations
+from django.http import JsonResponse
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect
@@ -8,8 +8,6 @@ from news_app.models import News
 from cooperation_app.models import Cooperation
 from .models import SeoPages
 from django.views import View
-import json
-import locale
 from accounts_app.models import Organization
 from reports_app.models import Reports
 from django.db.models import Count
@@ -57,13 +55,13 @@ class SearchIndex(View):
             context['news'] = news
 
         return render(request, 'main/search.html', context=context)
-#
-#
-# class RobotTxtView(TemplateView):
-#     template_name = 'main/robots.txt'
-#     content_type = 'text/plain'
-#
-#
+
+
+class RobotTxtView(TemplateView):
+    template_name = 'main/robots.txt'
+    content_type = 'text/plain'
+
+
 # class SitemapXmlView(TemplateView):
 #     template_name = 'main/sitemap.html'
 #     content_type = 'application/xml'
@@ -90,14 +88,21 @@ def page_not_found_view(request, exception):
 
 
 def chart_view(request):
+    return render(request, "charts/chart.html")
+
+
+def chart_data(request):
     list_of_month = (Reports.objects.values('created_date__month')
                      .distinct().order_by('created_date__month'))
     list_of_month = list(list_of_month)[-6:]
 
+    organizations_list = list(Organization.objects.values('id', 'name'))
+
     data = {}
+
     for month in list_of_month:
         data[month['created_date__month']] = list(map(list, list(Reports.objects.filter(
             created_date__month=month['created_date__month'])
-            .values_list('status', 'organization')
+            .values_list('status', 'organization__name')
             .annotate(total=Count('id')))))
-    return render(request, "charts/chart.html", {'data': data})
+    return JsonResponse({'result': data, 'org_list': organizations_list})

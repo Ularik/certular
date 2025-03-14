@@ -6,8 +6,15 @@
 <section class="check-reg">
     <div class="my-container">
         <h2 class="check-reg-title">
-            {% trans 'Спасибо за регистрацию после проверки админом к вам на почту придет сообщение' %}
+            {% trans 'Спасибо за регистрацию после проверки администратором с вами свяжутся' %}
         </h2>
     </div>
 </section>
+<script>
+    let urlMain = `${window.location.origin}/${window.location.pathname.split('/')[1]}/`;
+    console.log(urlMain)
+    setTimeout(() => {
+        window.location.replace(urlMain);
+      }, 5000)
+</script>
 {% endblock content %}

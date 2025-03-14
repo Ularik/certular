@@ -28,22 +28,43 @@
 
 <div class="captcha-modal-window">
     <div id="myWidget"></div>
-    <script>
-    window.onloadTurnstileCallback = function () {
-      turnstile.render("#myWidget", {
-        sitekey: "0x4AAAAAAA_zZk8YrdxHSfsQ",
-        callback: function (token) {
-          console.log(`Challenge Success ${token}`);
-          setTimeout(() => {
-            document.querySelector('.content-wrapper').style.display = 'block';
-            document.querySelector('.captcha-modal-window').style.display = 'none';
-          }, 2000)
-          console.log('good none');
-        },
-      });
-    };
-    </script>
 </div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script>
+    function initTurnstile() {
+        // Проверяем, есть ли уже сохранённый токен
+        const savedToken = localStorage.getItem("cf_turnstile_token");
+        if (savedToken) {
+            console.log("Captcha already passed, showing content...");
+            document.querySelector(".content-wrapper").style.display = "block";
+            document.querySelector(".captcha-modal-window").style.display = "none";
+            return;
+        }
+
+        // Рендерим капчу, если токена нет
+        turnstile.render("#myWidget", {
+            sitekey: "0x4AAAAAAA_zZk8YrdxHSfsQ",
+            callback: function (token) {
+                console.log(`Challenge Success ${token}`);
+                localStorage.setItem("cf_turnstile_token", token); // Сохраняем токен
+                setTimeout(() => {
+                    document.querySelector(".content-wrapper").style.display = "block";
+                    document.querySelector(".captcha-modal-window").style.display = "none";
+                }, 1000);
+            },
+        });
+    }
+
+    window.onloadTurnstileCallback = initTurnstile;
+
+    // Проверяем, загружен ли Turnstile, инициализируем
+    if (document.readyState === "complete") {
+        initTurnstile();
+    } else {
+        window.addEventListener("load", initTurnstile);
+    }
+</script>
 
 <div class="content-wrapper">
     <div class="header-wrapper">
@@ -408,22 +429,11 @@
                                         <p style="color: #ef8422; font-weight: 700; margin: 0">
                                             {{ request.user.first_name }} {{ request.user.last_name }}
                                         </p>
-                                        <li>
-                                            <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
-                                                {% translate 'Мои сообщения' %}
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="{% url 'reports_app:reports' %}">
                                                 {% translate 'Отчеты' %}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
-                                                {% translate 'Дашборд' %}
                                             </a>
                                         </li>
                                         <li>
@@ -577,20 +587,8 @@
                                         </p>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
-                                                {% trans 'Мои сообщения' %}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item dropdown-item-enter"
                                                href="{% url 'reports_app:reports' %}">
                                                 {% trans 'Отчеты' %}
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item dropdown-item-enter"
-                                               href="#">
-                                                {% trans 'Дашборд' %}
                                             </a>
                                         </li>
                                         <li>
@@ -663,11 +661,6 @@
                         <div class="error" id="errorMsgEnter"></div>
                         <div>
                             <button class="enter__form-btn">{% trans 'Войти' %}</button>
-                        </div>
-                        <div class="enter__btn-keyClock-box">
-                            <a class="enter__form-key-clock" href='#'>
-                                {% trans 'Войти через Key-Clock' %}?
-                            </a>
                         </div>
                         <a class="enter__form-forgot" href="#">
                             {% trans 'Забыли логин или пароль' %}?
@@ -918,17 +911,6 @@
                     <p class="footer-nav-info-title">{% trans 'Личный кабинет' %}</p>
                     {% if request.user.is_authenticated %}
                         <ul class="footer-nav-info-text-box">
-                            <li class="footer-nav-info-text">
-                                <a class="footer-link" href="#">
-                                    {% trans 'Мои сообщения' %}
-                                </a>
-                            </li>
-                            <li class="footer-nav-info-text">
-
-                                <a class="footer-link" href="#">
-                                    {% trans 'Дашборд' %}
-                                </a>
-                            </li>
                             <li class="footer-nav-info-text">
                                 <a class="dropdown-item dropdown-item-enter"
                                    href="{% url 'reports_app:reports' %}">

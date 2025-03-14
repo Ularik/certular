@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.contrib.auth.models import Group
 from django.core.validators import MaxLengthValidator, RegexValidator
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 TELEPHONE = RegexValidator(r'\^+\d+$', 'Only numeric characters are allowed.')
@@ -16,7 +17,7 @@ class Groups(Group):
 
 
 class Organization(models.Model):
-    name = models.TextField(blank=False, null=False, verbose_name=_('Наименование'))
+    name = models.TextField(verbose_name=_('Наименование'), unique=True)
 
     def __str__(self):
         admin = _("Админ")
@@ -26,6 +27,12 @@ class Organization(models.Model):
         db_table = 'Organization'
         verbose_name = _('Организация')
         verbose_name_plural = _('Организации')
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Проверяем только при создании
+            if Organization.objects.filter(name__iexact=self.name).exists():
+                raise ValidationError(_("Организация с таким именем уже существует"))
+        super().save(*args, **kwargs)
 
 
 class UserManager(BaseUserManager):
