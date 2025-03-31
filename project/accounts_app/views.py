@@ -12,15 +12,10 @@ import re
 import logging
 from django.core.cache import cache
 from .signals import create_user_signal
+from .utils import check_recaptcha
 
 
 logger = logging.getLogger(__name__)
-
-
-@login_required
-def my_view(request):
-    ...
-
 
 @login_required(login_url='/accounts/login/')
 def logout_view(request):
@@ -74,6 +69,12 @@ class RegistrationAPIView(View):
     def post(self, request, *args, **kwargs):
         request_body = json.loads(request.body)
 
+        recaptcha_response = request_body.get('token')
+        recaptcha_result = check_recaptcha(recaptcha_response)
+
+        if recaptcha_result.get('error'):
+            return JsonResponse(recaptcha_result)
+
         organization = Organization.objects.filter(id=int(request_body['organization'])).first()
         request_body['organization'] = organization
 
@@ -114,8 +115,7 @@ class RegistrationAPIView(View):
             create_user_signal.send(sender=User, instance=user)
             return JsonResponse({"success": "Successfully registration"})
         except(BaseException) as e:
-            print('Ошибка!!!')
-            print(e)
+
             some_wrong = {'error': 'Заполните все поля'}
             if get_language() == 'en':
                 some_wrong = {"error": "Fill in all the fields"}

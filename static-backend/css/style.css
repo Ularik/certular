@@ -673,7 +673,7 @@
     background-color: #0c2340; /* Темно-синяя линия */
 }
 
-.main-title {
+.notification-title {
     text-align: center; /* Выравнивание по центру */
     max-width: 900px; /* Ограничение ширины */
     margin: 0 auto; /* Центрирование блока */
@@ -764,5 +764,16 @@
 }
 
 .content-wrapper {
-    display: none;
+    display: block;
+}
+
+.modal-body {
+    color: #0d6efd;
+}
+
+.sort-btn {
+    display: inline;
+    padding: 4px;
+    border: None;
+    font-size: 12px;
 }

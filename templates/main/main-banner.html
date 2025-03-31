@@ -9,10 +9,9 @@
         <p class="banner-left__text">
             {% trans 'Государственного комитета национальной безопасности Кыргызской Республики' %}
         </p>
-        <button class="main-btn report-btn" data-bs-toggle="modal"
+        <button id="captcha-open" class="main-btn report-btn" data-bs-toggle="modal"
                 data-bs-target="#reportBackdrop">{% trans 'Сообщить об инциденте' %}</button>
       </div>
-
       <div class="banner-right">
         <img src="{% static '/img/banner.webp' %}" alt="">
       </div>
@@ -20,3 +19,9 @@
     </div>
   </div>
 </div>
+<!--<script>-->
+<!--    function viewCaptcha() {-->
+<!--        const modalCaptcha = document.getElementById("captcha-container")-->
+<!--        modalCaptcha.style.display = block;-->
+<!--    }-->
+<!--</script>-->

@@ -2,6 +2,8 @@ from django.http import JsonResponse
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from about_app.models import About, CenterTasks
 from cyber_security_app.models import CyberSecurity
 from news_app.models import News
@@ -62,20 +64,6 @@ class RobotTxtView(TemplateView):
     content_type = 'text/plain'
 
 
-# class SitemapXmlView(TemplateView):
-#     template_name = 'main/sitemap.html'
-#     content_type = 'application/xml'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['news'] = News.objects.all()
-#         context['cyber_security'] = CyberSecurity.objects.all()
-#         context['about'] = About.objects.first()
-#         context['trainings'] = Trainings.objects.all()
-#         context['legislation'] = Legislation.objects.first()
-#         return context
-#
-#
 def page_not_found_view(request, exception):
     for lang_code, _ in settings.LANGUAGES:
         if request.path.startswith('/' + lang_code):
@@ -87,6 +75,8 @@ def page_not_found_view(request, exception):
         return redirect('/' + settings.LANGUAGE_CODE + request.path)
 
 
+@login_required(login_url='/')
+@user_passes_test(lambda u: u.is_admin, login_url='/')
 def chart_view(request):
     return render(request, "charts/chart.html")
 

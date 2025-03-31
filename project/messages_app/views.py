@@ -1,10 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views.generic import ListView
-from accounts_app.models import User
+from accounts_app.utils import check_recaptcha
+import requests
 from .models import Messages
+from django.conf import settings
 from django.utils.translation import get_language
 import re
+import json
 
 
 pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"
@@ -13,7 +16,13 @@ def send_messages_post(request, *args, **kwargs):
 
     if request.method == 'POST':
         request_body = request.POST
-        print(request_body)
+
+        recaptcha_response = request_body.get('token')
+        recaptcha_result = check_recaptcha(recaptcha_response)
+
+        if recaptcha_result.get('error'):
+            return JsonResponse(recaptcha_result)
+
         if request.FILES:
             file_message = request.FILES.get('file')
         else:
@@ -27,7 +36,7 @@ def send_messages_post(request, *args, **kwargs):
                 form_desc_invalid = {"error": "Заполните все поля"}
             elif get_language() == 'ky':
                 form_desc_invalid = {'error': 'Бардык талааларды толтуруңуз'}
-            print('desc null')
+
             return JsonResponse(form_desc_invalid, status=400)
 
         if not request.user.is_authenticated:
@@ -57,7 +66,7 @@ def send_messages_post(request, *args, **kwargs):
                 email=request_body['email'],
                 name=request_body['full_name'],
                 phone_number=request_body['phone_number'],
-                description=request_body['description'],
+                description=request_body['description'].strip(),
                 file=file_message,
                 host_ip=request_body['host_ip'],
                 domain_name=request_body['domain_name'],
@@ -89,5 +98,25 @@ class MessageListOnUser(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Messages.objects.filter(user=self.request.user)
-        # print(queryset)
         return queryset
+
+
+def verify_captcha(request):
+    if request.method == "POST":
+        print('Проверка капчи')
+        data = json.loads(request.body)
+        token = data.get("token")
+
+        url = "https://www.google.com/recaptcha/api/siteverify"
+        payload = {
+            "secret": settings.RECAPTCHA_PRIVATE_KEY,
+            "response": token
+        }
+        result = requests.post(url, data=payload).json()
+
+        if result.get("success"):
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, "message": "Капча не пройдена!"})
+
+    return JsonResponse({"success": False, "message": "Неверный метод запроса."})

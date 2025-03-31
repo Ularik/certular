@@ -23,6 +23,12 @@
     </div>
 
     <script>
+
+window.onload = function() {
+    localStorage.clear(); // Очищает весь localStorage
+    console.log('clear localstorage');
+};
+
 async function getData(url) {
     try {
         const response = await fetch(url);
@@ -39,6 +45,7 @@ async function getData(url) {
 async function fetchData() {
     const url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/chart_data/`;
     const data = await getData(url);
+    localStorage.setItem(`data`, data); // Сохраняем выбор
     const organizations_list = data.org_list;
     const list_items = data.result;
 
@@ -125,7 +132,7 @@ async function fetchData() {
 
         const allReportsChart = org_list[org_name]?.allReports.at(-1) ?? 0;
         allReports.innerText = allReportsChart;
-        doneReports.innerText = (allReportsChart / 100) * (org_list[org_name]?.doneReports.at(-1) ?? 0);
+        doneReports.innerText = (org_list[org_name]?.doneReports.at(-1) ?? 0) * 100 / allReportsChart;
 
         myChart.update();
     }
@@ -134,9 +141,8 @@ async function fetchData() {
 fetchData();
 
 function getMonthName(monthNumber, locale = "ru-RU") {
-    return new Intl.DateTimeFormat(locale, { month: "long" }).format(new Date(2024, monthNumber, 1));
+    return new Intl.DateTimeFormat(locale, { month: "long" }).format(new Date(2024, monthNumber - 1, 1));
 }
-
 
     </script>
 </div>

@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     #another modules
     'tinymce',
     'parler',
+    'django_recaptcha',
+    'rest_framework',
 
     # my apps
     'db_logger',
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
     'legislation_app',
     'messages_app',
     'reports_app',
+    'e_learning',
 ]
 
 MIDDLEWARE = [
@@ -255,3 +258,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 APPEAL_EMAIL = ''
+
+# captcha google
+RECAPTCHA_PUBLIC_KEY = '6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU'
+RECAPTCHA_PRIVATE_KEY = '6LfXqfYqAAAAAH2TlBQKUXx5TtPTW8dF5uIfyP58'

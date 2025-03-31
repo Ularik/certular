@@ -7,6 +7,7 @@ from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.http import FileResponse, JsonResponse
 from django.utils import timezone
+from .serializers import ReportsListSerializer
 
 
 logger = logging.getLogger(__name__)
@@ -20,13 +21,23 @@ class ReportsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = Reports.objects.filter(organization=self.request.user.organization)
-        reports_not_watched = queryset.filter(watched_date__isnull=True)    # 1 - статус: Отправлен
-        if reports_not_watched:
-            reports_not_watched.update(status=2)
-            reports_not_watched.update(watched_date=datetime.now())
-            logger.info(f'{self.request.user} просмотрел страницу отчетов сейчас в - '
-                        f'{datetime.now().strftime('%d:%m:%Y - %H:%M')}')
         return queryset
+
+
+def get_reports_list(request):
+    queryset = Reports.objects.filter(organization=request.user.organization)
+
+    reports_not_watched = queryset.filter(watched_date__isnull=True)  # 1 - статус: Не просмотрен (Только отправлен)
+    if reports_not_watched:
+        reports_not_watched.update(status=2)
+        reports_not_watched.update(watched_date=datetime.now())
+        logger.info(f'{request.user} просмотрел страницу отчетов сейчас в - '
+                    f'{datetime.now().strftime('%d:%m:%Y - %H:%M')}')
+
+    serializer = ReportsListSerializer(queryset, many=True)
+    print(serializer.data)
+
+    return JsonResponse(serializer.data, safe=False, status=200)
 
 
 @csrf_exempt
@@ -45,23 +56,24 @@ def download_report(request, report_id):
     response['Content-Disposition'] = f'attachment; filename="{report.file.name}"'
     return response
 
+
 def change_report_status(request, report_id):
 
-    if request.method == 'POST':
-        report = Reports.objects.filter(id=report_id).first()
-        report.read_date = timezone.now()
+    print(request.method)
+    report = Reports.objects.filter(id=report_id).first()
+    report.read_date = timezone.now()
 
-        if report.status == 4:
-            report.status = 3
-            report.save()
-            return JsonResponse({'status': 3}, status=200)
-
-        report.status = 4
+    if report.status == 4:
+        report.status = 3
         report.save()
-        print(report.name, report.created_date, report.organization)
-        print(f'Статус изменен на: {report.status}')
+        return JsonResponse({'status': 3}, status=200)
 
-        return JsonResponse({'status': 4}, status=200)
+    report.status = 4
+    report.save()
+    print(f'Статус изменен на: {report.status}')
+
+    return JsonResponse({'status': 4}, status=200)
+
 
 
 def forbidden_auth(request):

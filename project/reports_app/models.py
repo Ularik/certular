@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
 from accounts_app.models import Organization
 
 
 User = get_user_model()
+
 
 class Reports(models.Model):
     user = models.ForeignKey(to=User, null=True, blank=True, verbose_name='Пользователь', on_delete=models.CASCADE)

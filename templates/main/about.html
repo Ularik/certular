@@ -11,7 +11,7 @@
                         {{ about.description|truncatechars:340 }}
                     {% endautoescape %}
                 </p>
-                <a class="main-link main-link-about-us" href="#">{% trans 'Читать Постановление' %} ></a>
+                <a class="main-link main-link-about-us" href="{% url 'about:about_detail' %}">{% trans 'Читать Постановление' %} ></a>
             </div>
 
             <div class="about__tasks">

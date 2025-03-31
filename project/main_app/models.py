@@ -2,7 +2,22 @@ from django.db import models
 from parler.models import TranslatableModel, TranslatedFields
 
 
-# Create your models here.
+class ChartLink(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)  # Например, для формирования URL
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        # Метод для получения URL проекта
+        from django.urls import reverse
+        return reverse('main_app:chart')
+
+    class Meta:
+        verbose_name = 'Граффик'
+        verbose_name_plural = 'Граффики'
+
 
 class SeoPages(TranslatableModel):
     translations = TranslatedFields(

@@ -16,55 +16,13 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback"
-      defer
-    ></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU" async defer></script>
 
 </head>
 <body>
 {#start header wrapper#}
-
-<div class="captcha-modal-window">
-    <div id="myWidget"></div>
-</div>
-
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<script>
-    function initTurnstile() {
-        // Проверяем, есть ли уже сохранённый токен
-        const savedToken = localStorage.getItem("cf_turnstile_token");
-        if (savedToken) {
-            console.log("Captcha already passed, showing content...");
-            document.querySelector(".content-wrapper").style.display = "block";
-            document.querySelector(".captcha-modal-window").style.display = "none";
-            return;
-        }
-
-        // Рендерим капчу, если токена нет
-        turnstile.render("#myWidget", {
-            sitekey: "0x4AAAAAAA_zZk8YrdxHSfsQ",
-            callback: function (token) {
-                console.log(`Challenge Success ${token}`);
-                localStorage.setItem("cf_turnstile_token", token); // Сохраняем токен
-                setTimeout(() => {
-                    document.querySelector(".content-wrapper").style.display = "block";
-                    document.querySelector(".captcha-modal-window").style.display = "none";
-                }, 1000);
-            },
-        });
-    }
-
-    window.onloadTurnstileCallback = initTurnstile;
-
-    // Проверяем, загружен ли Turnstile, инициализируем
-    if (document.readyState === "complete") {
-        initTurnstile();
-    } else {
-        window.addEventListener("load", initTurnstile);
-    }
-</script>
 
 <div class="content-wrapper">
     <div class="header-wrapper">
@@ -747,7 +705,7 @@
 
                             <div>
 
-                                <button type="submit" class="registration__form-btn g-recaptcha" id="reg-btn">
+                                <button type="submit" class="registration__form-btn" id="reg-btn">
                                     {% trans 'Зарегистрироваться' %}
                                 </button>
                             </div>
@@ -1157,8 +1115,8 @@
                 <div class="footer-address">
                     <p class="footer-address-title">{% trans 'Адрес' %}:</p>
                     <p class="footer-address-text">
-<!--                         get_contacts as contact %}-->
-<!--                         contact.address }}-->
+                         {% get_contacts as contact %}
+                         {{ contact.address }}
                     </p>
                 </div>
 
@@ -1292,7 +1250,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="indicators-btn">
                             <button class="indicators-add-btn">
                                 + {% trans 'Добавить индикатор' %}
@@ -1302,7 +1259,7 @@
                         <div class="error errorMsgContactsContacts" id="errorReportModal"></div>
 
                     </div>
-                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha" disabled>
+                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
                         {% translate 'Сообщить об инциденте' %}
                     </button>
                 </form>
@@ -1311,9 +1268,31 @@
             <div class="triangle-top-left-report-modal"></div>
             <div class="triangle-bot-right-report-modal"></div>
             <div class="triangle-bot-left-report-modal"></div>
+            <div id="mess-loader" class="loader-wrapper">
+                <div class="loader"></div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Модальное окно уведомления -->
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalLabel">Уведомление</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Сообщение успешно отправлено!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">ОК</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Модальное окно Partners-->
 <div class="footer-partners">
     <div class="modal fade partners-modal" id="partnerStaticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -1358,33 +1337,8 @@
 
     </div>
 </div>
-
-<!-- Modal input code -->
-<div class="modal fade" id="authCodeModal" tabindex="-1" aria-labelledby="authCodeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="authCodeModalLabel">Введите код аутентификации</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id="authCodeInput" class="form-control" placeholder="Введите код" required>
-                <div id="errorMessage" class="text-danger mt-2"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                <button type="button" id="submitAuthCode" class="btn btn-primary" data-url="{% url 'accounts_app:check' %}">Отправить</button>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- End modal -->
 {#end footer#}
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous">
-</script>
 
 <script>
     // ВХОД ЗАПРОС
@@ -1435,6 +1389,7 @@
         })
     })
 </script>
+
 <script src="{% static 'js/modules/send_message.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 </body>

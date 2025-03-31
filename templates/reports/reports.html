@@ -13,58 +13,28 @@
             <div class="reports-block-header">
                 <p class="reports-title">{% translate 'Отчёты' %}</p>
             </div>
-            {% if reports %}
 
-            <div class="reports-block-inner-table">
-                <table class="table reports-block-table">
+            <div class="reports-block-inner-table" id="reportsContainer">
+                <table class="table reports-block-table" id="reportsTable">
                     <thead>
-                    <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">{% translate 'Название' %}</th>
-                        <th scope="col">{% translate 'Организация' %}</th>
-                        <th scope="col">{% translate 'Пользователь' %}</th>
-                        <th scope="col">{% translate 'Дата' %}</th>
-                        <th scope="col">{% translate 'Документ' %}</th>
-                        <th scope="col">{% translate 'Статус' %}</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Название</th>
+                            <th scope="col">Организация</th>
+                            <th scope="col">Пользователь</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Документ</th>
+                            <th scope="col">Статус  <button class="sort-btn">Сортировать</button></th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    {% for report in reports %}
-                    <tr>
-                        <th scope="row">{{ forloop.counter }}</th>
-                        <td>{% translate report.name %}</td>
-                        <td>{{ report.organization }}</td>
-                        <td>
-                            {% if report.user is not None %}
-                                {{ report.user.username }}
-                            {% else %}
-                                -
-                            {% endif %}
-                        </td>
-                        <td>{{ report.created_date }}</td>
-                        {% if report.file %}
-                        <td class="reports-btn-td">
-                            <a class="main-btn reports-download" href="{% url 'reports_app:download_report' report.id %}"
-                               download>{% trans 'Скачать файл' %}</a>
-                        </td>
-                        {% else %}
-                            <td>-</td>
-                        {% endif %}
-                        <td class="reports-btn-td">
-                            <select class="status-btn" data-report-id="{{ report.id }}" data-report-status="{{ report.status }}" data-url="{% url 'reports_app:change_status' report.id %}">
-                            </select>
-                        </td>
-                    </tr>
-                    {% endfor %}
+                    <tbody id="reportsBody">
+                        <!-- Сюда будет вставляться содержимое -->
                     </tbody>
                 </table>
-              {% else %}
-              <div class="reports-text-none">{% trans 'У вас нет уведомлений' %}</div>
             </div>
         </div>
-        {% endif %}
 
     </div>
-    <script src="{% static 'js/modules/change_status.js' %}"></script>
+    <script src="{% static 'js/modules/reports.js' %}"></script>
 </section>
 {% endblock content %}

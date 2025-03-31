@@ -2,6 +2,7 @@ from django import template
 from django.conf import settings
 
 from accounts_app.forms import MyRegisterUserForm
+from e_learning.models import ELearning
 from contacts_app.models import Contacts
 from cyber_security_app.models import *
 from about_app.models import About
@@ -30,7 +31,8 @@ def get_about_desktop():
 
 @register.simple_tag()
 def get_e_learning_desktop():
-    return {'link': 'http://213.109.67.188'}
+    e_learning = ELearning.objects.all().first()
+    return {'link': e_learning.link}
 
 
 
