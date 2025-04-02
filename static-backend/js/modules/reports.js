@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <th scope="row">${index + 1}</th>
             <td>${report.name || '-'}</td>
             <td>${report.organization?.name || '-'}</td>
-            <td>${report.user?.username || '-'}</td>
+            <td>${report.user?.first_name || '-'}</td>
             <td>${report.created_date || '-'}</td>
             ${report.file ?
                 `<td class="reports-btn-td">
@@ -61,10 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             let url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/reports/reports_list/`;
 
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                credentials: 'include',      // Для аутентификации
+                cache: 'no-store',          // Отключает кэширование
+            });
             if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
             const reports = await response.json();
             const data = {}
+            console.log(reports);
             reports.forEach((report) => {
                 data[report.id] = report
             });
@@ -162,6 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const reportsString = localStorage.getItem('reports');
         if (reportsString) {
             const reports = JSON.parse(reportsString);
+            console.log(reports);
             await fillTable(reports);
         }
     })();

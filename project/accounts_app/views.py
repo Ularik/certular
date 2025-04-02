@@ -52,18 +52,6 @@ def login_view(request):
         return JsonResponse(error_message, status=401)
 
 
-def my_view(request):
-    username = request.POST["username"]
-    password = request.POST["password"]
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        # Redirect to a success page.
-        ...
-    else:
-        ...
-
-
 class RegistrationAPIView(View):
 
     def post(self, request, *args, **kwargs):
@@ -143,7 +131,7 @@ def check_registration(request):
             user.save()
             return JsonResponse({'success': 'True'})
         else:
-            return JsonResponse({'error': 'False'})
+            return JsonResponse({'error': 'Код подтверждения не верен'})
 
 
 def answer_after_reg(request):

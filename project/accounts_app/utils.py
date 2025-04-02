@@ -21,7 +21,7 @@ def check_recaptcha(recaptcha_response):
     # Запрос к Google API для проверки
     url = "https://www.google.com/recaptcha/api/siteverify"
     payload = {
-        "secret": '6LfXqfYqAAAAAH2TlBQKUXx5TtPTW8dF5uIfyP58',
+        "secret": settings.RECAPTCHA_PRIVATE_KEY,
         "response": recaptcha_response
     }
     response = requests.post(url, data=payload)

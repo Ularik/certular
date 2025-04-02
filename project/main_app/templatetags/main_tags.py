@@ -32,7 +32,11 @@ def get_about_desktop():
 @register.simple_tag()
 def get_e_learning_desktop():
     e_learning = ELearning.objects.all().first()
-    return {'link': e_learning.link}
+    if e_learning:
+        link = e_learning.link
+    else:
+        link = '#'
+    return {'link': link}
 
 
 

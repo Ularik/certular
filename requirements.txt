@@ -5,6 +5,7 @@ Pillow
 django-tinymce
 django-parler
 django-resized
+django_recaptcha
 thehive4py
 redis
 six

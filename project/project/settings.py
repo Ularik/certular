@@ -17,7 +17,7 @@ dotenv.load_dotenv()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['10.100.191.8', 'localhost']
 
 
 # Application definition
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.cache.FetchFromCacheMiddleware",
+    # "django.middleware.cache.FetchFromCacheMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -260,5 +260,5 @@ EMAIL_USE_SSL = True
 APPEAL_EMAIL = ''
 
 # captcha google
-RECAPTCHA_PUBLIC_KEY = '6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU'
-RECAPTCHA_PRIVATE_KEY = '6LfXqfYqAAAAAH2TlBQKUXx5TtPTW8dF5uIfyP58'
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
