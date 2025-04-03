@@ -38,6 +38,10 @@ def get_e_learning_desktop():
         link = '#'
     return {'link': link}
 
+@register.simple_tag()
+def get_cyber_threat_database():
+    link = 'http://10.100.191.7/'
+    return {'link': link}
 
 
 @register.simple_tag()

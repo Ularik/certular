@@ -576,7 +576,9 @@
 
                         </ul>
 
-                        <button class="header-btn report-btn"><a href="#">{% translate 'Единая база киберугроз' %}</a>
+                        <button class="header-btn report-btn">
+                            {% get_cyber_threat_database as database %}
+                            <a href="{{ database.link }}">{% translate 'Единая база киберугроз' %}</a>
                         </button>
                     </nav>
                 </div>
