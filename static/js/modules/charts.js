@@ -1,96 +1,120 @@
-const list_items = {{ data }};
-const months = Object.keys(list_items);
-const organization_list = {};
 
-const orgDiv = document.querySelector('.organs')
+window.onload = function() {
+    localStorage.clear(); // Очищает весь localStorage
+    console.log('clear localstorage');
+};
 
-let index = 0
-for (const month of months) {
-    for (const report of list_items[month]) {
-
-        if (!organization_list[report[1]]) {    # добавляем организацию в список, при отсутствии
-            organization_list[report[1]] = {
-                allReports: [],
-                doneReports: []
-            }
+async function getData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Ошибка HTTP: ${response.status}`);
         }
-
-        if (organization_list[report[1]].allReports.length !== index + 1) {    # увеличиваем счетчик месяца
-            organization_list[report[1]].allReports.push(0)
-            organization_list[report[1]].doneReports.push(0)
-        }
-
-        organization_list[report[1]].allReports[index] += report[2]    # добавляем все отчеты этой организации
-        if (report[0] === 4) {                                         # добавляем только те отчеты, которые выполненны
-            organization_list[report[1]].doneReports[index] += report[2]
-        }
+        return await response.json(); // Если ожидаем JSON
+    } catch (error) {
+        console.error("Ошибка запроса:", error);
+        return null; // Чтобы избежать ошибок, если запрос не удался
     }
-    index++    # увеличиваем счетчик месяца на 1, в общем с 1 до 6 для графика нужен список отчетов, где каждый эл это один месяц
 }
 
-const month_convert = {
-    2: 'Январь',
-    3: 'Февраль',
-    3: 'Март',
-    4: 'Апрель',
-    5: 'Май'
-}
+async function fetchData() {
+    const url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/chart_data/`;
+    const data = await getData(url);
+    localStorage.setItem(`data`, data); // Сохраняем выбор
+    const organizations_list = data.org_list;
+    const list_items = data.result;
 
-for (const org_name of Object.keys(organization_list)) {
-    const btn = document.createElement('button')
-    btn.innerText = org_name
+    if (!list_items) return; // Если ошибка при получении данных
 
-    orgDiv.appendChild(btn)
+    const months = [];
+    const org_list = {};
+    const orgDiv = document.querySelector(".organs");
 
-    btn.addEventListener('click', () => changeChart(org_name))
-}
+    let index = 0;
+    for (const month of Object.keys(list_items)) {
+        months.push(getMonthName(month));
+        for (const report of list_items[month]) {
+            const org_name = report[1]; // name организации
 
-let main_org = Object.keys(organization_list)[0]
-const chart = organization_list[main_org]
-const data1 = chart.allReports
-const data2 = chart.doneReports
-
-const ctx = document.getElementById('myChart').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: months,
-        datasets: [
-            {
-                label: 'Отчеты (шт)',
-                data: data1,
-                borderColor: 'blue',
-                backgroundColor: 'rgba(0, 0, 255, 0.2)',
-                fill: true,
-                tension: 0.4
-            },
-            {
-                label: 'Выполненные ($K)',
-                data: data2,
-                borderColor: 'red',
-                backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                fill: true,
-                tension: 0.4
+            if (!org_list[org_name]) {
+                org_list[org_name] = { allReports: [], doneReports: [] };
             }
-        ]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+
+            if (org_list[org_name].allReports.length !== index + 1) {
+                org_list[org_name].allReports.push(0);
+                org_list[org_name].doneReports.push(0);
+            }
+
+            org_list[org_name].allReports[index] += report[2];   // count организации
+            if (report[0] === 4) {
+                org_list[org_name].doneReports[index] += report[2];
             }
         }
+        index++;
     }
-});
 
-function changeChart(org) {
-    main_org = org;
+    for (const org_id_name of organizations_list) {
+        const btn = document.createElement("button");
+        btn.innerText = org_id_name.name;
+        btn.classList.add("main-btn");
 
-    // Обновляем данные графика
-    myChart.data.datasets[0].data = organization_list[main_org].allReports;
-    myChart.data.datasets[1].data = organization_list[main_org].doneReports;
+        orgDiv.appendChild(btn);
 
-    myChart.update(); // Перерисовываем график
+        btn.addEventListener("click", () => changeChart(org_id_name.name));
+    }
+
+    const reportBlocks = document.querySelectorAll(".reports-chart-block");
+    const allReports = reportBlocks[0].querySelector("span");
+    const doneReports = reportBlocks[1].querySelector("span");
+
+    const ctx = document.getElementById("myChart").getContext("2d");
+    const myChart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: months,
+            datasets: [
+                {
+                    label: "Отчеты (шт)",
+                    data: [],
+                    borderColor: "blue",
+                    backgroundColor: "rgba(0, 0, 255, 0.2)",
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: "Выполненные (шт)",
+                    data: [],
+                    borderColor: "red",
+                    backgroundColor: "rgba(255, 0, 0, 0.2)",
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    await changeChart(Object.keys(org_list)[0]);
+
+    async function changeChart(org_name) {
+        myChart.data.datasets[0].data = org_list[org_name]?.allReports ?? [];
+        myChart.data.datasets[1].data = org_list[org_name]?.doneReports ?? [];
+
+        const allReportsChart = org_list[org_name]?.allReports.at(-1) ?? 0;
+        allReports.innerText = allReportsChart;
+        doneReports.innerText = (org_list[org_name]?.doneReports.at(-1) ?? 0) * 100 / allReportsChart;
+
+        myChart.update();
+    }
 }
-</script>
+
+fetchData();
+
+function getMonthName(monthNumber, locale = "ru-RU") {
+    return new Intl.DateTimeFormat(locale, { month: "long" }).format(new Date(2024, monthNumber - 1, 1));
+}
