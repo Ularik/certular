@@ -170,6 +170,11 @@ STATIC_URL = '/static/'
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
+
+    # Если ты за прокси:
+    USE_X_FORWARDED_HOST = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, '..', 'static'),
