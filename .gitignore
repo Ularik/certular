@@ -2,5 +2,4 @@
 .idea
 .env
 media
-project/project/__pycache__
-project/main_app/templatetags/__pycache__/
+**/__pycache__/

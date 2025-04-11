@@ -7,7 +7,7 @@ class Contacts(TranslatableModel):
         address=models.CharField(max_length=255, verbose_name='Адрес', null=True)
     )
 
-    phone = models.CharField(max_length=255, verbose_name='Телефон', null=True)
+    phone = models.CharField(max_length=255, verbose_name='Телефон', null=True, blank=True)
     email = models.EmailField(verbose_name='email', null=True)
 
     class Meta:
