@@ -17,7 +17,7 @@ dotenv.load_dotenv()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.8', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
 
 
 # Application definition
