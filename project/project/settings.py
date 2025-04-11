@@ -164,10 +164,6 @@ PARLER_LANGUAGES = {
 
 USE_I18N = True
 
-LANGUAGE_COOKIE_NAME = 'django_language'
-LANGUAGE_COOKIE_SECURE = True  # обязательно, если у тебя всё через https
-LANGUAGE_COOKIE_PATH = '/'
-
 USE_TZ = True
 
 STATIC_URL = '/static/'
