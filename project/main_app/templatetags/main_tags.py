@@ -40,7 +40,7 @@ def get_e_learning_desktop():
 
 @register.simple_tag()
 def get_cyber_threat_database():
-    link = 'http://10.100.191.7/'
+    link = 'http://base.cert.gov.kg/'
     return {'link': link}
 
 
