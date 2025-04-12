@@ -34,7 +34,7 @@
                     <a href="{% url 'main_app:index' %}" class="logo-link-img">
                         <img src="{% static 'img/logo.webp' %}" alt="logo" class="logo-img">
                         <p class="logo-text">
-                            {% translate 'Координационный центр по обеспечению кибербезопасности' %}
+                            {% trans 'Координационный центр по обеспечению кибербезопасности' %}
                         </p>
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                             </div>
 
                             <p class="eye-text">
-                                {% translate 'Версия для слабовидящих' %}
+                                {% trans 'Версия для слабовидящих' %}
                             </p>
                         </div>
 
@@ -84,7 +84,7 @@
                                     <path d="M7.5029 0.98053C5.5138 0.98053 3.60625 1.7707 2.19961 3.17721C0.793127 4.58382 0.00292969 6.49161 0.00292969 8.4805C0.00292969 10.4694 0.793096 12.3771 2.19961 13.7838C3.60622 15.1903 5.51401 15.9805 7.5029 15.9805C9.49179 15.9805 11.3995 15.1903 12.8062 13.7838C14.2127 12.3772 15.0029 10.4694 15.0029 8.4805C15.0029 7.16392 14.6563 5.87067 13.998 4.73048C13.3398 3.5903 12.393 2.64358 11.2529 1.98529C10.1127 1.327 8.81941 0.980469 7.50284 0.980469L7.5029 0.98053ZM13.345 5.80198H10.7923C10.419 4.48231 9.77085 3.25638 8.8905 2.20472C9.85981 2.42104 10.766 2.85835 11.5386 3.48217C12.3112 4.10614 12.9294 4.90002 13.345 5.80201V5.80198ZM7.47351 14.6572C6.49116 13.6787 5.75732 12.4792 5.33328 11.1591H9.67258C9.24771 12.4795 8.51302 13.679 7.52972 14.6572C7.51286 14.6693 7.49025 14.6693 7.47351 14.6572ZM5.06279 10.0877C4.86632 9.02525 4.86632 7.93587 5.06279 6.87341H9.94301C10.1395 7.93587 10.1395 9.02525 9.94301 10.0877H5.06279ZM1.0743 8.48056C1.07346 7.93839 1.14186 7.39826 1.27782 6.87341H3.97517C3.80035 7.93768 3.80035 9.02344 3.97517 10.0877H1.27782C1.14186 9.56286 1.07346 9.02274 1.0743 8.48056ZM7.5029 2.29319C7.51235 2.28948 7.52287 2.28948 7.53232 2.29319C8.51611 3.2748 9.25007 4.47815 9.67255 5.80198H5.33325C5.75811 4.48157 6.49281 3.28209 7.47611 2.3039C7.48341 2.29709 7.49297 2.29326 7.5029 2.29314L7.5029 2.29319ZM11.0307 6.87341H13.728C13.9995 7.92764 13.9995 9.03348 13.728 10.0877H11.0307C11.2055 9.02344 11.2055 7.93768 11.0307 6.87341ZM6.11555 2.20472C5.23615 3.25702 4.58814 4.48271 4.21375 5.80198H1.66108C2.07661 4.89998 2.69486 4.10611 3.46745 3.48214C4.24005 2.85829 5.14624 2.42103 6.11555 2.20472ZM1.66114 11.1591H4.21381C4.58713 12.4788 5.23526 13.7047 6.11561 14.7564C5.1463 14.5401 4.24011 14.1028 3.46752 13.4789C2.69492 12.855 2.07667 12.0611 1.66114 11.1591V11.1591ZM8.89331 14.7564C9.77161 13.7039 10.4187 12.4782 10.7924 11.1591H13.345C12.9295 12.0611 12.3112 12.855 11.5387 13.479C10.7661 14.1028 9.85987 14.5401 8.89056 14.7564L8.89331 14.7564Z"
                                           fill="#fff"/>
                                 </svg>
-                                <p class="header-lang-text">{% translate 'Русский' %}</p>
+                                <p class="header-lang-text">{% trans 'Русский' %}</p>
                                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
                                      xmlns="http://www.w3.org/2000/svg" class="svg-dark-lang-arrow">
                                     <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
@@ -122,7 +122,7 @@
                     <div class="element-input-box">
                         <form method="get" action="{% url 'main_app:search_index' %}">
                             <input type="text" name="search" class="element-input header-input-search"
-                                   placeholder="{% translate 'Поиск' %}" aria-label="Поиск"
+                                   placeholder="{% trans 'Поиск' %}" aria-label="Поиск"
                                    aria-describedby="basic-addon1">
                             <button type="submit" class="header-btn-search">
                                 <svg class='svg-search-white' width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -143,7 +143,7 @@
                 <div class="element-input-box element-input-box-mobile">
                     <form method="get" action="{% url 'main_app:search_index' %}">
                         <input type="text" name="search" class="element-input header-input-search"
-                               placeholder="{% translate 'Поиск' %}" aria-label="Поиск"
+                               placeholder="{% trans 'Поиск' %}" aria-label="Поиск"
                                aria-describedby="basic-addon1">
                         <button type="submit" class="header-btn-search">
                             <svg class='svg-search-white' width="17" height="18" viewBox="0 0 17 18" fill="none"
@@ -193,7 +193,7 @@
                               fill="white"/>
                     </svg>
                     <span class="icon-eye-text-mobile">
-                        {% translate 'Версия для слабовидящих' %}
+                        {% trans 'Версия для слабовидящих' %}
                     </span>
                 </button>
 
@@ -207,7 +207,7 @@
                                   fill="white"/>
                         </svg>
                         <span class="icon-eye-text-mobile">
-                            {% translate 'Версия для слабовидящих' %}
+                            {% trans 'Версия для слабовидящих' %}
                         </span>
                     </button>
                     <form action="{% url 'set_language' %}" method="post" class="nav-item dropdown header-form-lang">
@@ -260,7 +260,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% translate 'О Центре' %}
+                                    {% trans 'О Центре' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -275,12 +275,12 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'about:about_detail' %}">
-                                            {% translate 'О КЦОКБ' %}
+                                            {% trans 'О КЦОКБ' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'legislation_app:legislation' %}">
-                                            {% translate 'Законодательство' %}
+                                            {% trans 'Законодательство' %}
                                         </a>
                                     </li>
                                     <li>
@@ -288,7 +288,7 @@
                                            href="{% url 'cooperation_app:cooperations' %}"
                                            data-bs-toggle="modal"
                                            data-bs-target="#partnerStaticBackdrop">
-                                            {% translate 'Сотрудничество' %}
+                                            {% trans 'Сотрудничество' %}
                                         </a>
                                     </li>
                                 </ul>
@@ -296,7 +296,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% translate 'События' %}
+                                    {% trans 'События' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -311,18 +311,13 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a class="dropdown-item" href="{% url 'news:news' %}">
-                                            {% translate 'Новости' %}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            {% translate 'Тренинги' %}
+                                            {% trans 'Новости' %}
                                         </a>
                                     </li>
                                     <li>
                                         {% get_e_learning_desktop as e_learning %}
                                         <a class="dropdown-item" href="{{ e_learning.link }}">
-                                            {% translate 'E-learning' %}
+                                            {% trans 'E-learning' %}
                                         </a>
                                     </li>
                                 </ul>
@@ -330,7 +325,7 @@
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% translate 'Кибербезопасноть' %}
+                                    {% trans 'Кибербезопасноть' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -356,20 +351,20 @@
                             </li>
                             <li class="nav-item dropdown menu-main-link">
                                 <a class="header-contact header-contact-mobile" href="{% url 'news:notification_detail' %}">
-                                    {% translate 'Нотификация' %}
+                                    {% trans 'Нотификация' %}
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown menu-main-link">
                                 <a href="{% url 'contacts:contact_detail' %}"
                                    class="header-contact header-contact-mobile">
-                                    {% translate 'Контакты' %}
+                                    {% trans 'Контакты' %}
                                 </a>
                             </li>
 
                             <li class="nav-item dropdown menu-main-link">
                                 <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {% translate 'Личный кабинет' %}
+                                    {% trans 'Личный кабинет' %}
                                     <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
@@ -391,13 +386,13 @@
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="{% url 'reports_app:reports' %}">
-                                                {% translate 'Отчеты' %}
+                                                {% trans 'Отчеты' %}
                                             </a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item dropdown-item-enter"
                                                href="{% url 'accounts_app:logout' %}">
-                                                {% translate 'Выйти' %}
+                                                {% trans 'Выйти' %}
                                             </a>
                                         </li>
                                     {% else %}
@@ -405,7 +400,7 @@
                                             <a class="dropdown-item dropdown-item-enter enter-link-modal"
                                                data-bs-toggle="modal"
                                                data-bs-target="#enterStaticBackdrop" href="#">
-                                                {% translate 'Вход в систему' %}
+                                                {% trans 'Вход в систему' %}
                                             </a>
                                         </li>
                                         <!-- Кнопка-триггер модального окна Регистрация-->
@@ -413,7 +408,7 @@
                                             <a class="dropdown-item dropdown-item-reg reg-link-modal"
                                                data-bs-toggle="modal"
                                                data-bs-target="#registerStaticBackdrop" href="#">
-                                                {% translate 'Регистрация' %}
+                                                {% trans 'Регистрация' %}
                                             </a>
                                         </li>
                                     {% endif %}
@@ -434,7 +429,7 @@
                             <li class="nav-item dropdown header-nav-item">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    {% translate 'О Центре' %}
+                                    {% trans 'О Центре' %}
                                     <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
@@ -445,17 +440,17 @@
 <!--                                     get_about_desktop as about_desktop %}-->
                                     <li>
                                         <a class="dropdown-item" href="{% url 'about:about_detail' %}">
-                                            {% translate 'О КЦОКБ' %}
+                                            {% trans 'О КЦОКБ' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{% url 'legislation_app:legislation' %}">
-                                            {% translate 'Законодательство' %}
+                                            {% trans 'Законодательство' %}
                                         </a>
                                     </li>
                                     <li><a class="dropdown-item dropdown-partners-item partners-link-modal"
                                            href="{% url 'cooperation_app:cooperations' %}">
-                                        {% translate 'Сотрудничество' %}</a></li>
+                                        {% trans 'Сотрудничество' %}</a></li>
                                 </ul>
                             </li>
 
@@ -477,14 +472,9 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
-                                            {% translate 'Тренинги' %}
-                                        </a>
-                                    </li>
-                                    <li>
                                         {% get_e_learning_desktop as e_learning %}
                                         <a class="dropdown-item" href="{{ e_learning.link }}">
-                                            {% translate 'E-learning' %}
+                                            {% trans 'E-learning' %}
                                         </a>
                                     </li>
                                 </ul>
@@ -578,7 +568,7 @@
 
                         <button class="header-btn report-btn">
                             {% get_cyber_threat_database as database %}
-                            <a href="{{ database.link }}">{% translate 'Единая база киберугроз' %}</a>
+                            <a href="{{ database.link }}">{% trans 'Единая база киберугроз' %}</a>
                         </button>
                     </nav>
                 </div>
@@ -831,14 +821,9 @@
                             <a href="{% url 'news:news' %}" class="footer-link">{% trans 'Новости' %}</a>
                         </li>
                         <li class="footer-nav-info-text">
-                            <a href="#" class="footer-link">
-                                {% trans 'Тренинги' %}
-                            </a>
-                        </li>
-                        <li class="footer-nav-info-text">
                             {% get_e_learning_desktop as e_learning %}
                             <a class="dropdown-item" href="{{ e_learning.link }}">
-                                {% translate 'E-learning' %}
+                                {% trans 'E-learning' %}
                             </a>
                         </li>
                     </ul>
@@ -855,16 +840,6 @@
                             </li>
                         {% endfor %}
                     </ul>
-                </div>
-
-                <div class="footer-nav-info">
-                    <a href="{% url 'news:notification_detail' %}"
-                       class="footer-nav-info-title footer-nav-info-title-contacts">{% trans 'Нотификация' %}</a>
-                </div>
-
-                <div class="footer-nav-info">
-                    <a href="{% url 'contacts:contact_detail' %}"
-                       class="footer-nav-info-title footer-nav-info-title-contacts">{% trans 'Контакты' %}</a>
                 </div>
 
                 <div class="footer-nav-info">
@@ -1109,7 +1084,7 @@
 
 
                         <p class="footer-bottom-logo-text">
-                            {% translate 'Координационный центр по обеспечению кибербезопасности' %}
+                            {% trans 'Координационный центр по обеспечению кибербезопасности' %}
                         </p>
                     </a>
                 </div>
@@ -1123,12 +1098,12 @@
                 </div>
 
                 <div class="footer-contacts">
-                    <p class="footer-contacts-title">{% translate 'Контакты' %}:</p>
+                    <p class="footer-contacts-title">{% trans 'Контакты' %}:</p>
 <!--                    <a href="tel:996312 000001" class="footer-phone">-->
-<!--                        {% translate 'тел' %}: {{ contact.phone }}-->
+<!--                        {% trans 'тел' %}: {{ contact.phone }}-->
 <!--                    </a>-->
                     <a href="mailto:Cert@cert.gov.kg" target="_blank" class="footer-email">
-                        {% translate 'email' %}: {{ contact.email }}
+                        {% trans 'email' %}: {{ contact.email }}
                     </a>
                 </div>
 
@@ -1262,7 +1237,7 @@
 
                     </div>
                     <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
-                        {% translate 'Сообщить об инциденте' %}
+                        {% trans 'Сообщить об инциденте' %}
                     </button>
                 </form>
 
@@ -1324,7 +1299,7 @@
 
                             <div class="partners-card-link-wrapper">
                                 <a href="{{ cooperation.link }}" class="partners-card-link">
-                                    {% translate 'Посетить сайт' %}
+                                    {% trans 'Посетить сайт' %}
                                 </a>
                             </div>
                         </div>

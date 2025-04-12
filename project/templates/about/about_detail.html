@@ -9,7 +9,7 @@
     {% if about_page.meta_tag_title is not None %}
         {{ about_page.meta_tag_title }}
     {% else %}
-        {% translate 'О Центре' %}
+        {% trans 'О Центре' %}
     {% endif %}
 {% endblock title %}
 {% block content %}
@@ -23,7 +23,7 @@
 
                     </div>
                     <div class="about__top-left">
-                        <h1 class="about__title">{% translate 'О Центре' %}</h1>
+                        <h1 class="about__title">{% trans 'О Центре' %}</h1>
                         <div class="about__text">
                             {% autoescape off %}
                                 {{ about.description }}
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="about__bottom">
-                    <h1 class="about__bottom-title">{% translate 'Задачи Центра' %}</h1>
+                    <h1 class="about__bottom-title">{% trans 'Задачи Центра' %}</h1>
                     <ul class="about__bottom-list">
                         {% for center_task in center_tasks %}
                             <li class="about__bottom-list-item">
