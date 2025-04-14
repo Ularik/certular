@@ -103,7 +103,7 @@ class RegistrationAPIView(View):
             create_user_signal.send(sender=User, instance=user)
             return JsonResponse({"success": "Successfully registration"})
         except(BaseException) as e:
-
+            logger.info(e, exc_info=True)
             some_wrong = {'error': 'Заполните все поля'}
             if get_language() == 'en':
                 some_wrong = {"error": "Fill in all the fields"}
