@@ -101,6 +101,7 @@ class RegistrationAPIView(View):
             cache.set(request_body['number'], user)
             request.session['number'] = request_body['number']
             request.session['email'] = request_body['email']
+            print('Cейчас должны отправить сигнал')
             create_user_signal.send(sender=User, instance=user)
             return JsonResponse({"success": "Successfully registration"})
         except(BaseException) as e:

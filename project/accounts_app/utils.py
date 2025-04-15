@@ -8,6 +8,7 @@ def send_message(account_email, message):
     from_email = settings.EMAIL_HOST_USER
     to = account_email
     try:
+        print('Отправляем сообщение с кодом')
         send_mail(from_name, message, from_email, [to])
     except BadHeaderError:
         print('bad email')
