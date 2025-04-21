@@ -58,7 +58,7 @@ class RegistrationAPIView(View):
         request_body = json.loads(request.body)
 
         recaptcha_response = request_body.get('token')
-        print(recaptcha_response)
+
         recaptcha_result = check_recaptcha(recaptcha_response)
 
         if recaptcha_result.get('error'):
