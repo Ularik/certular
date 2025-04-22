@@ -26,16 +26,12 @@ def check_recaptcha(recaptcha_response):
         "secret": settings.RECAPTCHA_PRIVATE_KEY,
         "response": recaptcha_response
     }
-    print('Далее секрет кей и токен из формочки:')
-    print(payload)
-    print()
     response = requests.post(url, data=payload)
     result = response.json()
 
     # Проверка результата
     if not result.get("success"):
         error_codes = result.get("error-codes", [])
-        print(result)
         return {"error": "Ошибка reCAPTCHA", "error_codes": error_codes}
     else:
         score = result.get("score")  # Оценка от 0.0 до 1.0
