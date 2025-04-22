@@ -26,7 +26,6 @@ class ReportsListView(LoginRequiredMixin, ListView):
 
 def get_reports_list(request):
     queryset = Reports.objects.filter(organization=request.user.organization)
-    print(request.user.organization)
 
     reports_not_watched = queryset.filter(watched_date__isnull=True)  # 1 - статус: Не просмотрен (Только отправлен)
     if reports_not_watched:
@@ -36,7 +35,6 @@ def get_reports_list(request):
                     f'{datetime.now().strftime('%d:%m:%Y - %H:%M')}')
 
     serializer = ReportsListSerializer(queryset, many=True)
-    print(serializer.data)
     response = JsonResponse(serializer.data, safe=False, status=200)
     response['Cache-Control'] = 'no-store'
     return response
@@ -61,7 +59,6 @@ def download_report(request, report_id):
 
 def change_report_status(request, report_id):
 
-    print(request.method)
     report = Reports.objects.filter(id=report_id).first()
     report.read_date = timezone.now()
 

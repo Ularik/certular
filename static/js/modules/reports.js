@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${report.name || '-'}</td>
             <td>${report.organization?.name || '-'}</td>
             <td>${report.user?.first_name || '-'}</td>
-            <td>${report.created_date || '-'}</td>
+            <td>${report.created_date ? new Date(report.created_date).toLocaleString() : '-'}</td>
             ${report.file ?
                 `<td class="reports-btn-td">
                     <a class="main-btn reports-download"

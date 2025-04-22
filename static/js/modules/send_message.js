@@ -106,7 +106,6 @@ regForm.addEventListener('change', (e) => {
 
 function onSubmitReg(event) {
     event.preventDefault();
-    console.log('Send message');
 
     const loaderWrapper = document.querySelector('#registerStaticBackdrop .loader-wrapper');
     loaderWrapper.style.display = 'flex';
@@ -167,7 +166,6 @@ if (confBtn) {
 }
 
 function submitConfirmationCode() {
-    console.log("send code function");
     const code = document.getElementById('confirmation_code').value;
     const data = {
         'code': code,
