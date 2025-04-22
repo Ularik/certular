@@ -254,11 +254,11 @@ DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = '10.100.191.3'
-EMAIL_PORT = 465
+EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+EMAIL_USE_TLS = True                # включаем STARTTLS
+EMAIL_USE_SSL = False
 APPEAL_EMAIL = ''
 
 # captcha google
