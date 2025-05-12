@@ -15,46 +15,9 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', 'created_at']
     list_filter = [UserFilter, DateFilter]
     fieldsets = (
-        (None, {'fields': ('id', 'name', 'description', 'user', 'file', 'created_at')}),
+        (None, {'fields': ('id', 'name', 'description', 'user', 'phone_number', 'file', 'created_at')}),
     )
-    readonly_fields = ['id', 'user', 'created_at', 'get_full_name', 'get_number', 'get_email']
+    readonly_fields = ['id', 'user', 'created_at', 'email']
 
-    def get_org_name(self, obj):
-        if hasattr(obj, 'organization'):
-            return f'{obj.user.organization.name}'
-        else:
-            return f'Без организации'
-
-    get_org_name.short_description = 'Организация'
-
-    def get_full_name(self, obj):
-        if obj.user:
-            l_name = obj.user.last_name
-            patr = obj.user.patronymic
-            if not obj.user.last_name:
-                l_name = ''
-            if not obj.user.patronymic:
-                patr = ''
-            return f'{obj.user.first_name} {l_name} {patr}'
-        else:
-            return f'{obj.full_name}'
-
-    get_full_name.short_description = 'ФИО пользователя'
-
-    def get_number(self, obj):
-        if obj.user:
-            return f'+{obj.user.number}'
-        else:
-            return f'+{obj.phone_number}'
-
-    get_number.short_description = 'Мобильный номер пользователя'
-
-    def get_email(self, obj):
-        if obj.user:
-            return f'{obj.user.email}'
-        else:
-            return f'{obj.email}'
-
-    get_email.short_description = 'Почта пользователя'
 
 
