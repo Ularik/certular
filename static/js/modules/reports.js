@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для генерации HTML строки таблицы
     function createReportRow(report, index) {
         return `
-            <th scope="row">${index + 1}</th>
+            <th scope="row">${index}</th>
             <td>${report.name || '-'}</td>
             <td>${report.organization?.name || '-'}</td>
             <td>${report.user?.first_name || '-'}</td>

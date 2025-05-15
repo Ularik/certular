@@ -17,7 +17,7 @@ class ReportsListView(LoginRequiredMixin, ListView):
     queryset = Reports.objects.all()
     template_name = 'reports/reports.html'
     context_object_name = 'reports'
-    login_url = 'forbidden'
+    login_url = '/ru/'
 
     def get_queryset(self):
         queryset = Reports.objects.filter(organization=self.request.user.organization)
