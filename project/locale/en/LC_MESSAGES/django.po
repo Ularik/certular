@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-12 09:54+0600\n"
+"POT-Creation-Date: 2025-05-15 10:53+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,8 +206,8 @@ msgid "Remove"
 msgstr ""
 
 #: .\templates\base.html:15
-msgid "КЦКБ"
-msgstr "CCCS"
+msgid "КЦОКБ"
+msgstr ""
 
 #: .\templates\base.html:37 .\templates\base.html:1087
 #: .\templates\contacts\contacts_detail.html:16
@@ -229,10 +229,8 @@ msgstr "Search"
 
 #: .\templates\base.html:278 .\templates\base.html:443
 #: .\templates\base.html:802
-#, fuzzy
-#| msgid "О КЦОКБ"
-msgid "About CCCS"
-msgstr "About CCCS"
+msgid "О КЦОКБ"
+msgstr ""
 
 #: .\templates\base.html:283 .\templates\base.html:448
 #: .\templates\base.html:806
@@ -421,6 +419,12 @@ msgstr "Report"
 msgid "инциденте"
 msgstr "Incident"
 
+#: .\templates\base.html:1143 .\templates\main\report.html:8
+#, fuzzy
+#| msgid "Кибербезопасность"
+msgid "кибербезопасности"
+msgstr "Cybersecurity"
+
 #: .\templates\base.html:1155 .\templates\contacts\contacts_detail.html:56
 msgid "ФИО"
 msgstr "Full Name"
@@ -463,10 +467,18 @@ msgstr "Add indicator"
 
 #: .\templates\base.html:1240 .\templates\main\main-banner.html:13
 #: .\templates\main\report.html:13
-msgid "Сообщить об инциденте"
+#, fuzzy
+#| msgid "Сообщить об инциденте"
+msgid "Сообщить о киберинциденте"
 msgstr "Report Incident"
 
-#: .\templates\base.html:1302 .\templates\cooperations\cooperation_list.html:43
+#: .\templates\base.html:1245
+#, fuzzy
+#| msgid "Описание"
+msgid "Внимание!"
+msgstr "Description"
+
+#: .\templates\base.html:1309 .\templates\cooperations\cooperation_list.html:43
 #: .\templates\main\partners.html:40 .\templates\main\partners.html:87
 msgid "Посетить сайт"
 msgstr "Visit site"
@@ -575,6 +587,10 @@ msgstr ""
 msgid "Координационный Центр по Обеспечению Кибербезопасности"
 msgstr "Coordination Centre on Cybersecurity"
 
+#: .\templates\main\main-banner.html:14
+msgid "Сообщить об инциденте"
+msgstr "Report Incident"
+
 #: .\templates\main\news.html:7
 msgid "Новости и События"
 msgstr "News and Events"
@@ -602,10 +618,16 @@ msgid "Смотреть всех партнеров"
 msgstr "See all partners"
 
 #: .\templates\main\report.html:10
+#, fuzzy
+#| msgid ""
+#| "Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных "
+#| "или атаки. Реагирование на инциденты - важная часть обеспечения "
+#| "кибербезопасности и защиты ваших данных и систем от угроз."
 msgid ""
-"Здесь вы можете нам сообщить о киберинцидентах, таких как утечка данных или "
-"атаки. Реагирование на инциденты - важная часть обеспечения "
-"кибербезопасности и защиты ваших данных и систем от угроз."
+"Здесь вы можете нам сообщить об инцидентах кибербезопасности, таких как "
+"утечка данных или прекращение работы сервисов, вызванное кибератаками. "
+"Реагирование на инциденты - важная часть обеспечения кибербезопасности и "
+"защиты ваших данных и систем от угроз."
 msgstr ""
 "Please use this platform to notify us of cyber incidents, including data "
 "breaches or attacks. Incident response is an important part of ensuring "
@@ -825,6 +847,14 @@ msgstr "Upcoming training courses"
 #: .\templates\trainings\trainings_list.html:36
 msgid "Прошедшие"
 msgstr "Post training courses"
+
+#~ msgid "КЦКБ"
+#~ msgstr "CCCS"
+
+#, fuzzy
+#~| msgid "О КЦОКБ"
+#~ msgid "About CCCS"
+#~ msgstr "About CCCS"
 
 #~ msgid "Войти через Key-Clock"
 #~ msgstr "Login with Key-Clock"
