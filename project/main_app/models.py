@@ -32,3 +32,4 @@ class SeoPages(TranslatableModel):
         db_table = 'seo_pages'
         verbose_name = 'Сео страница'
         verbose_name_plural = 'Сео страница'
+

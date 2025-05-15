@@ -1128,6 +1128,23 @@
     </div>
 </div>
 
+<!--MODAL PRE REPORT-->
+<div class="modal fade" id="preReportBackdrop" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                {% get_cyber_incident as incident %}
+                {{ incident.description }}
+            </div>
+            <button class="main-btn report-btn" data-bs-toggle="modal"
+                data-bs-target="#reportBackdrop">{% trans 'Сообщить о киберинциденте' %}</button>
+        </div>
+    </div>
+</div>
+
 <!--MODAL REPORT-->
 <div class="modal fade" id="reportBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1140,7 +1157,7 @@
 
                 <form class="report_form" id="form_send_message" action="{% url 'messages:send_message' %}" method="post">
                     {% csrf_token %}
-                    <p class="report-form-title">{% trans 'Сообщить об' %} <span>{% trans 'инциденте' %}</span></p>
+                    <p class="report-form-title">{% trans 'Сообщить об' %} <span>{% trans 'инциденте' %} {% trans 'кибербезопасности' %}</span></p>
                     <div class="main-block-input report__form-block">
                         <label for="email" class="form-label main-label">{% trans 'Email' %}*</label>
                         <input type="email" class="form-control" id="email"
@@ -1237,9 +1254,16 @@
 
                     </div>
                     <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
-                        {% trans 'Сообщить об инциденте' %}
+                        {% trans 'Сообщить о киберинциденте' %}
                     </button>
                 </form>
+
+                <div class="pre-report" id="preReport">
+                    <p class="report-form-title">{% trans 'Внимание!' %}</p>
+                    {% get_cyber_incident as incident %}
+                    {{ incident.description|safe }}<br>
+                    <button type="button" class="main-btn">Перейти к инциденту</button>
+                </div>
 
             </div>
             <div class="triangle-top-left-report-modal"></div>

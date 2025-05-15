@@ -210,6 +210,9 @@ let indicators = [];
 let countReport = 'count-1';
 
 const sendMessForm = document.querySelector('#form_send_message')
+const preReportBackdrop = document.querySelector('#preReport');
+const reportBackdropOpen = document.querySelector('#preReport .main-btn');
+const reportBackdrop = document.getElementById('reportBackdrop')
 const reportBackdropForm = document.querySelector('#reportBackdrop .report_form');
 const reportBackdropFormBlocks = reportBackdropForm.querySelectorAll('.report__form-block');
 const reportBtnAdd = document.querySelector('#reportBackdrop .indicators-btn .indicators-add-btn');
@@ -470,6 +473,16 @@ if (reportBackdropForm) {
         messageObj.phone_number = messageObj.phone_number.split('(').join('');
     })
 
+    function preReportContinue() {
+        sendMessForm.style.display = 'block';
+        preReportBackdrop.style.display = 'none';
+    }
+
+    reportBackdrop.addEventListener('hidden.bs.modal', function () {
+        sendMessForm.style.display = 'none';
+        preReportBackdrop.style.display = 'block';
+    });
+
     function onSubmitMessage(event) {
         event.preventDefault();
 
@@ -525,6 +538,8 @@ if (reportBackdropForm) {
           });
         });
     }
+
+    reportBackdropOpen.addEventListener('click', preReportContinue);
     reportBackdropForm.addEventListener('submit', onSubmitMessage);
     console.log('добавлен обработчик для отправки сообщений');
 };

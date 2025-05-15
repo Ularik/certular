@@ -19402,3 +19402,13 @@ a .header-btn {
     height: 100vh;
     background-color: white;
 }
+
+#reportBackdrop .report_form {
+    display: none;
+}
+
+.pre-report {
+    max-width: 800px;
+    max-height: 700px;
+    padding: 0 45px 130px 55px
+}

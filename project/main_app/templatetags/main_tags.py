@@ -12,6 +12,10 @@ register = template.Library()
 
 
 @register.simple_tag()
+def get_cyber_incident():
+    return CyberIncident.objects.all().first()
+
+@register.simple_tag()
 def get_cyber_security():
     return CyberSecurity.objects.all()
 

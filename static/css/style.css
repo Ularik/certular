@@ -777,3 +777,7 @@
     border: None;
     font-size: 12px;
 }
+
+#reportBackdrop .report_form {
+    display: none;
+}

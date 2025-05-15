@@ -1,6 +1,6 @@
 from django.contrib import admin
 from parler.admin import TranslatableAdmin
-from .models import CyberSecurity
+from .models import CyberSecurity, CyberIncident
 
 
 @admin.register(CyberSecurity)
@@ -12,6 +12,20 @@ class AboutAdmin(TranslatableAdmin):
                 'name',
                 'description',
                 'image',
+                'created_at',
+            )
+        }),
+    )
+    readonly_fields = ['created_at']
+
+
+@admin.register(CyberIncident)
+class IncidentAdmin(TranslatableAdmin):
+    list_display = ['language_column']
+    fieldsets = (
+        (None, {
+            'fields': (
+                'description',
                 'created_at',
             )
         }),

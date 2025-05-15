@@ -23,3 +23,16 @@ class CyberSecurity(TranslatableModel):
     def get_absolute_url(self):
         return reverse('cyber_security:cyber_security', kwargs={'pk': self.pk})
 
+
+class CyberIncident(TranslatableModel):
+    translations = TranslatedFields(
+        description=HTMLField(verbose_name='Описание'),
+    )
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+
+    class Meta:
+        verbose_name = 'Инцидент кибербезопасности'
+        verbose_name_plural = 'Инциденты кибербезопаснсти'
+
+    def __str__(self):
+        return f'Cyber incident'
