@@ -57,6 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    async function filterStatus0Reports(reports) {
+        const filteredReports = []
+
+        Object.keys(reports).forEach(reportKey => {
+            if (reports[reportKey].status !== 4) {
+                filteredReports.push(reports[reportKey])
+            }
+        })
+
+        return filteredReports
+
+    }
+
     async function loadReports() {
         try {
             let url = `${window.location.origin}/${window.location.pathname.split('/')[1]}/reports/reports_list/`;
@@ -68,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
             const reports = await response.json();
             const data = {}
-            console.log(reports);
             reports.forEach((report) => {
                 data[report.id] = report
             });
@@ -117,11 +129,13 @@ document.addEventListener('DOMContentLoaded', function() {
         tbody.innerHTML = '';
 
         if (Object.keys(reports).length === 0) {
-            const noReportsDiv = document.createElement('div');
-            noReportsDiv.className = 'reports-text-none';
-            noReportsDiv.textContent = 'У вас нет уведомлений';
-            document.getElementById('reportsContainer').appendChild(noReportsDiv);
-            document.getElementById('reportsTable').style.display = 'none';
+            if (!document.querySelector('.reports-block-inner-table .reports-text-none')) {
+                const noReportsDiv = document.createElement('div');
+                noReportsDiv.className = 'reports-text-none';
+                noReportsDiv.textContent = 'У вас нет уведомлений';
+                document.getElementById('reportsContainer').appendChild(noReportsDiv);
+                document.getElementById('reportsTable').style.display = 'none';
+            }
             return;
         }
 
@@ -133,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (sort === 'DONE') {
                 if (status !== 4) {
                     const row = document.createElement('tr');
-                    index++
+                    index++;
                     row.innerHTML = createReportRow(reports[reportKey], index);
                     tbody.appendChild(row);
                 } else {
@@ -161,24 +175,79 @@ document.addEventListener('DOMContentLoaded', function() {
         setupStatusButtons(statusBtns);
     }
 
+    let reports;   // объявили переменную reports
+
     (async () => {
         await loadReports();
         const reportsString = localStorage.getItem('reports');
         if (reportsString) {
-            const reports = JSON.parse(reportsString);
-            console.log(reports);
+            reports = JSON.parse(reportsString);
             await fillTable(reports);
         }
     })();
 
-    const sortBtn = document.querySelector('.sort-btn');
+    const sortBtn = document.getElementById('sort-btn');
     if (sortBtn) {
         sortBtn.addEventListener('click', async () => {
-            const reportsString = localStorage.getItem('reports');
-            if (reportsString) {
-                const reports = JSON.parse(reportsString);
+            if (reports) {
                 await fillTable(reports, 'DONE');
             }
         });
+    }
+    const filterBtn = document.getElementById('zeroReports-btn');
+    let filteredReports;
+    if (filterBtn) {
+        filterBtn.addEventListener('click', async () => {
+            if (reports) {
+                filteredReports = await filterStatus0Reports(reports)
+                await fillTable(filteredReports);
+            }
+        });
+    };
+
+    const downloadZipBtn = document.getElementById('download-btn')
+    console.log(downloadZipBtn);
+    if (downloadZipBtn) {
+        downloadZipBtn.addEventListener('click', async () => {
+            filteredReports = await filterStatus0Reports(reports)
+            if (filteredReports.length > 0) {
+                console.log('добавляем обработчик для кнопки');
+                const notDownladedReportsID = []
+                Object.keys(filteredReports).forEach(reportKey => {
+                    if (filteredReports[reportKey].status !== 4) {
+                        notDownladedReportsID.push(filteredReports[reportKey].id)
+                    }
+                });
+                console.log(notDownladedReportsID);
+                const downloadUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}/reports/download-zip/`
+                if (notDownladedReportsID.length > 0) {
+                    const response = await fetch(downloadUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(notDownladedReportsID)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`не удалось скачать файл`);
+                    }
+
+                    // Получаем zip-файл как Blob
+                    const blob = await response.blob();
+
+                    // Создаём временную ссылку для скачивания
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'archive.zip'; // имя файла
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                    console.log('Скачали файл')
+                }
+            }
+        })
     }
 });

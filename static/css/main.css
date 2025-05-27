@@ -19065,7 +19065,7 @@ textarea {
 .reports-title {
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 40px;
+
 }
 
 .reports-block-inner-table {
@@ -19411,4 +19411,9 @@ a .header-btn {
     max-width: 800px;
     max-height: 700px;
     padding: 0 45px 130px 55px
+}
+
+.btns-pannel {
+    display: flex;
+    justify-content: flex-end;
 }

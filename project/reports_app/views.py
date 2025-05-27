@@ -8,6 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import FileResponse, JsonResponse
 from django.utils import timezone
 from .serializers import ReportsListSerializer
+import zipfile
+import json
+from django.conf import settings
+import os
+import io
 
 
 logger = logging.getLogger(__name__)
@@ -55,6 +60,24 @@ def download_report(request, report_id):
     response = FileResponse(open(report.file.path, 'rb'), as_attachment=True)
     response['Content-Disposition'] = f'attachment; filename="{report.file.name}"'
     return response
+
+
+@csrf_exempt
+def dowload_zip_reports(request):
+    buffer = io.BytesIO()
+
+    with zipfile.ZipFile(buffer, 'w') as zipf:
+        reports_id = json.loads(request.body)
+        for report_id in reports_id:
+            report = Reports.objects.filter(id=report_id).first()
+            file_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + '/' + report.file.url
+            filename = os.path.basename(file_path)
+            zipf.write(file_path, arcname=filename)
+
+    buffer.seek(0)
+
+    return FileResponse(buffer, as_attachment=True, filename='archive.zip', content_type='application/zip')
+
 
 
 def change_report_status(request, report_id):
