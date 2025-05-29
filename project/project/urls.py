@@ -22,6 +22,7 @@ urlpatterns += i18n_patterns(
     path('legislation/', include('legislation_app.urls')),
     path('cooperation/', include('cooperation_app.urls')),
     path('reports/', include('reports_app.urls')),
+    path('bulletins/', include('bulletins.urls'))
 )
 
 # tinymce module include

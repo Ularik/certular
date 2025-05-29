@@ -510,6 +510,13 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown header-nav-item">
+                                <a class="header-contact" href="{% url 'bulletins:bulletins_list' %}"
+                                   role="button"
+                                   aria-expanded="false">
+                                    {% trans 'Бюллетени' %}
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown header-nav-item">
                                 <a class="header-contact" href="{% url 'contacts:contact_detail' %}"
                                    role="button"
                                    aria-expanded="false">

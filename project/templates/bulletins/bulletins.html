@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block meta_page %}
+    <meta name="robots" content="noindex">
+{% endblock meta_page %}
+{% block title %}{% trans 'Бюллетени' %}{% endblock title %}
+
+{% block content %}
+<section class="bulletins">
+    <div class="my-container" style="color: black">
+        <h1 class="bulletines_main_title">Национальной службой реагирования на компьютерные инциденты KZ-СERT еженедельно формируются
+            информационные бюллетени по уязвимостям, полученным от международных источников и инструментария Службы:
+        </h1>
+
+        <div class="bulletines-block">
+
+            <div class="bulletines-week-block">
+                <h2 class="bulletines-week-time">21.05.2025-28.05.2025</h2>
+                <ul class="bulletines-list">
+                    <li class="bulletines-item">
+                        <a class='bulletines-open-link' href="#">
+                            <img class='bulletines-img-icon' src="{% static 'img/plus.png' %}">
+                            <p class='bulletines-title'>Text</p>
+                        </a>
+                        <div class="bulletines-body">
+                            Text
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<script src="{% static 'js/modules/bulletins.js' %}"></script>
+{% endblock content %}

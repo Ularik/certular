@@ -10535,7 +10535,7 @@ a p.news-card-link {
     padding: 177px 0 160px
 }
 
-.contacts__name-title {
+.contacts__name-title, .bulletines_main_title {
     font-weight: 700;
     color: #003467;
     font-size: 1.875rem;

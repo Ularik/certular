@@ -49,13 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
             statusBtn.appendChild(option2Tag);
 
             const reportId = statusBtn.getAttribute('data-report-id');
-            const reports = JSON.parse(localStorage.getItem('reports') || '{}');
+//            const reports = JSON.parse(localStorage.getItem('REPORTS') || '{}');
+            const reports = REPORTS
             const savedValue = (parseInt(reports[reportId].status, 10) === 4 ? '4' : '0');
+            console.log(savedValue);
             statusBtn.value = savedValue !== null ? savedValue : (parseInt(statusBtn.getAttribute('data-report-status'), 10) === 4 ? '4' : '0');
 
             statusBtn.addEventListener('change', changeReportStatus);
         });
     }
+
+    let REPORTS;   // объявили переменную reports
 
     async function filterStatus0Reports(reports) {
         const filteredReports = []
@@ -79,12 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 cache: 'no-store',          // Отключает кэширование
             });
             if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`);
-            const reports = await response.json();
+            REPORTS = await response.json();
             const data = {}
-            reports.forEach((report) => {
+            REPORTS.forEach((report) => {
                 data[report.id] = report
             });
-            localStorage.setItem(`reports`, JSON.stringify(data));
+            REPORTS = data
+            localStorage.setItem(`REPORTS`, JSON.stringify(REPORTS));
 
         } catch (error) {
             console.error('Ошибка при загрузке отчетов:', error);
@@ -115,10 +120,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const data = await response.json();
 
-            const reportsString = localStorage.getItem(`reports`);
-            const reports = JSON.parse(reportsString);
-            reports[reportId].status = data.status
-            localStorage.setItem(`reports`, JSON.stringify(reports));
+            const reportsString = localStorage.getItem(`REPORTS`);
+            REPORTS = JSON.parse(reportsString);
+            REPORTS[reportId].status = data.status
+            localStorage.setItem(`REPORTS`, JSON.stringify(REPORTS));
         } catch (error) {
             console.error('Ошибка:', error);
         }
@@ -143,15 +148,15 @@ document.addEventListener('DOMContentLoaded', function() {
         let index = 0
         const reportsKeys = Object.keys(reports);
         reportsKeys.forEach((reportKey) => {
-            const status = reports[reportKey].status
+            const status = REPORTS[reportKey].status
             if (sort === 'DONE') {
                 if (status !== 4) {
                     const row = document.createElement('tr');
                     index++;
-                    row.innerHTML = createReportRow(reports[reportKey], index);
+                    row.innerHTML = createReportRow(REPORTS[reportKey], index);
                     tbody.appendChild(row);
                 } else {
-                    filteredReports.push(reports[reportKey])
+                    filteredReports.push(REPORTS[reportKey])
                 }
             } else {
                 index++
@@ -161,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        if (filteredReports.length !== 0) {
+        if (filteredReports.length !== 0) { // после добавления всех отчетов, добавляем отчёты со статусом 4
             filteredReports.forEach((report) => {
                 index++
                 const row = document.createElement('tr');
@@ -175,22 +180,20 @@ document.addEventListener('DOMContentLoaded', function() {
         setupStatusButtons(statusBtns);
     }
 
-    let reports;   // объявили переменную reports
-
     (async () => {
         await loadReports();
-        const reportsString = localStorage.getItem('reports');
+        const reportsString = localStorage.getItem('REPORTS');
         if (reportsString) {
-            reports = JSON.parse(reportsString);
-            await fillTable(reports);
+            REPORTS = JSON.parse(reportsString);
+            await fillTable(REPORTS);
         }
     })();
 
     const sortBtn = document.getElementById('sort-btn');
     if (sortBtn) {
         sortBtn.addEventListener('click', async () => {
-            if (reports) {
-                await fillTable(reports, 'DONE');
+            if (REPORTS) {
+                await fillTable(REPORTS, 'DONE');
             }
         });
     }
@@ -198,8 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let filteredReports;
     if (filterBtn) {
         filterBtn.addEventListener('click', async () => {
-            if (reports) {
-                filteredReports = await filterStatus0Reports(reports)
+            if (REPORTS) {
+                filteredReports = await filterStatus0Reports(REPORTS)
                 await fillTable(filteredReports);
             }
         });
@@ -209,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(downloadZipBtn);
     if (downloadZipBtn) {
         downloadZipBtn.addEventListener('click', async () => {
-            filteredReports = await filterStatus0Reports(reports)
+            filteredReports = await filterStatus0Reports(REPORTS)
             if (filteredReports.length > 0) {
                 console.log('добавляем обработчик для кнопки');
                 const notDownladedReportsID = []

@@ -783,3 +783,46 @@
 #reportBackdrop .report_form {
     display: none;
 }
+
+.bulletines-block {
+    min-height: 400px;
+}
+
+.bulletines-week-block {
+    margin-top: 10px;
+}
+
+.bulletines_main_title {
+    margin-top: 30px;
+}
+
+.bulletines-week-time {
+    font-size: 20px;
+}
+
+.bulletines-list {
+    padding-left: 1rem;
+    list-style: none;
+}
+
+.bulletines-open-link {
+    display: block;
+    width: 900px;
+    text-decoration: none;
+    border-bottom: 1px solid gray;
+}
+
+.bulletines-title {
+    display: inline;
+    margin: 0 0 5px 10px;
+}
+
+.bulletines-body {
+    margin: 10px 0 0 10px;
+    display: none;
+}
+
+.bulletines-img-icon {
+    width: 15px;
+    height: auto;
+}

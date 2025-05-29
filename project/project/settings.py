@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'messages_app',
     'reports_app',
     'e_learning',
+    'bulletins'
 ]
 
 MIDDLEWARE = [
