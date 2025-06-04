@@ -49,10 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
             statusBtn.appendChild(option2Tag);
 
             const reportId = statusBtn.getAttribute('data-report-id');
-//            const reports = JSON.parse(localStorage.getItem('REPORTS') || '{}');
             const reports = REPORTS
             const savedValue = (parseInt(reports[reportId].status, 10) === 4 ? '4' : '0');
-            console.log(savedValue);
+
             statusBtn.value = savedValue !== null ? savedValue : (parseInt(statusBtn.getAttribute('data-report-status'), 10) === 4 ? '4' : '0');
 
             statusBtn.addEventListener('change', changeReportStatus);
@@ -209,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     const downloadZipBtn = document.getElementById('download-btn')
-    console.log(downloadZipBtn);
+
     if (downloadZipBtn) {
         downloadZipBtn.addEventListener('click', async () => {
             filteredReports = await filterStatus0Reports(REPORTS)

@@ -8,6 +8,7 @@ from django.conf import settings
 from django.utils.translation import get_language
 import re
 import json
+from .signals import response_to_report
 
 
 pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"
@@ -62,7 +63,7 @@ def send_messages_post(request, *args, **kwargs):
                     form_email_invalid = {'errors': 'Туура почтаны киргизиңиз'}
                 return JsonResponse(form_email_invalid, status=400)
 
-            Messages.objects.create(
+            mess = Messages.objects.create(
                 email=request_body['email'],
                 name=request_body['full_name'],
                 phone_number=request_body['phone_number'],
@@ -72,7 +73,9 @@ def send_messages_post(request, *args, **kwargs):
                 domain_name=request_body['domain_name'],
                 hash=request_body['hash']
             )
-            print('Create message')
+            response = 'Мы приняли Вашу заявку, ожидайте ответа в течение 14 дней'
+            response_to_report.send(sender=mess, message=response)
+
             return JsonResponse({"success": "Successfully messages"})
         else:
             print('Success!')

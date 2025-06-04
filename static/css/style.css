@@ -810,11 +810,11 @@
     width: 900px;
     text-decoration: none;
     border-bottom: 1px solid gray;
-}
-
-.bulletines-title {
-    display: inline;
-    margin: 0 0 5px 10px;
+    background-image: url('../img/plus.png');
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position: left 0 center;
+    padding-left: 25px;
 }
 
 .bulletines-body {

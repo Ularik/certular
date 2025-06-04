@@ -422,7 +422,9 @@ if (reportBackdropForm) {
 
                 // Добавляем сообщение об ошибке
                 const valueError = `<p class="errorValid" id="${errorId}">${errorText}</p>`;
+                console.log('Добавляем абзац с ошибкой');
                 a.insertAdjacentHTML("beforeend", valueError);
+                console.log('Добавили абзац с ошибкой');
 
                 // Удаляем только это сообщение через 5 секунд
                 setTimeout(() => {
@@ -435,6 +437,7 @@ if (reportBackdropForm) {
 
     const regexValidReport = (regex, className, value, elem, domElem) => {
         const errorValid = document.querySelector(`#errorValid-${className}`);
+        console.log(regex, className, value);
         if (regex.test(value)) {
             if (errorValid) {
                 errorValid.remove();
@@ -444,16 +447,29 @@ if (reportBackdropForm) {
         } else {
             value = '';
             validateToolTipReport(domElem, className);
+            return 400
 
         }
     }
 
-    btnSubmit.addEventListener('click', () => {
-        regexValidReport(regexReportEmail, `reg-email`, messageObj.email, reportBackdropForm.elements.email.value, reportBackdropForm.elements.email);
-        regexValidReport(regexReportFullName, `full_name`, messageObj.full_name, reportBackdropForm.elements.full_name.value, reportBackdropForm.elements.full_name);
-        regexValidReport(regexReportTel, `phone_number`, messageObj.phone_number, reportBackdropForm.elements.phone_number.value, reportBackdropForm.elements.phone_number);
-        regexValidReport(regexReportMessage, `description`, messageObj.description, reportBackdropForm.elements.description.value, reportBackdropForm.elements.description);
-    })
+//    btnSubmit.addEventListener('click', () => {
+//        regexValidReport(regexReportEmail, `reg-email`, messageObj.email, reportBackdropForm.elements.email.value, reportBackdropForm.elements.email);
+//        regexValidReport(regexReportFullName, `full_name`, messageObj.full_name, reportBackdropForm.elements.full_name.value, reportBackdropForm.elements.full_name);
+//        regexValidReport(regexReportTel, `phone_number`, messageObj.phone_number, reportBackdropForm.elements.phone_number.value, reportBackdropForm.elements.phone_number);
+//        regexValidReport(regexReportMessage, `description`, messageObj.description, reportBackdropForm.elements.description.value, reportBackdropForm.elements.description);
+//    })
+
+    function testValidValues() {
+        const validResult = regexValidReport(regexReportEmail, `reg-email`, messageObj.email, reportBackdropForm.elements.email.value, reportBackdropForm.elements.email);
+        const validResult2 = regexValidReport(regexReportFullName, `full_name`, messageObj.full_name, reportBackdropForm.elements.full_name.value, reportBackdropForm.elements.full_name);
+        const validResult3 = regexValidReport(regexReportTel, `phone_number`, messageObj.phone_number, reportBackdropForm.elements.phone_number.value, reportBackdropForm.elements.phone_number);
+        const validResult4 = regexValidReport(regexReportMessage, `description`, messageObj.description, reportBackdropForm.elements.description.value, reportBackdropForm.elements.description);
+        let mainResult = [];
+        for (const result of [validResult, validResult2, validResult3, validResult4]) {
+            mainResult.push(result);
+            if (mainResult.some(result => result === 400)) return 400
+        }
+    }
 
     reportBackdropForm.addEventListener('change', e => {
         // e.preventDefault()
@@ -485,13 +501,15 @@ if (reportBackdropForm) {
 
     function onSubmitMessage(event) {
         event.preventDefault();
+        const isValid = testValidValues();
+        console.log(isValid);
+        if (isValid === 400) return;
 
         const loaderWrapper = document.querySelector('#reportBackdrop .loader-wrapper');
         loaderWrapper.style.display = 'flex';
 
         grecaptcha.ready(function() {
           grecaptcha.execute('6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU', {action: 'submit'}).then(function(token) {
-            console.log('Token add');
 
             const formData = new FormData();
             formData.append('token', token)
@@ -500,41 +518,47 @@ if (reportBackdropForm) {
                 formData.append(key, messageObj[key])
             });
 
-            fetch(urlReportBackdropForm, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRFToken': csrftokenReport[0].value
-                }
-            }).then(async res => {
-                loaderWrapper.style.display = 'none';
-                if (res.status === 200) {
-                    const reportModal = bootstrap.Modal.getInstance(document.getElementById('reportBackdrop'));
-                    await reportModal.hide();
+            try {
+                fetch(urlReportBackdropForm, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrftokenReport[0].value
+                    }
+                }).then(async res => {
+                    loaderWrapper.style.display = 'none';
+                    if (res.status === 200) {
+                        const reportModal = bootstrap.Modal.getInstance(document.getElementById('reportBackdrop'));
+                        await reportModal.hide();
 
-                    // Показываем модальное окно уведомления
-                    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-                    document.querySelector('#notificationModal .modal-body').innerText = 'Сообщение успешно отправлено!';
-                    await notificationModal.show();
+                        // Показываем модальное окно уведомления
+                        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                        document.querySelector('#notificationModal .modal-body').innerText = 'Сообщение успешно отправлено!';
+                        await notificationModal.show();
 
-                    reportBackdropForm.elements.phone_number.value = ''
-                    reportBackdropForm.elements.description.value = ''
+                        reportBackdropForm.elements.phone_number.value = ''
+                        reportBackdropForm.elements.description.value = ''
 
-                    messageObj.phone_number = '';
-                    messageObj.description = '';
-                }
-                if (res.status !== 200) return res.json()
-            }).then(res => {
-                if (res?.error) {
-                    const el = document.getElementById('errorReportModal');
-                    el.innerText = res.error.toString();
+                        messageObj.phone_number = '';
+                        messageObj.description = '';
+                    }
+                    if (res.status !== 200) return res.json()
+                }).then(res => {
+                    if (res?.error) {
+                        const el = document.getElementById('errorReportModal');
+                        el.innerText = res.error.toString();
 
-                    // Показываем уведомление об ошибке
-                    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-                    document.querySelector('#notificationModal .modal-body').innerText = 'Ошибка: ' + res.error;
-                    notificationModal.show();
-                }
-            });
+                        // Показываем уведомление об ошибке
+                        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                        document.querySelector('#notificationModal .modal-body').innerText = 'Ошибка: ' + res.error;
+                        notificationModal.show();
+                    }
+                });
+            }
+            catch(error) {
+                console.log(error);
+            }
+
           });
         });
     }

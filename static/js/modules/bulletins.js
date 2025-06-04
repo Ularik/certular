@@ -20,14 +20,12 @@ function sortBulletineOnWeeks(bulletines) {
     bulletines.forEach((bulletine) => {
         const date = new Date(bulletine.created_at);
 
-        console.log(endWeeksDate.getTime() > date.getTime() && date.getTime() > startWeeksDate.getTime());
         if (endWeeksDate.getTime() > date.getTime() && date.getTime() > startWeeksDate.getTime()) {
             if (!weeks[dateTitle]) {
                 weeks[dateTitle] = [];
             }
 
             weeks[dateTitle].push(bulletine);
-            console.log(weeks);
         } else {
             startWeeksDate = date; //переопределяем начало недели
 
