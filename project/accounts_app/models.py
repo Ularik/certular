@@ -17,7 +17,7 @@ class Groups(Group):
 
 
 class Organization(models.Model):
-    name = models.TextField(verbose_name=_('Наименование'), unique=True)
+    name = models.CharField(verbose_name=_('Наименование'), unique=True)
 
     def __str__(self):
         admin = _("Админ")
@@ -67,8 +67,7 @@ class User(AbstractUser):
     organization = models.ForeignKey(to=Organization, blank=True, null=True, verbose_name=_('Организация'),
                                      related_name='user', on_delete=models.SET_NULL)
     email = models.EmailField(verbose_name='Email', unique=True)
-    number = models.CharField(max_length=19, blank=False, null=False, verbose_name=_('Мобильный номер'),
-                              validators=[TELEPHONE, MaxLengthValidator])
+    number = models.CharField(max_length=19, blank=False, null=False, verbose_name=_('Мобильный номер'))
     is_admin = models.BooleanField(default=False)
 
     class Meta:

@@ -3,11 +3,37 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from ninja import NinjaAPI
+from reports_app.api import router as report_router
+
+from django.contrib.auth.decorators import login_required
+from ninja_extra import NinjaExtraAPI
+from ninja.security import HttpBearer
+
+
+
+class GlobalAuth(HttpBearer):
+    def authenticate(self, request, token):
+        if token == "supersecret":
+            return token
+
+
+api = NinjaExtraAPI(
+   title="API",
+   description="Документация API",
+    version="1.0",
+    docs_decorator=login_required,
+    auth=GlobalAuth()
+)
+
+
+api.add_router("/router/", report_router)
 
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
     path("admin/", admin.site.urls),
+    path('api/', api.urls, name='api'),
 ]
 
 urlpatterns += i18n_patterns(

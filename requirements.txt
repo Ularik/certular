@@ -6,6 +6,9 @@ django-tinymce
 django-parler
 django-resized
 django_recaptcha
+django-ninja
+django-ninja-extra
+django-ninja-jwt
 thehive4py
 redis
 six
