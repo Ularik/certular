@@ -9,6 +9,7 @@ from reports_app.api import router as report_router
 from django.contrib.auth.decorators import login_required
 from ninja_extra import NinjaExtraAPI
 from ninja.security import HttpBearer
+from ninja_jwt.controller import NinjaJWTDefaultController
 
 
 
@@ -23,8 +24,8 @@ api = NinjaExtraAPI(
    description="Документация API",
     version="1.0",
     docs_decorator=login_required,
-    auth=GlobalAuth()
 )
+api.register_controllers(NinjaJWTDefaultController)
 
 
 api.add_router("/router/", report_router)
