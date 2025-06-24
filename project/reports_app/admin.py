@@ -4,6 +4,7 @@ from .models import Reports
 
 
 class ReportsAdmin(admin.ModelAdmin):
+    search_fields = ('name', 'created_date', 'user', 'status')
     list_display = ['created_date', 'user', 'organization', 'name', 'status']
     ordering = ['-created_date']
     list_filter = ['organization']
