@@ -69,8 +69,8 @@ def dowload_zip_reports(request):
     with zipfile.ZipFile(buffer, 'w') as zipf:
         reports_id = json.loads(request.body)
         for report_id in reports_id:
-            report = Reports.objects.filter(id=report_id).first()
-            if report.file:
+            report = Reports.objects.filter(id=report_id, name__icontains='Curl').first()
+            if report and report.file:
                 file_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + '/' + report.file.url
                 filename = os.path.basename(file_path)
                 zipf.write(file_path, arcname=filename)
