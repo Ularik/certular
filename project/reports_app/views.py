@@ -70,9 +70,10 @@ def dowload_zip_reports(request):
         reports_id = json.loads(request.body)
         for report_id in reports_id:
             report = Reports.objects.filter(id=report_id).first()
-            file_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + '/' + report.file.url
-            filename = os.path.basename(file_path)
-            zipf.write(file_path, arcname=filename)
+            if report.file:
+                file_path = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + '/' + report.file.url
+                filename = os.path.basename(file_path)
+                zipf.write(file_path, arcname=filename)
 
     buffer.seek(0)
 
