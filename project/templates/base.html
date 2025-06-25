@@ -3,7 +3,7 @@
 {% load main_tags %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -506,7 +506,7 @@
                                 <a class="header-contact" href="{% url 'news:notification_detail' %}"
                                    role="button"
                                    aria-expanded="false">
-                                    {% trans 'Нотификация' %}
+                                    {% translate 'Нотификация' %}
                                 </a>
                             </li>
                             <li class="nav-item dropdown header-nav-item">
@@ -1147,7 +1147,7 @@
 
                 <form class="report_form" id="form_send_message" action="{% url 'messages:send_message' %}" method="post">
                     {% csrf_token %}
-                    <p class="report-form-title">{% trans 'Сообщить об' %} <span>{% trans 'инциденте' %} {% trans 'кибербезопасности' %}</span></p>
+                    <p class="report-form-title">{% blocktranslate %}Сообщить об <span>инциденте кибербезопасности</span>{% endblocktranslate %}
                     <div class="main-block-input report__form-block">
                         <label for="email" class="form-label main-label">{% trans 'Email' %}*</label>
                         <input type="email" class="form-control" id="email"
