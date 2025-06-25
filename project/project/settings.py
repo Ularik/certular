@@ -99,8 +99,8 @@ DATABASES = {
         'USER': os.getenv('POSTGRES_USER'),  # Имя вашего пользователя
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),  # Ваш пароль
         # 'HOST': 'db',  # docker
-        # 'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
-        'HOST': '10.100.191.8',
+        'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
+        # 'HOST': '10.100.191.8',
         'PORT': '5432',  # Порт (по умолчанию 5432)
     }
 }
