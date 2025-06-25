@@ -294,7 +294,7 @@ msgstr "Чыгуу"
 
 #: .\templates\base.html:578
 msgid "Единая база киберугроз"
-msgstr ""
+msgstr "Бирдиктүү маалымат базасы"
 
 #: .\templates\base.html:598
 msgid "Вход"
