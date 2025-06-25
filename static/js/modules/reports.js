@@ -147,15 +147,15 @@ document.addEventListener('DOMContentLoaded', function() {
         let index = 0
         const reportsKeys = Object.keys(reports);
         reportsKeys.forEach((reportKey) => {
-            const status = REPORTS[reportKey].status
+            const status = reports[reportKey].status
             if (sort === 'DONE') {
                 if (status !== 4) {
                     const row = document.createElement('tr');
                     index++;
-                    row.innerHTML = createReportRow(REPORTS[reportKey], index);
+                    row.innerHTML = createReportRow(reports[reportKey], index);
                     tbody.appendChild(row);
                 } else {
-                    filteredReports.push(REPORTS[reportKey])
+                    filteredReports.push(reports[reportKey])
                 }
             } else {
                 index++
@@ -211,6 +211,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (downloadZipBtn) {
         downloadZipBtn.addEventListener('click', async () => {
+
+            const loaderWrapper = document.querySelector('#download-zip-loader'); // загрузка
+            loaderWrapper.style.display = "flex";
+
             filteredReports = await filterStatus0Reports(REPORTS)
             if (filteredReports.length > 0) {
                 console.log('добавляем обработчик для кнопки');
@@ -220,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         notDownladedReportsID.push(filteredReports[reportKey].id)
                     }
                 });
-                console.log(notDownladedReportsID);
+
                 const downloadUrl = `${window.location.origin}/${window.location.pathname.split('/')[1]}/reports/download-zip/`
                 if (notDownladedReportsID.length > 0) {
                     const response = await fetch(downloadUrl, {
@@ -232,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     if (!response.ok) {
+                        loaderWrapper.style.display = "none";
                         throw new Error(`не удалось скачать файл`);
                     }
 
@@ -248,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     a.remove();
                     window.URL.revokeObjectURL(url);
                     console.log('Скачали файл')
+                    loaderWrapper.style.display = "none";
                 }
             }
         })

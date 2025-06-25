@@ -19,6 +19,9 @@
                     <button id="download-btn" class="reports-btn">Скачать zip</button>
                     <button id="sort-btn" class="reports-btn">Сортировать</button>
                     <button id="zeroReports-btn" class="reports-btn">Не выполненные</button>
+                    <div id="download-zip-loader" class="loader-wrapper">
+                        <div class="loader"></div>
+                    </div>
                 </div>
                 <table class="table reports-block-table" id="reportsTable">
                     <thead>
@@ -42,4 +45,5 @@
     </div>
     <script src="{% static 'js/modules/reports.js' %}"></script>
 </section>
+
 {% endblock content %}

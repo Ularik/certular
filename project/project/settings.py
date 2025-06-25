@@ -15,7 +15,7 @@ import dotenv
 dotenv.load_dotenv()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
 
@@ -99,8 +99,8 @@ DATABASES = {
         'USER': os.getenv('POSTGRES_USER'),  # Имя вашего пользователя
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),  # Ваш пароль
         # 'HOST': 'db',  # docker
-        'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
-        # 'HOST': '10.100.191.8',
+        # 'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
+        'HOST': '10.100.191.8',
         'PORT': '5432',  # Порт (по умолчанию 5432)
     }
 }
