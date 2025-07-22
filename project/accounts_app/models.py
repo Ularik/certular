@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.core.validators import MaxLengthValidator, RegexValidator
 from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
-
+import requests
 
 TELEPHONE = RegexValidator(r'\^+\d+$', 'Only numeric characters are allowed.')
 
@@ -54,8 +54,31 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, first_name, password=None, **extra_fields):
         user = self.create_user(email, first_name, password, **extra_fields)
         user.is_admin = True
+
+        # 👇 Отправляем запрос на второй сервис
+        try:
+            self._create_remote_user(first_name, password)
+        except Exception as e:
+            # Логировать ошибку или выбросить, по необходимости
+            print(f'Не удалось создать суперпользователя во втором сервисе: {e}')
+
         user.save(using=self._db)
         return user
+
+    def _create_remote_user(self, username, password):
+        url = 'http://127.0.0.1:8000/api/events/user-create'
+        headers = {
+            "accept": "application/json",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "username": username,
+            "password": password,
+            "is_staff": True
+        }
+
+        response = requests.post(url, json=payload, headers=headers, timeout=5)
+        response.raise_for_status()  # выбросит ошибку если код ответа != 2xx
 
 
 class User(AbstractUser):

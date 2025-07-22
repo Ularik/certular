@@ -4,8 +4,8 @@ from .models import User
 from .utils import send_message
 from random import randint
 from django.core.cache import cache
-import requests
 import os
+import requests
 
 create_user_signal = Signal()
 
