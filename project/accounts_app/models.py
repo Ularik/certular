@@ -99,3 +99,5 @@ class User(AbstractUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+
+

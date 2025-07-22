@@ -2,7 +2,7 @@ DEV = True
 
 DEBUG = True
 
-SECRET_KEY = 'django-insecure-********'
+SECRET_KEY = ''
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://site.local']
