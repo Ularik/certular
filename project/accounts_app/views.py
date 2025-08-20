@@ -98,14 +98,8 @@ class RegistrationAPIView(View):
                 email=request_body['email'],
                 number=request_body['number']
             )
-            cache.set(request_body['number'], user)
-            request.session['number'] = request_body['number']
-            request.session['email'] = request_body['email']
-            print('Cейчас должны отправить сигнал')
-            create_user_signal.send(sender=User, instance=user)
-            return JsonResponse({"success": "Successfully registration"})
-        except(BaseException) as e:
-            logger.info(e, exc_info=True)
+        except Exception as err:
+            logger.info(err, exc_info=True)
             some_wrong = {'error': 'Заполните все поля'}
             if get_language() == 'en':
                 some_wrong = {"error": "Fill in all the fields"}
@@ -113,6 +107,21 @@ class RegistrationAPIView(View):
                 some_wrong = {'error': 'Заполните все поля'}
             elif get_language() == 'ky':
                 some_wrong = {'error': 'Бардык талааларды толтуруңуз'}
+            return JsonResponse(some_wrong, status=400)
+
+        try:
+            cache.set(request_body['number'], user)
+            request.session['number'] = request_body['number']
+            request.session['email'] = request_body['email']
+            create_user_signal.send(sender=User, instance=user)    # отправляем сигнал
+            return JsonResponse({"success": "Successfully registration"})
+        except(BaseException) as e:
+            logger.info(e, exc_info=True)
+            some_wrong = {'error': 'Ошибка на стороне сервера. Попробуйте позже'}
+            if get_language() == 'en':
+                some_wrong = {"error": "Server error. Please check a few times later"}
+            elif get_language() == 'ky':
+                some_wrong = {'error': 'Серверде ката кетти. Кийинчирек кылып корунуз'}
             return JsonResponse(some_wrong, status=400)
 
 
