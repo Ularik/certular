@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class Reports(models.Model):
-    user = models.ForeignKey(to=User, null=True, blank=True, verbose_name='Пользователь', on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, null=True, blank=True, verbose_name='Пользователь', on_delete=models.SET_NULL)
     organization = models.ForeignKey(to=Organization, null=False, blank=False,
                                      verbose_name='Организация', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, verbose_name='Название', null=False, blank=False)
