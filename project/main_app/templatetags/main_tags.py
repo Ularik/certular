@@ -7,9 +7,18 @@ from contacts_app.models import Contacts
 from cyber_security_app.models import *
 from about_app.models import About
 from accounts_app.models import Organization
+from szi.models import CryptoProvider
+
 
 register = template.Library()
 
+@register.simple_tag()
+def get_crypto_provider():
+    context = {
+        'szi': CryptoProvider.objects.filter(title='szi').first(),
+        'signature': CryptoProvider.objects.filter(title='Electronic signature').first()
+    }
+    return context
 
 @register.simple_tag()
 def get_cyber_incident():

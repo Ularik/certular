@@ -63,7 +63,7 @@ class Notification(TranslatableModel):
         description=models.TextField(blank=False, null=False, verbose_name='Описание'),
         created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     )
-    notification_npa = models.ManyToManyField('NotificationNpa')
+    notification_npa = models.ManyToManyField('NotificationNpa', null=True, blank=True)
     class Meta:
         db_table = 'Notification'
         verbose_name = 'Нотификация'

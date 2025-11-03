@@ -14,7 +14,7 @@ dotenv.load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
 
@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'messages_app',
     'reports_app',
     'e_learning',
-    'bulletins'
+    'bulletins',
+    'szi'
 ]
 
 MIDDLEWARE = [

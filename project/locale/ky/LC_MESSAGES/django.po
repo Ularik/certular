@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-25 15:37+0600\n"
+"POT-Creation-Date: 2025-11-03 17:45+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: .\accounts_app\models.py:15
 msgid "Группа"
 msgstr ""
@@ -33,8 +34,8 @@ msgstr "Аталышы"
 msgid "Админ"
 msgstr ""
 
-#: .\accounts_app\models.py:28 .\accounts_app\models.py:67
-#: .\templates\base.html:654 .\templates\contacts\contacts_detail.html:64
+#: .\accounts_app\models.py:28 .\accounts_app\models.py:90
+#: .\templates\base.html:710 .\templates\contacts\contacts_detail.html:64
 msgid "Организация"
 msgstr "Уюм"
 
@@ -46,27 +47,27 @@ msgstr "Уюм"
 msgid "Организация с таким именем уже существует"
 msgstr "Уюмдун аты уже колдонуп жатат"
 
-#: .\accounts_app\models.py:63 .\templates\base.html:679
+#: .\accounts_app\models.py:86 .\templates\base.html:735
 msgid "Имя"
 msgstr "Аты"
 
-#: .\accounts_app\models.py:64 .\templates\base.html:673
+#: .\accounts_app\models.py:87 .\templates\base.html:729
 msgid "Фамилия"
 msgstr "Фамилиясы"
 
-#: .\accounts_app\models.py:65 .\templates\base.html:685
+#: .\accounts_app\models.py:88 .\templates\base.html:741
 msgid "Отчество"
 msgstr "Атасынын аты"
 
-#: .\accounts_app\models.py:66 .\templates\base.html:669
+#: .\accounts_app\models.py:89 .\templates\base.html:725
 msgid "Должность"
 msgstr "Кызмат орду"
 
-#: .\accounts_app\models.py:70
+#: .\accounts_app\models.py:93
 msgid "Мобильный номер"
 msgstr "Жеке бөлмө"
 
-#: .\accounts_app\models.py:75 .\accounts_app\models.py:76
+#: .\accounts_app\models.py:98 .\accounts_app\models.py:99
 msgid "Пользователи"
 msgstr "Колдонуучулар"
 
@@ -128,7 +129,7 @@ msgstr "Кыргыз тили"
 
 #: .\templates\about\about_detail.html:12
 #: .\templates\about\about_detail.html:26 .\templates\base.html:263
-#: .\templates\base.html:432 .\templates\base.html:806
+#: .\templates\base.html:462 .\templates\base.html:862
 msgid "О Центре"
 msgstr "Борбор Жөнүндө"
 
@@ -143,7 +144,8 @@ msgstr "Биз Жөнүндө"
 #: .\templates\accounts\check_registration.html:9
 msgid "Спасибо за регистрацию после проверки администратором с вами свяжутся"
 msgstr ""
-"Катталганыңыз үчүн рахмат, администратор текшергенден кийин сизменен байланышат"
+"Катталганыңыз үчүн рахмат, администратор текшергенден кийин сизменен "
+"байланышат"
 
 #: .\templates\admin\base_site.html:9
 msgid "Django site admin"
@@ -191,7 +193,7 @@ msgstr ""
 msgid "КЦОКБ"
 msgstr "КККБ"
 
-#: .\templates\base.html:37 .\templates\base.html:1094
+#: .\templates\base.html:37 .\templates\base.html:1150
 #: .\templates\contacts\contacts_detail.html:16
 #: .\templates\contacts\contacts_detail.html:26 .\templates\main\index.html:11
 msgid "Координационный центр по обеспечению кибербезопасности"
@@ -209,36 +211,36 @@ msgstr "Орусча"
 msgid "Поиск"
 msgstr "Издөө"
 
-#: .\templates\base.html:278 .\templates\base.html:443
-#: .\templates\base.html:809
+#: .\templates\base.html:278 .\templates\base.html:473
+#: .\templates\base.html:865
 msgid "О КЦОКБ"
 msgstr "КККБ жөнүндө"
 
-#: .\templates\base.html:283 .\templates\base.html:448
-#: .\templates\base.html:813
+#: .\templates\base.html:283 .\templates\base.html:478
+#: .\templates\base.html:869
 msgid "Законодательство"
 msgstr "Мыйзамдар"
 
-#: .\templates\base.html:291 .\templates\base.html:453
-#: .\templates\base.html:819 .\templates\cooperations\cooperation_list.html:12
+#: .\templates\base.html:291 .\templates\base.html:483
+#: .\templates\base.html:875 .\templates\cooperations\cooperation_list.html:12
 #: .\templates\cooperations\cooperation_list.html:21
 #: .\templates\main\partners.html:10
 msgid "Сотрудничество"
 msgstr "Кызматташуу"
 
-#: .\templates\base.html:299 .\templates\base.html:460
-#: .\templates\base.html:825
+#: .\templates\base.html:299 .\templates\base.html:490
+#: .\templates\base.html:881
 msgid "События"
 msgstr "Окуялар"
 
-#: .\templates\base.html:314 .\templates\base.html:471
-#: .\templates\base.html:828 .\templates\news\news_detail.html:4
+#: .\templates\base.html:314 .\templates\base.html:501
+#: .\templates\base.html:884 .\templates\news\news_detail.html:4
 #: .\templates\news\news_list.html:12 .\templates\news\news_list.html:22
 msgid "Новости"
 msgstr "Жаңылыктар"
 
-#: .\templates\base.html:320 .\templates\base.html:477
-#: .\templates\base.html:833
+#: .\templates\base.html:320 .\templates\base.html:507
+#: .\templates\base.html:889
 msgid "E-learning"
 msgstr ""
 
@@ -246,207 +248,219 @@ msgstr ""
 msgid "Кибербезопасноть"
 msgstr "Киберкоопсуздук"
 
-#: .\templates\base.html:354 .\templates\base.html:509
+#: .\templates\base.html:354 .\templates\base.html:538
+msgid "ЭП и СЗИ"
+msgstr "ЭКТ жана МКК"
+
+#: .\templates\base.html:384 .\templates\base.html:565
 #: .\templates\notifications\notification.html:4
 msgid "Нотификация"
 msgstr "Нотификация"
 
-#: .\templates\base.html:361 .\templates\base.html:523
-#: .\templates\base.html:1108 .\templates\contacts\contacts_detail.html:38
+#: .\templates\base.html:391 .\templates\base.html:579
+#: .\templates\base.html:1164 .\templates\contacts\contacts_detail.html:38
 msgid "Контакты"
 msgstr "Байланыштар"
 
-#: .\templates\base.html:367 .\templates\base.html:530
-#: .\templates\base.html:853
+#: .\templates\base.html:397 .\templates\base.html:586
+#: .\templates\base.html:909
 msgid "Личный кабинет"
 msgstr "Жеке бөлмө"
 
-#: .\templates\base.html:389 .\templates\base.html:546
-#: .\templates\base.html:859
+#: .\templates\base.html:419 .\templates\base.html:602
+#: .\templates\base.html:915
 msgid "Отчеты"
 msgstr "Отчёттор"
 
-#: .\templates\base.html:395 .\templates\base.html:864
+#: .\templates\base.html:425 .\templates\base.html:920
 msgid "Выйти"
 msgstr "Чыгуу эшик"
 
-#: .\templates\base.html:403 .\templates\base.html:560
-#: .\templates\base.html:873
+#: .\templates\base.html:433 .\templates\base.html:616
+#: .\templates\base.html:929
 msgid "Вход в систему"
 msgstr "Системага кирүү"
 
-#: .\templates\base.html:411 .\templates\base.html:567
-#: .\templates\base.html:651 .\templates\base.html:878
+#: .\templates\base.html:441 .\templates\base.html:623
+#: .\templates\base.html:707 .\templates\base.html:934
 msgid "Регистрация"
 msgstr "Каттоо"
 
-#: .\templates\base.html:486 .\templates\base.html:840
+#: .\templates\base.html:516 .\templates\base.html:896
 msgid "Кибербезопасность"
 msgstr "Киберкоопсуздук"
 
-#: .\templates\base.html:516 .\templates\bulletins\bulletins.html:7
+#: .\templates\base.html:550
+msgid "СЗИ"
+msgstr "МКК"
+
+#: .\templates\base.html:556 .\templates\crypto_provider\signature.html:4
+msgid "Электронная подпись"
+msgstr "Электрондук кол тамга"
+
+#: .\templates\base.html:572 .\templates\bulletins\bulletins.html:7
 msgid "Бюллетени"
 msgstr "Бюллетеньдер"
 
-#: .\templates\base.html:552
+#: .\templates\base.html:608
 msgid "Выход"
 msgstr "Чыгуу"
 
-#: .\templates\base.html:578
+#: .\templates\base.html:634
 msgid "Единая база киберугроз"
 msgstr "Бирдиктүү маалымат базасы"
 
-#: .\templates\base.html:598
+#: .\templates\base.html:654
 msgid "Вход"
 msgstr "Кирүү"
 
-#: .\templates\base.html:600 .\templates\base.html:1152
+#: .\templates\base.html:656 .\templates\base.html:1208
 #: .\templates\contacts\contacts_detail.html:52
 msgid "Email"
 msgstr "Почта"
 
-#: .\templates\base.html:602
+#: .\templates\base.html:658
 msgid "Введите email"
 msgstr "Email киргизиңиз"
 
-#: .\templates\base.html:605
+#: .\templates\base.html:661
 msgid "Пароль"
 msgstr "Сырсөз"
 
-#: .\templates\base.html:607
+#: .\templates\base.html:663
 msgid "Введите пароль"
 msgstr "Сырсөздү киргизиңиз"
 
-#: .\templates\base.html:612
+#: .\templates\base.html:668
 msgid "Запомнить меня"
 msgstr "Мени эстеп калуу"
 
-#: .\templates\base.html:620
+#: .\templates\base.html:676
 msgid "Войти"
 msgstr "Кирүү"
 
-#: .\templates\base.html:623
+#: .\templates\base.html:679
 msgid "Забыли логин или пароль"
 msgstr "Сыр сөзүңүздү унуттуңузбу"
 
-#: .\templates\base.html:660
+#: .\templates\base.html:716
 msgid "Выберите организацию из списка"
 msgstr "Төмөнкү тизмеден тандаңыз"
 
-#: .\templates\base.html:695 .\templates\base.html:1176
+#: .\templates\base.html:751 .\templates\base.html:1232
 msgid "Телефон"
 msgstr "Телефон"
 
-#: .\templates\base.html:708
+#: .\templates\base.html:764
 msgid "Зарегистрироваться"
 msgstr "Каттоо"
 
-#: .\templates\base.html:744
+#: .\templates\base.html:800
 msgid "Размер шрифта"
 msgstr "Шрифттин өлчөмү"
 
-#: .\templates\base.html:746
+#: .\templates\base.html:802
 msgid "Маленький"
 msgstr "Кичине"
 
-#: .\templates\base.html:747
+#: .\templates\base.html:803
 msgid "Средний"
 msgstr "Орточо"
 
-#: .\templates\base.html:748
+#: .\templates\base.html:804
 msgid "Большой"
 msgstr "Чоң"
 
-#: .\templates\base.html:753
+#: .\templates\base.html:809
 msgid "Цвет"
 msgstr "Түс"
 
-#: .\templates\base.html:755
+#: .\templates\base.html:811
 msgid "Б"
 msgstr "А"
 
-#: .\templates\base.html:756
+#: .\templates\base.html:812
 msgid "Ч"
 msgstr "К"
 
-#: .\templates\base.html:757
+#: .\templates\base.html:813
 msgid "Ц"
 msgstr "Т"
 
-#: .\templates\base.html:782
+#: .\templates\base.html:838
 msgid "Вернуть стандартные настройки"
 msgstr "Стандарттык жөндөөлөргө кайтуу"
 
-#: .\templates\base.html:785
+#: .\templates\base.html:841
 msgid "Закрыть"
 msgstr "Жабуу"
 
-#: .\templates\base.html:1100 .\templates\contacts\contacts_detail.html:32
+#: .\templates\base.html:1156 .\templates\contacts\contacts_detail.html:32
 msgid "Адрес"
 msgstr "Дареги"
 
-#: .\templates\base.html:1110
+#: .\templates\base.html:1166
 msgid "тел"
 msgstr "тел"
 
-#: .\templates\base.html:1113
+#: .\templates\base.html:1169
 msgid "email"
 msgstr "почта"
 
-#: .\templates\base.html:1150
+#: .\templates\base.html:1206
 msgid "Сообщить об <span>инциденте кибербезопасности</span>"
 msgstr "Киберкоопсуздук окуясы жөнүндө кабарлоо"
 
-#: .\templates\base.html:1162 .\templates\contacts\contacts_detail.html:56
+#: .\templates\base.html:1218 .\templates\contacts\contacts_detail.html:56
 msgid "ФИО"
 msgstr "ФАА"
 
-#: .\templates\base.html:1164
+#: .\templates\base.html:1220
 msgid "Фамилия Имя Отчество"
 msgstr "Фамилиясы Аты Атасынын аты"
 
-#: .\templates\base.html:1190
+#: .\templates\base.html:1246
 msgid "Опишите инцидент*"
 msgstr "Окуяны сүрөттөп бер*"
 
-#: .\templates\base.html:1197
+#: .\templates\base.html:1253
 msgid "Индикаторы"
 msgstr "Индикаторлор"
 
-#: .\templates\base.html:1207
+#: .\templates\base.html:1263
 msgid "Индикатор"
 msgstr "Индикатор"
 
-#: .\templates\base.html:1209
+#: .\templates\base.html:1265
 msgid "File"
 msgstr "Файл"
 
-#: .\templates\base.html:1210
+#: .\templates\base.html:1266
 msgid "Ip"
 msgstr ""
 
-#: .\templates\base.html:1211
+#: .\templates\base.html:1267
 msgid "Domain"
 msgstr ""
 
-#: .\templates\base.html:1212
+#: .\templates\base.html:1268
 msgid "Hash"
 msgstr ""
 
-#: .\templates\base.html:1239
+#: .\templates\base.html:1295
 msgid "Добавить индикатор"
 msgstr "Индикатор кошунуз"
 
-#: .\templates\base.html:1247 .\templates\main\main-banner.html:13
+#: .\templates\base.html:1303 .\templates\main\main-banner.html:13
 #: .\templates\main\report.html:13
 msgid "Сообщить о киберинциденте"
 msgstr "Инцидент жөнүндө кабарлоо"
 
-#: .\templates\base.html:1252
+#: .\templates\base.html:1308
 msgid "Внимание!"
 msgstr "Көңүл буруңуз"
 
-#: .\templates\base.html:1316 .\templates\cooperations\cooperation_list.html:43
+#: .\templates\base.html:1372 .\templates\cooperations\cooperation_list.html:43
 #: .\templates\main\partners.html:40 .\templates\main\partners.html:87
 msgid "Посетить сайт"
 msgstr "Сайтка кириңиз"
@@ -459,8 +473,7 @@ msgstr "График"
 #: .\templates\main\main-banner.html:10
 msgid ""
 "Государственного комитета национальной безопасности Кыргызской Республики"
-msgstr ""
-"Кыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитети"
+msgstr "Кыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитети"
 
 #: .\templates\contacts\contacts_detail.html:48
 msgid "Напишите нам"
@@ -491,12 +504,33 @@ msgstr ""
 "Кыргыз Республикасында киберкоопсуздук тармагындагы долбоорлорду биргеликте "
 "ишке ашырып жаткан биздин өнөктөштөр."
 
+#: .\templates\crypto_provider\signature.html:14
+#: .\templates\crypto_provider\szi.html:14
+#, fuzzy
+#| msgid ""
+#| "                                Координационный центр по обеспечению "
+#| "кибербезопасности Государственного комитета национальной безопасности "
+#| "Кыргызской Республики                            "
+msgid ""
+"\n"
+"                                    Координационный центр по обеспечению "
+"кибербезопасности Государственного комитета национальной безопасности "
+"Кыргызской Республики\n"
+"                                "
+msgstr "Kыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин"
+
+#: .\templates\crypto_provider\signature.html:58
+#: .\templates\crypto_provider\szi.html:55
 #: .\templates\cyber_security\cyber_security.html:40
 #: .\templates\news\news_detail.html:53
 #: .\templates\notifications\notification.html:61
 #: .\templates\trainings\training_detail.html:58
 msgid "Поделиться"
 msgstr "Бөлүшүү"
+
+#: .\templates\crypto_provider\szi.html:4
+msgid "Средства защиты информации"
+msgstr "Маалыматты коргоо каражаттар"
 
 #: .\templates\dashboards\dashboards.html:7
 msgid "Дашборд"
@@ -694,13 +728,18 @@ msgid "за полгода"
 msgstr "Жарым жыл бою"
 
 #: .\templates\notifications\notification.html:17
+#, fuzzy
+#| msgid ""
+#| "                                Координационный центр по обеспечению "
+#| "кибербезопасности Государственного комитета национальной безопасности "
+#| "Кыргызской Республики                            "
 msgid ""
+"\n"
 "                                Координационный центр по обеспечению "
 "кибербезопасности Государственного комитета национальной безопасности "
-"Кыргызской Республики"
+"Кыргызской Республики\n"
 "                            "
-msgstr ""
-"Kыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин"
+msgstr "Kыргыз Республикасынын Улуттук коопсуздук мамлекеттик комитетинин"
 
 #: .\templates\registration\password_reset_complete.html:8
 #: .\templates\registration\password_reset_complete.html:13

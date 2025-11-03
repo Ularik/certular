@@ -350,6 +350,36 @@
                                 </ul>
                             </li>
                             <li class="nav-item dropdown menu-main-link">
+                                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {% trans 'ЭП и СЗИ' %}
+                                    <svg class="svg-arrow" width="16" height="8" viewBox="0 0 16 8" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.13044 8L1.76631e-06 -6.99382e-07L2.78261 -5.7775e-07L7.95652 6.13665L7.78261 6.08696L8.21739 6.08696L8.04348 6.13665L13.2174 -1.21632e-07L16 0L8.86957 8L7.13044 8Z"
+                                              fill="white"/>
+                                    </svg>
+                                    <svg class="svg-arrow-active" width="17" height="10" viewBox="0 0 17 10" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.9043 1.00761L16.9662 9.06816L14.1837 9.04441L9.06234 2.86385L9.23582 2.91502L8.80106 2.91131L8.97539 2.8631L3.7493 8.95538L0.966797 8.93164L8.16523 0.99277L9.9043 1.00761Z"
+                                              fill="white"/>
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu">
+                                     {% get_crypto_provider as context %}
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:szi' %}">
+                                             {{ context.szi.title }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:signature' %}">
+                                             {{ context.signature.title }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown menu-main-link">
                                 <a class="header-contact header-contact-mobile" href="{% url 'news:notification_detail' %}">
                                     {% trans 'Нотификация' %}
                                 </a>
@@ -500,6 +530,32 @@
                                             </a>
                                         </li>
                                     {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown header-nav-item">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    {% trans 'ЭП и СЗИ' %}
+                                    <svg width="10" height="5" viewBox="0 0 10 5" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.45652 5L0 -4.37114e-07L1.73913 -3.61094e-07L4.97283 3.8354L4.86413 3.80435L5.13587 3.80435L5.02717 3.8354L8.26087 -7.60198e-08L10 0L5.54348 5L4.45652 5Z"
+                                              fill="white"/>
+                                    </svg>
+                                </a>
+                                <ul class="dropdown-menu">
+                                     {% get_crypto_provider as context %}
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:szi' %}">
+                                             {% trans 'СЗИ' %}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:signature' %}">
+                                             {% trans 'Электронная подпись' %}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown header-nav-item">
