@@ -300,7 +300,7 @@ msgstr "Киберкоопсуздук"
 
 #: .\templates\base.html:556 .\templates\crypto_provider\signature.html:4
 msgid "Электронная подпись"
-msgstr "Электрондук кол тамга"
+msgstr "Электрондук колтамга"
 
 #: .\templates\base.html:572 .\templates\bulletins\bulletins.html:7
 msgid "Бюллетени"
