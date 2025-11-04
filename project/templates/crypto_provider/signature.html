@@ -51,6 +51,15 @@
                         </p>
                         <p class="doc-content">{{ paragraph_sixth }}
                         </p>
+                        <ul class="doc-content">
+                        {% for act in act_files %}
+                            <li class="doc-list">
+                                <a href="{{ act.file.url }}">
+                                    {{ act.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </div>
                 </div>
 
