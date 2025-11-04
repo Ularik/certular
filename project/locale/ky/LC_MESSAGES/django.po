@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 17:45+0600\n"
+"POT-Creation-Date: 2025-11-04 09:31+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -252,6 +252,14 @@ msgstr "Киберкоопсуздук"
 msgid "ЭП и СЗИ"
 msgstr "ЭКТ жана МКК"
 
+#: .\templates\base.html:371
+msgid "ЭП"
+msgstr "ЭКТ"
+
+#: .\templates\base.html:377 .\templates\base.html:550
+msgid "СЗИ"
+msgstr "МКК"
+
 #: .\templates\base.html:384 .\templates\base.html:565
 #: .\templates\notifications\notification.html:4
 msgid "Нотификация"
@@ -289,10 +297,6 @@ msgstr "Каттоо"
 #: .\templates\base.html:516 .\templates\base.html:896
 msgid "Кибербезопасность"
 msgstr "Киберкоопсуздук"
-
-#: .\templates\base.html:550
-msgid "СЗИ"
-msgstr "МКК"
 
 #: .\templates\base.html:556 .\templates\crypto_provider\signature.html:4
 msgid "Электронная подпись"

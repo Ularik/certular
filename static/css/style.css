@@ -366,6 +366,11 @@
     .cybersecurity__social a:not(:last-child) {
         margin-right: 23px;
     }
+
+    .logo-cert-img {
+        display: none;
+    }
+
 }
 
 @media (max-width: 920px) {
@@ -406,6 +411,7 @@
     .cybersecurity__title {
         font-size: 1.75rem;
     }
+
 }
 
 .about {

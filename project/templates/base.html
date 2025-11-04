@@ -368,13 +368,13 @@
                                     <li>
                                         <a class="dropdown-item"
                                            href="{% url 'crypto:szi' %}">
-                                             {{ context.szi.title }}
+                                             {% trans 'ЭП' %}
                                         </a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item"
                                            href="{% url 'crypto:signature' %}">
-                                             {{ context.signature.title }}
+                                             {% trans 'СЗИ' %}
                                         </a>
                                     </li>
                                 </ul>
