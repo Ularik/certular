@@ -14,12 +14,11 @@ def crypto_szi_view(request):
 
     context = {}
     context['title'] = crypto_szi.name
-    context['title_second'] = text[0]
-    context['paragraph_first'] = text[1]
-    context['paragraph_second'] = text[3]
-    context['paragraph_third'] = text[4]
-    context['paragraph_fourth'] = text[5]
-    context['acts_start'] = text[2]
+    context['paragraph_first'] = text[0]
+    context['paragraph_second'] = text[2]
+    context['paragraph_third'] = text[3]
+    context['paragraph_fourth'] = text[4]
+    context['acts_start'] = text[1]
     context['acts_links'] = act_links
 
     context['act_files'] = act_files
