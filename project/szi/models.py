@@ -15,10 +15,10 @@ class CryptoProvider(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(max_length=200, blank=False, null=False, verbose_name='Наименование'),
         description=models.TextField(blank=False, null=False, verbose_name='Описание'),
-        created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+        created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации'),
+        npa_links = models.ManyToManyField('NpaLinks', null=True, blank=True)
     )
     crypto_npa = models.ManyToManyField(NotificationNpa, null=True, blank=True)
-    npa_links = models.ManyToManyField('NpaLinks', null=True, blank=True)
 
     class Meta:
         db_table = 'CryptoProvider'
