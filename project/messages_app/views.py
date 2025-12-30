@@ -97,22 +97,3 @@ class MessageListOnUser(LoginRequiredMixin, ListView):
         return queryset
 
 
-def verify_captcha(request):
-    if request.method == "POST":
-        print('Проверка капчи')
-        data = json.loads(request.body)
-        token = data.get("token")
-
-        url = "https://www.google.com/recaptcha/api/siteverify"
-        payload = {
-            "secret": settings.RECAPTCHA_PRIVATE_KEY,
-            "response": token
-        }
-        result = requests.post(url, data=payload).json()
-
-        if result.get("success"):
-            return JsonResponse({"success": True})
-        else:
-            return JsonResponse({"success": False, "message": "Капча не пройдена!"})
-
-    return JsonResponse({"success": False, "message": "Неверный метод запроса."})

@@ -68,10 +68,6 @@ def get_organizations():
 
 
 @register.simple_tag()
-def get_site_recaptcha():
-    return settings.RECAPTCHA_PUBLIC_KEY
-
-@register.simple_tag()
 def register_form():
     form = MyRegisterUserForm()
     return form

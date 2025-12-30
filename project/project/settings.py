@@ -3,7 +3,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from .settings_local import *
 import dotenv
 dotenv.load_dotenv()
 
@@ -11,13 +11,6 @@ dotenv.load_dotenv()
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
-
 
 # Application definition
 
@@ -32,7 +25,6 @@ INSTALLED_APPS = [
     #another modules
     'tinymce',
     'parler',
-    'django_recaptcha',
     'rest_framework',
 
     # my apps
@@ -89,25 +81,38 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 AUTH_USER_MODEL = 'accounts_app.User'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),  # Имя вашей базы данных
-        'USER': os.getenv('POSTGRES_USER'),  # Имя вашего пользователя
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),  # Ваш пароль
-        # 'HOST': 'db',  # docker
-        'HOST': 'localhost',  # Хост, на котором работает PostgreSQL
-        # 'HOST': '10.100.191.8',
-        'PORT': '5432',  # Порт (по умолчанию 5432)
+if DEV:
+    # Dev
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_NAME_DEV,
+            'USER': DB_USER_DEV,
+            'PASSWORD': DB_PASS_DEV,
+            'HOST': DB_HOST_DEV,
+            'PORT': DB_PORT_DEV,
+            'TEST': {
+                'NAME': DB_NAME_DEV_TEST,
+            },
+        }
     }
-}
 
-# Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+else:
+    # Prod
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_NAME,
+            'USER': DB_USER,
+            'PASSWORD': DB_PASS,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
+            'TEST': {
+                'NAME': DB_NAME_TEST,
+            },
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -173,11 +178,6 @@ STATIC_URL = '/static/'
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
-
-    # Если ты за прокси:
-    USE_X_FORWARDED_HOST = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, '..', 'static'),
@@ -189,8 +189,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
 if not os.path.exists(MEDIA_ROOT):
     os.makedirs(MEDIA_ROOT)
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -260,10 +258,6 @@ EMAIL_HOST = 'mail.cert.gov.kg'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
 APPEAL_EMAIL = ''
-
-# captcha google
-RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
