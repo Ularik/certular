@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive fs-6 text">
             <table class="table table-bordered align-middle">
               <thead class="table-light">
                 <tr>
@@ -58,7 +58,9 @@
                   <td>{{ tool.title }}</td>
                   <td>
                       {% for npa in tool.npa_links.all %}
-                        {{ npa.description }}</br>
+                      <a href="{{ npa.link }}#order-acts"
+                         class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                      >{{ npa.description }}</a>></br>
                       {% endfor%}
                   </td>
                   <td>{{ tool.components }}</td>
