@@ -52,7 +52,7 @@
               <tbody>
               {% for tool in tools %}
                 <tr>
-                  <th scope="row">{{ forloop.counter }}</th>
+                  <th scope="row">{{ tool.number }}</th>
                   <td>{{ tool.created_date }}</td>
                   <td>{{ tool.validity_period }}</td>
                   <td>{{ tool.title }}</td>

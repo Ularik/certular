@@ -24,8 +24,8 @@ class ApplicantAdmin(admin.ModelAdmin):
 
 @admin.register(EncryptionTools)
 class EncryptionToolsAdmin(TranslatableAdmin):
-    list_display = ['title']
-    search_fields = ('translations__title', 'translations__applicant__index')
+    list_display = ['number', 'title']
+    search_fields = ('translations__number', 'translations__title', 'translations__applicant__index')
     fieldsets = (
         (None, {
             'fields': ('title', 'components', 'testing_lab', 'finish_info',
