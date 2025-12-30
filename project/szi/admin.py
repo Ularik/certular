@@ -28,7 +28,7 @@ class EncryptionToolsAdmin(TranslatableAdmin):
     search_fields = ('translations__number', 'translations__title', 'translations__applicant__index')
     fieldsets = (
         (None, {
-            'fields': ('title', 'components', 'testing_lab', 'finish_info',
+            'fields': ('number', 'title', 'components', 'testing_lab', 'finish_info',
                        'add_date', 'validity_period', 'applicant', 'npa_links'),
         }),
     )
