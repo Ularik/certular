@@ -15,7 +15,7 @@ class CryptoProviderAdmin(TranslatableAdmin):
 
 
 @admin.register(Applicant)
-class ApplicantAdmin(admin.ModelAdmin):
+class ApplicantAdmin(TranslatableAdmin):
     list_display = ['index', 'address', 'phone']
     fieldsets = (
         (None, {'fields': ('index', 'address', 'phone')}),

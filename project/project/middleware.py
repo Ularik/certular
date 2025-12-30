@@ -20,7 +20,7 @@ class LanguageMiddleware:
 
 
 class RateLimitMiddleware:
-    RATE_LIMIT = 40  # max запросов
+    RATE_LIMIT = 60  # max запросов
     WINDOW = 60      # секунд = 1 минута
 
     def __init__(self, get_response):

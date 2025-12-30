@@ -44,10 +44,12 @@ class NpaLinks(TranslatableModel):
         return f'{self.description}'
 
 
-class Applicant(models.Model):
-    index = models.CharField(max_length=120, verbose_name='Индекс')
-    address = models.CharField(max_length=155, verbose_name='Адресс')
-    phone = models.CharField(max_length=19, blank=False, null=False, verbose_name='Мобильный номер')
+class Applicant(TranslatableModel):
+    translations = TranslatedFields(
+        index=models.CharField(max_length=120, verbose_name='Индекс'),
+        address = models.CharField(max_length=155, verbose_name='Адресс')
+    )
+    phone = models.CharField(max_length=19, blank=True, null=True, verbose_name='Мобильный номер')
 
     class Meta:
         verbose_name = 'Заявитель'
