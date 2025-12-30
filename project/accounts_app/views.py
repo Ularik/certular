@@ -12,7 +12,6 @@ import re
 import logging
 from django.core.cache import cache
 from .signals import create_user_signal
-from .utils import check_recaptcha
 
 
 logger = logging.getLogger(__name__)
@@ -57,12 +56,7 @@ class RegistrationAPIView(View):
     def post(self, request, *args, **kwargs):
         request_body = json.loads(request.body)
 
-        recaptcha_response = request_body.get('token')
-
-        recaptcha_result = check_recaptcha(recaptcha_response)
-
-        if recaptcha_result.get('error'):
-            return JsonResponse(recaptcha_result)
+        return JsonResponse({'error': 'На данный момент регистрация пользователей невозможна, ведутся тех работы'})
 
         organization = Organization.objects.filter(id=int(request_body['organization'])).first()
         request_body['organization'] = organization

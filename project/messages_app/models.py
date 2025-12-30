@@ -1,7 +1,6 @@
 from django.core.validators import MaxLengthValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from accounts_app.models import TELEPHONE
 from utils import content_file_name
 
 CHOICES = [('no read', _('Не прочитан')), ('completed', _('Завершен')), ('had read', _('Прочитан'))]
@@ -15,7 +14,7 @@ class Messages(models.Model):
     file = models.FileField(upload_to=content_file_name('Messages'), null=True, blank=True, verbose_name='Файл')
     email = models.EmailField(null=False, blank=False, verbose_name='Email')
     phone_number = models.CharField(max_length=19, blank=True, null=True, verbose_name='Мобильный номер',
-                                    validators=[TELEPHONE, MaxLengthValidator])
+                                    validators=[MaxLengthValidator])
     host_ip = models.TextField(blank=True, null=True, verbose_name='IP')
     domain_name = models.TextField(blank=True, null=True, verbose_name='Domain Name')
     hash = models.TextField(blank=True, null=True, verbose_name='Hash')

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import logging
-from .models import CryptoProvider, NpaLinks
+from .models import CryptoProvider, NpaLinks, Applicant, EncryptionTools
 from pprint import pprint
 
 logger = logging.getLogger(__name__)
@@ -46,3 +46,8 @@ def crypto_signature_view(request):
     context['act_files'] = act_files
 
     return render(request, 'crypto_provider/signature.html', context)
+
+
+def get_encrypted_tools(request):
+    tools_list = EncryptionTools.objects.all()
+    return render(request, 'crypto_provider/encryptions_table.html', {'tools': tools_list})

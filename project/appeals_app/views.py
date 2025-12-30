@@ -4,17 +4,11 @@ import re
 from django.http import JsonResponse
 from django.utils.translation import get_language
 from .forms import AddAppealForm
-from accounts_app.utils import check_recaptcha
 
 
 def appeals_post(request, *args, **kwargs):
     if request.method == 'POST':
         request_body = json.loads(request.body)
-
-        token = request_body.get('token')
-        recaptcha_result = check_recaptcha(token)
-        if recaptcha_result.get('error'):
-            return JsonResponse(recaptcha_result)
 
         form = AddAppealForm(request_body)
         pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"

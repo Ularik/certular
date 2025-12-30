@@ -832,3 +832,19 @@
     width: 15px;
     height: auto;
 }
+
+.fixed-table {
+    table-layout: fixed;   /* фиксируем ширины */
+}
+
+.col-num {
+    width: 50px;
+}
+
+.col-name {
+    width: 200px;
+}
+
+.col-date {
+    width: 150px;
+}

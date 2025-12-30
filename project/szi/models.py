@@ -43,3 +43,38 @@ class NpaLinks(TranslatableModel):
     def __str__(self):
         return f'{self.description}'
 
+
+class Applicant(models.Model):
+    index = models.CharField(max_length=120, verbose_name='Индекс')
+    address = models.CharField(max_length=155, verbose_name='Адресс')
+    phone = models.CharField(max_length=19, blank=False, null=False, verbose_name='Мобильный номер')
+
+    class Meta:
+        verbose_name = 'Заявитель'
+        verbose_name_plural = 'Заявители'
+
+    def __str__(self):
+        return f'{self.index}'
+
+
+class EncryptionTools(TranslatableModel):
+    npa_links = models.ManyToManyField(NpaLinks,
+                                       verbose_name='Наименования документов, требованиям которых соответсвует СЗИ')
+    applicant = models.ForeignKey(Applicant, on_delete=models.SET_NULL, null=True, blank=True)
+    translations = TranslatedFields(
+        title=models.CharField(max_length=125, verbose_name='Наименование средства(шифр)'),
+        components=models.CharField(max_length=100, verbose_name='Схема сертификации, кол-во СЗИ'),
+        testing_lab=models.CharField(max_length=125, verbose_name='Испытательная лаборатория'),
+        finish_info=models.TextField(verbose_name='Информация об окончании срока тех поддержки', null=True, blank=True),
+        add_date=models.CharField(max_length=80, verbose_name='Дата добавления средства'),
+        validity_period=models.CharField(max_length=80, verbose_name='Срок действия'),
+    )
+    created_date = models.DateField(auto_now_add=True)
+    updated_date = models.DateField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Средства сертификации'
+        verbose_name_plural = 'Средства сертификации'
+
+    def __str__(self):
+        return f'{self.pk}'

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{% static 'css/preloader.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LedyiAsAAAAADbg2UkY8bslVLG1EW_KnYhfrmxf"></script>
 
 </head>
 <body>
@@ -377,6 +377,12 @@
                                              {% trans 'СЗИ' %}
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:encrypted_tools' %}">
+                                             {% trans 'Реестр средств защиты иформации' %}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown menu-main-link">
@@ -556,6 +562,12 @@
                                              {% trans 'Электронная подпись' %}
                                         </a>
                                     </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                           href="{% url 'crypto:encrypted_tools' %}">
+                                             {% trans 'Реестр средств защиты иформации' %}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown header-nav-item">
@@ -651,6 +663,7 @@
                 <div class="modal-body">
 
                     <form class="enter__form" method="post" action="{% url 'accounts_app:login' %}">
+                        {% csrf_token %}
                         <h1 class="enter__form-title">{% trans 'Вход' %}</h1>
                         <div class="block-login">
                             <label class="enter__form-label" for="enterEmail">{% trans 'Email' %}*</label>
@@ -673,7 +686,7 @@
                         </div>
                         <div class="error" id="errorMsgEnter"></div>
                         <div>
-                            <button class="enter__form-btn">{% trans 'Войти' %}</button>
+                            <button type="submit" class="enter__form-btn">{% trans 'Войти' %}</button>
                         </div>
                         <a class="enter__form-forgot" href="#">
                             {% trans 'Забыли логин или пароль' %}?

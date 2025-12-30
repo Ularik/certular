@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CryptoProvider, NpaLinks
+from .models import CryptoProvider, NpaLinks, Applicant, EncryptionTools
 from parler.admin import TranslatableAdmin
 
 
@@ -14,13 +14,33 @@ class CryptoProviderAdmin(TranslatableAdmin):
     readonly_fields = ('created_at',)
 
 
-@admin.register(NpaLinks)
-class AboutAdmin(TranslatableAdmin):
-    list_display = ['link', 'description']
+@admin.register(Applicant)
+class ApplicantAdmin(admin.ModelAdmin):
+    list_display = ['index', 'address', 'phone']
+    fieldsets = (
+        (None, {'fields': ('index', 'address', 'phone')}),
+    )
+
+
+@admin.register(EncryptionTools)
+class EncryptionToolsAdmin(TranslatableAdmin):
+    list_display = ['title']
+    search_fields = ('translations__title', 'translations__applicant__index')
     fieldsets = (
         (None, {
-            'fields': ('description', 'link', 'created_at')
+            'fields': ('title', 'components', 'testing_lab', 'finish_info',
+                       'add_date', 'validity_period', 'applicant', 'npa_links'),
         }),
     )
+
+
+@admin.register(NpaLinks)
+class NpaLinksAdmin(TranslatableAdmin):
+    list_display = ['description', 'link', 'created_at']
+    search_fields = ('translations__description', 'translations__link')
+    fieldsets = (
+        (None, {'fields': ('description', 'link', 'created_at')}),
+    )
     readonly_fields = ['created_at']
+
 

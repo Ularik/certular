@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-30 10:55+0600\n"
+"POT-Creation-Date: 2025-12-30 10:30+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,60 +16,62 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\accounts_app\models.py:15
 msgid "Группа"
-msgstr "Group"
+msgstr ""
 
 #: .\accounts_app\models.py:16
 msgid "Группы"
-msgstr "Groups"
+msgstr ""
 
 #: .\accounts_app\models.py:20
 msgid "Наименование"
-msgstr "Name"
+msgstr ""
 
 #: .\accounts_app\models.py:23
 msgid "Админ"
-msgstr "Admin"
+msgstr ""
 
 #: .\accounts_app\models.py:28 .\accounts_app\models.py:90
 #: .\templates\base.html:723 .\templates\contacts\contacts_detail.html:64
 msgid "Организация"
-msgstr "Organization"
+msgstr ""
 
 #: .\accounts_app\models.py:29
 msgid "Организации"
-msgstr "Organizations"
+msgstr ""
 
 #: .\accounts_app\models.py:34
 msgid "Организация с таким именем уже существует"
-msgstr "An organization with this name already exists."
+msgstr ""
 
 #: .\accounts_app\models.py:86 .\templates\base.html:748
 msgid "Имя"
-msgstr "Name"
+msgstr ""
 
 #: .\accounts_app\models.py:87 .\templates\base.html:742
 msgid "Фамилия"
-msgstr "Surname"
+msgstr ""
 
 #: .\accounts_app\models.py:88 .\templates\base.html:754
 msgid "Отчество"
-msgstr "Patronymic"
+msgstr ""
 
 #: .\accounts_app\models.py:89 .\templates\base.html:738
 msgid "Должность"
-msgstr "Job title"
+msgstr ""
 
 #: .\accounts_app\models.py:93
 msgid "Мобильный номер"
-msgstr "Mobile number"
+msgstr ""
 
 #: .\accounts_app\models.py:98 .\accounts_app\models.py:99
 msgid "Пользователи"
-msgstr "User"
+msgstr ""
 
 #: .\db_logger\models.py:14
 msgid "NotSet"
@@ -97,19 +99,19 @@ msgstr ""
 
 #: .\messages_app\filters.py:24
 msgid "Пользователь"
-msgstr "User"
+msgstr ""
 
 #: .\messages_app\filters.py:34
 msgid "Дата"
-msgstr "Date"
+msgstr ""
 
 #: .\messages_app\models.py:6
 msgid "Не прочитан"
-msgstr "Verifying"
+msgstr ""
 
 #: .\messages_app\models.py:6
 msgid "Завершен"
-msgstr "Completed"
+msgstr ""
 
 #: .\messages_app\models.py:6
 msgid "Прочитан"
@@ -117,39 +119,37 @@ msgstr ""
 
 #: .\project\settings.py:144
 msgid "Russian"
-msgstr "Russian"
+msgstr ""
 
 #: .\project\settings.py:145
 msgid "English"
-msgstr "English"
+msgstr ""
 
 #: .\project\settings.py:146
 msgid "Kyrgiz"
-msgstr "Kyrgiz"
+msgstr ""
 
 #: .\templates\about\about_detail.html:12
 #: .\templates\about\about_detail.html:26 .\templates\base.html:263
 #: .\templates\base.html:468 .\templates\base.html:875
 msgid "О Центре"
-msgstr "About Centre"
+msgstr ""
 
 #: .\templates\about\about_detail.html:35
 msgid "Задачи Центра"
-msgstr "Objectives of Centre"
+msgstr ""
 
 #: .\templates\about\about_list.html:4 .\templates\about\about_list.html:9
 msgid "О нас"
-msgstr "About Centre"
+msgstr ""
 
 #: .\templates\accounts\check_registration.html:9
 msgid "Спасибо за регистрацию после проверки администратором с вами свяжутся"
 msgstr ""
-"Thank you for registering, after checking by the admin, you will contacted "
-"sent to your mail"
 
 #: .\templates\admin\base_site.html:9
 msgid "Django site admin"
-msgstr "Django site admin"
+msgstr ""
 
 #: .\templates\admin\base_site.html:12
 msgid "KCKB Administration"
@@ -159,7 +159,7 @@ msgstr ""
 #: .\templates\admin\news_apps\news\change_form.html:23
 #: .\templates\admin\trainings_apps\trainings\change_form.html:23
 msgid "Home"
-msgstr "Home"
+msgstr ""
 
 #: .\templates\admin\change_form.html:21
 #: .\templates\admin\news_apps\news\change_form.html:26
@@ -191,53 +191,53 @@ msgstr ""
 
 #: .\templates\base.html:15
 msgid "КЦОКБ"
-msgstr "CCCS"
+msgstr ""
 
 #: .\templates\base.html:37 .\templates\base.html:1163
 #: .\templates\contacts\contacts_detail.html:16
 #: .\templates\contacts\contacts_detail.html:26 .\templates\main\index.html:11
 msgid "Координационный центр по обеспечению кибербезопасности"
-msgstr "Coordination Centre on Cybersecurity"
+msgstr ""
 
 #: .\templates\base.html:67 .\templates\base.html:196 .\templates\base.html:210
 msgid "Версия для слабовидящих"
-msgstr "Version for visually impaired"
+msgstr ""
 
 #: .\templates\base.html:87
 msgid "Русский"
-msgstr "Russian"
+msgstr ""
 
 #: .\templates\base.html:125 .\templates\base.html:146
 msgid "Поиск"
-msgstr "Search"
+msgstr ""
 
 #: .\templates\base.html:278 .\templates\base.html:479
 #: .\templates\base.html:878
 msgid "О КЦОКБ"
-msgstr "About CCСS"
+msgstr ""
 
 #: .\templates\base.html:283 .\templates\base.html:484
 #: .\templates\base.html:882
 msgid "Законодательство"
-msgstr "Legislation"
+msgstr ""
 
 #: .\templates\base.html:291 .\templates\base.html:489
 #: .\templates\base.html:888 .\templates\cooperations\cooperation_list.html:12
 #: .\templates\cooperations\cooperation_list.html:21
 #: .\templates\main\partners.html:10
 msgid "Сотрудничество"
-msgstr "Cooperation"
+msgstr ""
 
 #: .\templates\base.html:299 .\templates\base.html:496
 #: .\templates\base.html:894
 msgid "События"
-msgstr "Events"
+msgstr ""
 
 #: .\templates\base.html:314 .\templates\base.html:507
 #: .\templates\base.html:897 .\templates\news\news_detail.html:4
 #: .\templates\news\news_list.html:12 .\templates\news\news_list.html:22
 msgid "Новости"
-msgstr "News"
+msgstr ""
 
 #: .\templates\base.html:320 .\templates\base.html:513
 #: .\templates\base.html:902
@@ -246,264 +246,264 @@ msgstr ""
 
 #: .\templates\base.html:328
 msgid "Кибербезопасноть"
-msgstr "Cybersecurity"
+msgstr ""
 
 #: .\templates\base.html:354 .\templates\base.html:544
 msgid "ЭП и СЗИ"
-msgstr "ES and IST"
+msgstr ""
 
 #: .\templates\base.html:371
 msgid "ЭП"
-msgstr "ES"
+msgstr ""
 
 #: .\templates\base.html:377 .\templates\base.html:556
 msgid "СЗИ"
-msgstr "IST"
+msgstr ""
 
 #: .\templates\base.html:383 .\templates\base.html:568
 msgid "Реестр средств защиты иформации"
-msgstr "Registry of information security tools"
+msgstr ""
 
 #: .\templates\base.html:390 .\templates\base.html:577
 #: .\templates\notifications\notification.html:4
 msgid "Нотификация"
-msgstr "Notification"
+msgstr ""
 
 #: .\templates\base.html:397 .\templates\base.html:591
 #: .\templates\base.html:1177 .\templates\contacts\contacts_detail.html:38
 msgid "Контакты"
-msgstr "Contacts"
+msgstr ""
 
 #: .\templates\base.html:403 .\templates\base.html:598
 #: .\templates\base.html:922
 msgid "Личный кабинет"
-msgstr "Personal account"
+msgstr ""
 
 #: .\templates\base.html:425 .\templates\base.html:614
 #: .\templates\base.html:928
 msgid "Отчеты"
-msgstr "Reports"
+msgstr ""
 
 #: .\templates\base.html:431 .\templates\base.html:933
 msgid "Выйти"
-msgstr "Exit"
+msgstr ""
 
 #: .\templates\base.html:439 .\templates\base.html:628
 #: .\templates\base.html:942
 msgid "Вход в систему"
-msgstr "Login"
+msgstr ""
 
 #: .\templates\base.html:447 .\templates\base.html:635
 #: .\templates\base.html:720 .\templates\base.html:947
 msgid "Регистрация"
-msgstr "Registration"
+msgstr ""
 
 #: .\templates\base.html:522 .\templates\base.html:909
 msgid "Кибербезопасность"
-msgstr "Cybersecurity"
+msgstr ""
 
 #: .\templates\base.html:562
 #: .\templates\crypto_provider\encryptions_table.html:4
 #: .\templates\crypto_provider\signature.html:4
 msgid "Электронная подпись"
-msgstr "Electronic signature"
+msgstr ""
 
 #: .\templates\base.html:584 .\templates\bulletins\bulletins.html:7
 msgid "Бюллетени"
-msgstr "Bulletins"
+msgstr ""
 
 #: .\templates\base.html:620
 msgid "Выход"
-msgstr "Exit"
+msgstr ""
 
 #: .\templates\base.html:646
 msgid "Единая база киберугроз"
-msgstr "Database of cyberosis"
+msgstr ""
 
 #: .\templates\base.html:667
 msgid "Вход"
-msgstr "Login"
+msgstr ""
 
 #: .\templates\base.html:669 .\templates\base.html:1221
 #: .\templates\contacts\contacts_detail.html:52
 msgid "Email"
-msgstr "Email"
+msgstr ""
 
 #: .\templates\base.html:671
 msgid "Введите email"
-msgstr "Enter email"
+msgstr ""
 
 #: .\templates\base.html:674
 msgid "Пароль"
-msgstr "Password"
+msgstr ""
 
 #: .\templates\base.html:676
 msgid "Введите пароль"
-msgstr "Enter password"
+msgstr ""
 
 #: .\templates\base.html:681
 msgid "Запомнить меня"
-msgstr "Remember me"
+msgstr ""
 
 #: .\templates\base.html:689
 msgid "Войти"
-msgstr "Sign in"
+msgstr ""
 
 #: .\templates\base.html:692
 msgid "Забыли логин или пароль"
-msgstr "Forgot password"
+msgstr ""
 
 #: .\templates\base.html:729
 msgid "Выберите организацию из списка"
-msgstr "Select from drop down list"
+msgstr ""
 
 #: .\templates\base.html:764 .\templates\base.html:1245
 msgid "Телефон"
-msgstr "Telephone"
+msgstr ""
 
 #: .\templates\base.html:777
 msgid "Зарегистрироваться"
-msgstr "Register"
+msgstr ""
 
 #: .\templates\base.html:813
 msgid "Размер шрифта"
-msgstr "Font size"
+msgstr ""
 
 #: .\templates\base.html:815
 msgid "Маленький"
-msgstr "Small"
+msgstr ""
 
 #: .\templates\base.html:816
 msgid "Средний"
-msgstr "Medium"
+msgstr ""
 
 #: .\templates\base.html:817
 msgid "Большой"
-msgstr "Large"
+msgstr ""
 
 #: .\templates\base.html:822
 msgid "Цвет"
-msgstr "Color"
+msgstr ""
 
 #: .\templates\base.html:824
 msgid "Б"
-msgstr "W"
+msgstr ""
 
 #: .\templates\base.html:825
 msgid "Ч"
-msgstr "B"
+msgstr ""
 
 #: .\templates\base.html:826
 msgid "Ц"
-msgstr "C"
+msgstr ""
 
 #: .\templates\base.html:851
 msgid "Вернуть стандартные настройки"
-msgstr "Reset to default settings"
+msgstr ""
 
 #: .\templates\base.html:854
 msgid "Закрыть"
-msgstr "Close"
+msgstr ""
 
 #: .\templates\base.html:1169 .\templates\contacts\contacts_detail.html:32
 msgid "Адрес"
-msgstr "Address"
+msgstr ""
 
 #: .\templates\base.html:1179
 msgid "тел"
-msgstr "Tel"
+msgstr ""
 
 #: .\templates\base.html:1182
 msgid "email"
-msgstr "email"
+msgstr ""
 
 #: .\templates\base.html:1219
 msgid "Сообщить об <span>инциденте кибербезопасности</span>"
-msgstr "Report a cybersecurity incident"
+msgstr ""
 
 #: .\templates\base.html:1231 .\templates\contacts\contacts_detail.html:56
 msgid "ФИО"
-msgstr "Full Name"
+msgstr ""
 
 #: .\templates\base.html:1233
 msgid "Фамилия Имя Отчество"
-msgstr "Full Name"
+msgstr ""
 
 #: .\templates\base.html:1259
 msgid "Опишите инцидент*"
-msgstr "Describe the incident"
+msgstr ""
 
 #: .\templates\base.html:1266
 msgid "Индикаторы"
-msgstr "Indicators"
+msgstr ""
 
 #: .\templates\base.html:1276
 msgid "Индикатор"
-msgstr "Indicator"
+msgstr ""
 
 #: .\templates\base.html:1278
 msgid "File"
-msgstr "File"
+msgstr ""
 
 #: .\templates\base.html:1279
 msgid "Ip"
-msgstr "Ip"
+msgstr ""
 
 #: .\templates\base.html:1280
 msgid "Domain"
-msgstr "Domain"
+msgstr ""
 
 #: .\templates\base.html:1281
 msgid "Hash"
-msgstr "Hash"
+msgstr ""
 
 #: .\templates\base.html:1308
 msgid "Добавить индикатор"
-msgstr "Add indicator"
+msgstr ""
 
 #: .\templates\base.html:1316 .\templates\main\main-banner.html:13
 #: .\templates\main\report.html:13
 msgid "Сообщить о киберинциденте"
-msgstr "Report cyber incident"
+msgstr ""
 
 #: .\templates\base.html:1321
 msgid "Внимание!"
-msgstr "Description"
+msgstr ""
 
 #: .\templates\base.html:1385 .\templates\cooperations\cooperation_list.html:43
 #: .\templates\main\partners.html:40 .\templates\main\partners.html:87
 msgid "Посетить сайт"
-msgstr "Visit site"
+msgstr ""
 
 #: .\templates\charts\chart.html:4
 msgid "График"
-msgstr "Graphs"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:28
 #: .\templates\main\main-banner.html:10
 msgid ""
 "Государственного комитета национальной безопасности Кыргызской Республики"
-msgstr "State Committee for National Security of the Kyrgyz Republic"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:48
 msgid "Напишите нам"
-msgstr "Contract us"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:60
 msgid "Номер телефона"
-msgstr "Phone number"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:66
 msgid "Выберите из выпадающего списка"
-msgstr "Select from drop down list"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:74
 msgid "Ваше сообщение"
-msgstr "Your message"
+msgstr ""
 
 #: .\templates\contacts\contacts_detail.html:79
 msgid "Отправить сообщение"
-msgstr "Send a message"
+msgstr ""
 
 #: .\templates\cooperations\cooperation_list.html:24
 #: .\templates\main\partners.html:13
@@ -511,55 +511,67 @@ msgid ""
 "Наши партнеры, совместно с которыми мы реализуем проекты в области "
 "обеспечения кибербезопасности в Кыргызской Республике."
 msgstr ""
-"Our partners, involved in implementing projects to enhance cybersecurity in "
-"the Kyrgyz Republic."
 
-#: .\templates\crypto_provider\encryptions_table.html:25
-msgid "Реестр сертифицированных средств защиты информации"
-msgstr "Registry of information security tools"
-
-#: .\templates\crypto_provider\encryptions_table.html:35
-msgid "№ Сертификата"
-msgstr "№ Certificate"
-
-#: .\templates\crypto_provider\encryptions_table.html:36
-msgid "Дата внесения в реестр, статус сертификата"
-msgstr "Date of entry into the register, certificate status."
+#: .\templates\crypto_provider\encryptions_table.html:14
+#: .\templates\crypto_provider\signature.html:14
+#: .\templates\crypto_provider\szi.html:14
+msgid ""
+"\n"
+"                                    Координационный центр по обеспечению "
+"кибербезопасности Государственного комитета национальной безопасности "
+"Кыргызской Республики\n"
+"                                "
+msgstr ""
 
 #: .\templates\crypto_provider\encryptions_table.html:37
-msgid "Срок действия"
-msgstr "Validity period"
+msgid "№ Сертификата"
+msgstr ""
 
 #: .\templates\crypto_provider\encryptions_table.html:38
-msgid "Наименование средства(шифр)"
-msgstr "Name"
+msgid "Дата внесения в реестр, статус сертификата"
+msgstr ""
+
+#: .\templates\crypto_provider\encryptions_table.html:39
+msgid "Срок действия"
+msgstr ""
 
 #: .\templates\crypto_provider\encryptions_table.html:40
-msgid "Наименования документов требованиям которых соотвествует средство "
-msgstr "Names of documents whose requirements the device complies with"
+msgid "Наименование средства(шифр)"
+msgstr ""
 
 #: .\templates\crypto_provider\encryptions_table.html:42
-msgid "Схема сертификации(Кол-во СЗИ)"
-msgstr "Certification scheme (number of security tools)"
-
-#: .\templates\crypto_provider\encryptions_table.html:43
-msgid "Испытательная лаборатория"
-msgstr "Testing laboratory"
-
-#: .\templates\crypto_provider\encryptions_table.html:45
-msgid " Заявитель (реквизиты заявителя, индекс, адресс, телефон) "
-msgstr ""
-"Applicant (applicant's details, postal code, address, telephone number)"
-
-#: .\templates\crypto_provider\encryptions_table.html:48
 msgid ""
-"Информация об окончании срока технической поддержки, полученная от заявителя "
-"(При наличии)"
+"\n"
+"                      Наименования документов требованиям которых "
+"соотвествует средство\n"
+"                      "
 msgstr ""
-"Information about the end of the technical support period received from the "
-"applicant (if available)"
 
-#: .\templates\crypto_provider\encryptions_table.html:80
+#: .\templates\crypto_provider\encryptions_table.html:46
+msgid "Схема сертификации(Кол-во СЗИ)"
+msgstr ""
+
+#: .\templates\crypto_provider\encryptions_table.html:47
+msgid "Испытательная лаборатория"
+msgstr ""
+
+#: .\templates\crypto_provider\encryptions_table.html:49
+msgid ""
+"\n"
+"                      Заявитель (реквизиты заявителя, индекс, адресс, "
+"телефон)\n"
+"                      "
+msgstr ""
+
+#: .\templates\crypto_provider\encryptions_table.html:54
+msgid ""
+"\n"
+"                      Информация об окончании срока технической поддержки, "
+"полученная от заявителя (При наличии)\n"
+"                      "
+msgstr ""
+
+#: .\templates\crypto_provider\encryptions_table.html:88
 #: .\templates\crypto_provider\signature.html:67
 #: .\templates\crypto_provider\szi.html:57
 #: .\templates\cyber_security\cyber_security.html:40
@@ -567,70 +579,55 @@ msgstr ""
 #: .\templates\notifications\notification.html:61
 #: .\templates\trainings\training_detail.html:58
 msgid "Поделиться"
-msgstr "Share"
-
-#: .\templates\crypto_provider\signature.html:14
-#: .\templates\crypto_provider\szi.html:14
-#, fuzzy
-#| msgid ""
-#| "                                Координационный центр по обеспечению "
-#| "кибербезопасности Государственного комитета национальной безопасности "
-#| "Кыргызской Республики                            "
-msgid ""
-"\n"
-"                                    Координационный центр по обеспечению "
-"кибербезопасности Государственного комитета национальной безопасности "
-"Кыргызской Республики\n"
-"                                "
-msgstr "State Committee for National Security of the Kyrgyz Republic"
+msgstr ""
 
 #: .\templates\crypto_provider\szi.html:4
 msgid "Средства защиты информации"
-msgstr "Information security tools"
+msgstr ""
 
 #: .\templates\dashboards\dashboards.html:7
 msgid "Дашборд"
-msgstr "Dashboard"
+msgstr ""
 
 #: .\templates\dashboards\dashboards.html:17
 msgid "У вас нет уведомлений"
-msgstr "You don't have notifications"
+msgstr ""
 
 #: .\templates\forbidden\not_authenticated_error.html:8
 msgid "У вас нет доступа к этой странице"
-msgstr "You do not have access to this page"
+msgstr ""
 
 #: .\templates\legislation\legislation.html:30
 msgid "Нормативно-Правовые Акты"
-msgstr "Normative legal acts"
+msgstr ""
 
 #: .\templates\main\404.html:11
 msgid "Not Found"
-msgstr "Not Found"
+msgstr ""
 
 #: .\templates\main\about.html:8
 msgid "О"
-msgstr "About"
+msgstr ""
 
 #: .\templates\main\about.html:8
 msgid "Центре"
-msgstr "Centre"
+msgstr ""
 
 #: .\templates\main\about.html:14
 msgid "Читать Постановление"
-msgstr "Decree"
+msgstr ""
 
 #: .\templates\main\about.html:18
 msgid "Задачи"
-msgstr "Objectives"
+msgstr ""
 
 #: .\templates\main\about.html:18
 msgid "Центра"
-msgstr "of Centre"
+msgstr ""
 
 #: .\templates\main\cyber.html:7
 msgid "Кибербезопасность и рекомендации"
-msgstr "Cybersecurity and Recommendations"
+msgstr ""
 
 #: .\templates\main\cyber.html:9
 msgid ""
@@ -638,21 +635,18 @@ msgid ""
 "данных и информации от киберугроз и атак для обеспечения их безопасности и "
 "надежности. Часто встречающиеся киберугрозы:"
 msgstr ""
-"Cybersecurity is a field of protecting digital systems, data,and information "
-"from cyber threats and attacks to ensure their safety and reliability. "
-"Common cyber threats include:"
 
 #: .\templates\main\main-banner.html:8
 msgid "Координационный Центр по Обеспечению Кибербезопасности"
-msgstr "Coordination Centre on Cybersecurity"
+msgstr ""
 
 #: .\templates\main\main-banner.html:14
 msgid "Сообщить об инциденте"
-msgstr "Report Incident"
+msgstr ""
 
 #: .\templates\main\news.html:7
 msgid "Новости и События"
-msgstr "Report Incident"
+msgstr ""
 
 #: .\templates\main\news.html:9
 msgid ""
@@ -660,33 +654,31 @@ msgid ""
 "актуальные новости, связанные с нашей деятельностью в области "
 "кибербезопасности."
 msgstr ""
-"The latest updates and events of the Centre. The latest developments, "
-"events, and current news in the field of cybersecurity."
 
 #: .\templates\main\news.html:29 .\templates\news\news_list.html:118
 #: .\templates\trainings\trainings_list.html:58
 msgid "Читать новость полностью"
-msgstr "All news"
+msgstr ""
 
 #: .\templates\main\news.html:40
 msgid "Смотреть все новости"
-msgstr "See all News"
+msgstr ""
 
 #: .\templates\main\partners.html:97
 msgid "Смотреть всех партнеров"
-msgstr "See all partners"
+msgstr ""
 
 #: .\templates\main\report.html:8
 msgid "Сообщить об"
-msgstr "Report"
+msgstr ""
 
 #: .\templates\main\report.html:8
 msgid "инциденте"
-msgstr "Incident"
+msgstr ""
 
 #: .\templates\main\report.html:8
 msgid "кибербезопасности"
-msgstr "Cybersecurity"
+msgstr ""
 
 #: .\templates\main\report.html:10
 msgid ""
@@ -695,129 +687,121 @@ msgid ""
 "Реагирование на инциденты - важная часть обеспечения кибербезопасности и "
 "защиты ваших данных и систем от угроз."
 msgstr ""
-"Please use this platform to notify us of cyber incidents, including data "
-"breaches or attacks. Incident response is an important part of ensuring "
-"cybersecurity and protecting your data and systems from threats."
 
 #: .\templates\main\search.html:12
 msgid "Результаты поиска"
-msgstr "Search results"
+msgstr ""
 
 #: .\templates\main\search.html:31
 msgid "По вашему запросу ничего не найдено"
-msgstr "Nothing found for your request"
+msgstr ""
 
 #: .\templates\messages\message_list.html:8
 msgid "Мои сообщения"
-msgstr "My messages"
+msgstr ""
 
 #: .\templates\messages\message_list.html:14
 msgid "Все сообщения"
-msgstr "All messages"
+msgstr ""
 
 #: .\templates\messages\message_list.html:22
 msgid "№ Сообщения"
-msgstr "Message #"
+msgstr ""
 
 #: .\templates\messages\message_list.html:23
 msgid "Описание"
-msgstr "Description"
+msgstr ""
 
 #: .\templates\messages\message_list.html:24
 msgid "Статус"
-msgstr "Status"
+msgstr ""
 
 #: .\templates\messages\message_list.html:25
 msgid "Влияние"
-msgstr "Influence"
+msgstr ""
 
 #: .\templates\messages\message_list.html:26
 msgid "Статус разрешения"
-msgstr "Permission status"
+msgstr ""
 
 #: .\templates\messages\message_list.html:27
 msgid "Резюме"
-msgstr "Summary"
+msgstr ""
 
 #: .\templates\messages\message_list.html:28
 msgid "Действия"
-msgstr "Actions"
+msgstr ""
 
 #: .\templates\messages\message_list.html:38
 msgid "Запросить статус"
-msgstr "Request Status"
+msgstr ""
 
 #: .\templates\messages\message_list.html:45
 msgid "У вас нет сообщений"
-msgstr "You have no messages"
+msgstr ""
 
 #: .\templates\news\news_list.html:24
 msgid ""
 "Актуальные события и их подробности, связанные с нашей деятельностью в "
 "области кибербезопасности."
-msgstr "Current events and details related to our cybersecurity activities."
+msgstr ""
 
 #: .\templates\news\news_list.html:29
 #: .\templates\trainings\trainings_list.html:30
 msgid "Все"
-msgstr "All"
+msgstr ""
 
 #: .\templates\news\news_list.html:68
 msgid "Выбрать дату"
-msgstr "Select date"
+msgstr ""
 
 #: .\templates\news\news_list.html:85
 msgid "за неделю"
-msgstr "in a week"
+msgstr ""
 
 #: .\templates\news\news_list.html:90
 msgid "за месяц"
-msgstr "Month"
+msgstr ""
 
 #: .\templates\news\news_list.html:95
 msgid "за полгода"
-msgstr "For six months"
+msgstr ""
 
 #: .\templates\notifications\notification.html:17
-#, fuzzy
-#| msgid ""
-#| "                                Координационный центр по обеспечению "
-#| "кибербезопасности Государственного комитета национальной безопасности "
-#| "Кыргызской Республики                            "
 msgid ""
 "\n"
 "                                Координационный центр по обеспечению "
 "кибербезопасности Государственного комитета национальной безопасности "
 "Кыргызской Республики\n"
 "                            "
-msgstr "State Committee for National Security of the Kyrgyz Republic"
+msgstr ""
 
 #: .\templates\registration\password_reset_complete.html:8
 #: .\templates\registration\password_reset_complete.html:13
 msgid "Password is set"
-msgstr "Password is set"
+msgstr ""
 
 #: .\templates\registration\password_reset_complete.html:15
 msgid "Your Password has been set. go to"
-msgstr "Your password is set."
+msgstr ""
 
 #: .\templates\registration\password_reset_complete.html:16
 msgid "Main"
-msgstr "Homepage"
+msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:7
 #: .\templates\registration\password_reset_confirm.html:13
 msgid "Reset Password"
-msgstr "Reset your password"
+msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:14
 msgid "Please enter your password twice"
-msgstr "Please enter your password twice"
+msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:19
 #: .\templates\registration\password_reset_form.html:19
 msgid "Change My Password"
-msgstr "Reset your password"
+msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:23
 msgid "Invalid link"
@@ -825,56 +809,51 @@ msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:25
 msgid "The Password reset link was invalid."
-msgstr "The Password reset link was invalid."
+msgstr ""
 
 #: .\templates\registration\password_reset_confirm.html:26
 msgid ""
 "Possibly because it has already been used. Please request a new password "
 "reset request."
 msgstr ""
-"The link has been used or expired. Please request a password reset again."
 
 #: .\templates\registration\password_reset_done.html:7
 #: .\templates\registration\password_reset_done.html:12
 msgid "Reset Your Password"
-msgstr "Reset Your Password"
+msgstr ""
 
 #: .\templates\registration\password_reset_done.html:14
 msgid "We've emailed you instructions for setting your password."
-msgstr "Instructions on setting a password send to your e-mail."
+msgstr ""
 
 #: .\templates\registration\password_reset_done.html:17
 msgid ""
 "If don't receive an email, please make sure you've entered the correct email "
 "address."
 msgstr ""
-"If you did not receive the e-mail, please make sure you entered the correct "
-"e-mail address."
 
 #: .\templates\registration\password_reset_email.html:13
 msgid ""
 "Вы получили это сообщение в связи с тем, что был сделан запрос на сброс "
 "пароля для Вашего аккаунта!"
 msgstr ""
-"You received this e-mail because a request was made to reset the password "
-"for your account!"
 
 #: .\templates\registration\password_reset_email.html:17
 msgid "Перейдите по ссылке, чтобы подтвердить сброс пароля"
-msgstr "Follow the link to confirm password reset"
+msgstr ""
 
 #: .\templates\registration\password_reset_email.html:19
 msgid "Использовать ссылку"
-msgstr "Use link"
+msgstr ""
 
 #: .\templates\registration\password_reset_email.html:21
 msgid ""
 "Если Вы не запрашивали сброс пароля, то просто проигнорируйте это письмо."
-msgstr "If you did not request a password reset, you can ignore this e-mail."
+msgstr ""
 
 #: .\templates\registration\password_reset_form.html:8
 msgid "Reset Your password"
-msgstr "Reset Your password"
+msgstr ""
 
 #: .\templates\registration\password_reset_form.html:13
 msgid "Forgotten Your Password"
@@ -886,17 +865,17 @@ msgstr ""
 
 #: .\templates\reports\reports.html:7 .\templates\reports\reports.html:14
 msgid "Отчёты"
-msgstr "Reports"
+msgstr ""
 
 #: .\templates\trainings\training_detail.html:4
 #: .\templates\trainings\trainings_list.html:12
 #: .\templates\trainings\trainings_list.html:22
 msgid "Тренинги"
-msgstr "Training courses"
+msgstr ""
 
 #: .\templates\trainings\training_detail.html:15
 msgid "Дата проведения"
-msgstr "Date of Birth"
+msgstr ""
 
 #: .\templates\trainings\trainings_list.html:24
 msgid ""
@@ -904,14 +883,11 @@ msgid ""
 "событиях, в которых участвовали наши сотрудники, связанные с обеспечением "
 "кибербезопасности в Кыргызской Республике."
 msgstr ""
-"Information regarding training courses and events conducted by the Centre, "
-"as well as insights into the involvement of our staff in cybersecurity-"
-"related events in the Kyrgyz Republic."
 
 #: .\templates\trainings\trainings_list.html:33
 msgid "Предстоящие"
-msgstr "Upcoming training courses"
+msgstr ""
 
 #: .\templates\trainings\trainings_list.html:36
 msgid "Прошедшие"
-msgstr "Post training courses"
+msgstr ""

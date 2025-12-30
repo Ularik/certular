@@ -4,7 +4,7 @@ from parler.admin import TranslatableAdmin
 
 
 @admin.register(Legislation)
-class AboutAdmin(TranslatableAdmin):
+class LegislationAdmin(TranslatableAdmin):
     list_display = ['name', 'language_column']
     fieldsets = (
         (None, {
@@ -15,12 +15,12 @@ class AboutAdmin(TranslatableAdmin):
 
 
 @admin.register(Regulations)
-class AboutAdmin(TranslatableAdmin):
-    list_display = ['link', 'language_column']
+class RegulationsAdmin(TranslatableAdmin):
+    list_display = ['description', 'link']
+    search_fields = ('translations__description',)
     fieldsets = (
         (None, {
             'fields': ('description', 'link', 'created_at')
         }),
     )
     readonly_fields = ['created_at']
-    # language_column.short_description = 'Языки'

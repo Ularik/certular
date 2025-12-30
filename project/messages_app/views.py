@@ -1,7 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views.generic import ListView
-from accounts_app.utils import check_recaptcha
 import requests
 from .models import Messages
 from django.conf import settings
@@ -17,12 +16,6 @@ def send_messages_post(request, *args, **kwargs):
 
     if request.method == 'POST':
         request_body = request.POST
-
-        recaptcha_response = request_body.get('token')
-        recaptcha_result = check_recaptcha(recaptcha_response)
-
-        if recaptcha_result.get('error'):
-            return JsonResponse(recaptcha_result)
 
         if request.FILES:
             file_message = request.FILES.get('file')
@@ -74,7 +67,7 @@ def send_messages_post(request, *args, **kwargs):
                 hash=request_body['hash']
             )
             response = 'Мы приняли Вашу заявку, ожидайте ответа в течение 14 дней'
-            response_to_report.send(sender=mess, message=response)
+            # response_to_report.send(sender=mess, message=response)
 
             return JsonResponse({"success": "Successfully messages"})
         else:

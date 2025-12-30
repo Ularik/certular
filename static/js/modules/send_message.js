@@ -9,7 +9,6 @@ let urlRegCheck = `${window.location.origin}/${window.location.pathname.split('/
 let urlRegSuccess = `${window.location.origin}/${window.location.pathname.split('/')[1]}/accounts/answer/registration/`;
 
 const regObj = {
-    token: '',
     organization: '',
     first_name: '',
     last_name: '',
@@ -104,7 +103,36 @@ regForm.addEventListener('change', (e) => {
     regObj.number = regObj.number.split('(').join('');
 });
 
-function onSubmitReg(event) {
+const fetch_post = async () => {
+    try {
+        const response = await fetch(urlReg, {
+            method: 'POST',
+            body: JSON.stringify(regObj),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftokenWriteReg[0].value
+            }
+        });
+        const response_json = await response.json();
+        if (response_json?.success) {
+            // Очищаем форму и показываем поле для ввода кода
+            const regDiv = document.querySelector(".ular-reg-form");
+            const addCodeDiv = document.querySelector(".ular-add-code");
+
+            regDiv.style.display = "none"; // Скрываем блок
+            addCodeDiv.style.display = "block"; // Показываем блок
+        } else if (response_json?.error) {
+            const el = document.getElementById('errorMsgReg');
+            el.innerText = response_json.error.toString();
+        }
+    } catch(error) {
+        const el = document.getElementById('errorMsgReg');
+        el.innerText = 'Произошла ошибка: ' + error.message;
+        console.error('Ошибка запроса:', error);
+    }
+}
+
+regForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const loaderWrapper = document.querySelector('#registerStaticBackdrop .loader-wrapper');
@@ -112,53 +140,14 @@ function onSubmitReg(event) {
 
     // Проверка валидности данных
     if (regObj.number.length === 13 && regObj.organization) {
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU', {action: 'register'}).then(function(token) {
-                console.log('Token add');
-                regObj.token = token;
-
-                fetch(urlReg, {
-                    method: 'POST',
-                    body: JSON.stringify(regObj),
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrftokenWriteReg[0].value
-                    }
-                })
-                .then(res => res.json())
-                .then(res => {
-                    loaderWrapper.style.display = 'none'; // Скрываем лоадер после ответа
-
-                    if (res?.success) {
-                        // Очищаем форму и показываем поле для ввода кода
-                        const regDiv = document.querySelector(".ular-reg-form");
-                        const addCodeDiv = document.querySelector(".ular-add-code");
-
-                        regDiv.style.display = "none"; // Скрываем блок
-                        addCodeDiv.style.display = "block"; // Показываем блок
-
-                    } else if (res?.error) {
-                        const el = document.getElementById('errorMsgReg');
-                        el.innerText = res.error.toString();
-                    }
-                })
-                .catch(error => {
-                    loaderWrapper.style.display = 'none'; // Скрываем лоадер при ошибке
-                    const el = document.getElementById('errorMsgReg');
-                    el.innerText = 'Произошла ошибка: ' + error.message;
-                    console.error('Ошибка запроса:', error);
-                });
-            });
-        });
+          await fetch_post();
     } else {
-        loaderWrapper.style.display = 'none'; // Скрываем лоадер, если данные невалидны
         const el = document.getElementById('errorMsgReg');
         el.innerText = 'Номер телефона должен содержать 13 символов, и организация не должна быть пустой.';
         console.log("Phone number or organization is not valid!");
     }
-}
-
-document.getElementById('reg-btn').addEventListener('click', onSubmitReg);
+    loaderWrapper.style.display = 'none'; // Скрываем лоадер
+});
 
 const confBtn = document.getElementById('confirm-code-btn')
 if (confBtn) {
@@ -508,60 +497,53 @@ if (reportBackdropForm) {
         const loaderWrapper = document.querySelector('#reportBackdrop .loader-wrapper');
         loaderWrapper.style.display = 'flex';
 
-        grecaptcha.ready(function() {
-          grecaptcha.execute('6LfXqfYqAAAAANmQu7Ewp2AgVO8mPTj5XIIO2NFU', {action: 'submit'}).then(function(token) {
+        const formData = new FormData();
 
-            const formData = new FormData();
-            formData.append('token', token)
-
-            Object.keys(messageObj).forEach(key => {
-                formData.append(key, messageObj[key])
-            });
-
-            try {
-                fetch(urlReportBackdropForm, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRFToken': csrftokenReport[0].value
-                    }
-                }).then(async res => {
-                    loaderWrapper.style.display = 'none';
-                    if (res.status === 200) {
-                        const reportModal = bootstrap.Modal.getInstance(document.getElementById('reportBackdrop'));
-                        await reportModal.hide();
-
-                        // Показываем модальное окно уведомления
-                        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-                        document.querySelector('#notificationModal .modal-body').innerText = 'Сообщение успешно отправлено!';
-                        await notificationModal.show();
-
-                        reportBackdropForm.elements.phone_number.value = ''
-                        reportBackdropForm.elements.description.value = ''
-
-                        messageObj.phone_number = '';
-                        messageObj.description = '';
-                    }
-                    if (res.status !== 200) return res.json()
-                }).then(res => {
-                    if (res?.error) {
-                        const el = document.getElementById('errorReportModal');
-                        el.innerText = res.error.toString();
-
-                        // Показываем уведомление об ошибке
-                        const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
-                        document.querySelector('#notificationModal .modal-body').innerText = 'Ошибка: ' + res.error;
-                        notificationModal.show();
-                    }
-                });
-            }
-            catch(error) {
-                console.log(error);
-            }
-
-          });
+        Object.keys(messageObj).forEach(key => {
+            formData.append(key, messageObj[key])
         });
-    }
+
+        try {
+            fetch(urlReportBackdropForm, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrftokenReport[0].value
+                }
+            }).then(async res => {
+                loaderWrapper.style.display = 'none';
+                if (res.status === 200) {
+                    const reportModal = bootstrap.Modal.getInstance(document.getElementById('reportBackdrop'));
+                    await reportModal.hide();
+
+                    // Показываем модальное окно уведомления
+                    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                    document.querySelector('#notificationModal .modal-body').innerText = 'Сообщение успешно отправлено!';
+                    await notificationModal.show();
+
+                    reportBackdropForm.elements.phone_number.value = ''
+                    reportBackdropForm.elements.description.value = ''
+
+                    messageObj.phone_number = '';
+                    messageObj.description = '';
+                }
+                if (res.status !== 200) return res.json()
+            }).then(res => {
+                if (res?.error) {
+                    const el = document.getElementById('errorReportModal');
+                    el.innerText = res.error.toString();
+
+                    // Показываем уведомление об ошибке
+                    const notificationModal = new bootstrap.Modal(document.getElementById('notificationModal'));
+                    document.querySelector('#notificationModal .modal-body').innerText = 'Ошибка: ' + res.error;
+                    notificationModal.show();
+                }
+            });
+        }
+        catch(error) {
+            console.log(error);
+        }
+    };
 
     reportBackdropOpen.addEventListener('click', preReportContinue);
     reportBackdropForm.addEventListener('submit', onSubmitMessage);
