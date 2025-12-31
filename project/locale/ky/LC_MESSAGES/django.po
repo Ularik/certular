@@ -261,8 +261,6 @@ msgid "СЗИ"
 msgstr "МКК"
 
 #: .\templates\base.html:383 .\templates\base.html:568
-#, fuzzy
-#| msgid "Средства защиты информации"
 msgid "Реестр средств защиты иформации"
 msgstr "Маалыматты коргоо каражаттар"
 
