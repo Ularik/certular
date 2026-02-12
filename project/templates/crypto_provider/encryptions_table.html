@@ -68,7 +68,9 @@
                   <td>
                       {{ tool.applicant.index }}
                       {{ tool.applicant.address }}
-                      {{ tool.applicant.phone }}
+                      {% if tool.application.phone %}
+                        {{ tool.applicant.phone }}
+                      {% endif %}
                   </td>
                   <td>{{ tool.finish_info }}</td>
                 </tr>
