@@ -49,5 +49,6 @@ def crypto_signature_view(request):
 
 
 def get_encrypted_tools(request):
-    tools_list = EncryptionTools.objects.order_by("created_date")
+    tools_list = list(EncryptionTools.objects.all())  # Сначала создаем список
+    tools_list.sort(key=lambda word: str(word)[-5:])
     return render(request, 'crypto_provider/encryptions_table.html', {'tools': tools_list})
