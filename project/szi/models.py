@@ -65,7 +65,7 @@ class EncryptionTools(TranslatableModel):
     applicant = models.ForeignKey(Applicant, on_delete=models.SET_NULL, null=True, blank=True)
     translations = TranslatedFields(
         number=models.CharField(max_length=125, verbose_name='Номер сертификата'),
-        title=models.CharField(max_length=125, verbose_name='Наименование средства(шифр)'),
+        title=models.CharField(max_length=255, verbose_name='Наименование средства(шифр)'),
         components=models.CharField(max_length=100, verbose_name='Схема сертификации, кол-во СЗИ'),
         testing_lab=models.CharField(max_length=125, verbose_name='Испытательная лаборатория'),
         finish_info=models.TextField(verbose_name='Информация об окончании срока тех поддержки', null=True, blank=True),
