@@ -367,12 +367,6 @@
                                      {% get_crypto_provider as context %}
                                     <li>
                                         <a class="dropdown-item"
-                                           href="{% url 'crypto:szi' %}">
-                                             {% trans 'ЭП' %}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item"
                                            href="{% url 'crypto:signature' %}">
                                              {% trans 'СЗИ' %}
                                         </a>
@@ -550,12 +544,7 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                      {% get_crypto_provider as context %}
-                                    <li>
-                                        <a class="dropdown-item"
-                                           href="{% url 'crypto:szi' %}">
-                                             {% trans 'СЗИ' %}
-                                        </a>
-                                    </li>
+
                                     <li>
                                         <a class="dropdown-item"
                                            href="{% url 'crypto:signature' %}">
