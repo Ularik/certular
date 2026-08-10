@@ -16,10 +16,10 @@ class UserInline(admin.TabularInline):
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     inlines = [UserInline]
-    list_display = ('name',)
-    list_filter = ('name',)
-    search_fields = ('name',)
-    fields = ('name',)
+    list_display = ('org_code', 'id', 'name',)
+    list_filter = ('org_code', 'id', 'name',)
+    search_fields = ('org_code', 'name',)
+    fields = ('org_code', 'name',)
 
 
 class UserAdmin(BaseUserAdmin):

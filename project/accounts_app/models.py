@@ -18,6 +18,7 @@ class Groups(Group):
 
 class Organization(models.Model):
     name = models.CharField(verbose_name=_('Наименование'), unique=True)
+    org_code = models.CharField(unique=True, max_length=20, null=True, blank=True)
 
     def __str__(self):
         admin = _("Админ")
