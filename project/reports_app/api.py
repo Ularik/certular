@@ -15,7 +15,7 @@ def create_report(request, body: ReportCreateSchema, file: File[UploadedFile]):
         user = User.objects.filter(first_name=body.username).first()
         report_body['user'] = user
 
-    organization = Organization.objects.filter(name=report_body['organization']).first()
+    organization = Organization.objects.filter(name__icontains=report_body['organization']).first()
     report_body['organization'] = organization
 
     if not organization:
