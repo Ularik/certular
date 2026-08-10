@@ -3,6 +3,6 @@ from typing import Optional
 
 
 class ReportCreateSchema(Schema):
-    username: str
+    username: str | None = None
     organization: str
     attack_type: str

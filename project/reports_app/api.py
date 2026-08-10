@@ -10,13 +10,18 @@ router = Router()
 @router.post('/report-create', response={201: str, 400: str})
 def create_report(request, body: ReportCreateSchema, file: File[UploadedFile]):
     report_body = body.dict(exclude_unset=True)
-    user = User.objects.filter(first_name=report_body['username']).first()
+
+    if body.username:
+        user = User.objects.filter(first_name=body.username).first()
+        report_body['user'] = user
+
     organization = Organization.objects.filter(name=report_body['organization']).first()
+    report_body['organization'] = organization
 
-    if not (user and organization):
-        return 400, 'Нет такого пользователя или организации'
+    if not organization:
+        return 400, 'Нет такогой организации'
 
-    report = Reports(user=user, organization=organization, name=report_body['attack_type'])
+    report = Reports(**report_body)
     report.file.save(file.name, file)
     report.save()
     return 201, 'Успешно создан'
