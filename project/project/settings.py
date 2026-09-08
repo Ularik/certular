@@ -1,18 +1,20 @@
-import os.path
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-from .settings_local import *
 import dotenv
 dotenv.load_dotenv()
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+DEV = True if os.getenv("DEV") == 'true' else False
 
-# Application definition
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+DEBUG = True
+
+ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['https://site.local']
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -86,13 +88,13 @@ if DEV:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': DB_NAME_DEV,
-            'USER': DB_USER_DEV,
-            'PASSWORD': DB_PASS_DEV,
-            'HOST': DB_HOST_DEV,
-            'PORT': DB_PORT_DEV,
+            'NAME': os.getenv("POSTGRES_DB"),
+            'USER': os.getenv("POSTGRES_USER"),
+            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+            'HOST': "localhost",
+            'PORT': os.getenv("POSTGRES_PORT"),
             'TEST': {
-                'NAME': DB_NAME_DEV_TEST,
+                'NAME': '',
             },
         }
     }
@@ -103,13 +105,13 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': DB_NAME,
-            'USER': DB_USER,
-            'PASSWORD': DB_PASS,
-            'HOST': DB_HOST,
-            'PORT': DB_PORT,
+            'NAME': os.getenv("POSTGRES_DB"),
+            'USER': os.getenv("POSTGRES_USER"),
+            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+            'HOST': os.getenv("POSTGRES_HOST"),
+            'PORT': os.getenv("POSTGRES_PORT"),
             'TEST': {
-                'NAME': DB_NAME_TEST,
+                'NAME': '',
             },
         }
     }
@@ -132,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": f"redis://{os.getenv('REDIS_HOST')}:{os.getenv('REDIS_PORT')}",
         # "LOCATION": "redis://127.0.0.1:6380",  # docker container
 
     }
@@ -176,7 +178,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not DEBUG:
+if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 else:
     STATICFILES_DIRS = [
@@ -258,6 +260,6 @@ EMAIL_HOST = 'mail.cert.gov.kg'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 APPEAL_EMAIL = ''
