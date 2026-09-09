@@ -10,10 +10,13 @@ DEV = True if os.getenv("DEV") == 'true' else False
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
-CSRF_TRUSTED_ORIGINS = ['https://site.local']
+CSRF_TRUSTED_ORIGINS = [
+    'https://cert.gov.kg',
+    'https://www.cert.gov.kg',
+]
 
 
 INSTALLED_APPS = [
