@@ -14,6 +14,7 @@ def create_report(request, body: ReportCreateSchema, file: File[UploadedFile]):
     if body.username:
         user = User.objects.filter(first_name=body.username).first()
         report_body['user'] = user
+        report_body.pop("username")
 
     organization = Organization.objects.filter(org_code__icontains=report_body['organization']).first()
     report_body['organization'] = organization
