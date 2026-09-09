@@ -23,8 +23,8 @@ services:
     environment:
       DEBUG: "true"
     volumes:
-      - static_volume:/usr/www/static
-      - media_volume:/usr/www/media
+      - ./static:/usr/www/static
+      - ./media:/usr/www/media
     command: >
       sh -c "python project/manage.py migrate && \
              python project/manage.py collectstatic --noinput && \
@@ -40,12 +40,11 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - static_volume:/usr/www/static
-      - media_volume:/usr/www/media
+      - ./static:/usr/www/static
+      - ./media:/usr/www/media
     depends_on:
       - web
 
 volumes:
   redis_data:
-  static_volume:
-  media_volume:
+

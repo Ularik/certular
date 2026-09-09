@@ -5,6 +5,7 @@ media
 __pycache__/
 **/__pycache__/**
 *.pyc
+static
 *.py[cod]
 *$py.class
 project/project/settings_local.py
