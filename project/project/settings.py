@@ -3,20 +3,37 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 import dotenv
+from django.core.exceptions import ImproperlyConfigured
 dotenv.load_dotenv()
 
 
-DEV = True if os.getenv("DEV") == 'true' else False
+def env_bool(name, default=False):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in ('true', '1', 'yes', 'on')
+
+
+def env_list(name):
+    # Принимает "a,b" и формат Python-списка "['a', 'b']"
+    value = os.getenv(name, '').strip().strip('[]')
+    return [item.strip().strip('\'"') for item in value.split(',') if item.strip().strip('\'"')]
+
+
+MODE = os.getenv("MODE", "").strip().upper()
+DB_HOSTS = {
+    "LOCAL": os.getenv("POSTGRES_HOST"),
+    "DOCKER": os.getenv("POSTGRES_HOST_DOCKER"),
+}
+if MODE not in DB_HOSTS:
+    raise ImproperlyConfigured(f"MODE в .env должен быть LOCAL или DOCKER, сейчас: {MODE!r}")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = False
+DEBUG = env_bool("DEBUG")
 
-ALLOWED_HOSTS = ['cert.gov.kg', '10.100.191.9', '10.100.191.8', '127.0.0.1', 'localhost']
-CSRF_TRUSTED_ORIGINS = [
-    'https://cert.gov.kg',
-    'https://www.cert.gov.kg',
-]
+ALLOWED_HOSTS = env_list("ALLOWED_HOSTS")
+CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS")
 
 
 INSTALLED_APPS = [
@@ -31,6 +48,7 @@ INSTALLED_APPS = [
     'tinymce',
     'parler',
     'rest_framework',
+    'ninja_extra',
 
     # my apps
     'db_logger',
@@ -86,38 +104,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "project.wsgi.application"
 AUTH_USER_MODEL = 'accounts_app.User'
 
-if DEV:
-    # Dev
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv("POSTGRES_DB"),
-            'USER': os.getenv("POSTGRES_USER"),
-            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-            'HOST': "localhost",
-            'PORT': os.getenv("POSTGRES_PORT"),
-            'TEST': {
-                'NAME': '',
-            },
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("POSTGRES_DB"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST': DB_HOSTS[MODE],
+        'PORT': os.getenv("POSTGRES_PORT"),
+        'TEST': {
+            'NAME': '',
+        },
     }
-
-
-else:
-    # Prod
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv("POSTGRES_DB"),
-            'USER': os.getenv("POSTGRES_USER"),
-            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-            'HOST': os.getenv("POSTGRES_HOST"),
-            'PORT': os.getenv("POSTGRES_PORT"),
-            'TEST': {
-                'NAME': '',
-            },
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -134,10 +133,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REDIS_HOST = os.getenv('REDIS_HOST') if MODE == "LOCAL" else os.getenv('REDIS_HOST_DOCKER')
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": f"redis://{os.getenv('REDIS_HOST')}:{os.getenv('REDIS_PORT')}",
+        "LOCATION": f"redis://{REDIS_HOST}:{os.getenv('REDIS_PORT')}",
         # "LOCATION": "redis://127.0.0.1:6380",  # docker container
 
     }
@@ -181,12 +181,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
-else:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, '..', 'static'),
-    ]
+# static/ — исходники, staticfiles/ — результат collectstatic (раздаётся nginx)
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '..', 'static'),
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
@@ -259,10 +258,10 @@ LOGGING = {
 DJANGO_DB_LOGGER_ENABLE_FORMATTER = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.cert.gov.kg'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = int(os.getenv("EMAIL_PORT", 587))
+EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS")
+EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-APPEAL_EMAIL = ''
+APPEAL_EMAIL = os.getenv("APPEAL_EMAIL", '')

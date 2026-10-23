@@ -7,6 +7,7 @@ from .models import Reports
 User = get_user_model()
 router = Router()
 
+
 @router.post('/report-create', response={201: str, 400: str})
 def create_report(request, body: ReportCreateSchema, file: File[UploadedFile]):
     report_body = body.dict(exclude_unset=True)

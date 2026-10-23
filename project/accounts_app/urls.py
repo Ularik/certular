@@ -1,4 +1,3 @@
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
 from .views import RegistrationAPIView, login_view, logout_view, check_registration, answer_after_reg

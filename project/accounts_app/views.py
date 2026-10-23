@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.utils.translation import get_language
-from django.shortcuts import redirect, render, reverse
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 import datetime
 import json
@@ -23,11 +23,24 @@ def logout_view(request):
 
 
 def login_view(request):
-    request_body = json.loads(request.body)
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Метод запроса не поддерживается'}, status=405)
+
+    if request.content_type == 'application/json':
+        try:
+            request_body = json.loads(request.body)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            return JsonResponse({'error': 'Некорректные данные запроса'}, status=400)
+        if not isinstance(request_body, dict):
+            return JsonResponse({'error': 'Некорректные данные запроса'}, status=400)
+    else:
+        request_body = request.POST
+
+    if not request_body.get('username') or not request_body.get('password'):
+        return JsonResponse({'error': 'Укажите email и пароль'}, status=400)
+
     user = authenticate(username=request_body['username'], password=request_body['password'])
-    remember_me = ''
-    if 'remember_me' in request_body:
-        remember_me = request_body['remember_me']
+    remember_me = request_body.get('remember_me', 'off')
 
     if user:
         if remember_me == 'on':

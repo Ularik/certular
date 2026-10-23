@@ -20,10 +20,8 @@ services:
       - redis
     env_file:
       - .env
-    environment:
-      DEBUG: "true"
     volumes:
-      - ./static:/usr/www/static
+      - ./staticfiles:/usr/www/staticfiles
       - ./media:/usr/www/media
     command: >
       sh -c "python project/manage.py migrate && \
@@ -40,7 +38,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./static:/usr/www/static
+      - ./staticfiles:/usr/www/staticfiles
       - ./media:/usr/www/media
     depends_on:
       - web

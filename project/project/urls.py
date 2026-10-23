@@ -6,29 +6,20 @@ from django.conf.urls.i18n import i18n_patterns
 from ninja import NinjaAPI
 from reports_app.api import router as report_router
 
-from django.contrib.auth.decorators import login_required
 from ninja_extra import NinjaExtraAPI
-from ninja.security import HttpBearer
+from ninja_jwt.authentication import JWTAuth
 from ninja_jwt.controller import NinjaJWTDefaultController
-
-
-
-class GlobalAuth(HttpBearer):
-    def authenticate(self, request, token):
-        if token == "supersecret":
-            return token
 
 
 api = NinjaExtraAPI(
    title="API",
    description="Документация API",
     version="1.0",
-    docs_decorator=login_required,
 )
 api.register_controllers(NinjaJWTDefaultController)
 
 
-api.add_router("/router/", report_router)
+api.add_router("/router/", report_router, auth=JWTAuth())
 
 
 urlpatterns = [
