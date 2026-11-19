@@ -20,6 +20,7 @@ def create_report(request, body: ReportCreateSchema, file: File[UploadedFile]):
     organization = Organization.objects.filter(org_code__icontains=report_body['organization']).first()
     report_body['organization'] = organization
 
+
     if not organization:
         return 400, 'Нет такогой организации'
 

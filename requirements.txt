@@ -12,6 +12,7 @@ thehive4py
 redis
 six
 environs
+requests
 
 
 

@@ -248,6 +248,10 @@ LOGGING = {
             'level': 'INFO',
             'handlers': ['console_lite', 'db_logger']
         },
+        'messages_app': {
+            'level': 'INFO',
+            'handlers': ['console_lite', 'db_logger']
+        },
         'news_app': {
             'level': 'INFO',
             'handlers': ['console',]
@@ -265,3 +269,7 @@ EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL")
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 APPEAL_EMAIL = os.getenv("APPEAL_EMAIL", '')
+
+# URL, на который дополнительно пересылается каждая заявка об инциденте (POST, multipart/form-data).
+# Пустое значение отключает пересылку.
+MESSAGE_SEND_ADDRESS = os.getenv("MESSAGE_SEND_ADDRESS", "").strip()

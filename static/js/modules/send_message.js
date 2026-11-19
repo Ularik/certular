@@ -389,9 +389,10 @@ if (reportBackdropForm) {
     const btnSubmit = reportBackdropForm.querySelector('button.main-btn');
 
     let regexReportEmail = new RegExp("^[A-Za-z0-9_!#$%&'*+\\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$");
-    let regexReportFullName = new RegExp("^[ёЁa-zA-ZА-Яа-я ]+$");
+    let regexReportFullName = new RegExp("^[ёЁa-zA-ZА-Яа-яҢңӨөҮү' -]+$");
     let regexReportTel = new RegExp("^\\+[0-9]{12,13}?$");
-    let regexReportMessage = new RegExp("^[a-zA-Z0-9А-Яа-я- ёЁ]{2,10000}?$");
+    // Описание инцидента: любой текст (пунктуация, ссылки, переносы строк) от 2 символов
+    let regexReportMessage = new RegExp("^[\\s\\S]{2,10000}$");
 
     const validateToolTipReport = (elem, className) => {
         const errorId = `errorValid-${className}`;
@@ -460,12 +461,10 @@ if (reportBackdropForm) {
         }
     }
 
-    reportBackdropForm.addEventListener('change', e => {
-        // e.preventDefault()
-
-        messageObj.email = reportBackdropForm.elements.email.value;
-        messageObj.full_name = reportBackdropForm.elements.full_name.value;
-        messageObj.description = reportBackdropForm.elements.description.value;
+    function collectMessageValues() {
+        messageObj.email = reportBackdropForm.elements.email.value.trim();
+        messageObj.full_name = reportBackdropForm.elements.full_name.value.trim().replace(/\s+/g, ' ');
+        messageObj.description = reportBackdropForm.elements.description.value.trim();
         messageObj.phone_number = reportBackdropForm.elements.phone_number.value;
         messageObj.host_ip = reportBackdropForm.elements.ip?.value || '';
         messageObj.domain_name = reportBackdropForm.elements.domain?.value || '';
@@ -476,7 +475,9 @@ if (reportBackdropForm) {
         messageObj.phone_number = messageObj.phone_number.split(' ').join('');
         messageObj.phone_number = messageObj.phone_number.split(')').join('');
         messageObj.phone_number = messageObj.phone_number.split('(').join('');
-    })
+    }
+
+    reportBackdropForm.addEventListener('change', collectMessageValues);
 
     function preReportContinue() {
         sendMessForm.style.display = 'block';
@@ -490,6 +491,7 @@ if (reportBackdropForm) {
 
     function onSubmitMessage(event) {
         event.preventDefault();
+        collectMessageValues();
         const isValid = testValidValues();
         console.log(isValid);
         if (isValid === 400) return;

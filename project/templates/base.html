@@ -1220,12 +1220,8 @@
                         <label for="name" class="form-label main-label">{% trans 'ФИО' %}*</label>
                         <input type="text" class="form-control" id="name"
                                placeholder="{% trans 'Фамилия Имя Отчество' %}" name="full_name"
-                               pattern="[A-ZА-Яа-яa-z *]{3,32}"
                                 {% if request.user.is_authenticated %}
-                               value="{{ request.user.last_name }} {{ request.user.first_name }}
-                                        {% if request.user.patronymic %}
-                                            {{ request.user.patronymic }}
-                                        {% endif %}" disabled
+                               value="{{ request.user.last_name }} {{ request.user.first_name }}{% if request.user.patronymic %} {{ request.user.patronymic }}{% endif %}" disabled
                                 {% endif %}
                         >
                     </div>
@@ -1247,8 +1243,7 @@
                         <label for="description" class="form-label main-label">
                             {% trans 'Опишите инцидент*' %}
                         </label>
-                        <textarea type="textarea" class="form-control" id="description" name="description">
-                        </textarea>
+                        <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
 
                     <div class="main-block-input">
@@ -1301,7 +1296,7 @@
                         <div class="error errorMsgContactsContacts" id="errorReportModal"></div>
 
                     </div>
-                    <button type="submit" class="main-btn recaptcha-btn-report g-recaptcha">
+                    <button type="submit" class="main-btn recaptcha-btn-report">
                         {% trans 'Сообщить о киберинциденте' %}
                     </button>
                 </form>

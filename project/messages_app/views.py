@@ -8,6 +8,7 @@ from django.utils.translation import get_language
 import re
 import json
 from .signals import response_to_report
+from .forwarding import forward_message
 
 
 pattern = r"^[-\w\.]+@([-\w]+\.)+[-\w]{2,5}$"
@@ -22,7 +23,7 @@ def send_messages_post(request, *args, **kwargs):
         else:
             file_message = request_body['file']
 
-        if request_body['description'] == '':
+        if request_body.get('description', '').strip() == '':
             form_desc_invalid = ''
             if get_language() == 'en':
                 form_desc_invalid = {"error": "Fill in all the fields"}
@@ -68,12 +69,13 @@ def send_messages_post(request, *args, **kwargs):
             )
             response = 'Мы приняли Вашу заявку, ожидайте ответа в течение 14 дней'
             # response_to_report.send(sender=mess, message=response)
+            forward_message(mess)
 
             return JsonResponse({"success": "Successfully messages"})
         else:
             print('Success!')
             user = request.user
-            Messages.objects.create(
+            mess = Messages.objects.create(
                 user=user,
                 name=request_body['full_name'],
                 description=request_body['description'],
@@ -82,6 +84,7 @@ def send_messages_post(request, *args, **kwargs):
                 domain_name=request_body['domain_name'],
                 hash=request_body['hash']
             )
+            forward_message(mess)
 
         return JsonResponse({"success": "Successfully messages"})
 
