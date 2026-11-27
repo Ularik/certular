@@ -4,8 +4,11 @@ from .models import User
 from .utils import send_message
 from random import randint
 from django.core.cache import cache
+import logging
 import os
 import requests
+
+logger = logging.getLogger(__name__)
 
 create_user_signal = Signal()
 
@@ -21,9 +24,15 @@ def send_email_for_user(sender, instance, **kwargs):
 
 @receiver(post_save, sender=User)
 def telegram_message(sender, instance, created, **kwargs):
-    if created:
-        message = f'Пользователь: {instance.email} только что отправил запрос на создание'
-        response = requests.get(
-            url=f'{os.getenv('TELEGRAM_API')}/sendMessage?chat_id={os.getenv('TELEGRAM_CHAT_ID')}&text={message}')
-
-
+    if not created:
+        return
+    api = os.getenv('TELEGRAM_API')
+    chat_id = os.getenv('TELEGRAM_CHAT_ID')
+    if not api or not chat_id:
+        return
+    message = f'Пользователь: {instance.email} только что отправил запрос на создание'
+    # Сбой Telegram не должен ломать создание пользователя (в т.ч. из админки)
+    try:
+        requests.get(f'{api}/sendMessage', params={'chat_id': chat_id, 'text': message}, timeout=5)
+    except requests.RequestException as e:
+        logger.warning('Не удалось отправить уведомление в Telegram: %s', e)

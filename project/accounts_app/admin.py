@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
+from django.core.validators import RegexValidator
 from reports_app.models import Reports
 from .models import Organization, User, Groups
 
@@ -22,6 +23,13 @@ class OrganizationAdmin(admin.ModelAdmin):
     fields = ('org_code', 'name',)
 
 
+PHONE_PLACEHOLDER = '+996 (555) 12-34-56'
+PHONE_VALIDATOR = RegexValidator(
+    r'^\+?[\d\s()\-]{9,19}$',
+    f'Введите номер телефона в формате {PHONE_PLACEHOLDER}',
+)
+
+
 class UserAdmin(BaseUserAdmin):
     list_display = ('email', 'first_name', 'last_name',)
     list_filter = ('first_name', 'last_name')
@@ -32,7 +40,7 @@ class UserAdmin(BaseUserAdmin):
         ('Организация', {'fields': ('organization',)}),
         ('Персональные данные', {'fields': ('first_name', 'last_name', 'patronymic',
                                             'position')}),
-        ('Привилегии', {'fields': ('groups',)}),
+        ('Привилегии', {'fields': ('is_admin', 'groups',)}),
         ('Активность пользователя', {'fields': ('is_active',)}),
         ('Номер телефона', {'fields': ('number',)}),
         ('Безопасность', {'fields': ('password',)})
@@ -40,13 +48,21 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'password1', 'password2', 'is_superuser',
+            'fields': ('email', 'first_name', 'password1', 'password2', 'is_admin',
                        'organization', 'number'),
         }),
     )
     search_fields = ('email', )
     ordering = ('email',)
     filter_horizontal = ()
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        formfield = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == 'number':
+            formfield.widget.attrs['placeholder'] = PHONE_PLACEHOLDER
+            formfield.help_text = f'Образец: {PHONE_PLACEHOLDER}'
+            formfield.validators.append(PHONE_VALIDATOR)
+        return formfield
 
 
 admin.site.register(User, UserAdmin)
